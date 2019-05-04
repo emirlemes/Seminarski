@@ -17,6 +17,7 @@ namespace eFastFood_UI.Util
         {
             client = new HttpClient();
             client.BaseAddress = new Uri(uri);
+            this.route = route;
         }
 
         public HttpResponseMessage GetResponse(string parameter = "")
@@ -28,7 +29,6 @@ namespace eFastFood_UI.Util
         {
             return client.GetAsync(route + "/" + action + "/" + parameter).Result;
         }
-
         public HttpResponseMessage PostResponse(Object newObject)
         {
             return client.PostAsJsonAsync(route, newObject).Result;

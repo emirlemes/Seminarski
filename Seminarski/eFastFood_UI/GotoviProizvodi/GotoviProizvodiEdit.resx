@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="empty_string" xml:space="preserve">
-    <value>Polje ne smije biti prazno.</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Greška</value>
-  </data>
-  <data name="login_user_err" xml:space="preserve">
-    <value>Korisničko ime ili lozinka nisu ispravni.</value>
-  </data>
-  <data name="negative_price" xml:space="preserve">
-    <value>Cijena ne može biti negativna.</value>
-  </data>
 </root>

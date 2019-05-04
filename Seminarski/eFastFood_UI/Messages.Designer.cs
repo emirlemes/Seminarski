@@ -19,7 +19,7 @@ namespace eFastFood_UI {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Messages {
@@ -61,6 +61,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Polje ne smije biti prazno..
+        /// </summary>
+        internal static string empty_string {
+            get {
+                return ResourceManager.GetString("empty_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Greška.
         /// </summary>
         internal static string error {
@@ -75,6 +84,15 @@ namespace eFastFood_UI {
         internal static string login_user_err {
             get {
                 return ResourceManager.GetString("login_user_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cijena ne može biti negativna..
+        /// </summary>
+        internal static string negative_price {
+            get {
+                return ResourceManager.GetString("negative_price", resourceCulture);
             }
         }
     }

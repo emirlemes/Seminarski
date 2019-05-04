@@ -14,7 +14,7 @@ namespace eFastFood_UI
 
         #region API Route
 
-        public static string UposleniciRoute = "Uposlenici";
+        public static string UposleniciRoute = "Uposlenik";
         
         #endregion
     }

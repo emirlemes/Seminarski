@@ -6,9 +6,12 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
+using eFastFood_API.ViewModels;
+using eFastFood_UI.Util;
 
 namespace eFastFood_API.Controllers
 {
@@ -111,6 +114,23 @@ namespace eFastFood_API.Controllers
 
             return Ok(uposlenik);
         }
+
+        //POST: api/Uposlenik/{korisnickoIme}/{lozinka}
+        [HttpPost]
+        [Route("api/Uposlenik/Prijava")]
+        [ResponseType(typeof(Uposlenik))]
+        public IHttpActionResult Prijava([FromBody]PrijavaVM k)
+        {
+            Uposlenik uposlenik = _db.Uposlenik.Where(x => x.UserName == k.korisnickoIme).FirstOrDefault();
+            if (uposlenik == null)
+                return NotFound();
+            else
+                if (Hashing.GenerateHash(uposlenik.LozinkaSalt, k.lozinka) == uposlenik.LozinkaHash)
+                    return Ok(uposlenik);
+
+            return Unauthorized();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

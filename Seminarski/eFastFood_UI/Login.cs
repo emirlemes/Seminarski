@@ -1,4 +1,5 @@
 ﻿using eFastFood_API.Models;
+using eFastFood_API.ViewModels;
 using eFastFood_UI.Util;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,34 +18,27 @@ namespace eFastFood_UI
 {
     public partial class Login : Form
     {
-        private APIHelper usersService = new APIHelper(ConfigurationSettings.AppSettings["APIAddress"].ToString(), Global.UposleniciRoute);
+        private APIHelper usersService = new APIHelper(ConfigurationManager.AppSettings["APIAddress"], Global.UposleniciRoute);
 
         public Login()
         {
             InitializeComponent();
         }
 
-        private void  Prijava()
+        private void Prijava()
         {
-            HttpResponseMessage response = usersService.GetActionResponse("GetUposlenikByUsername", korisnickoImeInput.Text);
+            HttpResponseMessage response = usersService.PostActionResponse("Prijava", new PrijavaVM { korisnickoIme = korisnickoImeInput.Text, lozinka = lozinkaInput.Text });
 
-            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            if (response.StatusCode == HttpStatusCode.NotFound)
                 MessageBox.Show(Messages.login_user_err, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                MessageBox.Show(Messages.login_user_err, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (response.IsSuccessStatusCode)
             {
                 Uposlenik korisnik = response.Content.ReadAsAsync<Uposlenik>().Result;
-
-                if (Hashing.GenerateHash(korisnik.LozinkaSalt, korisnickoImeInput.Text) == korisnik.LozinkaHash)
-                {
-                    this.DialogResult = DialogResult.OK;
-                    Global.prijavnjeniKorisnik = korisnik;
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show(Messages.login_user_err, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.DialogResult = DialogResult.OK;
+                Global.prijavnjeniKorisnik = korisnik;
+                this.Close();
             }
             else
             {

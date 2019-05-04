@@ -70,6 +70,7 @@
             this.lozinkaInput.Size = new System.Drawing.Size(242, 20);
             this.lozinkaInput.TabIndex = 1;
             this.lozinkaInput.UseSystemPasswordChar = true;
+            this.lozinkaInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.prijava_KeyUp);
             // 
             // prijavaButton
             // 
@@ -112,7 +113,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prijava";
-            this.TopMost = true;
             this.Click += new System.EventHandler(this.odustani_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

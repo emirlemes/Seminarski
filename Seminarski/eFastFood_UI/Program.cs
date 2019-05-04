@@ -1,5 +1,5 @@
 ﻿using eFastFood_UI.Administrator;
-using eFastFood_UI.Kuhinja;
+using eFastFood_UI.GotoviProizvodi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +20,14 @@ namespace eFastFood_UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Login frm = new Login();
+            GotoviProizvodiAdd frm= new GotoviProizvodiAdd();
             frm.ShowDialog();
 
-            if (frm.DialogResult == DialogResult.OK && Global.prijavnjeniKorisnik.Uloga.Naziv == "Administrator")
-                Application.Run(new MainFormAdmin());
-            else if (frm.DialogResult == DialogResult.OK && Global.prijavnjeniKorisnik.Uloga.Naziv == "Kuhinja")
-                Application.Run(new MainFormKuhinja());
+            //Login frm = new Login();
+            //frm.ShowDialog();
+
+            //if (frm.DialogResult == DialogResult.OK && Global.prijavnjeniKorisnik.Uloga.Naziv == "Administrator")
+            //    Application.Run(new MainFormAdmin());
         }
     }
 }

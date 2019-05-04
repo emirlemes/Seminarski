@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace eFastFood_UI.Kuhinja
+namespace eFastFood_UI.GotoviProizvodi
 {
-    public partial class MainFormKuhinja : Form
+    public partial class GotoviProizvodiIndex : Form
     {
-        public MainFormKuhinja()
+        public GotoviProizvodiIndex()
         {
             InitializeComponent();
         }

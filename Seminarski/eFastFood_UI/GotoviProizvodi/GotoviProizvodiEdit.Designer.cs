@@ -1,6 +1,6 @@
-﻿namespace eFastFood_UI.Kuhinja
+﻿namespace eFastFood_UI.GotoviProizvodi
 {
-    partial class MainFormKuhinja
+    partial class GotoviProizvodiEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // GotoviProizvodiEdit
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MainFormKuhinja";
+            this.Name = "GotoviProizvodiEdit";
+            this.Text = "GotoviProizvodiEdit";
+            this.Load += new System.EventHandler(this.GotoviProizvodiEdit_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
