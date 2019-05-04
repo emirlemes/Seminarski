@@ -15,11 +15,12 @@ namespace eFastFood_API.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class eFastFoodEntities : DbContext
+    public partial class eFastFoodEntitie : DbContext
     {
-        public eFastFoodEntities()
-            : base("name=eFastFoodEntities")
+        public eFastFoodEntitie()
+            : base("name=eFastFoodEntitie")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -43,9 +44,9 @@ namespace eFastFood_API.Models
         public virtual DbSet<Uloga> Uloga { get; set; }
         public virtual DbSet<Uposlenik> Uposlenik { get; set; }
     
-        public virtual ObjectResult<UposleniciAll> sp_UposleniciGetAll()
+        public virtual ObjectResult<UposleniciGetAll> sp_UposleniciGetAll()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UposleniciAll>("sp_UposleniciGetAll");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UposleniciGetAll>("sp_UposleniciGetAll");
         }
     }
 }

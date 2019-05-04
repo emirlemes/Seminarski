@@ -18,7 +18,7 @@ namespace eFastFood_UI
 {
     public partial class Login : Form
     {
-        private APIHelper usersService = new APIHelper(ConfigurationManager.AppSettings["APIAddress"], Global.UposleniciRoute);
+        private APIHelper usersService = new APIHelper(Global.ApiUrl, Global.UposleniciRoute);
 
         public Login()
         {

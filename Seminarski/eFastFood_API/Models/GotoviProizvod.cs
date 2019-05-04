@@ -26,10 +26,11 @@ namespace eFastFood_API.Models
         public string Naziv { get; set; }
         public string Opis { get; set; }
         public decimal Cijena { get; set; }
-        public Nullable<System.TimeSpan> VrijemePripreme { get; set; }
         public Nullable<int> KategorijaID { get; set; }
+        public Nullable<int> VrijemePripreme { get; set; }
+        public byte[] Slika { get; set; }
+        public byte[] SlikaUmanjeno { get; set; }
     
-        public virtual Kategorija Kategorija { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GPProizvod> GPProizvod { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

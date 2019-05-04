@@ -1,5 +1,5 @@
 ﻿using eFastFood_UI.Administrator;
-using eFastFood_UI.GotoviProizvodi;
+using eFastFood_UI.GotoviProizvodiUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +20,11 @@ namespace eFastFood_UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            GotoviProizvodiAdd frm= new GotoviProizvodiAdd();
+            GotoviProizvodiAdd frm = new GotoviProizvodiAdd();
             frm.ShowDialog();
+
+            //KategorijaUI.KategorijaAdd kategorijaAdd= new KategorijaUI.KategorijaAdd();
+            //kategorijaAdd.ShowDialog();
 
             //Login frm = new Login();
             //frm.ShowDialog();

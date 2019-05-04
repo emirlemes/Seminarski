@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GotoviProizvodController.cs" />
+    <Compile Include="Controllers\KategorijaController.cs" />
     <Compile Include="Controllers\UposlenikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,7 +164,7 @@
     <Compile Include="Models\Uloga.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UposleniciAll.cs">
+    <Compile Include="Models\UposleniciGetAll.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Uposlenik.cs">

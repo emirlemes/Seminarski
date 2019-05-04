@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace eFastFood_UI.GotoviProizvodi
+namespace eFastFood_UI.KategorijaUI
 {
-    public partial class GotoviProizvodiEdit : Form
+    public partial class KategorijaEdit : Form
     {
-        public GotoviProizvodiEdit()
+        public KategorijaEdit()
         {
             InitializeComponent();
-        }
-
-        private void GotoviProizvodiEdit_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

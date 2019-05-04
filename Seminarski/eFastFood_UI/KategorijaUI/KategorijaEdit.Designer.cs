@@ -1,6 +1,6 @@
-﻿namespace eFastFood_UI.GotoviProizvodi
+﻿namespace eFastFood_UI.KategorijaUI
 {
-    partial class GotoviProizvodiEdit
+    partial class KategorijaEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,16 @@
         {
             this.SuspendLayout();
             // 
-            // GotoviProizvodiEdit
+            // KategorijaEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "GotoviProizvodiEdit";
-            this.Text = "GotoviProizvodiEdit";
-            this.Load += new System.EventHandler(this.GotoviProizvodiEdit_Load);
+            this.ClientSize = new System.Drawing.Size(431, 292);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "KategorijaEdit";
+            this.ShowIcon = false;
+            this.Text = "Uredi kategorija";
             this.ResumeLayout(false);
 
         }

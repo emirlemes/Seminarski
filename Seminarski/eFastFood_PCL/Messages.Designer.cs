@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eFastFood_UI {
+namespace eFastFood_PCL {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -39,7 +40,7 @@ namespace eFastFood_UI {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("eFastFood_UI.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("eFastFood_PCL.Messages", typeof(Messages).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -93,51 +94,6 @@ namespace eFastFood_UI {
         internal static string negative_price {
             get {
                 return ResourceManager.GetString("negative_price", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Odaberite sliku većih dimenzija..
-        /// </summary>
-        internal static string picture_to_small {
-            get {
-                return ResourceManager.GetString("picture_to_small", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Potrebno je više od 3 karaktera..
-        /// </summary>
-        internal static string string_length3 {
-            get {
-                return ResourceManager.GetString("string_length3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uspijeh.
-        /// </summary>
-        internal static string success {
-            get {
-                return ResourceManager.GetString("success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uspješno dodano..
-        /// </summary>
-        internal static string success_add {
-            get {
-                return ResourceManager.GetString("success_add", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upozorenje.
-        /// </summary>
-        internal static string warning {
-            get {
-                return ResourceManager.GetString("warning", resourceCulture);
             }
         }
     }

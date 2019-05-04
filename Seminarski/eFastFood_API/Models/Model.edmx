@@ -33,8 +33,10 @@
           <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Opis" Type="nvarchar" MaxLength="200" />
           <Property Name="Cijena" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="VrijemePripreme" Type="time" Precision="7" />
           <Property Name="KategorijaID" Type="int" />
+          <Property Name="VrijemePripreme" Type="int" />
+          <Property Name="Slika" Type="varbinary(max)" />
+          <Property Name="SlikaUmanjeno" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="GPProizvod">
           <Key>
@@ -490,12 +492,13 @@
           <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Opis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Cijena" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="VrijemePripreme" Type="Time" Precision="7" />
           <Property Name="KategorijaID" Type="Int32" />
-          <NavigationProperty Name="Kategorija" Relationship="Self.FK__GotoviPro__Kateg__440B1D61" FromRole="GotoviProizvod" ToRole="Kategorija" />
+          <Property Name="VrijemePripreme" Type="Int32" />
           <NavigationProperty Name="GPProizvod" Relationship="Self.FK__GPProizvo__Gotov__46E78A0C" FromRole="GotoviProizvod" ToRole="GPProizvod" />
           <NavigationProperty Name="NarudzbaStavka" Relationship="Self.FK__NarudzbaS__Gotov__4E88ABD4" FromRole="GotoviProizvod" ToRole="NarudzbaStavka" />
           <NavigationProperty Name="Ocjena" Relationship="Self.FK__Ocjena__GotoviPr__656C112C" FromRole="GotoviProizvod" ToRole="Ocjena" />
+          <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SlikaUmanjeno" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="GPProizvod">
           <Key>
@@ -517,7 +520,6 @@
           <Property Name="KategorijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Opis" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="GotoviProizvod" Relationship="Self.FK__GotoviPro__Kateg__440B1D61" FromRole="Kategorija" ToRole="GotoviProizvod" />
         </EntityType>
         <EntityType Name="Klijent">
           <Key>
@@ -857,7 +859,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="eFastFoodEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="eFastFoodEntitie" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Dobavljac" EntityType="Self.Dobavljac" />
           <EntitySet Name="Dostava" EntityType="Self.Dostava" />
           <EntitySet Name="GotoviProizvod" EntityType="Self.GotoviProizvod" />
@@ -941,14 +943,14 @@
             <End Role="Uloga" EntitySet="Uloga" />
             <End Role="Uposlenik" EntitySet="Uposlenik" />
           </AssociationSet>
-          <FunctionImport Name="sp_UposleniciGetAll" ReturnType="Collection(eFastFoodModel.UposleniciAll)" />
+          <FunctionImport Name="sp_UposleniciGetAll" ReturnType="Collection(eFastFoodModel.UposleniciGetAll)" />
         </EntityContainer>
-        <ComplexType Name="UposleniciAll" >
-          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+        <ComplexType Name="UposleniciGetAll">
           <Property Type="Int32" Name="UposlenikID" Nullable="false" />
           <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="BrojTelefona" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="Status" Nullable="true" />
           <Property Type="Int32" Name="UlogaID" Nullable="true" />
@@ -958,7 +960,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="eFastFoodModelStoreContainer" CdmEntityContainer="eFastFoodEntities">
+        <EntityContainerMapping StorageEntityContainer="eFastFoodModelStoreContainer" CdmEntityContainer="eFastFoodEntitie">
           <EntitySetMapping Name="Dobavljac">
             <EntityTypeMapping TypeName="eFastFoodModel.Dobavljac">
               <MappingFragment StoreEntitySet="Dobavljac">
@@ -983,12 +985,14 @@
           <EntitySetMapping Name="GotoviProizvod">
             <EntityTypeMapping TypeName="eFastFoodModel.GotoviProizvod">
               <MappingFragment StoreEntitySet="GotoviProizvod">
+                <ScalarProperty Name="SlikaUmanjeno" ColumnName="SlikaUmanjeno" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="GotoviProizvodID" ColumnName="GotoviProizvodID" />
                 <ScalarProperty Name="Naziv" ColumnName="Naziv" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
                 <ScalarProperty Name="Cijena" ColumnName="Cijena" />
-                <ScalarProperty Name="VrijemePripreme" ColumnName="VrijemePripreme" />
                 <ScalarProperty Name="KategorijaID" ColumnName="KategorijaID" />
+                <ScalarProperty Name="VrijemePripreme" ColumnName="VrijemePripreme" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1132,14 +1136,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_UposleniciGetAll" FunctionName="eFastFoodModel.Store.sp_UposleniciGetAll" >
+          <FunctionImportMapping FunctionImportName="sp_UposleniciGetAll" FunctionName="eFastFoodModel.Store.sp_UposleniciGetAll">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="eFastFoodModel.UposleniciAll">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              <ComplexTypeMapping TypeName="eFastFoodModel.UposleniciGetAll">
                 <ScalarProperty Name="UposlenikID" ColumnName="UposlenikID" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
                 <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />

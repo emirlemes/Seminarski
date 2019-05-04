@@ -17,7 +17,7 @@ namespace eFastFood_API.Controllers
 {
     public class UposlenikController : ApiController
     {
-        private eFastFoodEntities _db = new eFastFoodEntities();
+        private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Uposlenik
         [HttpGet]
@@ -25,7 +25,7 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(List<Uposlenik>))]
         public IHttpActionResult GetUposlenik()
         {
-            return Ok(_db.sp_UposleniciGetAll().ToList());
+            return Ok(_db.sp_UposleniciGetAll());
         }
 
         // GET: api/Uposlenik/5
