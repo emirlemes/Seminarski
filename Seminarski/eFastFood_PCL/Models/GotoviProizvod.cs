@@ -12,9 +12,11 @@ namespace eFastFood_PCL.Models
         public string Naziv { get; set; }
         public string Opis { get; set; }
         public decimal Cijena { get; set; }
-        public Nullable<int> KategorijaID { get; set; }
-        public Nullable<int> VrijemePripreme { get; set; }
+        public int KategorijaID { get; set; }
+        public int VrijemePripreme { get; set; }
         public byte[] Slika { get; set; }
         public byte[] SlikaUmanjeno { get; set; }
+
+        public virtual Kategorija Kategorija { get; set; }
     }
 }

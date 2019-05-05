@@ -28,10 +28,11 @@ namespace eFastFood_UI.KategorijaUI
         {
             if (this.ValidateChildren())
             {
-                Kategorija kategorija = new Kategorija();
-
-                kategorija.Naziv = nazivInput.Text;
-                kategorija.Opis = opisInput.Text;
+                Kategorija kategorija = new Kategorija()
+                {
+                    Naziv = nazivInput.Text,
+                    Opis = opisInput.Text,
+                };
 
                 HttpResponseMessage response = kategorijaService.PostResponse(kategorija);
 
@@ -41,7 +42,7 @@ namespace eFastFood_UI.KategorijaUI
                     MessageBox.Show(Messages.success_add, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(Messages.error +": "+ response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.error + ": " + response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

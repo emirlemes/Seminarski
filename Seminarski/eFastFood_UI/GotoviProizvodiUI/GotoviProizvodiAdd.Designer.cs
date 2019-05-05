@@ -46,15 +46,19 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label6 = new System.Windows.Forms.Label();
             this.kategorijaComboBox = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // dodajButton
             // 
             this.dodajButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.dodajButton.Location = new System.Drawing.Point(46, 268);
+            this.dodajButton.Location = new System.Drawing.Point(63, 274);
             this.dodajButton.Name = "dodajButton";
-            this.dodajButton.Size = new System.Drawing.Size(75, 36);
+            this.dodajButton.Size = new System.Drawing.Size(75, 30);
             this.dodajButton.TabIndex = 5;
             this.dodajButton.Text = "Dodaj";
             this.dodajButton.UseVisualStyleBackColor = true;
@@ -63,9 +67,9 @@
             // odustaniButton
             // 
             this.odustaniButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.odustaniButton.Location = new System.Drawing.Point(320, 268);
+            this.odustaniButton.Location = new System.Drawing.Point(211, 274);
             this.odustaniButton.Name = "odustaniButton";
-            this.odustaniButton.Size = new System.Drawing.Size(75, 36);
+            this.odustaniButton.Size = new System.Drawing.Size(75, 30);
             this.odustaniButton.TabIndex = 6;
             this.odustaniButton.Text = "Odustani";
             this.odustaniButton.UseVisualStyleBackColor = true;
@@ -73,7 +77,7 @@
             // 
             // nazivInput
             // 
-            this.nazivInput.Location = new System.Drawing.Point(100, 25);
+            this.nazivInput.Location = new System.Drawing.Point(86, 9);
             this.nazivInput.Name = "nazivInput";
             this.nazivInput.Size = new System.Drawing.Size(173, 20);
             this.nazivInput.TabIndex = 0;
@@ -81,19 +85,19 @@
             // 
             // cijenaInput
             // 
-            this.cijenaInput.Location = new System.Drawing.Point(99, 50);
+            this.cijenaInput.Location = new System.Drawing.Point(85, 34);
             this.cijenaInput.Name = "cijenaInput";
             this.cijenaInput.Size = new System.Drawing.Size(173, 20);
             this.cijenaInput.TabIndex = 1;
-            this.cijenaInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cijenaInput_KeyPress);
+            this.cijenaInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CijenaInput_KeyPress);
             this.cijenaInput.Validating += new System.ComponentModel.CancelEventHandler(this.CijenaInput_Validating);
             // 
             // opisInput
             // 
-            this.opisInput.Location = new System.Drawing.Point(99, 75);
+            this.opisInput.Location = new System.Drawing.Point(85, 59);
             this.opisInput.Multiline = true;
             this.opisInput.Name = "opisInput";
-            this.opisInput.Size = new System.Drawing.Size(296, 55);
+            this.opisInput.Size = new System.Drawing.Size(237, 55);
             this.opisInput.TabIndex = 2;
             this.opisInput.Validating += new System.ComponentModel.CancelEventHandler(this.OpisInput_Validating);
             // 
@@ -101,7 +105,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(43, 25);
+            this.label1.Location = new System.Drawing.Point(29, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 16);
             this.label1.TabIndex = 3;
@@ -111,7 +115,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(39, 50);
+            this.label2.Location = new System.Drawing.Point(25, 34);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 2;
@@ -121,7 +125,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label3.Location = new System.Drawing.Point(49, 88);
+            this.label3.Location = new System.Drawing.Point(35, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 16);
             this.label3.TabIndex = 1;
@@ -131,7 +135,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label4.Location = new System.Drawing.Point(12, 150);
+            this.label4.Location = new System.Drawing.Point(3, 134);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 16);
             this.label4.TabIndex = 0;
@@ -143,16 +147,16 @@
             // 
             // vrijemePripremeInput
             // 
-            this.vrijemePripremeInput.Location = new System.Drawing.Point(179, 149);
+            this.vrijemePripremeInput.Location = new System.Drawing.Point(170, 133);
             this.vrijemePripremeInput.Name = "vrijemePripremeInput";
             this.vrijemePripremeInput.Size = new System.Drawing.Size(41, 20);
             this.vrijemePripremeInput.TabIndex = 3;
-            this.vrijemePripremeInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cijenaInput_KeyPress);
+            this.vrijemePripremeInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CijenaInput_KeyPress);
             // 
             // slikaButton
             // 
             this.slikaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.slikaButton.Location = new System.Drawing.Point(328, 185);
+            this.slikaButton.Location = new System.Drawing.Point(472, 274);
             this.slikaButton.Name = "slikaButton";
             this.slikaButton.Size = new System.Drawing.Size(67, 30);
             this.slikaButton.TabIndex = 4;
@@ -164,7 +168,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label5.Location = new System.Drawing.Point(47, 192);
+            this.label5.Location = new System.Drawing.Point(413, 281);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 16);
             this.label5.TabIndex = 8;
@@ -172,11 +176,12 @@
             // 
             // slikaInput
             // 
-            this.slikaInput.Location = new System.Drawing.Point(99, 190);
+            this.slikaInput.Location = new System.Drawing.Point(63, 233);
             this.slikaInput.Name = "slikaInput";
             this.slikaInput.ReadOnly = true;
             this.slikaInput.Size = new System.Drawing.Size(223, 20);
             this.slikaInput.TabIndex = 10;
+            this.slikaInput.Visible = false;
             // 
             // openFileDialog
             // 
@@ -186,7 +191,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label6.Location = new System.Drawing.Point(16, 220);
+            this.label6.Location = new System.Drawing.Point(24, 164);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 16);
             this.label6.TabIndex = 11;
@@ -197,32 +202,52 @@
             this.kategorijaComboBox.DisplayMember = "Text";
             this.kategorijaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.kategorijaComboBox.FormattingEnabled = true;
-            this.kategorijaComboBox.Location = new System.Drawing.Point(99, 220);
+            this.kategorijaComboBox.Location = new System.Drawing.Point(99, 159);
             this.kategorijaComboBox.Name = "kategorijaComboBox";
             this.kategorijaComboBox.Size = new System.Drawing.Size(223, 21);
             this.kategorijaComboBox.TabIndex = 12;
             this.kategorijaComboBox.ValueMember = "ID";
+            this.kategorijaComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.KategorijaComboBox_Validating);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.kategorijaComboBox);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.vrijemePripremeInput);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.opisInput);
+            this.panel1.Controls.Add(this.cijenaInput);
+            this.panel1.Controls.Add(this.nazivInput);
+            this.panel1.Location = new System.Drawing.Point(12, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(332, 224);
+            this.panel1.TabIndex = 13;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Image = global::eFastFood_UI.Properties.Resources._default;
+            this.pictureBox.Location = new System.Drawing.Point(350, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(256, 256);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox.TabIndex = 14;
+            this.pictureBox.TabStop = false;
             // 
             // GotoviProizvodiAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(438, 316);
-            this.Controls.Add(this.kategorijaComboBox);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(614, 341);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.odustaniButton);
             this.Controls.Add(this.slikaInput);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.slikaButton);
-            this.Controls.Add(this.vrijemePripremeInput);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.opisInput);
-            this.Controls.Add(this.cijenaInput);
-            this.Controls.Add(this.nazivInput);
-            this.Controls.Add(this.odustaniButton);
             this.Controls.Add(this.dodajButton);
+            this.Controls.Add(this.slikaButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -232,6 +257,9 @@
             this.Text = "Dodaj gotovi proizvod";
             this.Load += new System.EventHandler(this.GotoviProizvodiAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,5 +284,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ComboBox kategorijaComboBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

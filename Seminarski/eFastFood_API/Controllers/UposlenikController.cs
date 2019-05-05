@@ -25,7 +25,7 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(List<Uposlenik>))]
         public IHttpActionResult GetUposlenik()
         {
-            return Ok(_db.sp_UposleniciGetAll());
+            return Ok(_db.Uposlenik.ToList());
         }
 
         // GET: api/Uposlenik/5
@@ -126,7 +126,7 @@ namespace eFastFood_API.Controllers
                 return NotFound();
             else
                 if (Hashing.GenerateHash(uposlenik.LozinkaSalt, k.lozinka) == uposlenik.LozinkaHash)
-                    return Ok(uposlenik);
+                return Ok(uposlenik);
 
             return Unauthorized();
         }

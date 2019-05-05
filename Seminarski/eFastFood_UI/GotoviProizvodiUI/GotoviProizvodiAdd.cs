@@ -4,15 +4,12 @@ using eFastFood_UI.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace eFastFood_UI.GotoviProizvodiUI
@@ -92,16 +89,13 @@ namespace eFastFood_UI.GotoviProizvodiUI
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-
-                slikaInput.Text = openFileDialog.FileName;
-                
                 orgImg = Image.FromFile(openFileDialog.FileName);
-                orgImg.Save(ms, ImageFormat.Jpeg);
-
-                gp.Slika = ms.ToArray();
 
                 if (orgImg.Width > Global.ResizeWidth || orgImg.Height > Global.ResizeHeight)
                 {
+                    orgImg.Save(ms, ImageFormat.Jpeg);
+                    gp.Slika = ms.ToArray();
+
                     resizedImg = UIHelper.ResizeImage(orgImg, new Size(Global.ResizeWidth, Global.ResizeHeight));
                     ms = new MemoryStream();
                     resizedImg.Save(ms, ImageFormat.Jpeg);
@@ -113,8 +107,9 @@ namespace eFastFood_UI.GotoviProizvodiUI
             }
             else
             {
-                AddDefaultPicture();  
+                AddDefaultPicture();
             }
+            pictureBox.Image = Image.FromStream(new MemoryStream(gp.SlikaUmanjeno));
         }
 
         private void AddDefaultPicture()
@@ -123,7 +118,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
             Image resizedImg;
 
             MemoryStream ms = new MemoryStream();
-            orgImg = Image.FromFile("default.jpg");
+            orgImg = Properties.Resources._default;
             orgImg.Save(ms, ImageFormat.Jpeg);
             gp.Slika = ms.ToArray();
 
@@ -168,7 +163,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
                 errorProvider1.SetError(opisInput, null);
         }
 
-        private void cijenaInput_KeyPress(object sender, KeyPressEventArgs e)
+        private void CijenaInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
@@ -181,8 +176,18 @@ namespace eFastFood_UI.GotoviProizvodiUI
         }
 
 
+
         #endregion
 
-
+        private void KategorijaComboBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (kategorijaComboBox.SelectedValue == null)
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(kategorijaComboBox, Messages.required);
+            }
+            else
+                errorProvider1.SetError(kategorijaComboBox, null);
+        }
     }
 }

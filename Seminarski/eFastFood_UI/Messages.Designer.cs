@@ -97,11 +97,29 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nije nađeno ili ne postoji..
+        /// </summary>
+        internal static string not_found {
+            get {
+                return ResourceManager.GetString("not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odaberite sliku većih dimenzija..
         /// </summary>
         internal static string picture_to_small {
             get {
                 return ResourceManager.GetString("picture_to_small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polje je obavezno..
+        /// </summary>
+        internal static string required {
+            get {
+                return ResourceManager.GetString("required", resourceCulture);
             }
         }
         

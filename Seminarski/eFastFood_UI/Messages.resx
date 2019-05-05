@@ -129,8 +129,14 @@
   <data name="negative_price" xml:space="preserve">
     <value>Cijena ne može biti negativna.</value>
   </data>
+  <data name="not_found" xml:space="preserve">
+    <value>Nije nađeno ili ne postoji.</value>
+  </data>
   <data name="picture_to_small" xml:space="preserve">
     <value>Odaberite sliku većih dimenzija.</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>Polje je obavezno.</value>
   </data>
   <data name="string_length3" xml:space="preserve">
     <value>Potrebno je više od 3 karaktera.</value>

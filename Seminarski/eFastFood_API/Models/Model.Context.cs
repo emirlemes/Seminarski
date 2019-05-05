@@ -12,41 +12,22 @@ namespace eFastFood_API.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
-    
+
     public partial class eFastFoodEntitie : DbContext
     {
         public eFastFoodEntitie()
             : base("name=eFastFoodEntitie")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
-        public virtual DbSet<Dobavljac> Dobavljac { get; set; }
-        public virtual DbSet<Dostava> Dostava { get; set; }
+
         public virtual DbSet<GotoviProizvod> GotoviProizvod { get; set; }
-        public virtual DbSet<GPProizvod> GPProizvod { get; set; }
         public virtual DbSet<Kategorija> Kategorija { get; set; }
-        public virtual DbSet<Klijent> Klijent { get; set; }
-        public virtual DbSet<Magacin> Magacin { get; set; }
-        public virtual DbSet<MjernaJedinica> MjernaJedinica { get; set; }
-        public virtual DbSet<Narudzba> Narudzba { get; set; }
-        public virtual DbSet<NarudzbaStavka> NarudzbaStavka { get; set; }
-        public virtual DbSet<Ocjena> Ocjena { get; set; }
-        public virtual DbSet<Proizvod> Proizvod { get; set; }
-        public virtual DbSet<Racun> Racun { get; set; }
         public virtual DbSet<Uloga> Uloga { get; set; }
         public virtual DbSet<Uposlenik> Uposlenik { get; set; }
-    
-        public virtual ObjectResult<UposleniciGetAll> sp_UposleniciGetAll()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UposleniciGetAll>("sp_UposleniciGetAll");
-        }
     }
 }

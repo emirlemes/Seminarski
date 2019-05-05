@@ -14,8 +14,17 @@ namespace eFastFood_API.Models
     
     public partial class Kategorija
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Kategorija()
+        {
+            this.GotoviProizvod = new HashSet<GotoviProizvod>();
+        }
+    
         public int KategorijaID { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GotoviProizvod> GotoviProizvod { get; set; }
     }
 }

@@ -20,10 +20,14 @@ namespace eFastFood_UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+
+            //GotoviProizvodiEdit frm = new GotoviProizvodiEdit();
+            //frm.ShowDialog();
+
             GotoviProizvodiAdd frm = new GotoviProizvodiAdd();
             frm.ShowDialog();
 
-            //KategorijaUI.KategorijaAdd kategorijaAdd= new KategorijaUI.KategorijaAdd();
+            //KategorijaUI.KategorijaAdd kategorijaAdd = new KategorijaUI.KategorijaAdd();
             //kategorijaAdd.ShowDialog();
 
             //Login frm = new Login();
