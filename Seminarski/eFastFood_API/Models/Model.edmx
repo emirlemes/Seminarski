@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="eFastFoodTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dobavljac">
+          <Key>
+            <PropertyRef Name="DobavljacID" />
+          </Key>
+          <Property Name="DobavljacID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="50" />
+          <Property Name="BrojTelefona" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="GotoviProizvod">
           <Key>
             <PropertyRef Name="GotoviProizvodID" />
@@ -18,6 +28,16 @@
           <Property Name="SlikaUmanjeno" Type="varbinary(max)" />
           <Property Name="KategorijaID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="GPProizvod">
+          <Key>
+            <PropertyRef Name="GPProizvodID" />
+          </Key>
+          <Property Name="GPProizvodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GotoviProizvodID" Type="int" Nullable="false" />
+          <Property Name="ProizvodID" Type="int" Nullable="false" />
+          <Property Name="KolicinaUtroska" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MjernaJedinicaID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Kategorija">
           <Key>
             <PropertyRef Name="KategorijaID" />
@@ -25,6 +45,27 @@
           <Property Name="KategorijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
           <Property Name="Opis" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MjernaJedinica">
+          <Key>
+            <PropertyRef Name="MjernaJedinicaID" />
+          </Key>
+          <Property Name="MjernaJedinicaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="Exponent" Type="int" />
+        </EntityType>
+        <EntityType Name="Proizvod">
+          <Key>
+            <PropertyRef Name="ProizvodID" />
+          </Key>
+          <Property Name="ProizvodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kolicina" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DonjaGranica" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MjernaJedinicaID" Type="int" />
+          <Property Name="DobavljacID" Type="int" />
         </EntityType>
         <EntityType Name="Uloga">
           <Key>
@@ -61,6 +102,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__GPProizvo__Gotov__00200768">
+          <End Role="GotoviProizvod" Type="Self.GotoviProizvod" Multiplicity="1" />
+          <End Role="GPProizvod" Type="Self.GPProizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GotoviProizvod">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Principal>
+            <Dependent Role="GPProizvod">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GPProizvo__Mjern__02084FDA">
+          <End Role="MjernaJedinica" Type="Self.MjernaJedinica" Multiplicity="1" />
+          <End Role="GPProizvod" Type="Self.GPProizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MjernaJedinica">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Principal>
+            <Dependent Role="GPProizvod">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GPProizvo__Proiz__01142BA1">
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="1" />
+          <End Role="GPProizvod" Type="Self.GPProizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvod">
+              <PropertyRef Name="ProizvodID" />
+            </Principal>
+            <Dependent Role="GPProizvod">
+              <PropertyRef Name="ProizvodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Proizvod__Dobavl__6EF57B66">
+          <End Role="Dobavljac" Type="Self.Dobavljac" Multiplicity="0..1" />
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dobavljac">
+              <PropertyRef Name="DobavljacID" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="DobavljacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Proizvod__Mjerna__6E01572D">
+          <End Role="MjernaJedinica" Type="Self.MjernaJedinica" Multiplicity="0..1" />
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MjernaJedinica">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Uposlenik__Uloga__46E78A0C">
           <End Role="Uloga" Type="Self.Uloga" Multiplicity="0..1" />
           <End Role="Uposlenik" Type="Self.Uposlenik" Multiplicity="*" />
@@ -74,13 +175,37 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="eFastFoodTestModelStoreContainer">
+          <EntitySet Name="Dobavljac" EntityType="Self.Dobavljac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GotoviProizvod" EntityType="Self.GotoviProizvod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GPProizvod" EntityType="Self.GPProizvod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kategorija" EntityType="Self.Kategorija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MjernaJedinica" EntityType="Self.MjernaJedinica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proizvod" EntityType="Self.Proizvod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uloga" EntityType="Self.Uloga" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uposlenik" EntityType="Self.Uposlenik" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__GotoviPro__Kateg__398D8EEE" Association="Self.FK__GotoviPro__Kateg__398D8EEE">
             <End Role="Kategorija" EntitySet="Kategorija" />
             <End Role="GotoviProizvod" EntitySet="GotoviProizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GPProizvo__Gotov__00200768" Association="Self.FK__GPProizvo__Gotov__00200768">
+            <End Role="GotoviProizvod" EntitySet="GotoviProizvod" />
+            <End Role="GPProizvod" EntitySet="GPProizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GPProizvo__Mjern__02084FDA" Association="Self.FK__GPProizvo__Mjern__02084FDA">
+            <End Role="MjernaJedinica" EntitySet="MjernaJedinica" />
+            <End Role="GPProizvod" EntitySet="GPProizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GPProizvo__Proiz__01142BA1" Association="Self.FK__GPProizvo__Proiz__01142BA1">
+            <End Role="Proizvod" EntitySet="Proizvod" />
+            <End Role="GPProizvod" EntitySet="GPProizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Proizvod__Dobavl__6EF57B66" Association="Self.FK__Proizvod__Dobavl__6EF57B66">
+            <End Role="Dobavljac" EntitySet="Dobavljac" />
+            <End Role="Proizvod" EntitySet="Proizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Proizvod__Mjerna__6E01572D" Association="Self.FK__Proizvod__Mjerna__6E01572D">
+            <End Role="MjernaJedinica" EntitySet="MjernaJedinica" />
+            <End Role="Proizvod" EntitySet="Proizvod" />
           </AssociationSet>
           <AssociationSet Name="FK__Uposlenik__Uloga__46E78A0C" Association="Self.FK__Uposlenik__Uloga__46E78A0C">
             <End Role="Uloga" EntitySet="Uloga" />
@@ -104,6 +229,7 @@
           <Property Name="SlikaUmanjeno" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="KategorijaID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Kategorija" Relationship="Self.FK__GotoviPro__Kateg__398D8EEE" FromRole="GotoviProizvod" ToRole="Kategorija" />
+          <NavigationProperty Name="GPProizvod" Relationship="eFastFoodTestModel.FK__GPProizvo__Gotov__00200768" FromRole="GotoviProizvod" ToRole="GPProizvod" />
         </EntityType>
         <EntityType Name="Kategorija">
           <Key>
@@ -139,7 +265,31 @@
             <End Role="Uloga" EntitySet="Uloga" />
             <End Role="Uposlenik" EntitySet="Uposlenik" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Dobavljac" EntityType="eFastFoodTestModel.Dobavljac" />
+          <EntitySet Name="MjernaJedinica" EntityType="eFastFoodTestModel.MjernaJedinica" />
+          <EntitySet Name="Proizvod" EntityType="eFastFoodTestModel.Proizvod" />
+          <AssociationSet Name="FK__Proizvod__Dobavl__6EF57B66" Association="eFastFoodTestModel.FK__Proizvod__Dobavl__6EF57B66">
+            <End Role="Dobavljac" EntitySet="Dobavljac" />
+            <End Role="Proizvod" EntitySet="Proizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Proizvod__Mjerna__6E01572D" Association="eFastFoodTestModel.FK__Proizvod__Mjerna__6E01572D">
+            <End Role="MjernaJedinica" EntitySet="MjernaJedinica" />
+            <End Role="Proizvod" EntitySet="Proizvod" />
+          </AssociationSet>
+          <EntitySet Name="GPProizvod" EntityType="eFastFoodTestModel.GPProizvod" />
+          <AssociationSet Name="FK__GPProizvo__Gotov__00200768" Association="eFastFoodTestModel.FK__GPProizvo__Gotov__00200768">
+            <End Role="GotoviProizvod" EntitySet="GotoviProizvod" />
+            <End Role="GPProizvod" EntitySet="GPProizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GPProizvo__Mjern__02084FDA" Association="eFastFoodTestModel.FK__GPProizvo__Mjern__02084FDA">
+            <End Role="MjernaJedinica" EntitySet="MjernaJedinica" />
+            <End Role="GPProizvod" EntitySet="GPProizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GPProizvo__Proiz__01142BA1" Association="eFastFoodTestModel.FK__GPProizvo__Proiz__01142BA1">
+            <End Role="Proizvod" EntitySet="Proizvod" />
+            <End Role="GPProizvod" EntitySet="GPProizvod" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Uloga">
           <Key>
             <PropertyRef Name="UlogaID" />
@@ -177,7 +327,117 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Dobavljac">
+          <Key>
+            <PropertyRef Name="DobavljacID" />
+          </Key>
+          <Property Name="DobavljacID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BrojTelefona" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Proizvod" Relationship="eFastFoodTestModel.FK__Proizvod__Dobavl__6EF57B66" FromRole="Dobavljac" ToRole="Proizvod" />
+        </EntityType>
+        <EntityType Name="MjernaJedinica">
+          <Key>
+            <PropertyRef Name="MjernaJedinicaID" />
+          </Key>
+          <Property Name="MjernaJedinicaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Exponent" Type="Int32" />
+          <NavigationProperty Name="Proizvod" Relationship="eFastFoodTestModel.FK__Proizvod__Mjerna__6E01572D" FromRole="MjernaJedinica" ToRole="Proizvod" />
+          <NavigationProperty Name="GPProizvod" Relationship="eFastFoodTestModel.FK__GPProizvo__Mjern__02084FDA" FromRole="MjernaJedinica" ToRole="GPProizvod" />
+        </EntityType>
+        <EntityType Name="Proizvod">
+          <Key>
+            <PropertyRef Name="ProizvodID" />
+          </Key>
+          <Property Name="ProizvodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kolicina" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DonjaGranica" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MjernaJedinicaID" Type="Int32" />
+          <Property Name="DobavljacID" Type="Int32" />
+          <NavigationProperty Name="Dobavljac" Relationship="eFastFoodTestModel.FK__Proizvod__Dobavl__6EF57B66" FromRole="Proizvod" ToRole="Dobavljac" />
+          <NavigationProperty Name="MjernaJedinica" Relationship="eFastFoodTestModel.FK__Proizvod__Mjerna__6E01572D" FromRole="Proizvod" ToRole="MjernaJedinica" />
+          <NavigationProperty Name="GPProizvod" Relationship="eFastFoodTestModel.FK__GPProizvo__Proiz__01142BA1" FromRole="Proizvod" ToRole="GPProizvod" />
+        </EntityType>
+        <Association Name="FK__Proizvod__Dobavl__6EF57B66">
+          <End Type="eFastFoodTestModel.Dobavljac" Role="Dobavljac" Multiplicity="0..1" />
+          <End Type="eFastFoodTestModel.Proizvod" Role="Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dobavljac">
+              <PropertyRef Name="DobavljacID" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="DobavljacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Proizvod__Mjerna__6E01572D">
+          <End Type="eFastFoodTestModel.MjernaJedinica" Role="MjernaJedinica" Multiplicity="0..1" />
+          <End Type="eFastFoodTestModel.Proizvod" Role="Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MjernaJedinica">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GPProizvod">
+          <Key>
+            <PropertyRef Name="GPProizvodID" />
+          </Key>
+          <Property Name="GPProizvodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GotoviProizvodID" Type="Int32" Nullable="false" />
+          <Property Name="ProizvodID" Type="Int32" Nullable="false" />
+          <Property Name="KolicinaUtroska" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MjernaJedinicaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GotoviProizvod" Relationship="eFastFoodTestModel.FK__GPProizvo__Gotov__00200768" FromRole="GPProizvod" ToRole="GotoviProizvod" />
+          <NavigationProperty Name="MjernaJedinica" Relationship="eFastFoodTestModel.FK__GPProizvo__Mjern__02084FDA" FromRole="GPProizvod" ToRole="MjernaJedinica" />
+          <NavigationProperty Name="Proizvod" Relationship="eFastFoodTestModel.FK__GPProizvo__Proiz__01142BA1" FromRole="GPProizvod" ToRole="Proizvod" />
+        </EntityType>
+        <Association Name="FK__GPProizvo__Gotov__00200768">
+          <End Type="eFastFoodTestModel.GotoviProizvod" Role="GotoviProizvod" Multiplicity="1" />
+          <End Type="eFastFoodTestModel.GPProizvod" Role="GPProizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GotoviProizvod">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Principal>
+            <Dependent Role="GPProizvod">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GPProizvo__Mjern__02084FDA">
+          <End Type="eFastFoodTestModel.MjernaJedinica" Role="MjernaJedinica" Multiplicity="1" />
+          <End Type="eFastFoodTestModel.GPProizvod" Role="GPProizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MjernaJedinica">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Principal>
+            <Dependent Role="GPProizvod">
+              <PropertyRef Name="MjernaJedinicaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GPProizvo__Proiz__01142BA1">
+          <End Type="eFastFoodTestModel.Proizvod" Role="Proizvod" Multiplicity="1" />
+          <End Type="eFastFoodTestModel.GPProizvod" Role="GPProizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvod">
+              <PropertyRef Name="ProizvodID" />
+            </Principal>
+            <Dependent Role="GPProizvod">
+              <PropertyRef Name="ProizvodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -228,6 +488,51 @@
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
                 <ScalarProperty Name="UposlenikID" ColumnName="UposlenikID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dobavljac">
+            <EntityTypeMapping TypeName="eFastFoodTestModel.Dobavljac">
+              <MappingFragment StoreEntitySet="Dobavljac">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DobavljacID" ColumnName="DobavljacID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MjernaJedinica">
+            <EntityTypeMapping TypeName="eFastFoodTestModel.MjernaJedinica">
+              <MappingFragment StoreEntitySet="MjernaJedinica">
+                <ScalarProperty Name="Exponent" ColumnName="Exponent" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="MjernaJedinicaID" ColumnName="MjernaJedinicaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proizvod">
+            <EntityTypeMapping TypeName="eFastFoodTestModel.Proizvod">
+              <MappingFragment StoreEntitySet="Proizvod">
+                <ScalarProperty Name="DobavljacID" ColumnName="DobavljacID" />
+                <ScalarProperty Name="MjernaJedinicaID" ColumnName="MjernaJedinicaID" />
+                <ScalarProperty Name="DonjaGranica" ColumnName="DonjaGranica" />
+                <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="ProizvodID" ColumnName="ProizvodID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GPProizvod">
+            <EntityTypeMapping TypeName="eFastFoodTestModel.GPProizvod">
+              <MappingFragment StoreEntitySet="GPProizvod">
+                <ScalarProperty Name="MjernaJedinicaID" ColumnName="MjernaJedinicaID" />
+                <ScalarProperty Name="KolicinaUtroska" ColumnName="KolicinaUtroska" />
+                <ScalarProperty Name="ProizvodID" ColumnName="ProizvodID" />
+                <ScalarProperty Name="GotoviProizvodID" ColumnName="GotoviProizvodID" />
+                <ScalarProperty Name="GPProizvodID" ColumnName="GPProizvodID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

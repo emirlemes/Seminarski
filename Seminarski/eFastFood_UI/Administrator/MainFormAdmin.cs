@@ -1,4 +1,7 @@
-﻿using System;
+﻿using eFastFood_UI.GotoviProizvodiUI;
+using eFastFood_UI.KategorijaUI;
+using eFastFood_UI.ProizvodUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +18,73 @@ namespace eFastFood_UI.Administrator
         public MainFormAdmin()
         {
             InitializeComponent();
+        }
+
+        private void KategorijeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["KategorijaIndex"] as KategorijaIndex) != null)
+            {
+                //Forma otvorena
+            }
+            else
+            {
+                foreach (Form fr in this.MdiChildren)
+                {
+                    fr.Dispose();
+                    fr.Close();
+                }
+
+                KategorijaIndex frm = new KategorijaIndex();
+                frm.MdiParent = this;
+                frm.Dock = DockStyle.Fill;
+                frm.Show();
+            }
+        }
+
+        private void GotoviProizvodiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["GotoviProizvodiIndex"] as GotoviProizvodiIndex) != null)
+            {
+                //Forma otvorena
+            }
+            else
+            {
+                foreach (Form fr in this.MdiChildren)
+                {
+                    fr.Dispose();
+                    fr.Close();
+                }
+
+                GotoviProizvodiIndex frm = new GotoviProizvodiIndex
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill
+                };
+                frm.Show();
+            }
+        }
+
+        private void ProizvodiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["ProizvodIndex"] as ProizvodIndex) != null)
+            {
+                //Forma otvorena
+            }
+            else
+            {
+                foreach (Form fr in this.MdiChildren)
+                {
+                    fr.Dispose();
+                    fr.Close();
+                }
+
+                ProizvodIndex frm = new ProizvodIndex
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill
+                };
+                frm.Show();
+            }
         }
     }
 }

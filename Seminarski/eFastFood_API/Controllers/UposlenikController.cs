@@ -17,6 +17,8 @@ namespace eFastFood_API.Controllers
 {
     public class UposlenikController : ApiController
     {
+        // readonly new List<string> tokeni = new List<string>();
+
         private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Uposlenik
@@ -121,6 +123,10 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Uposlenik))]
         public IHttpActionResult Prijava([FromBody]PrijavaVM k)
         {
+            //var token = Guid.NewGuid();
+
+            //tokeni.Add(token);
+
             Uposlenik uposlenik = _db.Uposlenik.Where(x => x.UserName == k.korisnickoIme).FirstOrDefault();
             if (uposlenik == null)
                 return NotFound();

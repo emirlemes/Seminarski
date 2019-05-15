@@ -15,8 +15,10 @@ namespace eFastFood_UI.Util
 
         public APIHelper(string uri, string route)
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri(uri);
+            client = new HttpClient
+            {
+                BaseAddress = new Uri(uri)
+            };
             this.route = route;
         }
 

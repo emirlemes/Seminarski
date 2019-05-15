@@ -47,6 +47,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.fileDialogButton = new System.Windows.Forms.Button();
             this.errorProviderEdit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.slikaPath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderEdit)).BeginInit();
@@ -129,6 +130,7 @@
             this.snimiButton.TabIndex = 7;
             this.snimiButton.Text = "Snimi";
             this.snimiButton.UseVisualStyleBackColor = true;
+            this.snimiButton.Click += new System.EventHandler(this.SnimiButton_Click);
             // 
             // odustaniButton
             // 
@@ -212,16 +214,26 @@
             this.fileDialogButton.TabIndex = 5;
             this.fileDialogButton.Text = "Odaberi";
             this.fileDialogButton.UseVisualStyleBackColor = true;
+            this.fileDialogButton.Click += new System.EventHandler(this.FileDialogButton_Click);
             // 
             // errorProviderEdit
             // 
             this.errorProviderEdit.ContainerControl = this;
+            // 
+            // slikaPath
+            // 
+            this.slikaPath.Location = new System.Drawing.Point(437, 310);
+            this.slikaPath.Name = "slikaPath";
+            this.slikaPath.Size = new System.Drawing.Size(165, 20);
+            this.slikaPath.TabIndex = 15;
+            this.slikaPath.Visible = false;
             // 
             // GotoviProizvodiEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 341);
+            this.Controls.Add(this.slikaPath);
             this.Controls.Add(this.fileDialogButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.odustaniButton);
@@ -263,5 +275,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button fileDialogButton;
         private System.Windows.Forms.ErrorProvider errorProviderEdit;
+        private System.Windows.Forms.TextBox slikaPath;
     }
 }

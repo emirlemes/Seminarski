@@ -129,6 +129,9 @@
   <data name="negative_price" xml:space="preserve">
     <value>Cijena ne može biti negativna.</value>
   </data>
+  <data name="nothing_selected" xml:space="preserve">
+    <value>Ništa nije selektovano.</value>
+  </data>
   <data name="not_found" xml:space="preserve">
     <value>Nije nađeno ili ne postoji.</value>
   </data>
@@ -147,7 +150,19 @@
   <data name="success_add" xml:space="preserve">
     <value>Uspješno dodano.</value>
   </data>
+  <data name="success_edited" xml:space="preserve">
+    <value>Uspješno izmjenjeno.</value>
+  </data>
   <data name="warning" xml:space="preserve">
     <value>Upozorenje</value>
+  </data>
+  <data name="not_valid_email" xml:space="preserve">
+    <value>Email adressa u neispravnom formatu.</value>
+  </data>
+  <data name="mj_not_selected" xml:space="preserve">
+    <value>Mjerna jedinica nije selektovana.</value>
+  </data>
+  <data name="nothing_selected_product" xml:space="preserve">
+    <value>Potrebno je odabrati barem jedan proizvod.</value>
   </data>
 </root>

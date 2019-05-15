@@ -49,22 +49,23 @@ namespace eFastFood_API.Controllers
                 return BadRequest();
             }
 
-            _db.Entry(gotoviProizvod).State = EntityState.Modified;
+            GotoviProizvod gp = _db.GotoviProizvod.Find(id);
+
+            gp.KategorijaID = gotoviProizvod.KategorijaID;
+            gp.GotoviProizvodID = gotoviProizvod.GotoviProizvodID;
+            gp.VrijemePripreme = gotoviProizvod.VrijemePripreme;
+            gp.Slika = gotoviProizvod.Slika;
+            gp.SlikaUmanjeno = gotoviProizvod.SlikaUmanjeno;
+            gp.Opis = gotoviProizvod.Opis;
+            gp.Naziv = gotoviProizvod.Naziv;
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
-                if (!GotoviProizvodExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                BadRequest();
             }
 
             return StatusCode(HttpStatusCode.NoContent);

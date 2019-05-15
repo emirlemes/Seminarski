@@ -12,22 +12,26 @@ namespace eFastFood_API.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class eFastFoodEntitie : DbContext
     {
         public eFastFoodEntitie()
             : base("name=eFastFoodEntitie")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<GotoviProizvod> GotoviProizvod { get; set; }
         public virtual DbSet<Kategorija> Kategorija { get; set; }
         public virtual DbSet<Uloga> Uloga { get; set; }
         public virtual DbSet<Uposlenik> Uposlenik { get; set; }
+        public virtual DbSet<Dobavljac> Dobavljac { get; set; }
+        public virtual DbSet<MjernaJedinica> MjernaJedinica { get; set; }
+        public virtual DbSet<Proizvod> Proizvod { get; set; }
+        public virtual DbSet<GPProizvod> GPProizvod { get; set; }
     }
 }

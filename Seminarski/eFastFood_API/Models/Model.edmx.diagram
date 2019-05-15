@@ -11,7 +11,16 @@
         <EntityTypeShape EntityType="eFastFoodTestModel.Uloga" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="eFastFoodTestModel.Uposlenik" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="eFastFoodTestModel.FK__Uposlenik__Uloga__46E78A0C" />
-      </Diagram>
+        <EntityTypeShape EntityType="eFastFoodTestModel.Dobavljac" Width="1.5" PointX="5.375" PointY="0.875" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.MjernaJedinica" Width="1.5" PointX="5.375" PointY="4.125" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.Proizvod" Width="1.5" PointX="7.625" PointY="0.75" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Proizvod__Dobavl__6EF57B66" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Proizvod__Mjerna__6E01572D" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.GPProizvod" Width="1.5" PointX="9.875" PointY="2.25" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Gotov__00200768" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Mjern__02084FDA" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Proiz__01142BA1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

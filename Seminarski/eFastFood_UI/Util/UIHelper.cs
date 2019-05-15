@@ -1,12 +1,13 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace eFastFood_UI.Util
 {
     public static class UIHelper
     {
         #region ResizeImage
-
         public static Image ResizeImage(Image imgToResize, Size size)
         {
             int sourceWidth = imgToResize.Width;
@@ -35,6 +36,53 @@ namespace eFastFood_UI.Util
             g.Dispose();
 
             return (Image)b;
+        }
+        #endregion
+
+        #region AddDefaultPicture
+        public static byte[] AddDefaultPictureFull()
+        {
+            Image orgImg;
+
+            MemoryStream ms = new MemoryStream();
+            orgImg = Properties.Resources._default;
+            orgImg.Save(ms, ImageFormat.Jpeg);
+
+            return ms.ToArray();
+        }
+
+        public static byte[] AddDefaultPictureResized()
+        {
+            Image resizedImg;
+
+            MemoryStream ms = new MemoryStream();
+            resizedImg = ResizeImage(Properties.Resources._default, new Size(Global.ResizeWidth, Global.ResizeHeight));
+            resizedImg.Save(ms, ImageFormat.Jpeg);
+
+            return ms.ToArray();
+        }
+
+        #endregion
+
+        #region PictureFromFile
+        public static byte[] AddFromFileFull(string path)
+        {
+            Image orgImg = Image.FromFile(path);
+
+            MemoryStream ms = new MemoryStream();
+            orgImg.Save(ms, ImageFormat.Jpeg);
+            return ms.ToArray();
+        }
+
+        public static byte[] AddFromFileResized(string path)
+        {
+            Image image = Image.FromFile(path);
+
+            Image resizedImg = ResizeImage(image, new Size(Global.ResizeWidth, Global.ResizeHeight));
+            MemoryStream ms = new MemoryStream();
+            resizedImg.Save(ms, ImageFormat.Jpeg);
+
+            return ms.ToArray();
         }
         #endregion
     }

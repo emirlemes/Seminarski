@@ -88,6 +88,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mjerna jedinica nije selektovana..
+        /// </summary>
+        internal static string mj_not_selected {
+            get {
+                return ResourceManager.GetString("mj_not_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cijena ne može biti negativna..
         /// </summary>
         internal static string negative_price {
@@ -102,6 +111,33 @@ namespace eFastFood_UI {
         internal static string not_found {
             get {
                 return ResourceManager.GetString("not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email adressa u neispravnom formatu..
+        /// </summary>
+        internal static string not_valid_email {
+            get {
+                return ResourceManager.GetString("not_valid_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ništa nije selektovano..
+        /// </summary>
+        internal static string nothing_selected {
+            get {
+                return ResourceManager.GetString("nothing_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potrebno je odabrati barem jedan proizvod..
+        /// </summary>
+        internal static string nothing_selected_product {
+            get {
+                return ResourceManager.GetString("nothing_selected_product", resourceCulture);
             }
         }
         
@@ -147,6 +183,15 @@ namespace eFastFood_UI {
         internal static string success_add {
             get {
                 return ResourceManager.GetString("success_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno izmjenjeno..
+        /// </summary>
+        internal static string success_edited {
+            get {
+                return ResourceManager.GetString("success_edited", resourceCulture);
             }
         }
         

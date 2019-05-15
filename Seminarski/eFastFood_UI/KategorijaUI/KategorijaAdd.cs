@@ -38,12 +38,18 @@ namespace eFastFood_UI.KategorijaUI
 
                 if (response.IsSuccessStatusCode)
                 {
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                     MessageBox.Show(Messages.success_add, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                     MessageBox.Show(Messages.error + ": " + response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void OdustaniButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         #region Validacija
@@ -74,5 +80,7 @@ namespace eFastFood_UI.KategorijaUI
                 errorProviderKategorija.SetError(opisInput, null);
         }
         #endregion
+
+
     }
 }

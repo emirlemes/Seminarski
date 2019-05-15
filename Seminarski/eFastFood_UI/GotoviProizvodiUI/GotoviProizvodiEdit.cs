@@ -17,21 +17,21 @@ namespace eFastFood_UI.GotoviProizvodiUI
 {
     public partial class GotoviProizvodiEdit : Form
     {
-        APIHelper goroviProizvodiService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
+        APIHelper gotoviProizvodiService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
         APIHelper kategorijeService = new APIHelper(Global.ApiUrl, Global.KategorijaRoute);
 
-        private GotoviProizvod gp { get; set; }
+        private GotoviProizvod gotoviProizvod { get; set; }
 
         public GotoviProizvodiEdit(int id = 1)
         {
             InitializeComponent();
             this.AutoValidate = AutoValidate.Disable;
 
-            HttpResponseMessage response = goroviProizvodiService.GetResponse(id.ToString());
+            HttpResponseMessage response = gotoviProizvodiService.GetResponse(id.ToString());
 
             if (response.IsSuccessStatusCode)
             {
-                gp = response.Content.ReadAsAsync<GotoviProizvod>().Result;
+                gotoviProizvod = response.Content.ReadAsAsync<GotoviProizvod>().Result;
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
@@ -42,30 +42,77 @@ namespace eFastFood_UI.GotoviProizvodiUI
 
         private void GotoviProizvodiEdit_Load(object sender, EventArgs e)
         {
-            nazivInput.Text = gp.Naziv;
-            cijenaInput.Text = gp.Cijena.ToString();
-            opisInput.Text = gp.Opis;
-            vrijemePripremeInput.Text = gp.VrijemePripreme.ToString();
+            nazivInput.Text = gotoviProizvod.Naziv;
+            cijenaInput.Text = gotoviProizvod.Cijena.ToString();
+            opisInput.Text = gotoviProizvod.Opis;
+            vrijemePripremeInput.Text = gotoviProizvod.VrijemePripreme.ToString();
 
-            pictureBox.Image = Image.FromStream(new MemoryStream(gp.SlikaUmanjeno));
+            pictureBox.Image = Image.FromStream(new MemoryStream(gotoviProizvod.SlikaUmanjeno));
 
 
 
-            HttpResponseMessage response = kategorijeService.GetResponse();
+            HttpResponseMessage responseK = kategorijeService.GetResponse();
 
-            if (response.IsSuccessStatusCode)
+            if (responseK.IsSuccessStatusCode)
             {
-                List<Kategorija> kategorije = response.Content.ReadAsAsync<List<Kategorija>>().Result;
-                kategorijaComboBox.DataSource = new List<ComboItem>(kategorije.Select(x => new ComboItem() { ID = x.KategorijaID, Text = x.Naziv }));
+                List<Kategorija> kategorije = responseK.Content.ReadAsAsync<List<Kategorija>>().Result;
+                kategorijaComboBox.DataSource = kategorije.Select(x => new ComboItem() { ID = x.KategorijaID, Text = x.Naziv }).ToList();
 
-                ComboItem selected = new ComboItem() { ID = gp.KategorijaID, Text = gp.Kategorija.Naziv };
-
-                kategorijaComboBox.SelectedItem = selected;
+                kategorijaComboBox.SelectedIndex = kategorijaComboBox.FindString(kategorije.Find(x => x.KategorijaID == gotoviProizvod.KategorijaID).Naziv);
             }
         }
 
+        private void SnimiButton_Click(object sender, EventArgs e)
+        {
+            if (this.ValidateChildren())
+            {
+                gotoviProizvod.KategorijaID = (int)kategorijaComboBox.SelectedValue;
+                gotoviProizvod.Naziv = nazivInput.Text;
+                gotoviProizvod.Opis = opisInput.Text;
+                gotoviProizvod.VrijemePripreme = vrijemePripremeInput.Text.ToInt();
+                gotoviProizvod.Cijena = cijenaInput.Text.ToDecimal();
+
+                if (string.IsNullOrEmpty(slikaPath.Text))
+                {
+                    //  NE MIJENJAT STARU SLIKU
+                    //gotoviProizvod.Slika = UIHelper.AddDefaultPictureFull();
+                    //gotoviProizvod.SlikaUmanjeno = UIHelper.AddDefaultPictureResized();
+                }
+                else
+                {
+                    gotoviProizvod.Slika = UIHelper.AddFromFileFull(slikaPath.Text);
+                    gotoviProizvod.SlikaUmanjeno = UIHelper.AddFromFileResized(slikaPath.Text);
+                }
+
+                HttpResponseMessage response = gotoviProizvodiService.PutResponse(gotoviProizvod.GotoviProizvodID, gotoviProizvod);
+                if (response.IsSuccessStatusCode)
+                {
+                    this.Close();
+                    MessageBox.Show(Messages.success_edited, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show(Messages.error, Messages.error + ": " + response.ReasonPhrase, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FileDialogButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.Filter = "jpg files(*.jpg)|*.jpg";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Image orgImg = Image.FromFile(openFileDialog.FileName);
+
+                if (orgImg.Width > Global.ResizeWidth && orgImg.Height > Global.ResizeHeight)
+                    slikaPath.Text = openFileDialog.FileName;
+                else
+                    MessageBox.Show(Messages.picture_to_small, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         #region Validacija
+
         private void VrijemePripremeInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
@@ -112,7 +159,17 @@ namespace eFastFood_UI.GotoviProizvodiUI
                 errorProviderEdit.SetError(opisInput, null);
         }
 
-        #endregion
+        private void KategorijaComboBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (kategorijaComboBox.SelectedValue == null)
+            {
+                e.Cancel = true;
+                errorProviderEdit.SetError(kategorijaComboBox, Messages.required);
+            }
+            else
+                errorProviderEdit.SetError(kategorijaComboBox, null);
+        }
 
+        #endregion
     }
 }

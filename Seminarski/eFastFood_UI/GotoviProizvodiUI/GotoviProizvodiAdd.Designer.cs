@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GotoviProizvodiAdd));
             this.dodajButton = new System.Windows.Forms.Button();
             this.odustaniButton = new System.Windows.Forms.Button();
             this.nazivInput = new System.Windows.Forms.TextBox();
@@ -48,15 +49,23 @@
             this.kategorijaComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.sastojciDataGridView = new System.Windows.Forms.DataGridView();
+            this.proizvodIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dodajDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.proizvodNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kolicinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gPProizvodDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sastojciDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gPProizvodDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dodajButton
             // 
             this.dodajButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.dodajButton.Location = new System.Drawing.Point(63, 274);
+            this.dodajButton.Location = new System.Drawing.Point(446, 399);
             this.dodajButton.Name = "dodajButton";
             this.dodajButton.Size = new System.Drawing.Size(75, 30);
             this.dodajButton.TabIndex = 5;
@@ -67,7 +76,7 @@
             // odustaniButton
             // 
             this.odustaniButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.odustaniButton.Location = new System.Drawing.Point(211, 274);
+            this.odustaniButton.Location = new System.Drawing.Point(527, 399);
             this.odustaniButton.Name = "odustaniButton";
             this.odustaniButton.Size = new System.Drawing.Size(75, 30);
             this.odustaniButton.TabIndex = 6;
@@ -77,24 +86,24 @@
             // 
             // nazivInput
             // 
-            this.nazivInput.Location = new System.Drawing.Point(86, 9);
+            this.nazivInput.Location = new System.Drawing.Point(58, 7);
             this.nazivInput.Name = "nazivInput";
-            this.nazivInput.Size = new System.Drawing.Size(173, 20);
+            this.nazivInput.Size = new System.Drawing.Size(236, 20);
             this.nazivInput.TabIndex = 0;
             this.nazivInput.Validating += new System.ComponentModel.CancelEventHandler(this.NazivInput_Validating);
             // 
             // cijenaInput
             // 
-            this.cijenaInput.Location = new System.Drawing.Point(85, 34);
+            this.cijenaInput.Location = new System.Drawing.Point(58, 33);
             this.cijenaInput.Name = "cijenaInput";
-            this.cijenaInput.Size = new System.Drawing.Size(173, 20);
+            this.cijenaInput.Size = new System.Drawing.Size(237, 20);
             this.cijenaInput.TabIndex = 1;
             this.cijenaInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CijenaInput_KeyPress);
             this.cijenaInput.Validating += new System.ComponentModel.CancelEventHandler(this.CijenaInput_Validating);
             // 
             // opisInput
             // 
-            this.opisInput.Location = new System.Drawing.Point(85, 59);
+            this.opisInput.Location = new System.Drawing.Point(59, 59);
             this.opisInput.Multiline = true;
             this.opisInput.Name = "opisInput";
             this.opisInput.Size = new System.Drawing.Size(237, 55);
@@ -105,7 +114,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(29, 9);
+            this.label1.Location = new System.Drawing.Point(11, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 16);
             this.label1.TabIndex = 3;
@@ -115,7 +124,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(25, 34);
+            this.label2.Location = new System.Drawing.Point(6, 34);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 2;
@@ -125,7 +134,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label3.Location = new System.Drawing.Point(35, 72);
+            this.label3.Location = new System.Drawing.Point(17, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 16);
             this.label3.TabIndex = 1;
@@ -156,7 +165,7 @@
             // slikaButton
             // 
             this.slikaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.slikaButton.Location = new System.Drawing.Point(472, 274);
+            this.slikaButton.Location = new System.Drawing.Point(535, 274);
             this.slikaButton.Name = "slikaButton";
             this.slikaButton.Size = new System.Drawing.Size(67, 30);
             this.slikaButton.TabIndex = 4;
@@ -168,7 +177,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label5.Location = new System.Drawing.Point(413, 281);
+            this.label5.Location = new System.Drawing.Point(491, 281);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 16);
             this.label5.TabIndex = 8;
@@ -176,10 +185,10 @@
             // 
             // slikaInput
             // 
-            this.slikaInput.Location = new System.Drawing.Point(63, 233);
+            this.slikaInput.Location = new System.Drawing.Point(466, 310);
             this.slikaInput.Name = "slikaInput";
             this.slikaInput.ReadOnly = true;
-            this.slikaInput.Size = new System.Drawing.Size(223, 20);
+            this.slikaInput.Size = new System.Drawing.Size(140, 20);
             this.slikaInput.TabIndex = 10;
             this.slikaInput.Visible = false;
             // 
@@ -202,7 +211,7 @@
             this.kategorijaComboBox.DisplayMember = "Text";
             this.kategorijaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.kategorijaComboBox.FormattingEnabled = true;
-            this.kategorijaComboBox.Location = new System.Drawing.Point(99, 159);
+            this.kategorijaComboBox.Location = new System.Drawing.Point(99, 164);
             this.kategorijaComboBox.Name = "kategorijaComboBox";
             this.kategorijaComboBox.Size = new System.Drawing.Size(223, 21);
             this.kategorijaComboBox.TabIndex = 12;
@@ -221,14 +230,14 @@
             this.panel1.Controls.Add(this.opisInput);
             this.panel1.Controls.Add(this.cijenaInput);
             this.panel1.Controls.Add(this.nazivInput);
-            this.panel1.Location = new System.Drawing.Point(12, 3);
+            this.panel1.Location = new System.Drawing.Point(6, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 224);
+            this.panel1.Size = new System.Drawing.Size(338, 256);
             this.panel1.TabIndex = 13;
             // 
             // pictureBox
             // 
-            this.pictureBox.Image = global::eFastFood_UI.Properties.Resources._default;
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
             this.pictureBox.Location = new System.Drawing.Point(350, 3);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(256, 256);
@@ -236,11 +245,64 @@
             this.pictureBox.TabIndex = 14;
             this.pictureBox.TabStop = false;
             // 
+            // sastojciDataGridView
+            // 
+            this.sastojciDataGridView.AllowUserToAddRows = false;
+            this.sastojciDataGridView.AllowUserToDeleteRows = false;
+            this.sastojciDataGridView.AutoGenerateColumns = false;
+            this.sastojciDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sastojciDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.proizvodIDDataGridViewTextBoxColumn,
+            this.dodajDataGridViewCheckBoxColumn,
+            this.proizvodNazivDataGridViewTextBoxColumn,
+            this.kolicinaDataGridViewTextBoxColumn});
+            this.sastojciDataGridView.DataSource = this.gPProizvodDataSetBindingSource;
+            this.sastojciDataGridView.Location = new System.Drawing.Point(12, 265);
+            this.sastojciDataGridView.Name = "sastojciDataGridView";
+            this.sastojciDataGridView.Size = new System.Drawing.Size(415, 344);
+            this.sastojciDataGridView.TabIndex = 15;
+            // 
+            // proizvodIDDataGridViewTextBoxColumn
+            // 
+            this.proizvodIDDataGridViewTextBoxColumn.DataPropertyName = "ProizvodID";
+            this.proizvodIDDataGridViewTextBoxColumn.HeaderText = "ProizvodID";
+            this.proizvodIDDataGridViewTextBoxColumn.Name = "proizvodIDDataGridViewTextBoxColumn";
+            this.proizvodIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dodajDataGridViewCheckBoxColumn
+            // 
+            this.dodajDataGridViewCheckBoxColumn.DataPropertyName = "Dodaj";
+            this.dodajDataGridViewCheckBoxColumn.HeaderText = "Dodaj";
+            this.dodajDataGridViewCheckBoxColumn.Name = "dodajDataGridViewCheckBoxColumn";
+            this.dodajDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dodajDataGridViewCheckBoxColumn.Width = 50;
+            // 
+            // proizvodNazivDataGridViewTextBoxColumn
+            // 
+            this.proizvodNazivDataGridViewTextBoxColumn.DataPropertyName = "ProizvodNaziv";
+            this.proizvodNazivDataGridViewTextBoxColumn.HeaderText = "Proizvod";
+            this.proizvodNazivDataGridViewTextBoxColumn.Name = "proizvodNazivDataGridViewTextBoxColumn";
+            this.proizvodNazivDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.proizvodNazivDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // kolicinaDataGridViewTextBoxColumn
+            // 
+            this.kolicinaDataGridViewTextBoxColumn.DataPropertyName = "Kolicina";
+            this.kolicinaDataGridViewTextBoxColumn.HeaderText = "Kolicina";
+            this.kolicinaDataGridViewTextBoxColumn.Name = "kolicinaDataGridViewTextBoxColumn";
+            this.kolicinaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.kolicinaDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // gPProizvodDataSetBindingSource
+            // 
+            this.gPProizvodDataSetBindingSource.DataSource = typeof(eFastFood_PCL.Helpers.GPProizvodDataSet);
+            // 
             // GotoviProizvodiAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 341);
+            this.ClientSize = new System.Drawing.Size(614, 621);
+            this.Controls.Add(this.sastojciDataGridView);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.odustaniButton);
@@ -260,6 +322,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sastojciDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gPProizvodDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,5 +350,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.DataGridView sastojciDataGridView;
+        private System.Windows.Forms.BindingSource gPProizvodDataSetBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proizvodIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dodajDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proizvodNazivDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kolicinaDataGridViewTextBoxColumn;
     }
 }
