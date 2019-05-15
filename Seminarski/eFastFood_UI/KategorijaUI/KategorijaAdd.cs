@@ -38,7 +38,6 @@ namespace eFastFood_UI.KategorijaUI
 
                 if (response.IsSuccessStatusCode)
                 {
-                    this.DialogResult = DialogResult.OK;
                     this.Close();
                     MessageBox.Show(Messages.success_add, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -53,31 +52,43 @@ namespace eFastFood_UI.KategorijaUI
         }
 
         #region Validacija
+
         private void NazivInput_Validating(object sender, CancelEventArgs e)
         {
             if (String.IsNullOrEmpty(nazivInput.Text))
             {
                 e.Cancel = true;
-                errorProviderKategorija.SetError(nazivInput, Messages.empty_string);
+                errorProvider.SetError(nazivInput, Messages.empty_string);
             }
             else if (nazivInput.Text.Length < 3)
             {
                 e.Cancel = true;
-                errorProviderKategorija.SetError(nazivInput, Messages.string_length3);
+                errorProvider.SetError(nazivInput, Messages.string_length3);
+            }
+            else if (nazivInput.Text.Length > 50)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(nazivInput, Messages.string_length50);
             }
             else
-                errorProviderKategorija.SetError(nazivInput, null);
+                errorProvider.SetError(nazivInput, null);
         }
 
         private void OpisInput_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(opisInput.Text))
+            //if (String.IsNullOrEmpty(opisInput.Text))
+            //{
+            //    e.Cancel = true;
+            //    errorProvider.SetError(opisInput, Messages.empty_string);
+            //}
+            //else      // DALI STAVLJAT DA JE OPIS OBAVEZAN
+            if (opisInput.Text.Length > 200)
             {
                 e.Cancel = true;
-                errorProviderKategorija.SetError(opisInput, Messages.empty_string);
+                errorProvider.SetError(opisInput, Messages.string_length200);
             }
             else
-                errorProviderKategorija.SetError(opisInput, null);
+                errorProvider.SetError(opisInput, null);
         }
         #endregion
 

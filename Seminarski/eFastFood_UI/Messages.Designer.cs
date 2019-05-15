@@ -160,11 +160,29 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Potrebno je manje od 200 karaktera..
+        /// </summary>
+        internal static string string_length200 {
+            get {
+                return ResourceManager.GetString("string_length200", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Potrebno je više od 3 karaktera..
         /// </summary>
         internal static string string_length3 {
             get {
                 return ResourceManager.GetString("string_length3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potrebno je manje od 50 karaktera..
+        /// </summary>
+        internal static string string_length50 {
+            get {
+                return ResourceManager.GetString("string_length50", resourceCulture);
             }
         }
         

@@ -35,14 +35,14 @@
             this.opisInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.errorProviderKategorija = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderKategorija)).BeginInit();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // snimiButton
             // 
             this.snimiButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.snimiButton.Location = new System.Drawing.Point(60, 139);
+            this.snimiButton.Location = new System.Drawing.Point(60, 134);
             this.snimiButton.Name = "snimiButton";
             this.snimiButton.Size = new System.Drawing.Size(75, 30);
             this.snimiButton.TabIndex = 2;
@@ -53,7 +53,7 @@
             // odustaniButton
             // 
             this.odustaniButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.odustaniButton.Location = new System.Drawing.Point(241, 139);
+            this.odustaniButton.Location = new System.Drawing.Point(241, 134);
             this.odustaniButton.Name = "odustaniButton";
             this.odustaniButton.Size = new System.Drawing.Size(75, 30);
             this.odustaniButton.TabIndex = 3;
@@ -98,15 +98,15 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Opis";
             // 
-            // errorProviderKategorija
+            // errorProvider
             // 
-            this.errorProviderKategorija.ContainerControl = this;
+            this.errorProvider.ContainerControl = this;
             // 
             // KategorijaAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 181);
+            this.ClientSize = new System.Drawing.Size(334, 176);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.opisInput);
@@ -120,7 +120,7 @@
             this.Name = "KategorijaAdd";
             this.ShowIcon = false;
             this.Text = "Kategorija dodaj";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderKategorija)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,6 +134,6 @@
         private System.Windows.Forms.TextBox opisInput;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ErrorProvider errorProviderKategorija;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

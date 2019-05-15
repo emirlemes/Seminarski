@@ -165,4 +165,10 @@
   <data name="nothing_selected_product" xml:space="preserve">
     <value>Potrebno je odabrati barem jedan proizvod.</value>
   </data>
+  <data name="string_length200" xml:space="preserve">
+    <value>Potrebno je manje od 200 karaktera.</value>
+  </data>
+  <data name="string_length50" xml:space="preserve">
+    <value>Potrebno je manje od 50 karaktera.</value>
+  </data>
 </root>

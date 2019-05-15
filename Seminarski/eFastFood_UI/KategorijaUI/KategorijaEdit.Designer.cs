@@ -35,8 +35,8 @@
             this.opisInput = new System.Windows.Forms.TextBox();
             this.snimiButton = new System.Windows.Forms.Button();
             this.odustaniButton = new System.Windows.Forms.Button();
-            this.errorProviderEdit = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEdit)).BeginInit();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -96,15 +96,15 @@
             this.odustaniButton.UseVisualStyleBackColor = true;
             this.odustaniButton.Click += new System.EventHandler(this.OdustaniButton_Click);
             // 
-            // errorProviderEdit
+            // errorProvider
             // 
-            this.errorProviderEdit.ContainerControl = this;
+            this.errorProvider.ContainerControl = this;
             // 
             // KategorijaEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 174);
+            this.ClientSize = new System.Drawing.Size(334, 176);
             this.Controls.Add(this.odustaniButton);
             this.Controls.Add(this.snimiButton);
             this.Controls.Add(this.opisInput);
@@ -117,7 +117,7 @@
             this.ShowIcon = false;
             this.Text = "Uredi kategorija";
             this.Load += new System.EventHandler(this.KategorijaEdit_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,6 +131,6 @@
         private System.Windows.Forms.TextBox opisInput;
         private System.Windows.Forms.Button snimiButton;
         private System.Windows.Forms.Button odustaniButton;
-        private System.Windows.Forms.ErrorProvider errorProviderEdit;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

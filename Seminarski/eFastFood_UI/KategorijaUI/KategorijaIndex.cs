@@ -21,7 +21,6 @@ namespace eFastFood_UI.KategorijaUI
         public KategorijaIndex()
         {
             InitializeComponent();
-            kategorijeDataGridView.AutoGenerateColumns = false;
             kategorijeDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             BindGrid();
         }
@@ -30,21 +29,23 @@ namespace eFastFood_UI.KategorijaUI
         {
             HttpResponseMessage response = kategorijeService.GetResponse();
 
-            List<Kategorija> list = new List<Kategorija>();
-
             if (response.IsSuccessStatusCode)
             {
-                list = response.Content.ReadAsAsync<List<Kategorija>>().Result;
-                kategorijeDataGridView.DataSource = list;
+                List<Kategorija> kategorijeList = response.Content.ReadAsAsync<List<Kategorija>>().Result.ToList();
+                kategorijeDataGridView.DataSource = kategorijeList;
             }
             else
+            {
+                this.Close();
                 MessageBox.Show(Messages.error + ": " + response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void KategorijaAddbutton_Click(object sender, EventArgs e)
         {
             KategorijaAdd form = new KategorijaAdd();
             form.TopMost = true;
+
             if (form.ShowDialog() == DialogResult.OK)
                 BindGrid();
         }
@@ -54,13 +55,10 @@ namespace eFastFood_UI.KategorijaUI
             int id = kategorijeDataGridView.SelectedRows[0].Cells[0].Value.ToInt();
 
             if (id == 0)
-            {
                 MessageBox.Show(Messages.nothing_selected, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
             else
             {
                 KategorijaEdit form = new KategorijaEdit(id);
-
                 if (form.ShowDialog() == DialogResult.OK)
                     BindGrid();
             }

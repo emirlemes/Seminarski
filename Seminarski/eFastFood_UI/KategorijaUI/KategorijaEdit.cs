@@ -27,14 +27,11 @@ namespace eFastFood_UI.KategorijaUI
             HttpResponseMessage response = kategorijaService.GetResponse(id.ToString());
 
             if (response.IsSuccessStatusCode)
-            {
                 kategorija = response.Content.ReadAsAsync<Kategorija>().Result;
-            }
             else
             {
                 this.Close();
                 MessageBox.Show(Messages.error + ": " + response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 
@@ -53,17 +50,22 @@ namespace eFastFood_UI.KategorijaUI
 
             if (response.IsSuccessStatusCode)
             {
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 this.Close();
                 MessageBox.Show(Messages.success_edited, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
+            {
+                DialogResult = DialogResult.Cancel;
+                this.Close();
                 MessageBox.Show(Messages.error + ": " + response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
         private void OdustaniButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -74,26 +76,37 @@ namespace eFastFood_UI.KategorijaUI
             if (String.IsNullOrEmpty(nazivInput.Text))
             {
                 e.Cancel = true;
-                errorProviderEdit.SetError(nazivInput, Messages.empty_string);
+                errorProvider.SetError(nazivInput, Messages.empty_string);
             }
             else if (nazivInput.Text.Length < 3)
             {
                 e.Cancel = true;
-                errorProviderEdit.SetError(nazivInput, Messages.string_length3);
+                errorProvider.SetError(nazivInput, Messages.string_length3);
+            }
+            else if (nazivInput.Text.Length > 50)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(nazivInput, Messages.string_length50);
             }
             else
-                errorProviderEdit.SetError(nazivInput, null);
+                errorProvider.SetError(nazivInput, null);
         }
 
         private void OpisInput_Validating(object sender, CancelEventArgs e)
         {
-            if (String.IsNullOrEmpty(opisInput.Text))
+            //if (String.IsNullOrEmpty(opisInput.Text))
+            //{
+            //    e.Cancel = true;
+            //    errorProvider.SetError(opisInput, Messages.empty_string);
+            //}
+            //else    //DAL STAVLJAT DA JE OPIS OBAVEZAN
+            if (opisInput.Text.Length > 200)
             {
                 e.Cancel = true;
-                errorProviderEdit.SetError(opisInput, Messages.empty_string);
+                errorProvider.SetError(opisInput, Messages.string_length200);
             }
             else
-                errorProviderEdit.SetError(opisInput, null);
+                errorProvider.SetError(opisInput, null);
         }
         #endregion
     }

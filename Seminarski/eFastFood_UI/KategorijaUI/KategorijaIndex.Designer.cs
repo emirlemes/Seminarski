@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.kategorijeDataGridView = new System.Windows.Forms.DataGridView();
+            this.kategorijaAddbutton = new System.Windows.Forms.Button();
+            this.kategorijaUrediButton = new System.Windows.Forms.Button();
             this.KategorijaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kategorijaAddbutton = new System.Windows.Forms.Button();
-            this.kategorijaUrediButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.kategorijeDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,29 +55,6 @@
             this.kategorijeDataGridView.ReadOnly = true;
             this.kategorijeDataGridView.Size = new System.Drawing.Size(580, 450);
             this.kategorijeDataGridView.TabIndex = 0;
-            // 
-            // KategorijaID
-            // 
-            this.KategorijaID.DataPropertyName = "KategorijaID";
-            this.KategorijaID.HeaderText = "KategorijaID";
-            this.KategorijaID.Name = "KategorijaID";
-            this.KategorijaID.ReadOnly = true;
-            this.KategorijaID.Visible = false;
-            // 
-            // Naziv
-            // 
-            this.Naziv.DataPropertyName = "Naziv";
-            this.Naziv.HeaderText = "Naziv";
-            this.Naziv.Name = "Naziv";
-            this.Naziv.ReadOnly = true;
-            // 
-            // Opis
-            // 
-            this.Opis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Opis.DataPropertyName = "Opis";
-            this.Opis.HeaderText = "Opis";
-            this.Opis.Name = "Opis";
-            this.Opis.ReadOnly = true;
             // 
             // kategorijaAddbutton
             // 
@@ -102,6 +79,30 @@
             this.kategorijaUrediButton.Text = "Uredi";
             this.kategorijaUrediButton.UseVisualStyleBackColor = true;
             this.kategorijaUrediButton.Click += new System.EventHandler(this.KategorijaUrediButton_Click);
+            // 
+            // KategorijaID
+            // 
+            this.KategorijaID.DataPropertyName = "KategorijaID";
+            this.KategorijaID.HeaderText = "KategorijaID";
+            this.KategorijaID.Name = "KategorijaID";
+            this.KategorijaID.ReadOnly = true;
+            this.KategorijaID.Visible = false;
+            // 
+            // Naziv
+            // 
+            this.Naziv.DataPropertyName = "Naziv";
+            this.Naziv.HeaderText = "Naziv";
+            this.Naziv.Name = "Naziv";
+            this.Naziv.ReadOnly = true;
+            this.Naziv.Width = 150;
+            // 
+            // Opis
+            // 
+            this.Opis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Opis.DataPropertyName = "Opis";
+            this.Opis.HeaderText = "Opis";
+            this.Opis.Name = "Opis";
+            this.Opis.ReadOnly = true;
             // 
             // KategorijaIndex
             // 
