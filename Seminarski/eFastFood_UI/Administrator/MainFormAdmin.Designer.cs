@@ -30,8 +30,9 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.kategorijeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoviProizvodiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proizvodiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gotoviProizvodiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dobavljačiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +41,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kategorijeToolStripMenuItem,
             this.proizvodiToolStripMenuItem,
-            this.gotoviProizvodiToolStripMenuItem});
+            this.gotoviProizvodiToolStripMenuItem,
+            this.dobavljačiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -56,6 +58,13 @@
             this.kategorijeToolStripMenuItem.Text = "Kategorije";
             this.kategorijeToolStripMenuItem.Click += new System.EventHandler(this.KategorijeToolStripMenuItem_Click);
             // 
+            // proizvodiToolStripMenuItem
+            // 
+            this.proizvodiToolStripMenuItem.Name = "proizvodiToolStripMenuItem";
+            this.proizvodiToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.proizvodiToolStripMenuItem.Text = "Proizvodi";
+            this.proizvodiToolStripMenuItem.Click += new System.EventHandler(this.ProizvodiToolStripMenuItem_Click);
+            // 
             // gotoviProizvodiToolStripMenuItem
             // 
             this.gotoviProizvodiToolStripMenuItem.Name = "gotoviProizvodiToolStripMenuItem";
@@ -63,12 +72,12 @@
             this.gotoviProizvodiToolStripMenuItem.Text = "Gotovi proizvodi";
             this.gotoviProizvodiToolStripMenuItem.Click += new System.EventHandler(this.GotoviProizvodiToolStripMenuItem_Click);
             // 
-            // proizvodiToolStripMenuItem
+            // dobavljačiToolStripMenuItem
             // 
-            this.proizvodiToolStripMenuItem.Name = "proizvodiToolStripMenuItem";
-            this.proizvodiToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.proizvodiToolStripMenuItem.Text = "Proizvodi";
-            this.proizvodiToolStripMenuItem.Click += new System.EventHandler(this.ProizvodiToolStripMenuItem_Click);
+            this.dobavljačiToolStripMenuItem.Name = "dobavljačiToolStripMenuItem";
+            this.dobavljačiToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.dobavljačiToolStripMenuItem.Text = "Dobavljači";
+            this.dobavljačiToolStripMenuItem.Click += new System.EventHandler(this.DobavljačiToolStripMenuItem_Click);
             // 
             // MainFormAdmin
             // 
@@ -96,5 +105,6 @@
         private System.Windows.Forms.ToolStripMenuItem kategorijeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gotoviProizvodiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proizvodiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dobavljačiToolStripMenuItem;
     }
 }

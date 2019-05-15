@@ -154,6 +154,12 @@
     <EmbeddedResource Include="DobavljacUI\DobavljacAdd.resx">
       <DependentUpon>DobavljacAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DobavljacUI\DobavljacEdit.resx">
+      <DependentUpon>DobavljacEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DobavljacUI\DobavljacIndex.resx">
+      <DependentUpon>DobavljacIndex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GotoviProizvodiUI\GotoviProizvodiAdd.resx">
       <DependentUpon>GotoviProizvodiAdd.cs</DependentUpon>
     </EmbeddedResource>

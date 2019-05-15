@@ -48,6 +48,7 @@ namespace eFastFood_UI.KategorijaUI
 
         private void OdustaniButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 

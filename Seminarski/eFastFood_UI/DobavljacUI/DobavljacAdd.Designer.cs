@@ -55,7 +55,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(24, 16);
+            this.groupBox1.Location = new System.Drawing.Point(14, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
@@ -71,7 +71,7 @@
             this.brojTelefonaInput.Mask = "(999) 000-0000";
             this.brojTelefonaInput.Name = "brojTelefonaInput";
             this.brojTelefonaInput.Size = new System.Drawing.Size(295, 23);
-            this.brojTelefonaInput.TabIndex = 4;
+            this.brojTelefonaInput.TabIndex = 2;
             this.brojTelefonaInput.Validating += new System.ComponentModel.CancelEventHandler(this.BrojTelefonaInput_Validating);
             // 
             // emailInput
@@ -80,7 +80,7 @@
             this.emailInput.Margin = new System.Windows.Forms.Padding(5);
             this.emailInput.Name = "emailInput";
             this.emailInput.Size = new System.Drawing.Size(295, 23);
-            this.emailInput.TabIndex = 5;
+            this.emailInput.TabIndex = 3;
             this.emailInput.Validating += new System.ComponentModel.CancelEventHandler(this.EmailInput_Validating);
             // 
             // adresaDobavljacInput
@@ -89,7 +89,7 @@
             this.adresaDobavljacInput.Margin = new System.Windows.Forms.Padding(5);
             this.adresaDobavljacInput.Name = "adresaDobavljacInput";
             this.adresaDobavljacInput.Size = new System.Drawing.Size(295, 23);
-            this.adresaDobavljacInput.TabIndex = 3;
+            this.adresaDobavljacInput.TabIndex = 1;
             this.adresaDobavljacInput.Validating += new System.ComponentModel.CancelEventHandler(this.AdresaDobavljacInput_Validating);
             // 
             // dobavljacNazivInput
@@ -98,13 +98,13 @@
             this.dobavljacNazivInput.Margin = new System.Windows.Forms.Padding(5);
             this.dobavljacNazivInput.Name = "dobavljacNazivInput";
             this.dobavljacNazivInput.Size = new System.Drawing.Size(295, 23);
-            this.dobavljacNazivInput.TabIndex = 2;
+            this.dobavljacNazivInput.TabIndex = 0;
             this.dobavljacNazivInput.Validating += new System.ComponentModel.CancelEventHandler(this.DobavljacNazivInput_Validating);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(60, 203);
+            this.label6.Location = new System.Drawing.Point(49, 206);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 17);
@@ -114,7 +114,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 149);
+            this.label5.Location = new System.Drawing.Point(12, 147);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 17);
@@ -124,7 +124,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(57, 97);
+            this.label4.Location = new System.Drawing.Point(47, 95);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 17);
@@ -134,7 +134,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 44);
+            this.label3.Location = new System.Drawing.Point(57, 42);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 17);
@@ -143,22 +143,22 @@
             // 
             // snimiButton
             // 
-            this.snimiButton.Location = new System.Drawing.Point(84, 358);
+            this.snimiButton.Location = new System.Drawing.Point(74, 340);
             this.snimiButton.Margin = new System.Windows.Forms.Padding(4);
             this.snimiButton.Name = "snimiButton";
-            this.snimiButton.Size = new System.Drawing.Size(100, 28);
-            this.snimiButton.TabIndex = 3;
+            this.snimiButton.Size = new System.Drawing.Size(100, 30);
+            this.snimiButton.TabIndex = 4;
             this.snimiButton.Text = "Snimi";
             this.snimiButton.UseVisualStyleBackColor = true;
             this.snimiButton.Click += new System.EventHandler(this.SnimiButton_Click);
             // 
             // odustaniButton
             // 
-            this.odustaniButton.Location = new System.Drawing.Point(362, 358);
+            this.odustaniButton.Location = new System.Drawing.Point(352, 340);
             this.odustaniButton.Margin = new System.Windows.Forms.Padding(4);
             this.odustaniButton.Name = "odustaniButton";
-            this.odustaniButton.Size = new System.Drawing.Size(100, 28);
-            this.odustaniButton.TabIndex = 4;
+            this.odustaniButton.Size = new System.Drawing.Size(100, 30);
+            this.odustaniButton.TabIndex = 5;
             this.odustaniButton.Text = "Odustani";
             this.odustaniButton.UseVisualStyleBackColor = true;
             this.odustaniButton.Click += new System.EventHandler(this.OdustaniButton_Click);
@@ -171,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 401);
+            this.ClientSize = new System.Drawing.Size(504, 401);
             this.Controls.Add(this.odustaniButton);
             this.Controls.Add(this.snimiButton);
             this.Controls.Add(this.groupBox1);
@@ -181,7 +181,7 @@
             this.MinimizeBox = false;
             this.Name = "DobavljacAdd";
             this.ShowIcon = false;
-            this.Text = "Dobavljac dodaj";
+            this.Text = "Dobavljač dodaj";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();

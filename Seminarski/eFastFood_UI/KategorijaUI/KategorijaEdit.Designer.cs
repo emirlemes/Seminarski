@@ -43,7 +43,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(18, 65);
+            this.label2.Location = new System.Drawing.Point(24, 80);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 16);
             this.label2.TabIndex = 11;
@@ -53,7 +54,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Location = new System.Drawing.Point(16, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 16);
             this.label1.TabIndex = 12;
@@ -61,25 +63,28 @@
             // 
             // nazivInput
             // 
-            this.nazivInput.Location = new System.Drawing.Point(60, 12);
+            this.nazivInput.Location = new System.Drawing.Point(80, 15);
+            this.nazivInput.Margin = new System.Windows.Forms.Padding(4);
             this.nazivInput.Name = "nazivInput";
-            this.nazivInput.Size = new System.Drawing.Size(256, 20);
+            this.nazivInput.Size = new System.Drawing.Size(340, 23);
             this.nazivInput.TabIndex = 13;
             // 
             // opisInput
             // 
-            this.opisInput.Location = new System.Drawing.Point(60, 38);
+            this.opisInput.Location = new System.Drawing.Point(80, 47);
+            this.opisInput.Margin = new System.Windows.Forms.Padding(4);
             this.opisInput.Multiline = true;
             this.opisInput.Name = "opisInput";
-            this.opisInput.Size = new System.Drawing.Size(256, 60);
+            this.opisInput.Size = new System.Drawing.Size(340, 73);
             this.opisInput.TabIndex = 14;
             // 
             // snimiButton
             // 
             this.snimiButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.snimiButton.Location = new System.Drawing.Point(54, 132);
+            this.snimiButton.Location = new System.Drawing.Point(80, 174);
+            this.snimiButton.Margin = new System.Windows.Forms.Padding(4);
             this.snimiButton.Name = "snimiButton";
-            this.snimiButton.Size = new System.Drawing.Size(75, 30);
+            this.snimiButton.Size = new System.Drawing.Size(100, 30);
             this.snimiButton.TabIndex = 15;
             this.snimiButton.Text = "Snimi";
             this.snimiButton.UseVisualStyleBackColor = true;
@@ -88,9 +93,10 @@
             // odustaniButton
             // 
             this.odustaniButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.odustaniButton.Location = new System.Drawing.Point(235, 132);
+            this.odustaniButton.Location = new System.Drawing.Point(320, 174);
+            this.odustaniButton.Margin = new System.Windows.Forms.Padding(4);
             this.odustaniButton.Name = "odustaniButton";
-            this.odustaniButton.Size = new System.Drawing.Size(75, 30);
+            this.odustaniButton.Size = new System.Drawing.Size(100, 30);
             this.odustaniButton.TabIndex = 16;
             this.odustaniButton.Text = "Odustani";
             this.odustaniButton.UseVisualStyleBackColor = true;
@@ -102,20 +108,22 @@
             // 
             // KategorijaEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 176);
+            this.ClientSize = new System.Drawing.Size(445, 217);
             this.Controls.Add(this.odustaniButton);
             this.Controls.Add(this.snimiButton);
             this.Controls.Add(this.opisInput);
             this.Controls.Add(this.nazivInput);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "KategorijaEdit";
             this.ShowIcon = false;
-            this.Text = "Uredi kategorija";
+            this.Text = "Kategorija uredi ";
             this.Load += new System.EventHandler(this.KategorijaEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

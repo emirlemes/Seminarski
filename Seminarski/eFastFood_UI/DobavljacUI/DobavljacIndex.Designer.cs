@@ -28,12 +28,128 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dobavljaciDataGridView = new System.Windows.Forms.DataGridView();
+            this.dodajButton = new System.Windows.Forms.Button();
+            this.urediButton = new System.Windows.Forms.Button();
+            this.DobavljacID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrojTelefona = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dobavljaciDataGridView)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dobavljaciDataGridView
+            // 
+            this.dobavljaciDataGridView.AllowUserToAddRows = false;
+            this.dobavljaciDataGridView.AllowUserToDeleteRows = false;
+            this.dobavljaciDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dobavljaciDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dobavljaciDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DobavljacID,
+            this.Naziv,
+            this.Adresa,
+            this.BrojTelefona,
+            this.Email});
+            this.dobavljaciDataGridView.Location = new System.Drawing.Point(12, 85);
+            this.dobavljaciDataGridView.Name = "dobavljaciDataGridView";
+            this.dobavljaciDataGridView.ReadOnly = true;
+            this.dobavljaciDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dobavljaciDataGridView.Size = new System.Drawing.Size(729, 366);
+            this.dobavljaciDataGridView.TabIndex = 0;
+            // 
+            // dodajButton
+            // 
+            this.dodajButton.Location = new System.Drawing.Point(12, 23);
+            this.dodajButton.Name = "dodajButton";
+            this.dodajButton.Size = new System.Drawing.Size(130, 30);
+            this.dodajButton.TabIndex = 1;
+            this.dodajButton.Text = "Dodaj dobavljača";
+            this.dodajButton.UseVisualStyleBackColor = true;
+            this.dodajButton.Click += new System.EventHandler(this.DodajButton_Click);
+            // 
+            // urediButton
+            // 
+            this.urediButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.urediButton.Location = new System.Drawing.Point(641, 23);
+            this.urediButton.Name = "urediButton";
+            this.urediButton.Size = new System.Drawing.Size(100, 30);
+            this.urediButton.TabIndex = 2;
+            this.urediButton.Text = "Uredi";
+            this.urediButton.UseVisualStyleBackColor = true;
+            this.urediButton.Click += new System.EventHandler(this.UrediButton_Click);
+            // 
+            // DobavljacID
+            // 
+            this.DobavljacID.DataPropertyName = "DobavljacID";
+            this.DobavljacID.HeaderText = "DobavljacID";
+            this.DobavljacID.Name = "DobavljacID";
+            this.DobavljacID.ReadOnly = true;
+            this.DobavljacID.Visible = false;
+            // 
+            // Naziv
+            // 
+            this.Naziv.DataPropertyName = "Naziv";
+            this.Naziv.HeaderText = "Naziv";
+            this.Naziv.Name = "Naziv";
+            this.Naziv.ReadOnly = true;
+            this.Naziv.Width = 160;
+            // 
+            // Adresa
+            // 
+            this.Adresa.DataPropertyName = "Adresa";
+            this.Adresa.HeaderText = "Adresa";
+            this.Adresa.Name = "Adresa";
+            this.Adresa.ReadOnly = true;
+            this.Adresa.Width = 170;
+            // 
+            // BrojTelefona
+            // 
+            this.BrojTelefona.DataPropertyName = "BrojTelefona";
+            this.BrojTelefona.HeaderText = "Broj telefona";
+            this.BrojTelefona.Name = "BrojTelefona";
+            this.BrojTelefona.ReadOnly = true;
+            this.BrojTelefona.Width = 150;
+            // 
+            // Email
+            // 
+            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // DobavljacIndex
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "DobavljacIndex";
+            this.ClientSize = new System.Drawing.Size(753, 463);
+            this.Controls.Add(this.urediButton);
+            this.Controls.Add(this.dodajButton);
+            this.Controls.Add(this.dobavljaciDataGridView);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "DobavljacIndex";
+            this.ShowIcon = false;
+            this.Text = "Dobavljači";
+            this.Load += new System.EventHandler(this.DobavljacIndex_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dobavljaciDataGridView)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dobavljaciDataGridView;
+        private System.Windows.Forms.Button dodajButton;
+        private System.Windows.Forms.Button urediButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DobavljacID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Adresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrojTelefona;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
     }
 }

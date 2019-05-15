@@ -33,20 +33,22 @@ namespace eFastFood_UI.DobavljacUI
                 dobavljacAdd.BrojTelefona = brojTelefonaInput.Text;
                 dobavljacAdd.Email = emailInput.Text;
 
-                HttpResponseMessage response = dostavljacService.PostResponse(dobavljacAdd);
+                HttpResponseMessage responseD = dostavljacService.PostResponse(dobavljacAdd);
 
-                if (response.IsSuccessStatusCode)
+                if (responseD.IsSuccessStatusCode)
                 {
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                     MessageBox.Show(Messages.success_add, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(Messages.error + ": " + response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.error + ": " + responseD.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void OdustaniButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -58,35 +60,62 @@ namespace eFastFood_UI.DobavljacUI
                 e.Cancel = true;
                 errorProvider.SetError(dobavljacNazivInput, Messages.empty_string);
             }
+            else if (dobavljacNazivInput.Text.Length < 3)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(dobavljacNazivInput, Messages.string_length3);
+            }
+            else if (dobavljacNazivInput.Text.Length > 50)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(dobavljacNazivInput, Messages.string_length50);
+            }
             else
                 errorProvider.SetError(dobavljacNazivInput, null);
         }
 
         private void AdresaDobavljacInput_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(dobavljacNazivInput.Text))
+            if (string.IsNullOrEmpty(adresaDobavljacInput.Text))
             {
                 e.Cancel = true;
-                errorProvider.SetError(dobavljacNazivInput, Messages.empty_string);
+                errorProvider.SetError(adresaDobavljacInput, Messages.empty_string);
+            }
+            else if (adresaDobavljacInput.Text.Length > 50)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(adresaDobavljacInput, Messages.string_length50);
             }
             else
-                errorProvider.SetError(dobavljacNazivInput, null);
+                errorProvider.SetError(adresaDobavljacInput, null);
         }
 
         private void BrojTelefonaInput_Validating(object sender, CancelEventArgs e)
         {
-
+            if (string.IsNullOrEmpty(brojTelefonaInput.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(brojTelefonaInput, Messages.empty_string);
+            }
+            else
+                errorProvider.SetError(brojTelefonaInput, null);
         }
 
         private void EmailInput_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(dobavljacNazivInput.Text))
+            if (string.IsNullOrEmpty(emailInput.Text))
             {
                 e.Cancel = true;
-                errorProvider.SetError(dobavljacNazivInput, Messages.empty_string);
+                errorProvider.SetError(emailInput, Messages.empty_string);
+            }
+            else if (emailInput.Text.Length > 50)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(emailInput, Messages.string_length50);
             }
             else
-                errorProvider.SetError(dobavljacNazivInput, null);
+                errorProvider.SetError(emailInput, null);
+
             try
             {
                 new System.Net.Mail.MailAddress(emailInput.Text);
@@ -95,7 +124,9 @@ namespace eFastFood_UI.DobavljacUI
             {
                 e.Cancel = true;
                 errorProvider.SetError(emailInput, Messages.not_valid_email);
+                return;
             }
+            errorProvider.SetError(emailInput, null);
         }
         #endregion
 

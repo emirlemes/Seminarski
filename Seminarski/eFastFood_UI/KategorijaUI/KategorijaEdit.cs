@@ -55,11 +55,7 @@ namespace eFastFood_UI.KategorijaUI
                 MessageBox.Show(Messages.success_edited, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-            {
-                DialogResult = DialogResult.Cancel;
-                this.Close();
                 MessageBox.Show(Messages.error + ": " + response.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
         }
 

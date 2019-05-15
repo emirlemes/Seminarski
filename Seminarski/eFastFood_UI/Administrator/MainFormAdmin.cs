@@ -1,4 +1,5 @@
-﻿using eFastFood_UI.GotoviProizvodiUI;
+﻿using eFastFood_UI.DobavljacUI;
+using eFastFood_UI.GotoviProizvodiUI;
 using eFastFood_UI.KategorijaUI;
 using eFastFood_UI.ProizvodUI;
 using System;
@@ -79,6 +80,29 @@ namespace eFastFood_UI.Administrator
                 }
 
                 ProizvodIndex frm = new ProizvodIndex
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill
+                };
+                frm.Show();
+            }
+        }
+
+        private void DobavljačiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["DobavljacIndex"] as DobavljacIndex) != null)
+            {
+                //Forma otvorena
+            }
+            else
+            {
+                foreach (Form fr in this.MdiChildren)
+                {
+                    fr.Dispose();
+                    fr.Close();
+                }
+
+                DobavljacIndex frm = new DobavljacIndex
                 {
                     MdiParent = this,
                     Dock = DockStyle.Fill
