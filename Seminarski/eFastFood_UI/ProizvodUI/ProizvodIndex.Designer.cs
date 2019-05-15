@@ -33,6 +33,15 @@
             this.proizvodiDataGridView = new System.Windows.Forms.DataGridView();
             this.pretragaInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ProizvodID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kolicina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonjaGranica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MjernaJedinicaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DobavljacID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MjernaJedinica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.proizvodiDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,12 +70,25 @@
             // 
             // proizvodiDataGridView
             // 
+            this.proizvodiDataGridView.AllowUserToAddRows = false;
+            this.proizvodiDataGridView.AllowUserToDeleteRows = false;
             this.proizvodiDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.proizvodiDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.proizvodiDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProizvodID,
+            this.Naziv,
+            this.Opis,
+            this.Kolicina,
+            this.DonjaGranica,
+            this.MjernaJedinicaID,
+            this.DobavljacID,
+            this.Dobavljac,
+            this.MjernaJedinica});
             this.proizvodiDataGridView.Location = new System.Drawing.Point(13, 84);
             this.proizvodiDataGridView.Name = "proizvodiDataGridView";
+            this.proizvodiDataGridView.ReadOnly = true;
             this.proizvodiDataGridView.Size = new System.Drawing.Size(560, 354);
             this.proizvodiDataGridView.TabIndex = 2;
             // 
@@ -90,6 +112,76 @@
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Pretraga";
+            // 
+            // ProizvodID
+            // 
+            this.ProizvodID.DataPropertyName = "ProizvodID";
+            this.ProizvodID.HeaderText = "ProizvodID";
+            this.ProizvodID.Name = "ProizvodID";
+            this.ProizvodID.ReadOnly = true;
+            this.ProizvodID.Visible = false;
+            // 
+            // Naziv
+            // 
+            this.Naziv.DataPropertyName = "Naziv";
+            this.Naziv.HeaderText = "Naziv";
+            this.Naziv.Name = "Naziv";
+            this.Naziv.ReadOnly = true;
+            // 
+            // Opis
+            // 
+            this.Opis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Opis.DataPropertyName = "Opis";
+            this.Opis.HeaderText = "Opis";
+            this.Opis.Name = "Opis";
+            this.Opis.ReadOnly = true;
+            // 
+            // Kolicina
+            // 
+            this.Kolicina.DataPropertyName = "Kolicina";
+            this.Kolicina.HeaderText = "Količina";
+            this.Kolicina.Name = "Kolicina";
+            this.Kolicina.ReadOnly = true;
+            // 
+            // DonjaGranica
+            // 
+            this.DonjaGranica.DataPropertyName = "DonjaGranica";
+            this.DonjaGranica.HeaderText = "Donja granica";
+            this.DonjaGranica.Name = "DonjaGranica";
+            this.DonjaGranica.ReadOnly = true;
+            this.DonjaGranica.Width = 150;
+            // 
+            // MjernaJedinicaID
+            // 
+            this.MjernaJedinicaID.DataPropertyName = "MjernaJedinicaID";
+            this.MjernaJedinicaID.HeaderText = "MjernaJedinicaID";
+            this.MjernaJedinicaID.Name = "MjernaJedinicaID";
+            this.MjernaJedinicaID.ReadOnly = true;
+            this.MjernaJedinicaID.Visible = false;
+            // 
+            // DobavljacID
+            // 
+            this.DobavljacID.DataPropertyName = "DobavljacID";
+            this.DobavljacID.HeaderText = "DobavljacID";
+            this.DobavljacID.Name = "DobavljacID";
+            this.DobavljacID.ReadOnly = true;
+            this.DobavljacID.Visible = false;
+            // 
+            // Dobavljac
+            // 
+            this.Dobavljac.DataPropertyName = "Dobavljac";
+            this.Dobavljac.HeaderText = "Dobavljac";
+            this.Dobavljac.Name = "Dobavljac";
+            this.Dobavljac.ReadOnly = true;
+            this.Dobavljac.Visible = false;
+            // 
+            // MjernaJedinica
+            // 
+            this.MjernaJedinica.DataPropertyName = "MjernaJedinica";
+            this.MjernaJedinica.HeaderText = "MjernaJedinica";
+            this.MjernaJedinica.Name = "MjernaJedinica";
+            this.MjernaJedinica.ReadOnly = true;
+            this.MjernaJedinica.Visible = false;
             // 
             // ProizvodIndex
             // 
@@ -122,5 +214,14 @@
         private System.Windows.Forms.DataGridView proizvodiDataGridView;
         private System.Windows.Forms.TextBox pretragaInput;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProizvodID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kolicina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonjaGranica;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MjernaJedinicaID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DobavljacID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dobavljac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MjernaJedinica;
     }
 }

@@ -27,13 +27,7 @@ namespace eFastFood_UI.ProizvodUI
 
         private void ProizvodIndex_Load(object sender, EventArgs e)
         {
-            HttpResponseMessage reponseP = proizvodiService.GetResponse();
-
-            if (reponseP.IsSuccessStatusCode)
-            {
-                proizvodList = reponseP.Content.ReadAsAsync<List<Proizvod>>().Result;
-                proizvodiDataGridView.DataSource = proizvodList;
-            }
+            BindGrid();
         }
 
         private void PretragaInput_KeyUp(object sender, KeyEventArgs e)
@@ -44,7 +38,8 @@ namespace eFastFood_UI.ProizvodUI
         private void DodajButton_Click(object sender, EventArgs e)
         {
             ProizvodAdd frm = new ProizvodAdd();
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+                BindGrid();
         }
 
         private void UrediButton_Click(object sender, EventArgs e)
@@ -55,7 +50,19 @@ namespace eFastFood_UI.ProizvodUI
             else
             {
                 ProizvodEdit frm = new ProizvodEdit(id);
-                frm.ShowDialog();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    BindGrid();
+            }
+        }
+
+        private async void BindGrid()
+        {
+            HttpResponseMessage reponseP = proizvodiService.GetResponse();
+
+            if (reponseP.IsSuccessStatusCode)
+            {
+                proizvodList = await reponseP.Content.ReadAsAsync<List<Proizvod>>();
+                proizvodiDataGridView.DataSource = proizvodList;
             }
         }
     }

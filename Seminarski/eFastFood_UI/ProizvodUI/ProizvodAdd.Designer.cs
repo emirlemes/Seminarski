@@ -78,7 +78,7 @@
             this.mjerneJediniceComboBox.Size = new System.Drawing.Size(254, 24);
             this.mjerneJediniceComboBox.TabIndex = 10;
             this.mjerneJediniceComboBox.ValueMember = "ID";
-            this.mjerneJediniceComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.DobavljaciComboBox_Validating);
+            this.mjerneJediniceComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.MjerneJediniceComboBox_Validating);
             // 
             // label5
             // 
@@ -196,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 410);
+            this.ClientSize = new System.Drawing.Size(434, 411);
             this.Controls.Add(this.odustaniButton);
             this.Controls.Add(this.snimiButton);
             this.Controls.Add(this.Proizvod);

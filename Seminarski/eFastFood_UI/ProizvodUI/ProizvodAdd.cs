@@ -52,7 +52,10 @@ namespace eFastFood_UI.ProizvodUI
                 MessageBox.Show(Messages.error + ": " + responseD.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             if (!responseD.IsSuccessStatusCode || !responseM.IsSuccessStatusCode)
+            {
+                DialogResult = DialogResult.Cancel;
                 Close();
+            }
         }
 
         private void SnimiButton_Click(object sender, EventArgs e)
@@ -60,10 +63,10 @@ namespace eFastFood_UI.ProizvodUI
             if (this.ValidateChildren())
             {
 
-                proizvodAdd.DobavljacID = (int)dobavljaciComboBox.SelectedValue;
+                proizvodAdd.DobavljacID = dobavljaciComboBox.SelectedValue.ToInt();
                 proizvodAdd.Naziv = nazivProizvodInput.Text;
                 proizvodAdd.Opis = opisProizvodInput.Text;
-                proizvodAdd.MjernaJedinicaID = (int)mjerneJediniceComboBox.SelectedValue;
+                proizvodAdd.MjernaJedinicaID = mjerneJediniceComboBox.SelectedValue.ToInt();
                 proizvodAdd.Kolicina = 0;
                 proizvodAdd.DonjaGranica = donjaGranicaInput.Text.ToDecimal();
 
@@ -71,6 +74,7 @@ namespace eFastFood_UI.ProizvodUI
 
                 if (responseP.IsSuccessStatusCode)
                 {
+                    DialogResult = DialogResult.OK;
                     this.Close();
                     MessageBox.Show(Messages.success_add, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -82,6 +86,7 @@ namespace eFastFood_UI.ProizvodUI
 
         private void OdustaniButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -94,16 +99,27 @@ namespace eFastFood_UI.ProizvodUI
                 e.Cancel = true;
                 errorProvider.SetError(nazivProizvodInput, Messages.empty_string);
             }
+            else if (nazivProizvodInput.Text.Length > 50)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(nazivProizvodInput, Messages.string_length50);
+            }
             else
                 errorProvider.SetError(nazivProizvodInput, null);
         }
 
         private void OpisProizvodInput_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(opisProizvodInput.Text))
+            //if (string.IsNullOrEmpty(opisProizvodInput.Text))
+            //{
+            //    e.Cancel = true;
+            //    errorProvider.SetError(opisProizvodInput, Messages.empty_string);
+            //}
+            //else  DALI DODATI DA JE POLJE OBAVEZNO
+            if (opisProizvodInput.Text.Length > 200)
             {
                 e.Cancel = true;
-                errorProvider.SetError(opisProizvodInput, Messages.empty_string);
+                errorProvider.SetError(opisProizvodInput, Messages.string_length200);
             }
             else
                 errorProvider.SetError(opisProizvodInput, null);
@@ -132,8 +148,17 @@ namespace eFastFood_UI.ProizvodUI
                 errorProvider.SetError(dobavljaciComboBox, null);
         }
 
+        private void MjerneJediniceComboBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (mjerneJediniceComboBox.SelectedValue == null)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(mjerneJediniceComboBox, Messages.required);
+            }
+            else
+                errorProvider.SetError(mjerneJediniceComboBox, null);
+        }
+
         #endregion
-
-
     }
 }
