@@ -55,13 +55,13 @@ namespace eFastFood_UI.ProizvodUI
             }
         }
 
-        private async void BindGrid()
+        private void BindGrid()
         {
             HttpResponseMessage reponseP = proizvodiService.GetResponse();
 
             if (reponseP.IsSuccessStatusCode)
             {
-                proizvodList = await reponseP.Content.ReadAsAsync<List<Proizvod>>();
+                proizvodList = reponseP.Content.ReadAsAsync<List<Proizvod>>().Result;
                 proizvodiDataGridView.DataSource = proizvodList;
             }
         }

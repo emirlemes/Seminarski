@@ -12,6 +12,8 @@ namespace eFastFood_API.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class eFastFoodEntitie : DbContext
     {
@@ -33,5 +35,35 @@ namespace eFastFood_API.Models
         public virtual DbSet<MjernaJedinica> MjernaJedinica { get; set; }
         public virtual DbSet<Proizvod> Proizvod { get; set; }
         public virtual DbSet<GPProizvod> GPProizvod { get; set; }
+    
+        public virtual int esp_GPPDeleteByGPID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("esp_GPPDeleteByGPID", idParameter);
+        }
+    
+        public virtual int esp_GPPAdd(Nullable<int> gotoviProizvodID, Nullable<int> proizvodID, Nullable<decimal> kolicinaUtroska, Nullable<int> mjernaJedinicaID)
+        {
+            var gotoviProizvodIDParameter = gotoviProizvodID.HasValue ?
+                new ObjectParameter("GotoviProizvodID", gotoviProizvodID) :
+                new ObjectParameter("GotoviProizvodID", typeof(int));
+    
+            var proizvodIDParameter = proizvodID.HasValue ?
+                new ObjectParameter("ProizvodID", proizvodID) :
+                new ObjectParameter("ProizvodID", typeof(int));
+    
+            var kolicinaUtroskaParameter = kolicinaUtroska.HasValue ?
+                new ObjectParameter("KolicinaUtroska", kolicinaUtroska) :
+                new ObjectParameter("KolicinaUtroska", typeof(decimal));
+    
+            var mjernaJedinicaIDParameter = mjernaJedinicaID.HasValue ?
+                new ObjectParameter("MjernaJedinicaID", mjernaJedinicaID) :
+                new ObjectParameter("MjernaJedinicaID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("esp_GPPAdd", gotoviProizvodIDParameter, proizvodIDParameter, kolicinaUtroskaParameter, mjernaJedinicaIDParameter);
+        }
     }
 }

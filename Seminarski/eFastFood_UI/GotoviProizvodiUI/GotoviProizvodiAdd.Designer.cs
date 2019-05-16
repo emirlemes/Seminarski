@@ -39,7 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.vrijemePripremeInput = new System.Windows.Forms.TextBox();
             this.slikaButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             this.proizvodNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kolicinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gPProizvodDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sastojciDataGridView)).BeginInit();
@@ -65,20 +65,20 @@
             // dodajButton
             // 
             this.dodajButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.dodajButton.Location = new System.Drawing.Point(446, 399);
+            this.dodajButton.Location = new System.Drawing.Point(466, 445);
             this.dodajButton.Name = "dodajButton";
-            this.dodajButton.Size = new System.Drawing.Size(75, 30);
+            this.dodajButton.Size = new System.Drawing.Size(100, 30);
             this.dodajButton.TabIndex = 5;
-            this.dodajButton.Text = "Dodaj";
+            this.dodajButton.Text = "Snimi";
             this.dodajButton.UseVisualStyleBackColor = true;
             this.dodajButton.Click += new System.EventHandler(this.DodajButton_Click);
             // 
             // odustaniButton
             // 
             this.odustaniButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.odustaniButton.Location = new System.Drawing.Point(527, 399);
+            this.odustaniButton.Location = new System.Drawing.Point(466, 525);
             this.odustaniButton.Name = "odustaniButton";
-            this.odustaniButton.Size = new System.Drawing.Size(75, 30);
+            this.odustaniButton.Size = new System.Drawing.Size(100, 30);
             this.odustaniButton.TabIndex = 6;
             this.odustaniButton.Text = "Odustani";
             this.odustaniButton.UseVisualStyleBackColor = true;
@@ -150,9 +150,9 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Vrijeme pripreme (minute)";
             // 
-            // errorProvider1
+            // errorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.errorProvider.ContainerControl = this;
             // 
             // vrijemePripremeInput
             // 
@@ -165,9 +165,9 @@
             // slikaButton
             // 
             this.slikaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.slikaButton.Location = new System.Drawing.Point(535, 274);
+            this.slikaButton.Location = new System.Drawing.Point(487, 274);
             this.slikaButton.Name = "slikaButton";
-            this.slikaButton.Size = new System.Drawing.Size(67, 30);
+            this.slikaButton.Size = new System.Drawing.Size(100, 30);
             this.slikaButton.TabIndex = 4;
             this.slikaButton.Text = "Odaberi";
             this.slikaButton.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label5.Location = new System.Drawing.Point(491, 281);
+            this.label5.Location = new System.Drawing.Point(443, 281);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 16);
             this.label5.TabIndex = 8;
@@ -185,7 +185,7 @@
             // 
             // slikaInput
             // 
-            this.slikaInput.Location = new System.Drawing.Point(466, 310);
+            this.slikaInput.Location = new System.Drawing.Point(447, 310);
             this.slikaInput.Name = "slikaInput";
             this.slikaInput.ReadOnly = true;
             this.slikaInput.Size = new System.Drawing.Size(140, 20);
@@ -249,6 +249,9 @@
             // 
             this.sastojciDataGridView.AllowUserToAddRows = false;
             this.sastojciDataGridView.AllowUserToDeleteRows = false;
+            this.sastojciDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.sastojciDataGridView.AutoGenerateColumns = false;
             this.sastojciDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sastojciDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -257,7 +260,7 @@
             this.proizvodNazivDataGridViewTextBoxColumn,
             this.kolicinaDataGridViewTextBoxColumn});
             this.sastojciDataGridView.DataSource = this.gPProizvodDataSetBindingSource;
-            this.sastojciDataGridView.Location = new System.Drawing.Point(12, 265);
+            this.sastojciDataGridView.Location = new System.Drawing.Point(6, 265);
             this.sastojciDataGridView.Name = "sastojciDataGridView";
             this.sastojciDataGridView.Size = new System.Drawing.Size(415, 344);
             this.sastojciDataGridView.TabIndex = 15;
@@ -283,7 +286,6 @@
             this.proizvodNazivDataGridViewTextBoxColumn.HeaderText = "Proizvod";
             this.proizvodNazivDataGridViewTextBoxColumn.Name = "proizvodNazivDataGridViewTextBoxColumn";
             this.proizvodNazivDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.proizvodNazivDataGridViewTextBoxColumn.Width = 150;
             // 
             // kolicinaDataGridViewTextBoxColumn
             // 
@@ -316,9 +318,9 @@
             this.Name = "GotoviProizvodiAdd";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dodaj gotovi proizvod";
+            this.Text = "Gotovi proizvod dodaj ";
             this.Load += new System.EventHandler(this.GotoviProizvodiAdd_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -340,7 +342,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.TextBox vrijemePripremeInput;
         private System.Windows.Forms.TextBox slikaInput;
         private System.Windows.Forms.Label label5;

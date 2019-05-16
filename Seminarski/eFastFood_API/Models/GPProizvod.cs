@@ -11,12 +11,9 @@ namespace eFastFood_API.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public partial class GPProizvod
     {
-        [Key]
-        public int GPProizvodID { get; set; }
         public int GotoviProizvodID { get; set; }
         public int ProizvodID { get; set; }
         public Nullable<decimal> KolicinaUtroska { get; set; }

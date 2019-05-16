@@ -160,7 +160,7 @@
     <value>Email adressa u neispravnom formatu.</value>
   </data>
   <data name="mj_not_selected" xml:space="preserve">
-    <value>Mjerna jedinica nije selektovana.</value>
+    <value>Mjerna jedinica nije selektovana za: </value>
   </data>
   <data name="nothing_selected_product" xml:space="preserve">
     <value>Potrebno je odabrati barem jedan proizvod.</value>

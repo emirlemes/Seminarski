@@ -105,8 +105,8 @@ namespace eFastFood_UI.GotoviProizvodiUI
                         if (row.Cells[1].Value.ToBool())
                         {
                             if (row.Cells[4].Value.ToInt() == 0)
-                                throw new Exception("MjernaJedinicaID");
-                            // dodaj Za koji proizvod fali
+                                throw new Exception("MjernaJedinicaID:" + row.Cells[2].Value.ToString());
+
                             gppList.Add(new GPProizvod()
                             {
                                 ProizvodID = row.Cells[0].Value.ToInt(),
@@ -146,6 +146,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
 
                         if (responseGPP.IsSuccessStatusCode)
                         {
+                            DialogResult = DialogResult.OK;
                             this.Close();
                             MessageBox.Show(Messages.success_add, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -159,8 +160,8 @@ namespace eFastFood_UI.GotoviProizvodiUI
                 }
                 catch (Exception k)
                 {
-                    if (k.Message == "MjernaJedinicaID")
-                        MessageBox.Show(Messages.mj_not_selected, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (k.Message.Split(':')[0] == "MjernaJedinicaID")
+                        MessageBox.Show(Messages.mj_not_selected + " za " + k.Message.Split(':')[1], Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (k.Message == "NijeOdabranoNista")
                         MessageBox.Show(Messages.nothing_selected_product, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -190,24 +191,15 @@ namespace eFastFood_UI.GotoviProizvodiUI
             if (string.IsNullOrEmpty(nazivInput.Text))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(nazivInput, Messages.empty_string);
+                errorProvider.SetError(nazivInput, Messages.empty_string);
+            }
+            else if (nazivInput.Text.Length > 50)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(nazivInput, Messages.string_length50);
             }
             else
-                errorProvider1.SetError(nazivInput, null);
-        }
-
-        private void CijenaInput_Validating(object sender, CancelEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(cijenaInput.Text))
-            {
-                if (double.Parse(cijenaInput.Text) < 0)
-                {
-                    e.Cancel = true;
-                    errorProvider1.SetError(cijenaInput, Messages.negative_price);
-                }
-                else
-                    errorProvider1.SetError(cijenaInput, null);
-            }
+                errorProvider.SetError(nazivInput, null);
         }
 
         private void OpisInput_Validating(object sender, CancelEventArgs e)
@@ -215,10 +207,31 @@ namespace eFastFood_UI.GotoviProizvodiUI
             if (string.IsNullOrEmpty(opisInput.Text))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(opisInput, Messages.empty_string);
+                errorProvider.SetError(opisInput, Messages.empty_string);
+            }
+            else if (opisInput.Text.Length > 200)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(opisInput, Messages.string_length200);
             }
             else
-                errorProvider1.SetError(opisInput, null);
+                errorProvider.SetError(opisInput, null);
+        }
+
+        private void CijenaInput_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(cijenaInput.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(cijenaInput, Messages.empty_string);
+            }
+            else if (cijenaInput.Text.ToDecimal() < 0)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(cijenaInput, Messages.negative_price);
+            }
+            else
+                errorProvider.SetError(cijenaInput, null);
         }
 
         private void CijenaInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -238,10 +251,10 @@ namespace eFastFood_UI.GotoviProizvodiUI
             if (kategorijaComboBox.SelectedValue == null)
             {
                 e.Cancel = true;
-                errorProvider1.SetError(kategorijaComboBox, Messages.required);
+                errorProvider.SetError(kategorijaComboBox, Messages.required);
             }
             else
-                errorProvider1.SetError(kategorijaComboBox, null);
+                errorProvider.SetError(kategorijaComboBox, null);
         }
 
 

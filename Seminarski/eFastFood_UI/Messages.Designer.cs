@@ -88,7 +88,7 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mjerna jedinica nije selektovana..
+        ///   Looks up a localized string similar to Mjerna jedinica nije selektovana za: .
         /// </summary>
         internal static string mj_not_selected {
             get {

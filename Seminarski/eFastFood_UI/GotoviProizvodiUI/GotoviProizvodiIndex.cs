@@ -26,7 +26,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
             gotoviPDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
-        private void GotoviProizvodiIndex_Load(object sender, EventArgs e)
+        private void BindGrid()
         {
             HttpResponseMessage reposneGP = gotoviProizvodiService.GetResponse();
 
@@ -42,6 +42,11 @@ namespace eFastFood_UI.GotoviProizvodiUI
             }
         }
 
+        private void GotoviProizvodiIndex_Load(object sender, EventArgs e)
+        {
+            BindGrid();
+        }
+
         private void PretragaInput_KeyUp(object sender, KeyEventArgs e)
         {
             gotoviPDataGridView.DataSource = gotiviPList.Where(x => x.Naziv.ToLower().StartsWith(pretragaInput.Text.ToLower())).ToList();
@@ -55,14 +60,16 @@ namespace eFastFood_UI.GotoviProizvodiUI
             else
             {
                 GotoviProizvodiEdit frm = new GotoviProizvodiEdit(id);
-                frm.ShowDialog();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    BindGrid();
             }
         }
 
         private void DodajButton_Click(object sender, EventArgs e)
         {
             GotoviProizvodiAdd frm = new GotoviProizvodiAdd();
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+                BindGrid();
         }
     }
 }

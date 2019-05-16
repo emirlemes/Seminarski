@@ -16,73 +16,27 @@ namespace eFastFood_API.Controllers
     {
         private eFastFoodEntitie _db = new eFastFoodEntitie();
 
-        // GET: api/GPProizvod
-        public IQueryable<GPProizvod> GetGPProizvod()
+
+        // GET: api/GPProizvod/SastojciByGPID/5
+        [HttpGet]
+        [ResponseType(typeof(List<GPProizvod>))]
+        [Route("api/GPProizvod/SastojciByGPID/{id}")]
+        public IHttpActionResult SastojciByGPID(int id)
         {
-            return _db.GPProizvod;
+            return Ok(_db.GPProizvod.Where(x => x.GotoviProizvodID == id).ToList());
         }
 
-        // GET: api/GPProizvod/5
-        [ResponseType(typeof(GPProizvod))]
-        public IHttpActionResult GetGPProizvod(int id)
-        {
-            GPProizvod gPProizvod = _db.GPProizvod.Find(id);
-            if (gPProizvod == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(gPProizvod);
-        }
-
-        // PUT: api/GPProizvod/5
+        // PUT: api/GPProizvod/GPProizvodListEdit/
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutGPProizvod(int id, GPProizvod gPProizvod)
+        [Route("api/GPProizvod/GPProizvodListEdit/{id}")]
+        public IHttpActionResult GPProizvodListEdit(int id, List<GPProizvod> list)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != gPProizvod.GPProizvodID)
-            {
-                return BadRequest();
-            }
-
-            _db.Entry(gPProizvod).State = EntityState.Modified;
-
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GPProizvodExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _db.esp_GPPDeleteByGPID(id);
+            foreach (var item in list)
+                _db.esp_GPPAdd(item.GotoviProizvodID, item.ProizvodID, item.KolicinaUtroska, item.MjernaJedinicaID);
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/GPProizvod
-        [ResponseType(typeof(GPProizvod))]
-        public IHttpActionResult PostGPProizvod(GPProizvod gPProizvod)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _db.GPProizvod.Add(gPProizvod);
-            _db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = gPProizvod.GPProizvodID }, gPProizvod);
         }
 
         //POST: api/GPProizvod
@@ -103,20 +57,20 @@ namespace eFastFood_API.Controllers
         }
 
         // DELETE: api/GPProizvod/5
-        [ResponseType(typeof(GPProizvod))]
-        public IHttpActionResult DeleteGPProizvod(int id)
-        {
-            GPProizvod gPProizvod = _db.GPProizvod.Find(id);
-            if (gPProizvod == null)
-            {
-                return NotFound();
-            }
+        //[ResponseType(typeof(GPProizvod))]
+        //public IHttpActionResult DeleteGPProizvod(int id)
+        //{
+        //    GPProizvod gPProizvod = _db.GPProizvod.Find(id);
+        //    if (gPProizvod == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _db.GPProizvod.Remove(gPProizvod);
-            _db.SaveChanges();
+        //    _db.GPProizvod.Remove(gPProizvod);
+        //    _db.SaveChanges();
 
-            return Ok(gPProizvod);
-        }
+        //    return Ok(gPProizvod);
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -125,11 +79,6 @@ namespace eFastFood_API.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool GPProizvodExists(int id)
-        {
-            return _db.GPProizvod.Count(e => e.GPProizvodID == id) > 0;
         }
     }
 }
