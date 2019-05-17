@@ -109,12 +109,17 @@
     <Compile Include="Controllers\GPProizvodController.cs" />
     <Compile Include="Controllers\KategorijaController.cs" />
     <Compile Include="Controllers\MjernaJedinicaController.cs" />
+    <Compile Include="Controllers\NarudzbaController.cs" />
     <Compile Include="Controllers\ProizvodController.cs" />
+    <Compile Include="Controllers\UlogaController.cs" />
     <Compile Include="Controllers\UposlenikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Dobavljac.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\esp_BrojNarudzbiAll_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GotoviProizvod.cs">
@@ -124,6 +129,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kategorija.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Klijent.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MjernaJedinica.cs">
@@ -143,6 +151,12 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\Narudzba.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NarudzbaStavka.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Proizvod.cs">
       <DependentUpon>Model.tt</DependentUpon>

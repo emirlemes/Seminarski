@@ -8,10 +8,6 @@ namespace eFastFood_PCL.Models
 {
     public class Dobavljac
     {
-        public Dobavljac()
-        {
-        }
-
         public int DobavljacID { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }

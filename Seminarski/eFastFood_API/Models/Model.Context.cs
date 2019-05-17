@@ -35,6 +35,9 @@ namespace eFastFood_API.Models
         public virtual DbSet<MjernaJedinica> MjernaJedinica { get; set; }
         public virtual DbSet<Proizvod> Proizvod { get; set; }
         public virtual DbSet<GPProizvod> GPProizvod { get; set; }
+        public virtual DbSet<Klijent> Klijent { get; set; }
+        public virtual DbSet<Narudzba> Narudzba { get; set; }
+        public virtual DbSet<NarudzbaStavka> NarudzbaStavka { get; set; }
     
         public virtual int esp_GPPDeleteByGPID(Nullable<int> id)
         {
@@ -64,6 +67,11 @@ namespace eFastFood_API.Models
                 new ObjectParameter("MjernaJedinicaID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("esp_GPPAdd", gotoviProizvodIDParameter, proizvodIDParameter, kolicinaUtroskaParameter, mjernaJedinicaIDParameter);
+        }
+    
+        public virtual ObjectResult<esp_BrojNarudzbiAll_Result> esp_BrojNarudzbiAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<esp_BrojNarudzbiAll_Result>("esp_BrojNarudzbiAll");
         }
     }
 }

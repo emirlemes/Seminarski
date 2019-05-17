@@ -12,15 +12,14 @@ namespace eFastFood_API.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GPProizvod
+    public partial class NarudzbaStavka
     {
+        public int NarudzbaStavkaID { get; set; }
+        public int Kolicina { get; set; }
+        public int NarudzbaID { get; set; }
         public int GotoviProizvodID { get; set; }
-        public int ProizvodID { get; set; }
-        public Nullable<decimal> KolicinaUtroska { get; set; }
-        public int MjernaJedinicaID { get; set; }
     
         public virtual GotoviProizvod GotoviProizvod { get; set; }
-        public virtual MjernaJedinica MjernaJedinica { get; set; }
-        public virtual Proizvod Proizvod { get; set; }
+        public virtual Narudzba Narudzba { get; set; }
     }
 }

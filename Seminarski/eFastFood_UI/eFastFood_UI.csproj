@@ -59,6 +59,12 @@
     <Compile Include="Administrator\MainFormAdmin.Designer.cs">
       <DependentUpon>MainFormAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\Profil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrator\Profil.Designer.cs">
+      <DependentUpon>Profil.cs</DependentUpon>
+    </Compile>
     <Compile Include="DobavljacUI\DobavljacAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,25 @@
     <Compile Include="KategorijaUI\KategorijaIndex.Designer.cs">
       <DependentUpon>KategorijaIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="KorisniciUI\KorisniciAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KorisniciUI\KorisniciAdd.Designer.cs">
+      <DependentUpon>KorisniciAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KorisniciUI\KorisniciDataView.cs" />
+    <Compile Include="KorisniciUI\KorisniciEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KorisniciUI\KorisniciEdit.Designer.cs">
+      <DependentUpon>KorisniciEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KorisniciUI\KorisniciIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KorisniciUI\KorisniciIndex.Designer.cs">
+      <DependentUpon>KorisniciIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +150,12 @@
       <DependentUpon>Messages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="NarudzbeUI\NarudzbeIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NarudzbeUI\NarudzbeIndex.Designer.cs">
+      <DependentUpon>NarudzbeIndex.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProizvodUI\ProizvodAdd.cs">
@@ -177,6 +208,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KategorijaUI\KategorijaIndex.resx">
       <DependentUpon>KategorijaIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KorisniciUI\KorisniciAdd.resx">
+      <DependentUpon>KorisniciAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KorisniciUI\KorisniciEdit.resx">
+      <DependentUpon>KorisniciEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KorisniciUI\KorisniciIndex.resx">
+      <DependentUpon>KorisniciIndex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

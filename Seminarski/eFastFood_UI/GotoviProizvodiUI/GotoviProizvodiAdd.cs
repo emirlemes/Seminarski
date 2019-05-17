@@ -119,7 +119,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
                         throw new Exception("NijeOdabranoNista");
 
                     gp.Cijena = cijenaInput.Text.ToDecimal();
-                    gp.KategorijaID = (int)kategorijaComboBox.SelectedValue;
+                    gp.KategorijaID = kategorijaComboBox.SelectedValue.ToInt();
                     gp.Opis = opisInput.Text;
                     gp.VrijemePripreme = vrijemePripremeInput.Text.ToInt();
                     gp.Naziv = nazivInput.Text;

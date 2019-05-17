@@ -4,22 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc0c9620585343bdbf8f83bcc7680c62" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="cc0c9620585343bdbf8f83bcc7680c62" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="eFastFoodTestModel.GotoviProizvod" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="eFastFoodTestModel.Kategorija" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="eFastFoodTestModel.FK__GotoviPro__Kateg__398D8EEE" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="eFastFoodTestModel.Uloga" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.Uloga" Width="1.5" PointX="5.5" PointY="4.875" />
         <EntityTypeShape EntityType="eFastFoodTestModel.Uposlenik" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="eFastFoodTestModel.FK__Uposlenik__Uloga__46E78A0C" />
         <EntityTypeShape EntityType="eFastFoodTestModel.Dobavljac" Width="1.5" PointX="5.375" PointY="0.875" />
-        <EntityTypeShape EntityType="eFastFoodTestModel.MjernaJedinica" Width="1.5" PointX="5.375" PointY="4.125" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.MjernaJedinica" Width="1.5" PointX="11.75" PointY="0.625" />
         <EntityTypeShape EntityType="eFastFoodTestModel.Proizvod" Width="1.5" PointX="7.625" PointY="0.75" />
         <AssociationConnector Association="eFastFoodTestModel.FK__Proizvod__Dobavl__6EF57B66" />
         <AssociationConnector Association="eFastFoodTestModel.FK__Proizvod__Mjerna__6E01572D" />
-        <EntityTypeShape EntityType="eFastFoodTestModel.GPProizvod" Width="1.5" PointX="9.875" PointY="2.375" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.GPProizvod" Width="1.5" PointX="9.75" PointY="3.375" />
         <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Gotov__1F98B2C1" />
         <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Mjern__2180FB33" />
         <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Proiz__208CD6FA" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.Klijent" Width="1.5" PointX="6.625" PointY="7.625" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Klijent__UlogaID__2EDAF651" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.Narudzba" Width="1.5" PointX="0.875" PointY="7.375" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.NarudzbaStavka" Width="1.5" PointX="0.625" PointY="4.375" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__NarudzbaS__Gotov__3587F3E0" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Narudzba__Klijen__31B762FC" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__NarudzbaS__Narud__3493CFA7" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

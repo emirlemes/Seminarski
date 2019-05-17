@@ -61,6 +61,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email već postoji..
+        /// </summary>
+        internal static string email_exist {
+            get {
+                return ResourceManager.GetString("email_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Polje ne smije biti prazno..
         /// </summary>
         internal static string empty_string {
@@ -142,6 +151,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broj telefona već postoji..
+        /// </summary>
+        internal static string phone_number_exist {
+            get {
+                return ResourceManager.GetString("phone_number_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odaberite sliku većih dimenzija..
         /// </summary>
         internal static string picture_to_small {
@@ -156,6 +174,15 @@ namespace eFastFood_UI {
         internal static string required {
             get {
                 return ResourceManager.GetString("required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potrebno je manje od 20 karaktera..
+        /// </summary>
+        internal static string string_length20 {
+            get {
+                return ResourceManager.GetString("string_length20", resourceCulture);
             }
         }
         
@@ -210,6 +237,15 @@ namespace eFastFood_UI {
         internal static string success_edited {
             get {
                 return ResourceManager.GetString("success_edited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisničko ime već postoji..
+        /// </summary>
+        internal static string user_name_exist {
+            get {
+                return ResourceManager.GetString("user_name_exist", resourceCulture);
             }
         }
         

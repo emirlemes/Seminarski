@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace eFastFood_PCL.Models
 {
-    public class MjernaJedinica
+    public class Uloga
     {
-        public int MjernaJedinicaID { get; set; }
+        public int UlogaID { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
-        public Nullable<int> Exponent { get; set; }
     }
 }

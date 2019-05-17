@@ -45,6 +45,33 @@ namespace eFastFood_API.Controllers
             return Ok(uposlenik);
         }
 
+        // GET: api/Uposlenik/CheckUserName/userName
+        [HttpGet]
+        [Route("api/Uposlenik/CheckUserName/{userName}")]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult CheckUserName(string userName)
+        {
+            return Ok(_db.Uposlenik.Where(x => x.UserName == userName).Count() > 0);
+        }
+
+        // GET: api/Uposlenik/CheckBrojTelefona/userName
+        [HttpGet]
+        [Route("api/Uposlenik/CheckBrojTelefona/{telefon}")]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult CheckBrojTelefona(string telefon)
+        {
+            return Ok(_db.Uposlenik.Where(x => x.BrojTelefona == telefon).Count() > 0);
+        }
+
+        // GET: api/Uposlenik/CheckBrojTelefona/userName
+        [HttpGet]
+        [Route("api/Uposlenik/CheckEmail/{email}")]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult CheckEmail(string email)
+        {
+            return Ok(_db.Uposlenik.Where(x => x.Email == email).Count() > 0);
+        }
+
         // PUT: api/Uposlenik/5
         [HttpPut]
         [Route("api/Uposlenik/{id}")]
