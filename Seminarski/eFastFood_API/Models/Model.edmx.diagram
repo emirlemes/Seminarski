@@ -20,13 +20,13 @@
         <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Gotov__1F98B2C1" />
         <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Mjern__2180FB33" />
         <AssociationConnector Association="eFastFoodTestModel.FK__GPProizvo__Proiz__208CD6FA" />
-        <EntityTypeShape EntityType="eFastFoodTestModel.Klijent" Width="1.5" PointX="6.625" PointY="7.625" />
-        <AssociationConnector Association="eFastFoodTestModel.FK__Klijent__UlogaID__2EDAF651" />
         <EntityTypeShape EntityType="eFastFoodTestModel.Narudzba" Width="1.5" PointX="0.875" PointY="7.375" />
         <EntityTypeShape EntityType="eFastFoodTestModel.NarudzbaStavka" Width="1.5" PointX="0.625" PointY="4.375" />
         <AssociationConnector Association="eFastFoodTestModel.FK__NarudzbaS__Gotov__3587F3E0" />
-        <AssociationConnector Association="eFastFoodTestModel.FK__Narudzba__Klijen__31B762FC" />
         <AssociationConnector Association="eFastFoodTestModel.FK__NarudzbaS__Narud__3493CFA7" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.Klijent" Width="1.5" PointX="7.75" PointY="7.25" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Klijent__UlogaID__2EDAF651" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Narudzba__Klijen__31B762FC" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

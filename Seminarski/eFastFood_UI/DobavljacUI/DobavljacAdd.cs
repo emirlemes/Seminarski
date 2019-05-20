@@ -103,6 +103,18 @@ namespace eFastFood_UI.DobavljacUI
 
         private void EmailInput_Validating(object sender, CancelEventArgs e)
         {
+            bool emailValidation = false;
+
+            try
+            {
+                new System.Net.Mail.MailAddress(emailInput.Text);
+            }
+            catch (FormatException)
+            {
+                emailValidation = true;
+            }
+
+
             if (string.IsNullOrEmpty(emailInput.Text))
             {
                 e.Cancel = true;
@@ -113,20 +125,14 @@ namespace eFastFood_UI.DobavljacUI
                 e.Cancel = true;
                 errorProvider.SetError(emailInput, Messages.string_length50);
             }
-            else
-                errorProvider.SetError(emailInput, null);
-
-            try
-            {
-                new System.Net.Mail.MailAddress(emailInput.Text);
-            }
-            catch (FormatException)
+            else if (emailValidation)
             {
                 e.Cancel = true;
                 errorProvider.SetError(emailInput, Messages.not_valid_email);
-                return;
             }
-            errorProvider.SetError(emailInput, null);
+            else
+                errorProvider.SetError(emailInput, null);
+
         }
         #endregion
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.statusCheckBox = new System.Windows.Forms.CheckBox();
@@ -47,7 +48,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.snimiButton = new System.Windows.Forms.Button();
             this.odustaniButton = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -102,12 +105,15 @@
             // 
             // ulogeComboBox
             // 
+            this.ulogeComboBox.DisplayMember = "Text";
             this.ulogeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ulogeComboBox.FormattingEnabled = true;
             this.ulogeComboBox.Location = new System.Drawing.Point(109, 291);
             this.ulogeComboBox.Name = "ulogeComboBox";
             this.ulogeComboBox.Size = new System.Drawing.Size(190, 24);
             this.ulogeComboBox.TabIndex = 14;
+            this.ulogeComboBox.ValueMember = "ID";
+            this.ulogeComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.UlogeComboBox_Validating);
             // 
             // lozinkaInput
             // 
@@ -115,6 +121,7 @@
             this.lozinkaInput.Name = "lozinkaInput";
             this.lozinkaInput.Size = new System.Drawing.Size(190, 23);
             this.lozinkaInput.TabIndex = 13;
+            this.lozinkaInput.Validating += new System.ComponentModel.CancelEventHandler(this.LozinkaInput_Validating);
             // 
             // emailInput
             // 
@@ -122,6 +129,7 @@
             this.emailInput.Name = "emailInput";
             this.emailInput.Size = new System.Drawing.Size(190, 23);
             this.emailInput.TabIndex = 12;
+            this.emailInput.Validating += new System.ComponentModel.CancelEventHandler(this.EmailInput_Validating);
             // 
             // brojTelefonaInput
             // 
@@ -130,6 +138,7 @@
             this.brojTelefonaInput.Name = "brojTelefonaInput";
             this.brojTelefonaInput.Size = new System.Drawing.Size(190, 23);
             this.brojTelefonaInput.TabIndex = 11;
+            this.brojTelefonaInput.Validating += new System.ComponentModel.CancelEventHandler(this.BrojTelefonaInput_Validating);
             // 
             // korisnickoImeInput
             // 
@@ -137,6 +146,7 @@
             this.korisnickoImeInput.Name = "korisnickoImeInput";
             this.korisnickoImeInput.Size = new System.Drawing.Size(190, 23);
             this.korisnickoImeInput.TabIndex = 10;
+            this.korisnickoImeInput.Validating += new System.ComponentModel.CancelEventHandler(this.KorisnickoImeInput_Validating);
             // 
             // prezimeInput
             // 
@@ -144,6 +154,7 @@
             this.prezimeInput.Name = "prezimeInput";
             this.prezimeInput.Size = new System.Drawing.Size(190, 23);
             this.prezimeInput.TabIndex = 9;
+            this.prezimeInput.Validating += new System.ComponentModel.CancelEventHandler(this.PrezimeInput_Validating);
             // 
             // imeInput
             // 
@@ -151,6 +162,7 @@
             this.imeInput.Name = "imeInput";
             this.imeInput.Size = new System.Drawing.Size(190, 23);
             this.imeInput.TabIndex = 8;
+            this.imeInput.Validating += new System.ComponentModel.CancelEventHandler(this.ImeInput_Validating);
             // 
             // label8
             // 
@@ -235,6 +247,10 @@
             this.odustaniButton.UseVisualStyleBackColor = true;
             this.odustaniButton.Click += new System.EventHandler(this.OdustaniButton_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // KorisniciEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -253,6 +269,7 @@
             this.Load += new System.EventHandler(this.KorisniciEdit_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,5 +295,6 @@
         private System.Windows.Forms.CheckBox statusCheckBox;
         private System.Windows.Forms.Button snimiButton;
         private System.Windows.Forms.Button odustaniButton;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

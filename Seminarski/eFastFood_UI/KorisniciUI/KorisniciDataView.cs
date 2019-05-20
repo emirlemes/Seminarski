@@ -15,5 +15,6 @@ namespace eFastFood_UI.KorisniciUI
         public string BrojTelefona { get; set; }
         public int BrojNarudzbi { get; set; }
         public bool Status { get; set; }
+        public string VrstaKorisnika { get; set; }
     }
 }

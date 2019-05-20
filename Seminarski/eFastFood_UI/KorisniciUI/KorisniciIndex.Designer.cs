@@ -40,7 +40,11 @@
             this.BrojTelefona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrojNarudzbi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.uposleniciRadioButton = new System.Windows.Forms.RadioButton();
+            this.klijentiRadioButton = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.korisniciDataGridView)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DodajButton
@@ -51,6 +55,7 @@
             this.DodajButton.TabIndex = 0;
             this.DodajButton.Text = "Dodaj uposlenika";
             this.DodajButton.UseVisualStyleBackColor = true;
+            this.DodajButton.Click += new System.EventHandler(this.DodajButton_Click);
             // 
             // urediButton
             // 
@@ -60,6 +65,7 @@
             this.urediButton.TabIndex = 1;
             this.urediButton.Text = "Uredi";
             this.urediButton.UseVisualStyleBackColor = true;
+            this.urediButton.Click += new System.EventHandler(this.UrediButton_Click);
             // 
             // label1
             // 
@@ -82,8 +88,8 @@
             // 
             this.korisniciDataGridView.AllowUserToAddRows = false;
             this.korisniciDataGridView.AllowUserToDeleteRows = false;
-            this.korisniciDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.korisniciDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.korisniciDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.korisniciDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -94,10 +100,10 @@
             this.BrojTelefona,
             this.BrojNarudzbi,
             this.Status});
-            this.korisniciDataGridView.Location = new System.Drawing.Point(12, 82);
+            this.korisniciDataGridView.Location = new System.Drawing.Point(12, 107);
             this.korisniciDataGridView.Name = "korisniciDataGridView";
             this.korisniciDataGridView.ReadOnly = true;
-            this.korisniciDataGridView.Size = new System.Drawing.Size(749, 389);
+            this.korisniciDataGridView.Size = new System.Drawing.Size(749, 364);
             this.korisniciDataGridView.TabIndex = 4;
             // 
             // KorisnikID
@@ -158,11 +164,44 @@
             this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Status.Width = 70;
             // 
+            // uposleniciRadioButton
+            // 
+            this.uposleniciRadioButton.AutoSize = true;
+            this.uposleniciRadioButton.Location = new System.Drawing.Point(277, 12);
+            this.uposleniciRadioButton.Name = "uposleniciRadioButton";
+            this.uposleniciRadioButton.Size = new System.Drawing.Size(91, 21);
+            this.uposleniciRadioButton.TabIndex = 5;
+            this.uposleniciRadioButton.Text = "Uposlenici";
+            this.uposleniciRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // klijentiRadioButton
+            // 
+            this.klijentiRadioButton.AutoSize = true;
+            this.klijentiRadioButton.Checked = true;
+            this.klijentiRadioButton.Location = new System.Drawing.Point(3, 12);
+            this.klijentiRadioButton.Name = "klijentiRadioButton";
+            this.klijentiRadioButton.Size = new System.Drawing.Size(67, 21);
+            this.klijentiRadioButton.TabIndex = 6;
+            this.klijentiRadioButton.TabStop = true;
+            this.klijentiRadioButton.Text = "Klijenti";
+            this.klijentiRadioButton.UseVisualStyleBackColor = true;
+            this.klijentiRadioButton.CheckedChanged += new System.EventHandler(this.KlijentiRadioButton_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.klijentiRadioButton);
+            this.panel1.Controls.Add(this.uposleniciRadioButton);
+            this.panel1.Location = new System.Drawing.Point(261, 56);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(371, 45);
+            this.panel1.TabIndex = 7;
+            // 
             // KorisniciIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 483);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.korisniciDataGridView);
             this.Controls.Add(this.pretragaInput);
             this.Controls.Add(this.label1);
@@ -175,6 +214,8 @@
             this.Text = "Korisnici";
             this.Load += new System.EventHandler(this.KorisniciIndex_Load);
             ((System.ComponentModel.ISupportInitialize)(this.korisniciDataGridView)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +235,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BrojTelefona;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrojNarudzbi;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
+        private System.Windows.Forms.RadioButton uposleniciRadioButton;
+        private System.Windows.Forms.RadioButton klijentiRadioButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }

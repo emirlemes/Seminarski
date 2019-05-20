@@ -17,9 +17,9 @@ namespace eFastFood_API.Controllers
         private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Proizvod
-        public IQueryable<Proizvod> GetProizvod()
+        public IHttpActionResult GetProizvod()
         {
-            return _db.Proizvod;
+            return Ok(_db.Proizvod.ToList());
         }
 
         // GET: api/Proizvod/5
@@ -28,9 +28,7 @@ namespace eFastFood_API.Controllers
         {
             Proizvod proizvod = _db.Proizvod.Find(id);
             if (proizvod == null)
-            {
                 return NotFound();
-            }
 
             return Ok(proizvod);
         }

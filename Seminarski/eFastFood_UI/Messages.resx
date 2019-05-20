@@ -183,4 +183,7 @@
   <data name="email_exist" xml:space="preserve">
     <value>Email već postoji.</value>
   </data>
+  <data name="employees_edit_only" xml:space="preserve">
+    <value>Možete uređivati samo uposlenike.</value>
+  </data>
 </root>

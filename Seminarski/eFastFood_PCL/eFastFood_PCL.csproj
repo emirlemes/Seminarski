@@ -39,6 +39,7 @@
     <Compile Include="Models\GotoviProizvod.cs" />
     <Compile Include="Models\GPProizvod.cs" />
     <Compile Include="Models\Kategorija.cs" />
+    <Compile Include="Models\Klijent.cs" />
     <Compile Include="Models\MjernaJedinica.cs" />
     <Compile Include="Models\Narudzba.cs" />
     <Compile Include="Models\Proizvod.cs" />

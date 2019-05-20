@@ -70,6 +70,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Možete uređivati samo uposlenike..
+        /// </summary>
+        internal static string employees_edit_only {
+            get {
+                return ResourceManager.GetString("employees_edit_only", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Polje ne smije biti prazno..
         /// </summary>
         internal static string empty_string {

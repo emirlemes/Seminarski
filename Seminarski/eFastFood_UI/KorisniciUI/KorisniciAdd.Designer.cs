@@ -81,12 +81,14 @@
             // 
             // ulogeComboBox
             // 
+            this.ulogeComboBox.DisplayMember = "Text";
             this.ulogeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ulogeComboBox.FormattingEnabled = true;
             this.ulogeComboBox.Location = new System.Drawing.Point(109, 291);
             this.ulogeComboBox.Name = "ulogeComboBox";
             this.ulogeComboBox.Size = new System.Drawing.Size(190, 24);
             this.ulogeComboBox.TabIndex = 14;
+            this.ulogeComboBox.ValueMember = "ID";
             this.ulogeComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.UlogeComboBox_Validating);
             // 
             // lozinkaInput

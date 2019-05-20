@@ -50,7 +50,10 @@ namespace eFastFood_API.Controllers
             }
 
             GotoviProizvod gp = _db.GotoviProizvod.Find(id);
-
+            if (gp == null)
+            {
+                return BadRequest();
+            }
             gp.KategorijaID = gotoviProizvod.KategorijaID;
             gp.GotoviProizvodID = gotoviProizvod.GotoviProizvodID;
             gp.VrijemePripreme = gotoviProizvod.VrijemePripreme;
@@ -65,7 +68,7 @@ namespace eFastFood_API.Controllers
             }
             catch (Exception)
             {
-                BadRequest();
+                return BadRequest();
             }
 
             return StatusCode(HttpStatusCode.NoContent);

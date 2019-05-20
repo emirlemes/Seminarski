@@ -26,7 +26,7 @@ namespace eFastFood_UI
         public static string DobavljacRoute = "Dobavljac";
         public static string MjernaJedinicaRoute = "MjernaJedinica";
         public static string GPProizvodRoute = "GPProizvod";
-        public static string KorisniciRoute = "Korisnik";
+        public static string KlijentRoute = "Klijent";
         public static string NarudzbeRoute = "Narudzba";
         public static string UlogeRoute = "Uloga";
 

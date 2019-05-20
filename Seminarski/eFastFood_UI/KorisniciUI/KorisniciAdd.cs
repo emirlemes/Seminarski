@@ -105,7 +105,7 @@ namespace eFastFood_UI.KorisniciUI
 
         private void KorisnickoImeInput_Validating(object sender, CancelEventArgs e)
         {
-            HttpResponseMessage responseU = uposleniciService.GetActionResponse("CheckUserName");
+            HttpResponseMessage responseU = uposleniciService.GetActionResponse("CheckUserName", korisnickoImeInput.Text);
             bool usernameExitst = false;
             if (responseU.IsSuccessStatusCode)
                 usernameExitst = responseU.Content.ReadAsAsync<bool>().Result;
@@ -132,7 +132,7 @@ namespace eFastFood_UI.KorisniciUI
 
         private void BrojTelefonaInput_Validating(object sender, CancelEventArgs e)
         {
-            HttpResponseMessage responseU = uposleniciService.GetActionResponse("CheckBrojTelefona");
+            HttpResponseMessage responseU = uposleniciService.GetActionResponse("CheckBrojTelefona", brojTelefonaInput.Text);
             bool brojExitst = false;
             if (responseU.IsSuccessStatusCode)
                 brojExitst = responseU.Content.ReadAsAsync<bool>().Result;
@@ -153,10 +153,22 @@ namespace eFastFood_UI.KorisniciUI
 
         private void EmailInput_Validating(object sender, CancelEventArgs e)
         {
-            HttpResponseMessage responseU = uposleniciService.GetActionResponse("CheckEmail");
+            bool emailValidation = false;
+
+            try
+            {
+                new System.Net.Mail.MailAddress(emailInput.Text);
+            }
+            catch (FormatException)
+            {
+                emailValidation = true;
+            }
+
+            HttpResponseMessage responseU = uposleniciService.GetActionResponse("CheckEmail", emailInput.Text);
             bool emailExitst = false;
             if (responseU.IsSuccessStatusCode)
                 emailExitst = responseU.Content.ReadAsAsync<bool>().Result;
+
             if (string.IsNullOrEmpty(emailInput.Text))
             {
                 e.Cancel = true;
@@ -171,6 +183,11 @@ namespace eFastFood_UI.KorisniciUI
             {
                 e.Cancel = true;
                 errorProvider.SetError(emailInput, Messages.email_exist);
+            }
+            else if (emailValidation)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(emailInput, Messages.not_valid_email);
             }
             else
                 errorProvider.SetError(emailInput, null);

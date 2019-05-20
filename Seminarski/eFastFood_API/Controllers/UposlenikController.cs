@@ -27,7 +27,10 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(List<Uposlenik>))]
         public IHttpActionResult GetUposlenik()
         {
-            return Ok(_db.Uposlenik.ToList());
+            var list = _db.Uposlenik.ToList();
+            list.ForEach(x => _db.Entry(x).Reference(c => c.Uloga).Load());
+
+            return Ok(list);
         }
 
         // GET: api/Uposlenik/5
@@ -45,31 +48,40 @@ namespace eFastFood_API.Controllers
             return Ok(uposlenik);
         }
 
-        // GET: api/Uposlenik/CheckUserName/userName
+        // GET: api/Uposlenik/CheckUserName/{userName}/{id}
         [HttpGet]
-        [Route("api/Uposlenik/CheckUserName/{userName}")]
+        [Route("api/Uposlenik/CheckUserName/{userName}/{id}")]
         [ResponseType(typeof(bool))]
-        public IHttpActionResult CheckUserName(string userName)
+        public IHttpActionResult CheckUserName(string userName, int id = 0)
         {
-            return Ok(_db.Uposlenik.Where(x => x.UserName == userName).Count() > 0);
+            if (id == 0)
+                return Ok(_db.Uposlenik.Where(x => x.UserName == userName).Count() > 0);
+            else
+                return Ok(_db.Uposlenik.Where(x => x.UserName == userName && x.UposlenikID != id).Count() > 0);
         }
 
-        // GET: api/Uposlenik/CheckBrojTelefona/userName
+        // GET: api/Uposlenik/CheckBrojTelefona/{telefon}/{id}
         [HttpGet]
-        [Route("api/Uposlenik/CheckBrojTelefona/{telefon}")]
+        [Route("api/Uposlenik/CheckBrojTelefona/{telefon}/{id}")]
         [ResponseType(typeof(bool))]
-        public IHttpActionResult CheckBrojTelefona(string telefon)
+        public IHttpActionResult CheckBrojTelefona(string telefon, int id = 0)
         {
-            return Ok(_db.Uposlenik.Where(x => x.BrojTelefona == telefon).Count() > 0);
+            if (id == 0)
+                return Ok(_db.Uposlenik.Where(x => x.BrojTelefona == telefon).Count() > 0);
+            else
+                return Ok(_db.Uposlenik.Where(x => x.BrojTelefona == telefon && x.UposlenikID != id).Count() > 0);
         }
 
-        // GET: api/Uposlenik/CheckBrojTelefona/userName
+        // GET: api/Uposlenik/CheckEmail/{email}/{id}
         [HttpGet]
-        [Route("api/Uposlenik/CheckEmail/{email}")]
+        [Route("api/Uposlenik/CheckEmail/{email}/{id}")]
         [ResponseType(typeof(bool))]
-        public IHttpActionResult CheckEmail(string email)
+        public IHttpActionResult CheckEmail(string email, int id = 0)
         {
-            return Ok(_db.Uposlenik.Where(x => x.Email == email).Count() > 0);
+            if (id == 0)
+                return Ok(_db.Uposlenik.Where(x => x.Email == email).Count() > 0);
+            else
+                return Ok(_db.Uposlenik.Where(x => x.Email == email && x.UposlenikID != id).Count() > 0);
         }
 
         // PUT: api/Uposlenik/5
