@@ -17,9 +17,9 @@ namespace eFastFood_API.Controllers
         private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Narudzba
-        public IQueryable<Narudzba> GetNarudzba()
+        public IHttpActionResult GetNarudzba()
         {
-            return _db.Narudzba;
+            return Ok(_db.Narudzba.ToList());
         }
 
         // GET: api/Narudzba/5
@@ -43,6 +43,86 @@ namespace eFastFood_API.Controllers
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
             _db.esp_BrojNarudzbiAll().ToList().ForEach(x => keyValuePairs.Add(x.KlijentID ?? 0, x.BrojNarudzbi ?? 0));
             return Ok(keyValuePairs);
+        }
+
+        // GET: api/Narudzba/GetNoveNarudzbe
+        [HttpGet]
+        [ResponseType(typeof(List<Narudzba>))]
+        [Route("api/Narudzba/GetNoveNarudzbe")]
+        public IHttpActionResult GetNoveNarudzbe()
+        {
+            var list = _db.Narudzba.Where(x => x.Status == "Nova").ToList();
+            list.ForEach(x => _db.Entry(x).Reference(c => c.Klijent).Load());
+
+            return Ok(list);
+        }
+
+        // GET: api/Narudzba/GetUPripremiNarudzbe
+        [HttpGet]
+        [ResponseType(typeof(List<Narudzba>))]
+        [Route("api/Narudzba/GetUPripremiNarudzbe")]
+        public IHttpActionResult GetUPripremiNarudzbe()
+        {
+            var list = _db.Narudzba.Where(x => x.Status == "Priprema").ToList();
+            list.ForEach(x => _db.Entry(x).Reference(c => c.Klijent).Load());
+
+            return Ok(list);
+        }
+
+        // GET: api/Narudzba/GetZavrseneNarudzbe
+        [HttpGet]
+        [ResponseType(typeof(List<Narudzba>))]
+        [Route("api/Narudzba/GetZavrseneNarudzbe")]
+        public IHttpActionResult GetZavrseneNarudzbe()
+        {
+            var list = _db.Narudzba.Where(x => x.Status == "Zavrsena").ToList();
+            list.ForEach(x => _db.Entry(x).Reference(c => c.Klijent).Load());
+
+            return Ok(list);
+        }
+        // GET: api/Narudzba/GetStavkeNarudzbe/{id}
+        [HttpGet]
+        [ResponseType(typeof(List<NarudzbaStavka>))]
+        [Route("api/Narudzba/GetStavkeNarudzbe/{id}")]
+        public IHttpActionResult GetStavkeNarudzbe(int id)
+        {
+            List<NarudzbaStavka> list = _db.NarudzbaStavka.Where(x => x.NarudzbaID == id).ToList();
+            list.ForEach(x => _db.Entry(x).Reference(c => c.GotoviProizvod).Load());
+            return Ok(list);
+        }
+
+        //PUT: api/Narudzba/PrebaciUPripremu/{id}
+        [HttpGet]
+        [ResponseType(typeof(void))]
+        [Route("api/Narudzba/PrebaciUPripremu/{id}")]
+        public IHttpActionResult PrebaciUPripremu(int id)
+        {
+            Narudzba narudzba = _db.Narudzba.Where(x => x.NarudzbaID == id).FirstOrDefault();
+            if (narudzba != null)
+            {
+                narudzba.Status = "Priprema";
+                _db.SaveChanges();
+                return Ok();
+            }
+            else
+                return NotFound();
+        }
+
+        //PUT: api/Narudzba/PrebaciUZavrsi/{id}
+        [HttpGet]
+        [ResponseType(typeof(void))]
+        [Route("api/Narudzba/PrebaciUZavrsi/{id}")]
+        public IHttpActionResult PrebaciUZavrsi(int id)
+        {
+            Narudzba n = _db.Narudzba.Where(x => x.NarudzbaID == id).FirstOrDefault();
+            if (n != null)
+            {
+                n.Status = "Zavrsena";
+                _db.SaveChanges();
+                return Ok();
+            }
+            else
+                return NotFound();
         }
 
         // PUT: api/Narudzba/5

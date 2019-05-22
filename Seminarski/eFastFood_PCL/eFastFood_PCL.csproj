@@ -42,12 +42,12 @@
     <Compile Include="Models\Klijent.cs" />
     <Compile Include="Models\MjernaJedinica.cs" />
     <Compile Include="Models\Narudzba.cs" />
+    <Compile Include="Models\NarudzbaStavka.cs" />
     <Compile Include="Models\Proizvod.cs" />
     <Compile Include="Models\Uloga.cs" />
     <Compile Include="Models\Uposlenik.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\PrijavaVM.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

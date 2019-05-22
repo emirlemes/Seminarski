@@ -2,6 +2,7 @@
 using eFastFood_UI.GotoviProizvodiUI;
 using eFastFood_UI.KategorijaUI;
 using eFastFood_UI.KorisniciUI;
+using eFastFood_UI.NarudzbeUI;
 using eFastFood_UI.ProizvodUI;
 using System;
 using System.Collections.Generic;
@@ -128,6 +129,29 @@ namespace eFastFood_UI.Administrator
                 }
 
                 KorisniciIndex frm = new KorisniciIndex
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill
+                };
+                frm.Show();
+            }
+        }
+
+        private void NarudžbeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["NarudzbeIndex"] as NarudzbeIndex) != null)
+            {
+                //Forma otvorena
+            }
+            else
+            {
+                foreach (Form fr in this.MdiChildren)
+                {
+                    fr.Dispose();
+                    fr.Close();
+                }
+
+                NarudzbeIndex frm = new NarudzbeIndex
                 {
                     MdiParent = this,
                     Dock = DockStyle.Fill

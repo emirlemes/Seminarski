@@ -11,7 +11,7 @@ namespace eFastFood_API.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Klijent
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace eFastFood_API.Models
         {
             this.Narudzba = new HashSet<Narudzba>();
         }
-
+    
         public int KlijentID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
@@ -30,7 +30,7 @@ namespace eFastFood_API.Models
         public string Adresa { get; set; }
         public Nullable<bool> Status { get; set; }
         public Nullable<int> UlogaID { get; set; }
-
+    
         public virtual Uloga Uloga { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Narudzba> Narudzba { get; set; }

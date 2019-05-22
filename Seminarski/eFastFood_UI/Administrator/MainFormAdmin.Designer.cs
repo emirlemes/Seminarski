@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.narudžbeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kategorijeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proizvodiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gotoviProizvodiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +40,9 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.narudžbeToolStripMenuItem,
             this.kategorijeToolStripMenuItem,
             this.proizvodiToolStripMenuItem,
             this.gotoviProizvodiToolStripMenuItem,
@@ -47,11 +50,18 @@
             this.korisniciToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(15, 5, 0, 5);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1184, 31);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // narudžbeToolStripMenuItem
+            // 
+            this.narudžbeToolStripMenuItem.Name = "narudžbeToolStripMenuItem";
+            this.narudžbeToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.narudžbeToolStripMenuItem.Text = "Narudžbe";
+            this.narudžbeToolStripMenuItem.Click += new System.EventHandler(this.NarudžbeToolStripMenuItem_Click);
             // 
             // kategorijeToolStripMenuItem
             // 
@@ -92,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 611);
+            this.ClientSize = new System.Drawing.Size(1184, 611);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.IsMdiContainer = true;
@@ -116,5 +126,6 @@
         private System.Windows.Forms.ToolStripMenuItem proizvodiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dobavljačiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem korisniciToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem narudžbeToolStripMenuItem;
     }
 }

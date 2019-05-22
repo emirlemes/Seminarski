@@ -36,9 +36,9 @@ namespace eFastFood_API.Models
         public virtual DbSet<MjernaJedinica> MjernaJedinica { get; set; }
         public virtual DbSet<Proizvod> Proizvod { get; set; }
         public virtual DbSet<GPProizvod> GPProizvod { get; set; }
+        public virtual DbSet<Klijent> Klijent { get; set; }
         public virtual DbSet<Narudzba> Narudzba { get; set; }
         public virtual DbSet<NarudzbaStavka> NarudzbaStavka { get; set; }
-        public virtual DbSet<Klijent> Klijent { get; set; }
     
         public virtual int esp_GPPDeleteByGPID(Nullable<int> id)
         {

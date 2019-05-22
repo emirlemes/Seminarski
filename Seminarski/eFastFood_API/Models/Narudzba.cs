@@ -22,13 +22,13 @@ namespace eFastFood_API.Models
     
         public int NarudzbaID { get; set; }
         public string VrstaNarudzbe { get; set; }
-        public Nullable<System.DateTime> Datum { get; set; }
-        public Nullable<decimal> UkupnaCijena { get; set; }
-        public Nullable<int> KlijentID { get; set; }
+        public System.DateTime Datum { get; set; }
+        public decimal UkupnaCijena { get; set; }
+        public int KlijentID { get; set; }
         public string Status { get; set; }
     
+        public virtual Klijent Klijent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NarudzbaStavka> NarudzbaStavka { get; set; }
-        public virtual Klijent Klijent { get; set; }
     }
 }

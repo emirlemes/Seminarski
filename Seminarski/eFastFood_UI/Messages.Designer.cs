@@ -160,6 +160,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Narudžba [ID] greška..
+        /// </summary>
+        internal static string order_id_error {
+            get {
+                return ResourceManager.GetString("order_id_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Broj telefona već postoji..
         /// </summary>
         internal static string phone_number_exist {

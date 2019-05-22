@@ -153,7 +153,7 @@
             // 
             // dodajButton
             // 
-            this.dodajButton.Location = new System.Drawing.Point(30, 31);
+            this.dodajButton.Location = new System.Drawing.Point(16, 25);
             this.dodajButton.Margin = new System.Windows.Forms.Padding(4);
             this.dodajButton.Name = "dodajButton";
             this.dodajButton.Size = new System.Drawing.Size(100, 30);
@@ -165,7 +165,7 @@
             // urediButton
             // 
             this.urediButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.urediButton.Location = new System.Drawing.Point(777, 31);
+            this.urediButton.Location = new System.Drawing.Point(777, 25);
             this.urediButton.Margin = new System.Windows.Forms.Padding(4);
             this.urediButton.Name = "urediButton";
             this.urediButton.Size = new System.Drawing.Size(100, 30);
@@ -178,7 +178,7 @@
             // 
             this.pretragaInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pretragaInput.Location = new System.Drawing.Point(283, 35);
+            this.pretragaInput.Location = new System.Drawing.Point(283, 29);
             this.pretragaInput.Name = "pretragaInput";
             this.pretragaInput.Size = new System.Drawing.Size(308, 23);
             this.pretragaInput.TabIndex = 1;
@@ -187,7 +187,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(214, 38);
+            this.label1.Location = new System.Drawing.Point(214, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 4;
