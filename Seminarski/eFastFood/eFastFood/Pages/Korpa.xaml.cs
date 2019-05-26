@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace eFastFood
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace XamarinApp.Pages
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Korpa : ContentPage
     {
-        public MainPage()
+        public Korpa()
         {
             InitializeComponent();
         }

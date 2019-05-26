@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behavior="clr-namespace:eFastFood.Behaviers"
+             mc:Ignorable="d"
+             x:Class="eFastFood.Login.Registracija">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Registracija" HorizontalOptions="Center" FontSize="Large" Margin="30"></Label>
+                <Grid Margin="30,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--IME-->
+                    <Label Grid.Column="0" 
+                       Grid.Row="0"
+                       Text="Ime"
+                       VerticalOptions="Center"
+                       ></Label>
+                    <Entry x:Name="ImeInput" 
+                       Grid.Column="1" 
+                       Grid.Row="0"
+                       ></Entry>
+                    <!--PREZIME-->
+                    <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Text="Prezime"
+                       VerticalOptions="Center"
+                       ></Label>
+                    <Entry  x:Name="PrezimeInput" Grid.Column="1"
+                       Grid.Row="1"
+                       ></Entry>
+                    <!--BROJ TELEFONA-->
+                    <Label Grid.Column="0"
+                       Grid.Row="2"
+                       Text="Broj telefona"
+                       VerticalOptions="Center"
+                       ></Label>
+                    <Entry x:Name="BrojTelefonaInput" Grid.Column="1"
+                       Grid.Row="2"
+                       Keyboard="Telephone"
+                       >
+                        <Entry.Behaviors>
+                            <behavior:MaskedBehavior Mask="(XXX) XXX-XXXX"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <!--EMAIL-->
+                    <Label Grid.Column="0"
+                       Grid.Row="3"
+                       Text="Email"
+                       VerticalOptions="Center"
+                       ></Label>
+                    <Entry x:Name="EmailInput" Grid.Column="1"
+                       Grid.Row="3"
+                       ></Entry>
+                    <!--ADRESA-->
+                    <Label Grid.Column="0"
+                       Grid.Row="4"
+                       Text="Adresa"
+                       VerticalOptions="Center"
+                       ></Label>
+                    <Entry x:Name="AdresaInput" Grid.Column="1"
+                       Grid.Row="4"
+                       ></Entry>
+                    <!--LOZINKA-->
+                    <Label Grid.Column="0"
+                       Grid.Row="5"
+                       Text="Lozinka"
+                       VerticalOptions="Center"
+                       ></Label>
+                    <Entry x:Name="LozinkaInput" Grid.Column="1"
+                       Grid.Row="5"
+                       IsPassword="True"
+                       ></Entry>
+                    <Label Grid.Column="0"
+                       Grid.Row="6"
+                       Text="Lozinka ponovo"
+                       VerticalOptions="Center"
+                       ></Label>
+                    <Entry x:Name="LozinkaPonovoInput" Grid.Column="1"
+                       Grid.Row="6"
+                       IsPassword="True"
+                       ></Entry>
+                </Grid>
+                <Button x:Name="Registruj" Text="Registruj se" Margin="20,50" Clicked="Registruj_Clicked"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

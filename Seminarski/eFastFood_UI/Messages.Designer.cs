@@ -133,7 +133,7 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email adressa u neispravnom formatu..
+        ///   Looks up a localized string similar to Email adresa u neispravnom formatu..
         /// </summary>
         internal static string not_valid_email {
             get {

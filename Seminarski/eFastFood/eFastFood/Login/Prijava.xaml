@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="eFastFood.Login.Prijava">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0,50">
+                <Label Text="Prijava"
+                           TextColor="Black"
+                           FontSize="Large"
+                       Margin="0,0,0,40" HorizontalOptions="Center"></Label>
+
+                <Label Text="" TextColor="Black" HorizontalOptions="Center" ></Label>
+                <Entry x:Name="korisnickoIme" Placeholder="Korisničko ime" HorizontalTextAlignment="Center"></Entry>
+
+                <Label Text="" TextColor="Black" HorizontalOptions="Center"></Label>
+                <Entry x:Name="lozinka" IsPassword="True" Placeholder="Lozinka" HorizontalTextAlignment="Center"></Entry>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,30">
+                    <Button Text="Prijava" Clicked="Prijava_Button_Clicked"></Button>
+                    <Button Text="Registracija" WidthRequest="150" Clicked="Registracija_Button_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

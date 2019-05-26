@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="609a95d3-02bc-48e8-a76a-b913d270ad24"
-    Publisher="CN=899a00e0-6de9-4fb2-b33e-2772a2665935"
+    Name="4bab143a-872d-41c6-9d0b-d7c845da2ce2"
+    Publisher="CN=d80f05e8-39f0-401d-8756-15bdb2cb88dd"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>eFastFood.UWP</DisplayName>
-    <PublisherDisplayName>899a00e0-6de9-4fb2-b33e-2772a2665935</PublisherDisplayName>
+    <PublisherDisplayName>d80f05e8-39f0-401d-8756-15bdb2cb88dd</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

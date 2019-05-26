@@ -1,8 +1,9 @@
-﻿using System;
+﻿using eFastFood.Login;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinApp.Navigacija;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace eFastFood
 {
     public partial class App : Application
@@ -11,7 +12,7 @@ namespace eFastFood
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MDPage();  //new NavigationPage(new Prijava());
         }
 
         protected override void OnStart()
