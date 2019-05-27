@@ -16,7 +16,7 @@ namespace eFastFood_API.Models
     {
         public int GotoviProizvodID { get; set; }
         public int ProizvodID { get; set; }
-        public Nullable<decimal> KolicinaUtroska { get; set; }
+        public decimal KolicinaUtroska { get; set; }
         public int MjernaJedinicaID { get; set; }
     
         public virtual GotoviProizvod GotoviProizvod { get; set; }

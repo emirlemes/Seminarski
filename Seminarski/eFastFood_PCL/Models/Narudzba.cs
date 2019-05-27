@@ -11,10 +11,11 @@ namespace eFastFood_PCL.Models
         public int NarudzbaID { get; set; }
         public string VrstaNarudzbe { get; set; }
         public DateTime Datum { get; set; }
-        public Nullable<decimal> UkupnaCijena { get; set; }
-        public Nullable<int> KlijentID { get; set; }
+        public decimal UkupnaCijena { get; set; }
+        public int KlijentID { get; set; }
         public string Status { get; set; }
 
         public Klijent Klijent { get; set; }
+        public ICollection<NarudzbaStavka> NarudzbaStavka { get; set; }
     }
 }

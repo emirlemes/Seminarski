@@ -22,8 +22,8 @@ namespace eFastFood_API.Models
         public string Email { get; set; }
         public string LozinkaHash { get; set; }
         public string LozinkaSalt { get; set; }
-        public Nullable<bool> Status { get; set; }
-        public Nullable<int> UlogaID { get; set; }
+        public bool Status { get; set; }
+        public int UlogaID { get; set; }
     
         public virtual Uloga Uloga { get; set; }
     }

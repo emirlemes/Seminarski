@@ -17,7 +17,7 @@ namespace eFastFood_PCL.Models
         public string LozinkaHash { get; set; }
         public string LozinkaSalt { get; set; }
         public bool Status { get; set; }
-        public Nullable<int> UlogaID { get; set; }
+        public int UlogaID { get; set; }
 
         public virtual Uloga Uloga { get; set; }
     }

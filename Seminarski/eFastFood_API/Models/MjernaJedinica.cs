@@ -17,18 +17,18 @@ namespace eFastFood_API.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MjernaJedinica()
         {
-            this.Proizvod = new HashSet<Proizvod>();
             this.GPProizvod = new HashSet<GPProizvod>();
+            this.Proizvod = new HashSet<Proizvod>();
         }
     
         public int MjernaJedinicaID { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
-        public Nullable<int> Exponent { get; set; }
+        public int Exponent { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proizvod> Proizvod { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GPProizvod> GPProizvod { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Proizvod> Proizvod { get; set; }
     }
 }

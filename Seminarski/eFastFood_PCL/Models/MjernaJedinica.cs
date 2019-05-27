@@ -11,6 +11,6 @@ namespace eFastFood_PCL.Models
         public int MjernaJedinicaID { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
-        public Nullable<int> Exponent { get; set; }
+        public int Exponent { get; set; }
     }
 }

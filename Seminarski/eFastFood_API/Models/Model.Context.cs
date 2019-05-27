@@ -28,17 +28,17 @@ namespace eFastFood_API.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<GotoviProizvod> GotoviProizvod { get; set; }
-        public virtual DbSet<Kategorija> Kategorija { get; set; }
-        public virtual DbSet<Uloga> Uloga { get; set; }
-        public virtual DbSet<Uposlenik> Uposlenik { get; set; }
         public virtual DbSet<Dobavljac> Dobavljac { get; set; }
-        public virtual DbSet<MjernaJedinica> MjernaJedinica { get; set; }
-        public virtual DbSet<Proizvod> Proizvod { get; set; }
+        public virtual DbSet<GotoviProizvod> GotoviProizvod { get; set; }
         public virtual DbSet<GPProizvod> GPProizvod { get; set; }
+        public virtual DbSet<Kategorija> Kategorija { get; set; }
         public virtual DbSet<Klijent> Klijent { get; set; }
+        public virtual DbSet<MjernaJedinica> MjernaJedinica { get; set; }
         public virtual DbSet<Narudzba> Narudzba { get; set; }
         public virtual DbSet<NarudzbaStavka> NarudzbaStavka { get; set; }
+        public virtual DbSet<Proizvod> Proizvod { get; set; }
+        public virtual DbSet<Uloga> Uloga { get; set; }
+        public virtual DbSet<Uposlenik> Uposlenik { get; set; }
     
         public virtual int esp_GPPDeleteByGPID(Nullable<int> id)
         {

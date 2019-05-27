@@ -10,7 +10,7 @@ namespace eFastFood_PCL.Models
     {
         public int GotoviProizvodID { get; set; }
         public int ProizvodID { get; set; }
-        public Nullable<decimal> KolicinaUtroska { get; set; }
+        public decimal KolicinaUtroska { get; set; }
         public int MjernaJedinicaID { get; set; }
     }
 }

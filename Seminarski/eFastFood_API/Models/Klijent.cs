@@ -28,8 +28,8 @@ namespace eFastFood_API.Models
         public string LozinkaHash { get; set; }
         public string LozinkaSalt { get; set; }
         public string Adresa { get; set; }
-        public Nullable<bool> Status { get; set; }
-        public Nullable<int> UlogaID { get; set; }
+        public bool Status { get; set; }
+        public int UlogaID { get; set; }
     
         public virtual Uloga Uloga { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

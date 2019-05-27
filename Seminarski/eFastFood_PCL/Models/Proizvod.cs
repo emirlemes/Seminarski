@@ -17,8 +17,8 @@ namespace eFastFood_PCL.Models
         public string Opis { get; set; }
         public decimal Kolicina { get; set; }
         public decimal DonjaGranica { get; set; }
-        public Nullable<int> MjernaJedinicaID { get; set; }
-        public Nullable<int> DobavljacID { get; set; }
+        public int MjernaJedinicaID { get; set; }
+        public int DobavljacID { get; set; }
 
         public virtual Dobavljac Dobavljac { get; set; }
         public virtual MjernaJedinica MjernaJedinica { get; set; }

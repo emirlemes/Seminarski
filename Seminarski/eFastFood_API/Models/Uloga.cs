@@ -17,8 +17,8 @@ namespace eFastFood_API.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Uloga()
         {
-            this.Uposlenik = new HashSet<Uposlenik>();
             this.Klijent = new HashSet<Klijent>();
+            this.Uposlenik = new HashSet<Uposlenik>();
         }
     
         public int UlogaID { get; set; }
@@ -26,8 +26,8 @@ namespace eFastFood_API.Models
         public string Opis { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Uposlenik> Uposlenik { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Klijent> Klijent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Uposlenik> Uposlenik { get; set; }
     }
 }
