@@ -7,9 +7,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eFastFood_UI.Util
+namespace eFastFood_PCL.Util
 {
-    class APIHelper
+    public class APIHelper
     {
         private HttpClient client { get; set; }
         private string route { get; set; }
@@ -26,6 +26,11 @@ namespace eFastFood_UI.Util
         public HttpResponseMessage GetResponse(string parameter = "")
         {
             return client.GetAsync(route + "/" + parameter).Result;
+        }
+
+        public async Task<HttpResponseMessage> GetResponseAsync(string parameter = "")
+        {
+            return await client.GetAsync(route + "/" + parameter);
         }
 
         public HttpResponseMessage GetActionResponse(string action, string parameter = "")

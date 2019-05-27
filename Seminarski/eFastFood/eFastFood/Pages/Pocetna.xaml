@@ -3,16 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:eFastFood.Converters"
              mc:Ignorable="d"
              x:Class="XamarinApp.Pages.Pocetna">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Clicked="Cart_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to POČETNA"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="20,0">
+            <ListView x:Name="gpList" RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,10" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Image 
+                                    x:Name="slika" 
+                                    Grid.Column="0"
+                                    Source="{Binding SlikaUmanjeno , Converter={StaticResource imgConv}}"
+                                    >
+                                </Image>
+                                <StackLayout Grid.Column="1" Padding="10">
+                                    <Label Text="{Binding Naziv}"></Label>
+                                    <Label Text="{Binding Cijena}"></Label>
+                                    <Label Text="{Binding Opis}"></Label>
+                                </StackLayout>
+                                <Image 
+                                    Source="plus.png"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    HeightRequest="32"
+                                    WidthRequest="32"
+                                    Grid.Column="2"
+                                    >
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AddToCart_Tapped"></TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

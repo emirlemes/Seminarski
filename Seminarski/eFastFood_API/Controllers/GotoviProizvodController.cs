@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
@@ -17,9 +18,9 @@ namespace eFastFood_API.Controllers
         private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/GotoviProizvod
-        public IEnumerable<GotoviProizvod> GetGotoviProizvod()
+        public IHttpActionResult GetGotoviProizvod()
         {
-            return _db.GotoviProizvod.ToList();
+            return Ok(_db.GotoviProizvod.ToList());
         }
 
         // GET: api/GotoviProizvod/5

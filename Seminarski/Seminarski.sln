@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFastFood.Android", "eFastF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFastFood.iOS", "eFastFood\eFastFood.iOS\eFastFood.iOS.csproj", "{9458B0EB-24ED-4B39-B145-CD1CA2FDD0DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFastFood", "eFastFood\eFastFood\eFastFood.csproj", "{0601726F-23B9-4491-8B8D-0ACA9A7FF030}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFastFood", "eFastFood\eFastFood\eFastFood.csproj", "{0601726F-23B9-4491-8B8D-0ACA9A7FF030}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,6 @@
 ﻿using eFastFood.Login;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinApp.Navigacija;
@@ -12,7 +13,7 @@ namespace eFastFood
         {
             InitializeComponent();
 
-            MainPage = new MDPage();  //new NavigationPage(new Prijava());
+            MainPage = new MDPage();   //new NavigationPage(new Prijava());
         }
 
         protected override void OnStart()

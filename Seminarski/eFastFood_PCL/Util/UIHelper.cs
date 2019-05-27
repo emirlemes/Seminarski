@@ -6,11 +6,10 @@ using System.IO;
 using PCLCrypto;
 using System.Text;
 
-namespace eFastFood_UI.Util
+namespace eFastFood_PCL.Util
 {
     public static class UIHelper
     {
-
         #region Hashing
 
         public static string GenerateSalt()
