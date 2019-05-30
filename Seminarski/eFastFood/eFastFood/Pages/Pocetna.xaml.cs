@@ -40,7 +40,7 @@ namespace XamarinApp.Pages
 
         private async void LoadProizvode()
         {
-            HttpResponseMessage responseGP = await gotoviProizvidiService.GetResponseAsync();
+            HttpResponseMessage responseGP = await gotoviProizvidiService.GetResponse();
 
             if (responseGP.IsSuccessStatusCode)
             {

@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
-using eFastFood_API.ViewModels;
 using eFastFood_UI.Util;
+using eFastFood_PCL.ViewModels;
 
 namespace eFastFood_API.Controllers
 {

@@ -23,32 +23,27 @@ namespace eFastFood_PCL.Util
             this.route = route;
         }
 
-        public HttpResponseMessage GetResponse(string parameter = "")
-        {
-            return client.GetAsync(route + "/" + parameter).Result;
-        }
-
-        public async Task<HttpResponseMessage> GetResponseAsync(string parameter = "")
+        public async Task<HttpResponseMessage> GetResponse(string parameter = "")
         {
             return await client.GetAsync(route + "/" + parameter);
         }
 
-        public HttpResponseMessage GetActionResponse(string action, string parameter = "")
+        public async Task<HttpResponseMessage> GetActionResponse(string action, string parameter = "")
         {
-            return client.GetAsync(route + "/" + action + "/" + parameter).Result;
+            return await client.GetAsync(route + "/" + action + "/" + parameter);
         }
-        public HttpResponseMessage PostResponse(Object newObject)
+        public async Task<HttpResponseMessage> PostResponse(Object newObject)
         {
             StringContent jsonObject = new StringContent(JsonConvert.SerializeObject(newObject),
                 Encoding.UTF8, "application/json");
-            return client.PostAsync(route, jsonObject).Result;
+            return await client.PostAsync(route, jsonObject);
         }
 
-        public HttpResponseMessage PostActionResponse(string action, Object newObject)
+        public async Task<HttpResponseMessage> PostActionResponse(string action, Object newObject)
         {
             StringContent jsonObject = new StringContent(JsonConvert.SerializeObject(newObject),
                 Encoding.UTF8, "application/json");
-            return client.PostAsync(route + "/" + action, jsonObject).Result;
+            return await client.PostAsync(route + "/" + action, jsonObject);
         }
 
         public HttpResponseMessage PutResponse(int id, Object existingObject)

@@ -1,6 +1,11 @@
-﻿using System;
+﻿using eFastFood_PCL.Models;
+using eFastFood_PCL.Util;
+using eFastFood_PCL.ViewModels;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,19 +17,69 @@ namespace eFastFood.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Prijava : ContentPage
     {
+        APIHelper klijentiService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
+
         public Prijava()
         {
             InitializeComponent();
         }
 
-        private void Prijava_Button_Clicked(object sender, EventArgs e)
+        private async void Prijava_Button_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Prijava", "Prijava kliknuta", "Zatvori");
+            if (Validate())
+            {
+                try
+                {
+                    PrijavaVM klijent = new PrijavaVM() { korisnickoIme = email.Text, lozinka = lozinka.Text };
+
+                    HttpResponseMessage responseK = await klijentiService.PostActionResponse("Prijava", klijent);
+                    if (responseK.IsSuccessStatusCode)
+                    {
+                        Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await responseK.Content.ReadAsStringAsync());
+                        await Navigation.PushModalAsync(new XamarinApp.Navigacija.MDPage());
+                        await Application.Current.SavePropertiesAsync();
+                    }
+                    else
+                        await DisplayAlert(Messages.error, Messages.wrong_user_or_pass, Messages.ok);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert(Messages.error, ex.Message, Messages.ok);
+                }
+            }
         }
 
-        private void Registracija_Button_Clicked(object sender, EventArgs e)
+        private async void Registracija_Button_Clicked(object sender, EventArgs e)
         {
-            this.Navigation.PushAsync(new Registracija());
+            await Navigation.PushAsync(new Registracija());
+        }
+
+        private bool Validate()
+        {
+            if (emailValid() && lozinkaValid())
+                return true;
+            return false;
+        }
+
+        private bool lozinkaValid()
+        {
+            if (string.IsNullOrEmpty(lozinka.Text))
+            {
+                DisplayAlert(Messages.error, Messages.empty_string + " lozinka.", Messages.ok);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool emailValid()
+        {
+            if (string.IsNullOrEmpty(email.Text))
+            {
+                DisplayAlert(Messages.error, Messages.empty_string + " email.", Messages.ok);
+                return false;
+            }
+            return true;
         }
     }
 }

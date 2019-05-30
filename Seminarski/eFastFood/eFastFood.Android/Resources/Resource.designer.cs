@@ -26,6 +26,8 @@ namespace eFastFood.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLCrypto.Resource.String.ApplicationName = global::eFastFood.Droid.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::eFastFood.Droid.Resource.String.Hello;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::eFastFood.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::eFastFood.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::eFastFood.Droid.Resource.Attribute.font;
@@ -7667,6 +7669,12 @@ namespace eFastFood.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f0b004f
+			public const int ApplicationName = 2131427407;
+			
+			// aapt resource value: 0x7f0b004e
+			public const int Hello = 2131427406;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int abc_action_bar_home_description = 2131427352;

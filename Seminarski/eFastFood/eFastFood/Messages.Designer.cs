@@ -70,6 +70,15 @@ namespace eFastFood {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email već registrovan..
+        /// </summary>
+        internal static string email_exist {
+            get {
+                return ResourceManager.GetString("email_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email adresa u neispravnom formatu..
         /// </summary>
         internal static string email_format {
@@ -115,6 +124,15 @@ namespace eFastFood {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broj telefona već registrovan..
+        /// </summary>
+        internal static string phone_exist {
+            get {
+                return ResourceManager.GetString("phone_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste registrovani..
         /// </summary>
         internal static string registration_success {
@@ -138,6 +156,15 @@ namespace eFastFood {
         internal static string success {
             get {
                 return ResourceManager.GetString("success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pogrešno korisničko ime ili lozinka..
+        /// </summary>
+        internal static string wrong_user_or_pass {
+            get {
+                return ResourceManager.GetString("wrong_user_or_pass", resourceCulture);
             }
         }
     }

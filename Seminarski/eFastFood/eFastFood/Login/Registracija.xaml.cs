@@ -1,6 +1,10 @@
-﻿using System;
+﻿using eFastFood_PCL.Models;
+using eFastFood_PCL.Util;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -11,26 +15,49 @@ namespace eFastFood.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Registracija : ContentPage
     {
+        APIHelper klijentService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
         public Registracija()
         {
             InitializeComponent();
         }
 
-        private void Registruj_Clicked(object sender, EventArgs e)
+        private async void Registruj_Clicked(object sender, EventArgs e)
         {
-            if (Validacija())
+            if (await Validacija())
             {
-                //Poslat podatke na api 
-                DisplayAlert(Messages.success, Messages.registration_success, Messages.ok);
-                this.Navigation.PopAsync();
+                Klijent klijentRegstracija = new Klijent()
+                {
+                    Adresa = AdresaInput.Text,
+                    BrojTelefona = BrojTelefonaInput.Text,
+                    Email = EmailInput.Text,
+                    Ime = ImeInput.Text,
+                    Prezime = PrezimeInput.Text,
+                    Status = true,
+                    LozinkaSalt = UIHelper.GenerateSalt(),
+                };
+
+                klijentRegstracija.LozinkaHash = UIHelper.GenerateHash(klijentRegstracija.LozinkaSalt, LozinkaInput.Text);
+
+                HttpResponseMessage responseK = await klijentService.PostResponse(klijentRegstracija);
+                if (responseK.IsSuccessStatusCode)
+                {
+                    await DisplayAlert(Messages.success, Messages.registration_success, Messages.ok);
+                    Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await responseK.Content.ReadAsStringAsync());
+                    await Navigation.PushModalAsync(new XamarinApp.Navigacija.MDPage());
+                    // load Prijava
+                    //await Navigation.PopAsync();
+                }
+                else
+                    await DisplayAlert(Messages.error, responseK.ReasonPhrase, Messages.ok);
+
             }
         }
 
         #region Validacija
 
-        private bool Validacija()
+        private async Task<bool> Validacija()
         {
-            bool validacija = (ImeValidation() && PrezimeValidation() && BrojTelefonaValidation() && EmailValidation() && AdresaValidation() && LozinkaValidation());
+            bool validacija = (ImeValidation() && PrezimeValidation() && await BrojTelefonaValidation() && await EmailValidation() && AdresaValidation() && LozinkaValidation());
             if (validacija)
                 return true;
             else
@@ -67,42 +94,62 @@ namespace eFastFood.Login
             return true;
         }
 
-        private bool EmailValidation()
+        private async Task<bool> EmailValidation()
         {
-            // provjeriti dali email vec postoji
+            HttpResponseMessage responseK = await klijentService.GetActionResponse("CheckEmail", EmailInput.Text);
+
+            if (responseK.IsSuccessStatusCode)
+            {
+                if (JsonConvert.DeserializeObject<bool>(await responseK.Content.ReadAsStringAsync()))
+                {
+                    await DisplayAlert(Messages.error, Messages.email_exist, Messages.ok);
+                    return false;
+                }
+            }
+
             try
             {
                 System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(EmailInput.Text);
             }
             catch (FormatException)
             {
-                DisplayAlert(Messages.error, Messages.email_format, Messages.ok);
+                await DisplayAlert(Messages.error, Messages.email_format, Messages.ok);
                 return false;
             }
             if (string.IsNullOrEmpty(EmailInput.Text))
             {
-                DisplayAlert(Messages.error, Messages.empty_string + " Email.", Messages.ok);
+                await DisplayAlert(Messages.error, Messages.empty_string + " Email.", Messages.ok);
                 return false;
             }
             else if (EmailInput.Text.Length > 50)
             {
-                DisplayAlert(Messages.error, Messages.string_length50, Messages.ok);
+                await DisplayAlert(Messages.error, Messages.string_length50, Messages.ok);
                 return false;
             }
             return true;
         }
 
-        private bool BrojTelefonaValidation()
+        private async Task<bool> BrojTelefonaValidation()
         {
-            // provjeriti dali broj vec postoji
+            HttpResponseMessage responseK = await klijentService.GetActionResponse("CheckBrojTelefona", BrojTelefonaInput.Text);
+
+            if (responseK.IsSuccessStatusCode)
+            {
+                if (JsonConvert.DeserializeObject<bool>(await responseK.Content.ReadAsStringAsync()))
+                {
+                    await DisplayAlert(Messages.error, Messages.phone_exist, Messages.ok);
+                    return false;
+                }
+            }
+
             if (string.IsNullOrEmpty(BrojTelefonaInput.Text))
             {
-                DisplayAlert(Messages.error, Messages.empty_string + " Broj telefona.", Messages.ok);
+                await DisplayAlert(Messages.error, Messages.empty_string + " Broj telefona.", Messages.ok);
                 return false;
             }
             else if (BrojTelefonaInput.Text.Length > 20)
             {
-                DisplayAlert(Messages.error, Messages.string_length50, Messages.ok);
+                await DisplayAlert(Messages.error, Messages.string_length50, Messages.ok);
                 return false;
             }
             return true;

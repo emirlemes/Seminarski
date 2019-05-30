@@ -14,7 +14,7 @@
                        Margin="0,0,0,40" HorizontalOptions="Center"></Label>
 
                 <Label Text="" TextColor="Black" HorizontalOptions="Center" ></Label>
-                <Entry x:Name="korisnickoIme" Placeholder="Korisničko ime" HorizontalTextAlignment="Center"></Entry>
+                <Entry x:Name="email" Placeholder="Email" HorizontalTextAlignment="Center"></Entry>
 
                 <Label Text="" TextColor="Black" HorizontalOptions="Center"></Label>
                 <Entry x:Name="lozinka" IsPassword="True" Placeholder="Lozinka" HorizontalTextAlignment="Center"></Entry>

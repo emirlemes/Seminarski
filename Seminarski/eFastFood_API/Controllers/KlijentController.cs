@@ -9,6 +9,9 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
+using eFastFood_PCL.ViewModels;
+using eFastFood_PCL.Util;
+using System.Threading.Tasks;
 
 namespace eFastFood_API.Controllers
 {
@@ -38,6 +41,25 @@ namespace eFastFood_API.Controllers
 
             return Ok(klijent);
         }
+
+        // GET: api/Klijent/CheckBrojTelefona/{telefon}
+        [HttpGet]
+        [Route("api/Klijent/CheckBrojTelefona/{telefon}")]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult CheckBrojTelefona(string telefon)
+        {
+            return Ok(_db.Klijent.Where(x => x.BrojTelefona == telefon).Count() > 0);
+        }
+
+        // GET: api/Klijent/CheckEmail/{email}
+        [HttpGet]
+        [Route("api/Klijent/CheckEmail/{email}")]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult CheckEmail(string email)
+        {
+            return Ok(_db.Klijent.Where(x => x.Email == email).Count() > 0);
+        }
+
 
         // PUT: api/Klijent/5
         [ResponseType(typeof(void))]
@@ -73,16 +95,45 @@ namespace eFastFood_API.Controllers
         }
 
         // POST: api/Klijent
+        [HttpPost]
+        [Route("api/Klijent")]
         [ResponseType(typeof(Klijent))]
         public IHttpActionResult PostKlijent(Klijent klijent)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            klijent.UlogaID = _db.Uloga.Where(x => x.Naziv == "Klijent").FirstOrDefault().UlogaID;
+            klijent.Status = true;
 
-            _db.Klijent.Add(klijent);
-            _db.SaveChanges();
+            try
+            {
+                _db.Klijent.Add(klijent);
+                _db.SaveChanges();
+                return Ok(klijent);
+                return Created("DefaultApi", klijent);
+                return CreatedAtRoute("DefaultApi", new { id = klijent.KlijentID }, klijent);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
-            return CreatedAtRoute("DefaultApi", new { id = klijent.KlijentID }, klijent);
+        //POST: api/Klijent/{korisnickoIme}/{lozinka}
+        [HttpPost]
+        [Route("api/Klijent/Prijava")]
+        [ResponseType(typeof(Uposlenik))]
+        public IHttpActionResult Prijava([FromBody]PrijavaVM k)
+        {
+            //var token = Guid.NewGuid();
+
+            //tokeni.Add(token);
+
+            Klijent klijent = _db.Klijent.Where(x => x.Email == k.korisnickoIme).FirstOrDefault();
+            if (klijent == null)
+                return NotFound();
+            else if (UIHelper.GenerateHash(klijent.LozinkaSalt, k.lozinka) == klijent.LozinkaHash)
+                return Ok(klijent);
+
+            return Unauthorized();
         }
 
         // DELETE: api/Klijent/5

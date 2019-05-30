@@ -55,7 +55,7 @@ namespace eFastFood_UI.NarudzbeUI
                 noveDataGridView.DataSource = narudzbeNove.Select(x => new NarudzbaDataView()
                 {
                     NarudzbaID = x.NarudzbaID,
-                    Cijena = x.UkupnaCijena ?? 0,
+                    Cijena = x.UkupnaCijena,
                     Datum = x.Datum.ToString("dd/MM/yyyy HH:mm"),
                     Narucilac = x.Klijent.Ime + " " + x.Klijent.Prezime,
                     VrstaNarudzbe = x.VrstaNarudzbe,
@@ -74,7 +74,7 @@ namespace eFastFood_UI.NarudzbeUI
                 pripremaDataGridView.DataSource = narudzbeUPripremi.Select(x => new NarudzbaDataView()
                 {
                     NarudzbaID = x.NarudzbaID,
-                    Cijena = x.UkupnaCijena ?? 0,
+                    Cijena = x.UkupnaCijena,
                     Datum = x.Datum.ToString("dd/MM/yyyy HH:mm"),
                     Narucilac = x.Klijent.Ime + " " + x.Klijent.Prezime,
                     VrstaNarudzbe = x.VrstaNarudzbe,
@@ -93,7 +93,7 @@ namespace eFastFood_UI.NarudzbeUI
                 zavrseneDataGridView.DataSource = narudzbeZavrsene.Select(x => new NarudzbaDataView()
                 {
                     NarudzbaID = x.NarudzbaID,
-                    Cijena = x.UkupnaCijena ?? 0,
+                    Cijena = x.UkupnaCijena,
                     Datum = x.Datum.ToString("dd/MM/yyyy HH:mm"),
                     Narucilac = x.Klijent.Ime + " " + x.Klijent.Prezime,
                     VrstaNarudzbe = x.VrstaNarudzbe,

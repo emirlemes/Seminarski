@@ -1,4 +1,4 @@
-﻿namespace eFastFood_API.ViewModels
+﻿namespace eFastFood_PCL.ViewModels
 {
     public class PrijavaVM
     {
