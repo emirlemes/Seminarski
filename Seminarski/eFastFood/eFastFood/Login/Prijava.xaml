@@ -23,7 +23,11 @@
                     <Button Text="Prijava" Clicked="Prijava_Button_Clicked"></Button>
                     <Button Text="Registracija" WidthRequest="150" Clicked="Registracija_Button_Clicked"></Button>
                 </StackLayout>
+
+                <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="Blue" IsRunning="{Binding IsBusy}" />
+
             </StackLayout>
         </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

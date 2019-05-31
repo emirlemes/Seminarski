@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eFastFood;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,15 @@ namespace XamarinApp.Pages
         public Korpa()
         {
             InitializeComponent();
+            if (Global.trenutnaNarudzba==null && Global.trenutnaNarudzba?.NarudzbaStavka?.Count  == 0)
+                textCentar.Text = "Korpa je prazna.";
+            else
+                LoadKorpa();
+        }
+
+        private void LoadKorpa()
+        {
+            
         }
     }
 }

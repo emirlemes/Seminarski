@@ -1,6 +1,13 @@
-﻿using System;
+﻿using eFastFood;
+using eFastFood.Pages;
+using eFastFood.ViewModels;
+using eFastFood_PCL.Models;
+using eFastFood_PCL.Util;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,12 +19,49 @@ namespace XamarinApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Meni : TabbedPage
     {
+        APIHelper kategorijeService = new APIHelper(Global.ApiUrl, Global.KategorijaRoute);
+        APIHelper gotoviproizvodService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
+
         public Meni()
         {
             InitializeComponent();
-            //KategorijaPage
-            this.Children.Add(new Pocetna() { Title = "Kategorija 1" });
-            this.Children.Add(new Pocetna() { Title = "Kategorija 2" });
+        }
+        protected async override void OnAppearing()
+        {
+            try
+            {
+
+
+                HttpResponseMessage responseK = await kategorijeService.GetResponse();
+                HttpResponseMessage responseGP = await gotoviproizvodService.GetResponse();
+
+                if (responseK.IsSuccessStatusCode)
+                {
+                    if (responseGP.IsSuccessStatusCode)
+                    {
+                        var gproizvodi = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
+                        var kategorije = JsonConvert.DeserializeObject<List<Kategorija>>(await responseK.Content.ReadAsStringAsync());
+                        foreach (var item in kategorije)
+                        {
+                            PocetnaVM vm = new PocetnaVM();
+                            vm.Title = item.Naziv;
+                            vm.gpList = gproizvodi.Where(x => x.KategorijaID == item.KategorijaID).ToList();
+                            Children.Add(new MeniItem() { BindingContext = vm });
+                        }
+                    }
+                    else
+                        await DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
+                }
+                else
+                    await DisplayAlert(Messages.error, responseK.ReasonPhrase, Messages.ok);
+
+                base.OnAppearing();
+
+            }
+            catch (Exception k)
+            {
+                await DisplayAlert(Messages.error, k.Message, Messages.ok);
+            }
         }
     }
 }

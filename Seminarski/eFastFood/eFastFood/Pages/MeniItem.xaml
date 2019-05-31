@@ -4,26 +4,23 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:eFastFood.Converters"
-             xmlns:VM="clr-namespace:eFastFood.ViewModels"
+             xmlns:vm="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
              Title="{Binding Title}"
-             x:Class="XamarinApp.Pages.Pocetna">
-    <ContentPage.BindingContext>
-        <VM:PocetnaVM/>
-    </ContentPage.BindingContext>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Clicked="Cart_Clicked"></ToolbarItem>
-    </ContentPage.ToolbarItems>
+             x:Class="eFastFood.Pages.MeniItem">
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:PocetnaVM></vm:PocetnaVM>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="5,5,0,5">
+        <StackLayout Padding="20,0">
             <ListView RowHeight="100" ItemsSource="{Binding gpList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="5,5" >
+                            <Grid Margin="0,10" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -40,9 +37,6 @@
                                     <Label Text="{Binding Naziv}"></Label>
                                     <Label Text="{Binding Cijena}"></Label>
                                     <Label Text="{Binding Opis}"></Label>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="OpisModal_Tapped"></TapGestureRecognizer>
-                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                                 <Image 
                                     Source="plus.png"
@@ -61,7 +55,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="#aaccff" IsRunning="{Binding IsBusy}"></ActivityIndicator>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using eFastFood;
+using eFastFood.ViewModels;
 using eFastFood_PCL.Models;
 using eFastFood_PCL.Util;
 using Newtonsoft.Json;
@@ -23,11 +24,11 @@ namespace XamarinApp.Pages
         public Pocetna()
         {
             InitializeComponent();
+            LoadProizvode();
         }
 
-        protected override void OnAppearing()
+        protected  override void  OnAppearing()
         {
-            LoadProizvode();
             base.OnAppearing();
         }
 
@@ -35,25 +36,38 @@ namespace XamarinApp.Pages
         {
             var page = (Page)Activator.CreateInstance(typeof(Korpa));
             page.Title = "Korpa";
-            await this.Navigation.PushAsync(page);
+            await Navigation.PushAsync(page);
         }
 
         private async void LoadProizvode()
         {
+            IsBusy = true;
             HttpResponseMessage responseGP = await gotoviProizvidiService.GetResponse();
 
             if (responseGP.IsSuccessStatusCode)
             {
-                var jsnoObject = await responseGP.Content.ReadAsStringAsync();
-                List<GotoviProizvod> listaProizvoda = JsonConvert.DeserializeObject<List<GotoviProizvod>>(jsnoObject);
-
-                gpList.ItemsSource = listaProizvoda;
+                var gplista = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
+                PocetnaVM context = new PocetnaVM();
+                context.gpList = gplista;
+                context.Title = "Početna";
+                BindingContext = context;
+                IsBusy = false;
+            }
+            else
+            {
+                IsBusy = false;
+                await DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
             }
         }
 
         private void AddToCart_Tapped(object sender, EventArgs e)
         {
             DisplayAlert("Radi", "Radi", "OK");
+        }
+
+        private void OpisModal_Tapped(object sender, EventArgs e)
+        {
+            DisplayAlert
         }
     }
 }

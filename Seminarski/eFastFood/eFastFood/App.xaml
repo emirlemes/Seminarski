@@ -10,8 +10,9 @@
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Black" />
             </Style>
-            <x:String x:Key="APIAddress">http://localhost:54321/api/</x:String>
+            <x:String x:Key="APIAddress">https://seminaskiapi.azurewebsites.net/api/</x:String>
             <!--https://seminaskiapi.azurewebsites.net-->
+            <!--http://localhost:54321-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>
