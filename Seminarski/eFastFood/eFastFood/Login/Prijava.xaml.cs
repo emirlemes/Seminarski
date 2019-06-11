@@ -18,6 +18,7 @@ namespace eFastFood.Login
     public partial class Prijava : ContentPage
     {
         APIHelper klijentiService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
+        APIHelper gotoviProizvodiService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
 
         public Prijava()
         {
@@ -37,6 +38,17 @@ namespace eFastFood.Login
                     if (responseK.IsSuccessStatusCode)
                     {
                         Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await responseK.Content.ReadAsStringAsync());
+                        HttpResponseMessage responseGP = await gotoviProizvodiService.GetResponse();
+                        if (responseGP.IsSuccessStatusCode)
+                        {
+                            Global.proizvodi = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
+                        }
+                        else
+                        {
+                            IsBusy = false;
+                            await DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
+                        }
+
                         IsBusy = false;
                         await Navigation.PushModalAsync(new XamarinApp.Navigacija.MDPage());
                         await Application.Current.SavePropertiesAsync();

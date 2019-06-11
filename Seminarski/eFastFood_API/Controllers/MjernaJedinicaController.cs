@@ -17,9 +17,10 @@ namespace eFastFood_API.Controllers
         private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/MjernaJedinica
-        public IQueryable<MjernaJedinica> GetMjernaJedinicas()
+        [ResponseType(typeof(List<MjernaJedinica>))]
+        public IHttpActionResult GetMjernaJedinicas()
         {
-            return _db.MjernaJedinica;
+            return Ok(_db.MjernaJedinica.ToList());
         }
 
         // GET: api/MjernaJedinica/5
@@ -28,9 +29,7 @@ namespace eFastFood_API.Controllers
         {
             MjernaJedinica mjernaJedinica = _db.MjernaJedinica.Find(id);
             if (mjernaJedinica == null)
-            {
                 return NotFound();
-            }
 
             return Ok(mjernaJedinica);
         }
@@ -39,32 +38,22 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMjernaJedinica(int id, MjernaJedinica mjernaJedinica)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             if (id != mjernaJedinica.MjernaJedinicaID)
-            {
                 return BadRequest();
-            }
+            MjernaJedinica mj = _db.MjernaJedinica.Find(id);
 
-            _db.Entry(mjernaJedinica).State = EntityState.Modified;
+            mj.Naziv = mjernaJedinica.Naziv;
+            mj.Opis = mjernaJedinica.Opis;
+            mj.Exponent = mjernaJedinica.Exponent;
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!MjernaJedinicaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -74,13 +63,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(MjernaJedinica))]
         public IHttpActionResult PostMjernaJedinica(MjernaJedinica mjernaJedinica)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _db.MjernaJedinica.Add(mjernaJedinica);
+                _db.SaveChanges();
             }
-
-            _db.MjernaJedinica.Add(mjernaJedinica);
-            _db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = mjernaJedinica.MjernaJedinicaID }, mjernaJedinica);
         }
@@ -91,9 +82,7 @@ namespace eFastFood_API.Controllers
         {
             MjernaJedinica mjernaJedinica = _db.MjernaJedinica.Find(id);
             if (mjernaJedinica == null)
-            {
                 return NotFound();
-            }
 
             _db.MjernaJedinica.Remove(mjernaJedinica);
             _db.SaveChanges();
@@ -108,11 +97,6 @@ namespace eFastFood_API.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool MjernaJedinicaExists(int id)
-        {
-            return _db.MjernaJedinica.Count(e => e.MjernaJedinicaID == id) > 0;
         }
     }
 }

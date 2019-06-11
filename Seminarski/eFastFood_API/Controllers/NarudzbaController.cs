@@ -28,12 +28,11 @@ namespace eFastFood_API.Controllers
         {
             Narudzba narudzba = _db.Narudzba.Find(id);
             if (narudzba == null)
-            {
                 return NotFound();
-            }
 
             return Ok(narudzba);
         }
+
         // GET: api/Narudzba/BrojNarudzbiAll
         [HttpGet]
         [ResponseType(typeof(Dictionary<int, int>))]
@@ -41,7 +40,7 @@ namespace eFastFood_API.Controllers
         public IHttpActionResult BrojNarudzbiAll()
         {
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
-            _db.esp_BrojNarudzbiAll().ToList().ForEach(x => keyValuePairs.Add(x.KlijentID ?? 0, x.BrojNarudzbi ?? 0));
+            _db.esp_BrojNarudzbiAll().ToList().ForEach(x => keyValuePairs.Add(x.KlijentID, x.BrojNarudzbi ?? 0));
             return Ok(keyValuePairs);
         }
 
@@ -80,6 +79,7 @@ namespace eFastFood_API.Controllers
 
             return Ok(list);
         }
+
         // GET: api/Narudzba/GetStavkeNarudzbe/{id}
         [HttpGet]
         [ResponseType(typeof(List<NarudzbaStavka>))]
@@ -129,32 +129,27 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutNarudzba(int id, Narudzba narudzba)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (id != narudzba.NarudzbaID)
-            {
                 return BadRequest();
-            }
 
-            _db.Entry(narudzba).State = EntityState.Modified;
+            Narudzba n = _db.Narudzba.Find(id);
+
+            if (n == null)
+                return BadRequest();
+
+            n.Datum = narudzba.Datum;
+            n.KlijentID = narudzba.KlijentID;
+            n.Status = narudzba.Status;
+            n.UkupnaCijena = narudzba.UkupnaCijena;
+            n.VrstaNarudzbe = narudzba.VrstaNarudzbe;
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!NarudzbaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -164,13 +159,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Narudzba))]
         public IHttpActionResult PostNarudzba(Narudzba narudzba)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _db.Narudzba.Add(narudzba);
+                _db.SaveChanges();
             }
-
-            _db.Narudzba.Add(narudzba);
-            _db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = narudzba.NarudzbaID }, narudzba);
         }
@@ -181,12 +178,16 @@ namespace eFastFood_API.Controllers
         {
             Narudzba narudzba = _db.Narudzba.Find(id);
             if (narudzba == null)
-            {
                 return NotFound();
+            try
+            {
+                _db.Narudzba.Remove(narudzba);
+                _db.SaveChanges();
             }
-
-            _db.Narudzba.Remove(narudzba);
-            _db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return Ok(narudzba);
         }
@@ -198,11 +199,6 @@ namespace eFastFood_API.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool NarudzbaExists(int id)
-        {
-            return _db.Narudzba.Count(e => e.NarudzbaID == id) > 0;
         }
     }
 }

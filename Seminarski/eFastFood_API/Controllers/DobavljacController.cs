@@ -17,9 +17,10 @@ namespace eFastFood_API.Controllers
         private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Dobavljac
-        public IQueryable<Dobavljac> GetDobavljac()
+        [ResponseType(typeof(List<Dobavljac>))]
+        public IHttpActionResult GetDobavljac()
         {
-            return _db.Dobavljac;
+            return Ok(_db.Dobavljac.ToList());
         }
 
         // GET: api/Dobavljac/5
@@ -27,10 +28,9 @@ namespace eFastFood_API.Controllers
         public IHttpActionResult GetDobavljac(int id)
         {
             Dobavljac dobavljac = _db.Dobavljac.Find(id);
+
             if (dobavljac == null)
-            {
                 return NotFound();
-            }
 
             return Ok(dobavljac);
         }
@@ -39,32 +39,26 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDobavljac(int id, Dobavljac dobavljac)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (id != dobavljac.DobavljacID)
-            {
                 return BadRequest();
-            }
 
-            _db.Entry(dobavljac).State = EntityState.Modified;
+            Dobavljac d = _db.Dobavljac.Find(id);
+
+            if (d == null)
+                NotFound();
+
+            d.Adresa = dobavljac.Adresa;
+            d.BrojTelefona = dobavljac.BrojTelefona;
+            d.Email = dobavljac.Email;
+            d.Naziv = dobavljac.Naziv;
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!DobavljacExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -74,11 +68,6 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Dobavljac))]
         public IHttpActionResult PostDobavljac(Dobavljac dobavljac)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             _db.Dobavljac.Add(dobavljac);
             _db.SaveChanges();
 
@@ -91,9 +80,7 @@ namespace eFastFood_API.Controllers
         {
             Dobavljac dobavljac = _db.Dobavljac.Find(id);
             if (dobavljac == null)
-            {
                 return NotFound();
-            }
 
             _db.Dobavljac.Remove(dobavljac);
             _db.SaveChanges();
@@ -104,15 +91,9 @@ namespace eFastFood_API.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
 
-        private bool DobavljacExists(int id)
-        {
-            return _db.Dobavljac.Count(e => e.DobavljacID == id) > 0;
+            base.Dispose(disposing);
         }
     }
 }

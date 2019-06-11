@@ -41,9 +41,7 @@ namespace eFastFood_API.Controllers
         {
             Uposlenik uposlenik = _db.Uposlenik.Find(id);
             if (uposlenik == null)
-            {
                 return NotFound();
-            }
 
             return Ok(uposlenik);
         }
@@ -90,32 +88,28 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUposlenik(int id, Uposlenik uposlenik)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (id != uposlenik.UposlenikID)
-            {
                 return BadRequest();
-            }
 
-            _db.Entry(uposlenik).State = EntityState.Modified;
+            Uposlenik u = _db.Uposlenik.Find(id);
+
+            u.Ime = uposlenik.Ime;
+            u.Prezime = uposlenik.Prezime;
+            u.BrojTelefona = uposlenik.BrojTelefona;
+            u.UserName = uposlenik.UserName;
+            u.UlogaID = uposlenik.UlogaID;
+            u.Email = uposlenik.Email;
+            u.Status = uposlenik.Status;
+            u.LozinkaHash = uposlenik.LozinkaHash;
+            u.LozinkaSalt = uposlenik.LozinkaSalt;
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!UposlenikExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -127,13 +121,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Uposlenik))]
         public IHttpActionResult PostUposlenik(Uposlenik uposlenik)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _db.Uposlenik.Add(uposlenik);
+                _db.SaveChanges();
             }
-
-            _db.Uposlenik.Add(uposlenik);
-            _db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = uposlenik.UposlenikID }, uposlenik);
         }
@@ -146,9 +142,7 @@ namespace eFastFood_API.Controllers
         {
             Uposlenik uposlenik = _db.Uposlenik.Find(id);
             if (uposlenik == null)
-            {
                 return NotFound();
-            }
 
             _db.Uposlenik.Remove(uposlenik);
             _db.SaveChanges();
@@ -169,8 +163,7 @@ namespace eFastFood_API.Controllers
             Uposlenik uposlenik = _db.Uposlenik.Where(x => x.UserName == k.korisnickoIme).FirstOrDefault();
             if (uposlenik == null)
                 return NotFound();
-            else
-                if (Hashing.GenerateHash(uposlenik.LozinkaSalt, k.lozinka) == uposlenik.LozinkaHash)
+            else if (Hashing.GenerateHash(uposlenik.LozinkaSalt, k.lozinka) == uposlenik.LozinkaHash)
                 return Ok(uposlenik);
 
             return Unauthorized();

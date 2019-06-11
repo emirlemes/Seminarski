@@ -13,7 +13,7 @@ namespace eFastFood_API.Models
     
     public partial class esp_BrojNarudzbiAll_Result
     {
-        public Nullable<int> KlijentID { get; set; }
+        public int KlijentID { get; set; }
         public Nullable<int> BrojNarudzbi { get; set; }
     }
 }

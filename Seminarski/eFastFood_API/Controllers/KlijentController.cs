@@ -46,19 +46,15 @@ namespace eFastFood_API.Controllers
         [HttpGet]
         [Route("api/Klijent/CheckBrojTelefona/{telefon}")]
         [ResponseType(typeof(bool))]
-        public IHttpActionResult CheckBrojTelefona(string telefon)
-        {
-            return Ok(_db.Klijent.Where(x => x.BrojTelefona == telefon).Count() > 0);
-        }
+        public IHttpActionResult CheckBrojTelefona(string telefon) =>
+             Ok(_db.Klijent.Where(x => x.BrojTelefona == telefon).Count() > 0);
 
         // GET: api/Klijent/CheckEmail/{email}
         [HttpGet]
         [Route("api/Klijent/CheckEmail/{email}")]
         [ResponseType(typeof(bool))]
-        public IHttpActionResult CheckEmail(string email)
-        {
-            return Ok(_db.Klijent.Where(x => x.Email == email).Count() > 0);
-        }
+        public IHttpActionResult CheckEmail(string email) =>
+             Ok(_db.Klijent.Where(x => x.Email == email).Count() > 0);
 
 
         // PUT: api/Klijent/5
@@ -68,27 +64,28 @@ namespace eFastFood_API.Controllers
             if (id != klijent.KlijentID)
                 return BadRequest();
 
-            Klijent edit = _db.Klijent.Find(klijent.KlijentID);
+            Klijent k = _db.Klijent.Find(klijent.KlijentID);
 
-            if (edit == null)
+            if (k == null)
                 return BadRequest();
 
-            edit = klijent;
+            k.Adresa = klijent.Adresa;
+            k.BrojTelefona = klijent.BrojTelefona;
+            k.Email = klijent.Email;
+            k.Ime = klijent.Ime;
+            k.UlogaID = klijent.UlogaID;
+            k.Prezime = klijent.Prezime;
+            k.Status = klijent.Status;
+            k.LozinkaHash = klijent.LozinkaHash;
+            k.LozinkaSalt = klijent.LozinkaSalt;
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!KlijentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -108,8 +105,6 @@ namespace eFastFood_API.Controllers
                 _db.Klijent.Add(klijent);
                 _db.SaveChanges();
                 return Ok(klijent);
-                return Created("DefaultApi", klijent);
-                return CreatedAtRoute("DefaultApi", new { id = klijent.KlijentID }, klijent);
             }
             catch (Exception e)
             {
@@ -142,9 +137,7 @@ namespace eFastFood_API.Controllers
         {
             Klijent klijent = _db.Klijent.Find(id);
             if (klijent == null)
-            {
                 return NotFound();
-            }
 
             _db.Klijent.Remove(klijent);
             _db.SaveChanges();
@@ -159,11 +152,6 @@ namespace eFastFood_API.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool KlijentExists(int id)
-        {
-            return _db.Klijent.Count(e => e.KlijentID == id) > 0;
         }
     }
 }

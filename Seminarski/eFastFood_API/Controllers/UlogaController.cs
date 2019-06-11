@@ -14,23 +14,21 @@ namespace eFastFood_API.Controllers
 {
     public class UlogaController : ApiController
     {
-        private eFastFoodEntitie db = new eFastFoodEntitie();
+        private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Uloga
-        public IQueryable<Uloga> GetUloga()
+        public IHttpActionResult GetUloga()
         {
-            return db.Uloga;
+            return Ok(_db.Uloga.ToList());
         }
 
         // GET: api/Uloga/5
         [ResponseType(typeof(Uloga))]
         public IHttpActionResult GetUloga(int id)
         {
-            Uloga uloga = db.Uloga.Find(id);
+            Uloga uloga = _db.Uloga.Find(id);
             if (uloga == null)
-            {
                 return NotFound();
-            }
 
             return Ok(uloga);
         }
@@ -39,32 +37,22 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUloga(int id, Uloga uloga)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             if (id != uloga.UlogaID)
-            {
                 return BadRequest();
-            }
 
-            db.Entry(uloga).State = EntityState.Modified;
+            Uloga u = _db.Uloga.Find(id);
+
+            u.Naziv = uloga.Naziv;
+            u.Opis = uloga.Opis;
 
             try
             {
-                db.SaveChanges();
+                _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!UlogaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -74,13 +62,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Uloga))]
         public IHttpActionResult PostUloga(Uloga uloga)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _db.Uloga.Add(uloga);
+                _db.SaveChanges();
             }
-
-            db.Uloga.Add(uloga);
-            db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = uloga.UlogaID }, uloga);
         }
@@ -89,14 +79,19 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Uloga))]
         public IHttpActionResult DeleteUloga(int id)
         {
-            Uloga uloga = db.Uloga.Find(id);
+            Uloga uloga = _db.Uloga.Find(id);
             if (uloga == null)
-            {
                 return NotFound();
-            }
 
-            db.Uloga.Remove(uloga);
-            db.SaveChanges();
+            try
+            {
+                _db.Uloga.Remove(uloga);
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return Ok(uloga);
         }
@@ -105,14 +100,9 @@ namespace eFastFood_API.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool UlogaExists(int id)
-        {
-            return db.Uloga.Count(e => e.UlogaID == id) > 0;
         }
     }
 }

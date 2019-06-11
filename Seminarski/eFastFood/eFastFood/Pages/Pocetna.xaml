@@ -19,6 +19,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="5,5,0,5">
+            <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#aaccff" IsRunning="{Binding this.IsBusy}" IsVisible="{Binding this.IsBusy}"></ActivityIndicator>
             <ListView RowHeight="100" ItemsSource="{Binding gpList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -61,7 +62,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="#aaccff" IsRunning="{Binding IsBusy}"></ActivityIndicator>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

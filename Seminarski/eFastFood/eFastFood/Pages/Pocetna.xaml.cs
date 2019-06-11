@@ -24,10 +24,11 @@ namespace XamarinApp.Pages
         public Pocetna()
         {
             InitializeComponent();
+            BindingContext = new PocetnaVM();
             LoadProizvode();
         }
 
-        protected  override void  OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
         }
@@ -42,32 +43,46 @@ namespace XamarinApp.Pages
         private async void LoadProizvode()
         {
             IsBusy = true;
-            HttpResponseMessage responseGP = await gotoviProizvidiService.GetResponse();
 
-            if (responseGP.IsSuccessStatusCode)
+            if (Global.proizvodi == null)
             {
-                var gplista = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
-                PocetnaVM context = new PocetnaVM();
-                context.gpList = gplista;
-                context.Title = "Početna";
-                BindingContext = context;
-                IsBusy = false;
-            }
-            else
-            {
-                IsBusy = false;
-                await DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
+                HttpResponseMessage responseGP = await gotoviProizvidiService.GetResponse();
+
+                if (responseGP.IsSuccessStatusCode)
+                {
+                    var gplista = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
+                    Global.proizvodi = gplista;
+                }
+                else
+                {
+                    IsBusy = false;
+                    await DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
+                }
             }
         }
 
-        private void AddToCart_Tapped(object sender, EventArgs e)
+        private void AddToCart_Tapped(object sender, ItemTappedEventArgs e)
         {
+            if (e.Item != null)
+            {
+                GotoviProizvod gp = e.Item as GotoviProizvod;
+                if (Global.trenutnaNarudzba == null)
+                    Global.trenutnaNarudzba = new Narudzba();
+                if (Global.trenutnaNarudzba.NarudzbaStavka == null)
+                    Global.trenutnaNarudzba.NarudzbaStavka = new List<NarudzbaStavka>();
+
+                Global.trenutnaNarudzba.NarudzbaStavka.Add(new NarudzbaStavka()
+                {
+                    GotoviProizvodID = gp.GotoviProizvodID,
+                    Kolicina = 1,
+                }) ;
+            }
             DisplayAlert("Radi", "Radi", "OK");
         }
 
         private void OpisModal_Tapped(object sender, EventArgs e)
         {
-            DisplayAlert
+            DisplayAlert("Radi", "Radi", "OK");
         }
     }
 }

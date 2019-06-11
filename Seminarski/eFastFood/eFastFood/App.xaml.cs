@@ -13,7 +13,7 @@ namespace eFastFood
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Prijava()); //new MDPage();   //
+            MainPage = new MDPage();   //new NavigationPage(new Prijava()); 
         }
 
         protected override void OnStart()

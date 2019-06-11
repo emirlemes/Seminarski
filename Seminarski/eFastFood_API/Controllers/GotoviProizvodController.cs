@@ -29,9 +29,7 @@ namespace eFastFood_API.Controllers
         {
             GotoviProizvod gotoviProizvod = _db.GotoviProizvod.Find(id);
             if (gotoviProizvod == null)
-            {
                 return NotFound();
-            }
 
             return Ok(gotoviProizvod);
         }
@@ -40,21 +38,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutGotoviProizvod(int id, GotoviProizvod gotoviProizvod)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             if (id != gotoviProizvod.GotoviProizvodID)
-            {
                 return BadRequest();
-            }
 
             GotoviProizvod gp = _db.GotoviProizvod.Find(id);
+
             if (gp == null)
-            {
                 return BadRequest();
-            }
+
             gp.KategorijaID = gotoviProizvod.KategorijaID;
             gp.GotoviProizvodID = gotoviProizvod.GotoviProizvodID;
             gp.VrijemePripreme = gotoviProizvod.VrijemePripreme;
@@ -67,9 +59,9 @@ namespace eFastFood_API.Controllers
             {
                 _db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest();
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -79,13 +71,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(GotoviProizvod))]
         public IHttpActionResult PostGotoviProizvod(GotoviProizvod gotoviProizvod)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _db.GotoviProizvod.Add(gotoviProizvod);
+                _db.SaveChanges();
             }
-
-            _db.GotoviProizvod.Add(gotoviProizvod);
-            _db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = gotoviProizvod.GotoviProizvodID }, gotoviProizvod);
         }
@@ -107,7 +101,6 @@ namespace eFastFood_API.Controllers
         }
 
 
-        #region Helpers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -116,11 +109,5 @@ namespace eFastFood_API.Controllers
             }
             base.Dispose(disposing);
         }
-
-        private bool GotoviProizvodExists(int id)
-        {
-            return _db.GotoviProizvod.Count(e => e.GotoviProizvodID == id) > 0;
-        }
-        #endregion
     }
 }

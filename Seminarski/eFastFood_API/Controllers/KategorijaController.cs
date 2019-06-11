@@ -17,9 +17,9 @@ namespace eFastFood_API.Controllers
         private eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Kategorija
-        public IQueryable<Kategorija> GetKategorija()
+        public IHttpActionResult GetKategorija()
         {
-            return _db.Kategorija;
+            return Ok(_db.Kategorija.ToList());
         }
 
         // GET: api/Kategorija/5
@@ -28,9 +28,7 @@ namespace eFastFood_API.Controllers
         {
             Kategorija kategorija = _db.Kategorija.Find(id);
             if (kategorija == null)
-            {
                 return NotFound();
-            }
 
             return Ok(kategorija);
         }
@@ -39,32 +37,21 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutKategorija(int id, Kategorija kategorija)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (id != kategorija.KategorijaID)
-            {
                 return BadRequest();
-            }
 
-            _db.Entry(kategorija).State = EntityState.Modified;
+            Kategorija k = _db.Kategorija.Find(id);
+
+            if (k == null)
+                return NotFound();
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!KategorijaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -74,13 +61,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Kategorija))]
         public IHttpActionResult PostKategorija(Kategorija kategorija)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _db.Kategorija.Add(kategorija);
+                _db.SaveChanges();
             }
-
-            _db.Kategorija.Add(kategorija);
-            _db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = kategorija.KategorijaID }, kategorija);
         }
@@ -108,11 +97,6 @@ namespace eFastFood_API.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool KategorijaExists(int id)
-        {
-            return _db.Kategorija.Count(e => e.KategorijaID == id) > 0;
         }
     }
 }

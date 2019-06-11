@@ -27,6 +27,7 @@ namespace eFastFood_API.Controllers
         public IHttpActionResult GetProizvod(int id)
         {
             Proizvod proizvod = _db.Proizvod.Find(id);
+
             if (proizvod == null)
                 return NotFound();
 
@@ -37,32 +38,25 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProizvod(int id, Proizvod proizvod)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (id != proizvod.ProizvodID)
-            {
                 return BadRequest();
-            }
 
-            _db.Entry(proizvod).State = EntityState.Modified;
+            Proizvod p = _db.Proizvod.Find(id);
+
+            p.Naziv = proizvod.Naziv;
+            p.Opis = proizvod.Opis;
+            p.DobavljacID = proizvod.DobavljacID;
+            p.DonjaGranica = proizvod.DonjaGranica;
+            p.Kolicina = proizvod.Kolicina;
+            p.MjernaJedinicaID = proizvod.MjernaJedinicaID;
 
             try
             {
                 _db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!ProizvodExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -72,13 +66,15 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Proizvod))]
         public IHttpActionResult PostProizvod(Proizvod proizvod)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _db.Proizvod.Add(proizvod);
+                _db.SaveChanges();
             }
-
-            _db.Proizvod.Add(proizvod);
-            _db.SaveChanges();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = proizvod.ProizvodID }, proizvod);
         }
@@ -91,12 +87,17 @@ namespace eFastFood_API.Controllers
         {
             Proizvod proizvod = _db.Proizvod.Find(id);
             if (proizvod == null)
-            {
                 return NotFound();
-            }
 
-            _db.Proizvod.Remove(proizvod);
-            _db.SaveChanges();
+            try
+            {
+                _db.Proizvod.Remove(proizvod);
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
             return Ok(proizvod);
         }
@@ -108,11 +109,6 @@ namespace eFastFood_API.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool ProizvodExists(int id)
-        {
-            return _db.Proizvod.Count(e => e.ProizvodID == id) > 0;
         }
     }
 }
