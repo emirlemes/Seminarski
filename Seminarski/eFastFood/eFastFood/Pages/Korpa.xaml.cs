@@ -16,7 +16,7 @@ namespace XamarinApp.Pages
         public Korpa()
         {
             InitializeComponent();
-            if (Global.trenutnaNarudzba==null && Global.trenutnaNarudzba?.NarudzbaStavka?.Count  == 0)
+            if (Global.trenutnaNarudzba == null && Global.trenutnaNarudzba?.NarudzbaStavka?.Count == 0)
                 textCentar.Text = "Korpa je prazna.";
             else
                 LoadKorpa();
@@ -24,7 +24,7 @@ namespace XamarinApp.Pages
 
         private void LoadKorpa()
         {
-            
+
         }
     }
 }

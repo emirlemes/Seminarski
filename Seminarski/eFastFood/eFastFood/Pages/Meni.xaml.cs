@@ -6,6 +6,7 @@ using eFastFood_PCL.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -22,7 +23,7 @@ namespace XamarinApp.Pages
         APIHelper kategorijeService = new APIHelper(Global.ApiUrl, Global.KategorijaRoute);
         APIHelper gotoviproizvodService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
 
-        public  Meni()
+        public Meni()
         {
             InitializeComponent();
             LoadTabs();
@@ -43,13 +44,13 @@ namespace XamarinApp.Pages
                     {
                         //if (Device.RuntimePlatform == Device.Android)
                         //{
-                            PocetnaVM vm = new PocetnaVM();
-                            vm.Title = item.Naziv;
-                            vm.gpList = gproizvodi.Where(x => x.KategorijaID == item.KategorijaID).ToList();
-                            Children.Add(new MeniItem() { BindingContext = vm });
+                        PocetnaVM vm = new PocetnaVM();
+                        vm.Title = item.Naziv;
+                        vm.GotoviProizvodiList = gproizvodi.Where(x => x.KategorijaID == item.KategorijaID).ToList();
+                        Children.Add(new MeniItem() { BindingContext = vm });
                         //}
                     }
-                        
+
                 }
                 else
                     await DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
@@ -64,7 +65,7 @@ namespace XamarinApp.Pages
             {
 
 
-               
+
 
                 base.OnAppearing();
 
