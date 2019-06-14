@@ -4,13 +4,16 @@ using eFastFood_UI.KategorijaUI;
 using eFastFood_UI.KorisniciUI;
 using eFastFood_UI.NarudzbeUI;
 using eFastFood_UI.ProizvodUI;
+using eFastFood_UI.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,9 +21,13 @@ namespace eFastFood_UI.Administrator
 {
     public partial class MainFormAdmin : Form
     {
+        APIHelper proizvodService = new APIHelper(Global.ApiUrl, Global.ProizvoidRoute);
+
         public MainFormAdmin()
         {
             InitializeComponent();
+            notifyIcon.Icon = Icon;
+            proizvodiToolStripMenuItem.PerformClick();
         }
 
         private void KategorijeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -87,6 +94,27 @@ namespace eFastFood_UI.Administrator
                     Dock = DockStyle.Fill
                 };
                 frm.Show();
+                HttpResponseMessage responeP = proizvodService.GetActionResponse("ProizvodiZaNarucit");
+
+                if (responeP.IsSuccessStatusCode)
+                {
+                    List<string> vs = responeP.Content.ReadAsAsync<List<string>>().Result;
+
+                    new Thread(() =>
+                    {
+                        foreach (var item in vs)
+                        {
+                            notifyIcon.Icon = SystemIcons.Information;
+                            notifyIcon.BalloonTipText = Messages.product + item;
+                            notifyIcon.Visible = true;
+                            notifyIcon.BalloonTipTitle = Messages.need_to_order;
+                            notifyIcon.ShowBalloonTip(1000);
+                            Thread.Sleep(2000);
+                        }
+                    }).Start();
+
+
+                }
             }
         }
 

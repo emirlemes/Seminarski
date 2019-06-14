@@ -31,8 +31,6 @@
             this.dodajButton = new System.Windows.Forms.Button();
             this.urediButton = new System.Windows.Forms.Button();
             this.proizvodiDataGridView = new System.Windows.Forms.DataGridView();
-            this.pretragaInput = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.ProizvodID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +40,9 @@
             this.DobavljacID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MjernaJedinica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pretragaInput = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.naruciButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.proizvodiDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,27 +92,6 @@
             this.proizvodiDataGridView.ReadOnly = true;
             this.proizvodiDataGridView.Size = new System.Drawing.Size(560, 354);
             this.proizvodiDataGridView.TabIndex = 2;
-            // 
-            // pretragaInput
-            // 
-            this.pretragaInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pretragaInput.Location = new System.Drawing.Point(229, 17);
-            this.pretragaInput.Name = "pretragaInput";
-            this.pretragaInput.Size = new System.Drawing.Size(225, 23);
-            this.pretragaInput.TabIndex = 3;
-            this.pretragaInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PretragaInput_KeyUp);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(160, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Pretraga";
             // 
             // ProizvodID
             // 
@@ -183,11 +163,46 @@
             this.MjernaJedinica.ReadOnly = true;
             this.MjernaJedinica.Visible = false;
             // 
+            // pretragaInput
+            // 
+            this.pretragaInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pretragaInput.Location = new System.Drawing.Point(229, 17);
+            this.pretragaInput.Name = "pretragaInput";
+            this.pretragaInput.Size = new System.Drawing.Size(225, 23);
+            this.pretragaInput.TabIndex = 3;
+            this.pretragaInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PretragaInput_KeyUp);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(160, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Pretraga";
+            // 
+            // naruciButton
+            // 
+            this.naruciButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.naruciButton.Location = new System.Drawing.Point(473, 48);
+            this.naruciButton.Name = "naruciButton";
+            this.naruciButton.Size = new System.Drawing.Size(100, 30);
+            this.naruciButton.TabIndex = 5;
+            this.naruciButton.Text = "Naruči";
+            this.naruciButton.UseVisualStyleBackColor = true;
+            this.naruciButton.Click += new System.EventHandler(this.NaruciButton_Click);
+            // 
             // ProizvodIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 450);
+            this.Controls.Add(this.naruciButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pretragaInput);
             this.Controls.Add(this.proizvodiDataGridView);
@@ -223,5 +238,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DobavljacID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dobavljac;
         private System.Windows.Forms.DataGridViewTextBoxColumn MjernaJedinica;
+        private System.Windows.Forms.Button naruciButton;
     }
 }

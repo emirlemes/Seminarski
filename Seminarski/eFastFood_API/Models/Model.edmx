@@ -258,6 +258,19 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="esp_BrojNarudzbiAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_GPPAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GotoviProizvodID" Type="int" Mode="In" />
+          <Parameter Name="ProizvodID" Type="int" Mode="In" />
+          <Parameter Name="KolicinaUtroska" Type="decimal" Mode="In" />
+          <Parameter Name="MjernaJedinicaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_GPPDeleteByGPID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_ProizvodOduzmi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProizvodId" Type="int" Mode="In" />
+          <Parameter Name="Oduzeti" Type="decimal" Mode="In" />
+        </Function>
         <EntityContainer Name="eFastFoodTestModelStoreContainer">
           <EntitySet Name="Dobavljac" EntityType="Self.Dobavljac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GotoviProizvod" EntityType="Self.GotoviProizvod" Schema="dbo" store:Type="Tables" />
@@ -320,15 +333,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="eFastFoodTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="eFastFoodEntitie" annotation:LazyLoadingEnabled="false">
-          <FunctionImport Name="esp_GPPDeleteByGPID">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="esp_GPPAdd">
-            <Parameter Name="GotoviProizvodID" Mode="In" Type="Int32" />
-            <Parameter Name="ProizvodID" Mode="In" Type="Int32" />
-            <Parameter Name="KolicinaUtroska" Mode="In" Type="Decimal" />
-            <Parameter Name="MjernaJedinicaID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="Dobavljac" EntityType="eFastFoodTestModel.Dobavljac" />
           <EntitySet Name="GotoviProizvod" EntityType="eFastFoodTestModel.GotoviProizvod" />
           <EntitySet Name="GPProizvod" EntityType="eFastFoodTestModel.GPProizvod" />
@@ -385,6 +389,19 @@
             <End Role="Uposlenik" EntitySet="Uposlenik" />
           </AssociationSet>
           <FunctionImport Name="esp_BrojNarudzbiAll" ReturnType="Collection(eFastFoodTestModel.esp_BrojNarudzbiAll_Result)" />
+          <FunctionImport Name="esp_ProizvodOduzmi">
+            <Parameter Name="ProizvodId" Mode="In" Type="Int32" />
+            <Parameter Name="Oduzeti" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="esp_GPPDeleteByGPID">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_GPPAdd">
+            <Parameter Name="GotoviProizvodID" Mode="In" Type="Int32" />
+            <Parameter Name="ProizvodID" Mode="In" Type="Int32" />
+            <Parameter Name="KolicinaUtroska" Mode="In" Type="Decimal" />
+            <Parameter Name="MjernaJedinicaID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dobavljac">
           <Key>
@@ -807,6 +824,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_ProizvodOduzmi" FunctionName="eFastFoodTestModel.Store.esp_ProizvodOduzmi" />
+          <FunctionImportMapping FunctionImportName="esp_GPPDeleteByGPID" FunctionName="eFastFoodTestModel.Store.esp_GPPDeleteByGPID" />
+          <FunctionImportMapping FunctionImportName="esp_GPPAdd" FunctionName="eFastFoodTestModel.Store.esp_GPPAdd" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

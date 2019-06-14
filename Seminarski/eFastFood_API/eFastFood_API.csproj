@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EmailTemplates\email.html" />
     <Content Include="Global.asax" />
     <Content Include="Models\Model.Context.tt">
       <DependentUpon>Model.edmx</DependentUpon>
@@ -187,6 +188,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\EmailSender.cs" />
     <Compile Include="Util\Hashing.cs" />
   </ItemGroup>
   <ItemGroup>

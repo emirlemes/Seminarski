@@ -257,7 +257,16 @@ namespace eFastFood_UI.GotoviProizvodiUI
                 errorProvider.SetError(kategorijaComboBox, null);
         }
 
-
+        private void SlikaInput_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(slikaInput.Text))
+            {
+                e.Cancel = true;
+                MessageBox.Show(Messages.picture_require, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                errorProvider.SetError(slikaInput, null);
+        }
 
         #endregion
 

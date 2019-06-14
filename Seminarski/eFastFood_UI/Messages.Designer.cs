@@ -115,6 +115,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Potrebno je naručiti.
+        /// </summary>
+        internal static string need_to_order {
+            get {
+                return ResourceManager.GetString("need_to_order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cijena ne može biti negativna..
         /// </summary>
         internal static string negative_price {
@@ -178,11 +187,29 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Svaki gotovi proizvod mora imati sliku..
+        /// </summary>
+        internal static string picture_require {
+            get {
+                return ResourceManager.GetString("picture_require", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odaberite sliku većih dimenzija..
         /// </summary>
         internal static string picture_to_small {
             get {
                 return ResourceManager.GetString("picture_to_small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proizvod: .
+        /// </summary>
+        internal static string product {
+            get {
+                return ResourceManager.GetString("product", resourceCulture);
             }
         }
         
@@ -255,6 +282,15 @@ namespace eFastFood_UI {
         internal static string success_edited {
             get {
                 return ResourceManager.GetString("success_edited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proizvod uspješno naručen..
+        /// </summary>
+        internal static string success_order {
+            get {
+                return ResourceManager.GetString("success_order", resourceCulture);
             }
         }
         

@@ -189,4 +189,16 @@
   <data name="order_id_error" xml:space="preserve">
     <value>Narudžba [ID] greška.</value>
   </data>
+  <data name="picture_require" xml:space="preserve">
+    <value>Svaki gotovi proizvod mora imati sliku.</value>
+  </data>
+  <data name="need_to_order" xml:space="preserve">
+    <value>Potrebno je naručiti</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Proizvod: </value>
+  </data>
+  <data name="success_order" xml:space="preserve">
+    <value>Proizvod uspješno naručen.</value>
+  </data>
 </root>

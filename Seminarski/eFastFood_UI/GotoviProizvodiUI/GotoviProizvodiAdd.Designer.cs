@@ -191,6 +191,7 @@
             this.slikaInput.Size = new System.Drawing.Size(140, 20);
             this.slikaInput.TabIndex = 10;
             this.slikaInput.Visible = false;
+            this.slikaInput.Validating += new System.ComponentModel.CancelEventHandler(this.SlikaInput_Validating);
             // 
             // openFileDialog
             // 

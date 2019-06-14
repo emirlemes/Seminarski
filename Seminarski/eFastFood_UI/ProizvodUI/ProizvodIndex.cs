@@ -65,5 +65,17 @@ namespace eFastFood_UI.ProizvodUI
                 proizvodiDataGridView.DataSource = proizvodList;
             }
         }
+
+        private void NaruciButton_Click(object sender, EventArgs e)
+        {
+            int id = proizvodiDataGridView.SelectedRows[0].Cells[0].Value.ToInt();
+            if (id == 0)
+                MessageBox.Show(Messages.nothing_selected, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                ProizvodNaruci form = new ProizvodNaruci(id);
+                form.ShowDialog();
+            }
+        }
     }
 }

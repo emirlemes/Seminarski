@@ -40,6 +40,24 @@ namespace eFastFood_API.Models
         public virtual DbSet<Uloga> Uloga { get; set; }
         public virtual DbSet<Uposlenik> Uposlenik { get; set; }
     
+        public virtual ObjectResult<esp_BrojNarudzbiAll_Result> esp_BrojNarudzbiAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<esp_BrojNarudzbiAll_Result>("esp_BrojNarudzbiAll");
+        }
+    
+        public virtual int esp_ProizvodOduzmi(Nullable<int> proizvodId, Nullable<decimal> oduzeti)
+        {
+            var proizvodIdParameter = proizvodId.HasValue ?
+                new ObjectParameter("ProizvodId", proizvodId) :
+                new ObjectParameter("ProizvodId", typeof(int));
+    
+            var oduzetiParameter = oduzeti.HasValue ?
+                new ObjectParameter("Oduzeti", oduzeti) :
+                new ObjectParameter("Oduzeti", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("esp_ProizvodOduzmi", proizvodIdParameter, oduzetiParameter);
+        }
+    
         public virtual int esp_GPPDeleteByGPID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -68,11 +86,6 @@ namespace eFastFood_API.Models
                 new ObjectParameter("MjernaJedinicaID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("esp_GPPAdd", gotoviProizvodIDParameter, proizvodIDParameter, kolicinaUtroskaParameter, mjernaJedinicaIDParameter);
-        }
-    
-        public virtual ObjectResult<esp_BrojNarudzbiAll_Result> esp_BrojNarudzbiAll()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<esp_BrojNarudzbiAll_Result>("esp_BrojNarudzbiAll");
         }
     }
 }

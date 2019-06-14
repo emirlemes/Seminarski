@@ -100,6 +100,19 @@ namespace eFastFood_API.Controllers
             Narudzba narudzba = _db.Narudzba.Where(x => x.NarudzbaID == id).FirstOrDefault();
             if (narudzba != null)
             {
+                _db.Entry(narudzba).Collection(x => x.NarudzbaStavka).Load();
+                foreach (var NS in narudzba.NarudzbaStavka)
+                {
+                    var SGP = _db.GPProizvod.Where(x => x.GotoviProizvodID == NS.GotoviProizvodID).ToList();
+                    foreach (var GPP in SGP)
+                    {
+                        var mj = _db.MjernaJedinica.Where(c => c.MjernaJedinicaID == GPP.MjernaJedinicaID).FirstOrDefault();
+
+                        var utrosak = (decimal)((double)GPP.KolicinaUtroska * Math.Pow(10, mj.Exponent) * NS.Kolicina);
+
+                        _db.esp_ProizvodOduzmi(GPP.ProizvodID, utrosak);
+                    }
+                }
                 narudzba.Status = "Priprema";
                 _db.SaveChanges();
                 return Ok();

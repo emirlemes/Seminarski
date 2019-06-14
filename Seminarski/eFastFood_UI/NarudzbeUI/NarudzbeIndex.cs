@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace eFastFood_UI.NarudzbeUI
 {
@@ -202,6 +203,69 @@ namespace eFastFood_UI.NarudzbeUI
                     else
                         MessageBox.Show(Messages.error + ": " + responseN.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else if (e.ColumnIndex == 6)
+            {
+                int id = zavrseneDataGridView.Rows[e.RowIndex].Cells[0].Value.ToInt();
+                if (id == 0)
+                    MessageBox.Show(Messages.order_id_error, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    PrintDocument printDocument = new PrintDocument();
+
+                    printDialog.Document = printDocument;
+
+                    printDocument.PrintPage += new PrintPageEventHandler((s, k) => printDocument_PrintPage(s, k, id));
+
+                    if (printDialog.ShowDialog() == DialogResult.OK)
+                        printDocument.Print();
+                }
+            }
+        }
+
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e, int id)
+        {
+            Graphics g = e.Graphics;
+
+            Font font = new Font("Courier New", 12);
+            SolidBrush brush = new SolidBrush(Color.Black);
+
+            float fontHeight = font.GetHeight();
+
+            int startX = 10;
+            int startY = 10;
+            int offset = 40;
+
+            g.DrawString("Dobrodošli u restoran", font, brush, startX, startY);
+            g.DrawString("--------------------------------------", font, brush, startX, startY + offset);
+            offset = offset + (int)fontHeight + 5;
+            HttpResponseMessage responseN = narudzbeService.GetActionResponse("GetStavkeNarudzbe", id.ToString());
+
+            float totalPrice = 0;
+
+            if (responseN.IsSuccessStatusCode)
+            {
+                var stavke = responseN.Content.ReadAsAsync<List<NarudzbaStavka>>().Result;
+
+                foreach (var item in stavke)
+                {
+                    string proizvod = item.GotoviProizvod.Naziv.PadRight(30);
+                    string total = String.Format("{0:c}", item.GotoviProizvod.Cijena);
+                    string linija = proizvod + total;
+                    totalPrice += (float)item.GotoviProizvod.Cijena;
+                    g.DrawString(linija, font, brush, startX, startY + offset);
+
+                    offset = offset + (int)fontHeight + 5;
+                }
+
+                offset = offset + 20;
+                g.DrawString("--------------------------------------", font, brush, startX, startY + offset);
+                offset = offset + (int)fontHeight + 5;
+                g.DrawString("Za platiti:".PadRight(30) + String.Format("{0:c}", totalPrice), font, brush, startX, startY + offset);
+                offset = offset + (int)fontHeight + 5;
+                g.DrawString("--------------------------------------", font, brush, startX, startY + offset);
+                offset = offset + (int)fontHeight + 5;
+                g.DrawString("Hvala na posjeti".PadLeft(15), font, brush, startX, startY + offset);
             }
         }
     }

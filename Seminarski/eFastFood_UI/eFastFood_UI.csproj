@@ -200,6 +200,12 @@
     <Compile Include="ProizvodUI\ProizvodIndex.Designer.cs">
       <DependentUpon>ProizvodIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProizvodUI\ProizvodNaruci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProizvodUI\ProizvodNaruci.Designer.cs">
+      <DependentUpon>ProizvodNaruci.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\APIHelper.cs" />
     <Compile Include="Util\UIHelper.cs" />
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProizvodUI\ProizvodIndex.resx">
       <DependentUpon>ProizvodIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProizvodUI\ProizvodNaruci.resx">
+      <DependentUpon>ProizvodNaruci.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
