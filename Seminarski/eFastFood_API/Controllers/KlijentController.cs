@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
 using eFastFood_PCL.ViewModels;
 using eFastFood_PCL.Util;
-using System.Threading.Tasks;
 
 namespace eFastFood_API.Controllers
 {
@@ -42,24 +38,24 @@ namespace eFastFood_API.Controllers
             return Ok(klijent);
         }
 
-        // GET: api/Klijent/CheckBrojTelefona/{telefon}
+        // GET: api/Klijent/CheckBrojTelefona/{telefon}/{id}
         [HttpGet]
-        [Route("api/Klijent/CheckBrojTelefona/{telefon}")]
+        [Route("api/Klijent/CheckBrojTelefona/{telefon}/{id}")]
         [ResponseType(typeof(bool))]
-        public IHttpActionResult CheckBrojTelefona(string telefon) =>
-             Ok(_db.Klijent.Where(x => x.BrojTelefona == telefon).Count() > 0);
+        public IHttpActionResult CheckBrojTelefona(string telefon, int id = 0) =>
+             id == 0 ? Ok(_db.Klijent.Where(x => x.BrojTelefona == telefon).Count() > 0) : Ok(_db.Klijent.Where(x => x.BrojTelefona == telefon && x.KlijentID != id).Count() > 0);
 
-        // GET: api/Klijent/CheckEmail/{email}
+        // GET: api/Klijent/CheckEmail/{email}/{id}
         [HttpGet]
-        [Route("api/Klijent/CheckEmail/{email}")]
+        [Route("api/Klijent/CheckEmail/{email}/{id}")]
         [ResponseType(typeof(bool))]
-        public IHttpActionResult CheckEmail(string email) =>
-             Ok(_db.Klijent.Where(x => x.Email == email).Count() > 0);
-
+        public IHttpActionResult CheckEmail(string email, int id = 0) =>
+            id == 0 ? Ok(_db.Klijent.Where(x => x.Email == email).Count() > 0) : Ok(_db.Klijent.Where(x => x.BrojTelefona == email && x.KlijentID != id).Count() > 0);
 
         // PUT: api/Klijent/5
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutKlijent(int id, Klijent klijent)
+        public IHttpActionResult PutKlijent(int id, [FromBody]Klijent klijent)
         {
             if (id != klijent.KlijentID)
                 return BadRequest();

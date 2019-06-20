@@ -7,7 +7,7 @@
              x:Class="XamarinApp.Pages.Korpa">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="textCentar" Text=""
+            <Label x:Name="textCentar" Text="WELCOME KORPA"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

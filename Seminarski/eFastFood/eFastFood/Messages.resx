@@ -120,6 +120,9 @@
   <data name="close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="connec_err" xml:space="preserve">
+    <value>Problem s internetom.</value>
+  </data>
   <data name="email_exist" xml:space="preserve">
     <value>Email već registrovan.</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="success" xml:space="preserve">
     <value>Uspijeh</value>
+  </data>
+  <data name="user_updated" xml:space="preserve">
+    <value>Korisnički podaci uspješno snimljeni.</value>
   </data>
   <data name="wrong_user_or_pass" xml:space="preserve">
     <value>Pogrešno korisničko ime ili lozinka.</value>

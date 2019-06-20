@@ -22,7 +22,7 @@ namespace XamarinApp.Pages
         public Pocetna()
         {
             InitializeComponent();
-            BindingContext = new PocetnaVM();
+            BindingContext = new PocetnaVM(this);
         }
 
         //private async void Cart_Clicked(object sender, EventArgs e)

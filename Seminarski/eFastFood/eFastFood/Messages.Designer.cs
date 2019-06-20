@@ -70,6 +70,15 @@ namespace eFastFood {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Problem s internetom..
+        /// </summary>
+        internal static string connec_err {
+            get {
+                return ResourceManager.GetString("connec_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email već registrovan..
         /// </summary>
         internal static string email_exist {
@@ -156,6 +165,15 @@ namespace eFastFood {
         internal static string success {
             get {
                 return ResourceManager.GetString("success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisnički podaci uspješno snimljeni..
+        /// </summary>
+        internal static string user_updated {
+            get {
+                return ResourceManager.GetString("user_updated", resourceCulture);
             }
         }
         

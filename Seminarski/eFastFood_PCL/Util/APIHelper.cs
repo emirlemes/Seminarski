@@ -50,14 +50,14 @@ namespace eFastFood_PCL.Util
         {
             StringContent jsonObject = new StringContent(JsonConvert.SerializeObject(existingObject),
                 Encoding.UTF8, "application/json");
-            return client.PostAsync(route + "/" + id, jsonObject).Result;
+            return client.PutAsync(route + "/" + id, jsonObject).Result;
         }
 
         public HttpResponseMessage PutActionResponse(string action, int id, Object existingObject)
         {
             StringContent jsonObject = new StringContent(JsonConvert.SerializeObject(existingObject),
                Encoding.UTF8, "application/json");
-            return client.PostAsync(route + "/" + action + "/" + id, jsonObject).Result;
+            return client.PutAsync(route + "/" + action + "/" + id, jsonObject).Result;
         }
     }
 }

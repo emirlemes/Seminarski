@@ -3,44 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:VM="clr-namespace:eFastFood.ViewModels"
+             xmlns:behavior="clr-namespace:eFastFood.Behaviers"
              mc:Ignorable="d"
-             x:Class="XamarinApp.Pages.Profil">
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-    <d:ListView.ItemsSource>
-        <x:Array Type="{x:Type x:String}">
-            <x:String>Item 1</x:String>
-            <x:String>Item 2</x:String>
-            <x:String>Item 3</x:String>
-            <x:String>Item 4</x:String>
-            <x:String>Item 5</x:String>
-        </x:Array>
-    </d:ListView.ItemsSource>
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" d:Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   d:Text="{Binding .}"
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   d:Text="Detail"
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+             x:Class="XamarinApp.Pages.Profil"
+             >
+    <ContentPage.BindingContext>
+        <VM:ProfilVM></VM:ProfilVM>
+    </ContentPage.BindingContext>
+
+    <StackLayout HorizontalOptions="Center" Margin="0,20,0,0">
+        <ScrollView Orientation="Both">
+            <Grid Margin="30,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!-- Ime -->
+                <Label Text="Ime" VerticalOptions="Center" Grid.Column="0" Grid.Row="0"></Label>
+                <Entry Text="{Binding Ime}"  Grid.Column="1" Grid.Row="0"></Entry>
+
+                <!-- Prezime -->
+                <Label Text="Prezime" Grid.Column="0" Grid.Row="1" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding Prezime}" Grid.Column="1" Grid.Row="1"></Entry>
+
+                <!-- Broj Telefona -->
+                <Label Text="Broj telefona" Grid.Column="0" Grid.Row="2" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding BrojTelefona}" Grid.Column="1" Grid.Row="2" Keyboard="Telephone">
+                    <Entry.Behaviors>
+                        <behavior:MaskedBehavior Mask="(XXX) XXX-XXXX"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <!-- Adresa -->
+                <Label Text="Adresa" Grid.Column="0" Grid.Row="3" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding Adresa}" Grid.Column="1" Grid.Row="3"></Entry>
+
+                <!-- Email -->
+                <Label Text="Email" Grid.Column="0" Grid.Row="4" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding Email}" Grid.Column="1" Grid.Row="4"></Entry>
+
+                <!-- Lozinka -->
+                <Label Text="Lozinka" Grid.Column="0" Grid.Row="5" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding Lozinka}" Grid.Column="1" Grid.Row="5" IsPassword="True"></Entry>
+
+                <!-- Lozinka Nova-->
+                <Label Text="Lozinka" Grid.Column="0" Grid.Row="6" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding LozinkaNova}" Grid.Column="1" Grid.Row="6" IsPassword="True"></Entry>
+
+                <Button Text="Snimi" Margin="20,50" Command="{Binding Snimi_Button}" Grid.ColumnSpan="2" Grid.Row="7"></Button>
+            </Grid>
+        </ScrollView>
+    </StackLayout>
 </ContentPage>

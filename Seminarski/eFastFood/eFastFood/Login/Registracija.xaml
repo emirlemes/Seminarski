@@ -7,11 +7,12 @@
              mc:Ignorable="d"
              x:Class="eFastFood.Login.Registracija">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Orientation="Both">
             <StackLayout>
                 <Label Text="Registracija" HorizontalOptions="Center" FontSize="Large" Margin="30"></Label>
                 <Grid Margin="30,0">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -95,7 +96,7 @@
                        IsPassword="True"
                        ></Entry>
                 </Grid>
-                <Button x:Name="Registruj" Text="Registruj se" Margin="20,50" Clicked="Registruj_Clicked"></Button>
+                <Button x:Name="Registruj" Text="Registruj se" Margin="20,50" Clicked="Registruj_Clicked" Grid.ColumnSpan="2" Grid.Row="7"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
