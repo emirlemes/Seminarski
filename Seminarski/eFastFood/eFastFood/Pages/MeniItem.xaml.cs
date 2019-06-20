@@ -1,4 +1,6 @@
-﻿using System;
+﻿using eFastFood.ViewModels;
+using eFastFood_PCL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +14,15 @@ namespace eFastFood.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MeniItem : ContentPage
     {
-        public MeniItem()
+        public MeniItem(string Title, List<GotoviProizvod> gotoviProizvodi)
         {
             InitializeComponent();
+            BindingContext = new MeniItemVM(this, Title, gotoviProizvodi);
         }
 
-        private void AddToCart_Tapped(object sender, EventArgs e)
-        {
-            DisplayAlert("Radi", "Radi", "OK");
-        }
+        //private void AddToCart_Tapped(object sender, EventArgs e)
+        //{
+        //    DisplayAlert("Radi", "Radi", "OK");
+        //}
     }
 }

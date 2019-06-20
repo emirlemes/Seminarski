@@ -12,7 +12,7 @@ namespace eFastFood
     public static class Global
     {
         public static Klijent prijavnjeniKorisnik { get; set; }
-        public static Narudzba trenutnaNarudzba { get; set; }
+        public static List<NarudzbaStavka> stavkeNarudzbe { get; set; }
         public static List<GotoviProizvod> proizvodi { get; set; }
 
         #region API Route

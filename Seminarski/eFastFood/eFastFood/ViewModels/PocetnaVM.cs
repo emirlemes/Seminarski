@@ -83,7 +83,7 @@ namespace eFastFood.ViewModels
             if (Global.proizvodi == null)
             {
                 IsBusy = true;
-                HttpResponseMessage responseGP = await gotoviProizvidiService.GetResponse();
+                HttpResponseMessage responseGP = await gotoviProizvidiService.GetActionResponse("GotoviProizvodMobile");
 
                 if (responseGP.IsSuccessStatusCode)
                 {

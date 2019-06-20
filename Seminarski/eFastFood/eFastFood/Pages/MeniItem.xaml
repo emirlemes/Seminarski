@@ -7,16 +7,17 @@
              xmlns:vm="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
              Title="{Binding Title}"
-             x:Class="eFastFood.Pages.MeniItem">
+             x:Class="eFastFood.Pages.MeniItem"
+             x:Name="PageInstance">
+    <ContentPage.BindingContext>
+        <vm:MeniItemVM></vm:MeniItemVM>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <vm:PocetnaVM></vm:PocetnaVM>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="20,0">
-            <ListView RowHeight="100" ItemsSource="{Binding gpList}">
+            <ListView RowHeight="100" ItemsSource="{Binding GotoviProizvodiList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -34,6 +35,7 @@
                                     >
                                 </Image>
                                 <StackLayout Grid.Column="1" Padding="10">
+                                    <Label Text="{Binding GotoviProizvodID}" IsVisible="False" x:Name="GotoviProizvodID"></Label>
                                     <Label Text="{Binding Naziv}"></Label>
                                     <Label Text="{Binding Cijena}"></Label>
                                     <Label Text="{Binding Opis}"></Label>
@@ -47,7 +49,10 @@
                                     Grid.Column="2"
                                     >
                                     <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="AddToCart_Tapped"></TapGestureRecognizer>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding BindingContext.AddToCart_Tapped, Source={x:Reference PageInstance} }" CommandParameter="{Binding Text, Source={x:Reference GotoviProizvodID}}"
+                                            ></TapGestureRecognizer>
+                                        <!-- Tapped="AddToCart_Tapped" -->
                                     </Image.GestureRecognizers>
                                 </Image>
                             </Grid>

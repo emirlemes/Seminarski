@@ -23,6 +23,18 @@ namespace eFastFood_API.Controllers
             return Ok(_db.GotoviProizvod.ToList());
         }
 
+        // GET: api/GotoviProizvod/GotoviProizvodMobile
+        [HttpGet]
+        [ResponseType(typeof(List<GotoviProizvod>))]
+        [Route("api/GotoviProizvod/GotoviProizvodMobile")]
+        public IHttpActionResult GotoviProizvodMobile()
+        {
+            List<GotoviProizvod> gp = _db.GotoviProizvod.ToList();
+            gp.ForEach(x => _db.Entry(x).Reference(c => c.Kategorija).Load());
+            gp.ForEach(x => { x.Kategorija.GotoviProizvod = null; x.Slika = null; });
+            return Ok(gp);
+        }
+
         // GET: api/GotoviProizvod/5
         [ResponseType(typeof(GotoviProizvod))]
         public IHttpActionResult GetGotoviProizvod(int id)
