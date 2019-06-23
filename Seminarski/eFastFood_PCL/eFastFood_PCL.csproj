@@ -37,6 +37,7 @@
     <Compile Include="Helpers\Converters.cs" />
     <Compile Include="Models\Dobavljac.cs" />
     <Compile Include="Models\GotoviProizvod.cs" />
+    <Compile Include="Models\GotoviProizvodXaml.cs" />
     <Compile Include="Models\GPProizvod.cs" />
     <Compile Include="Models\Kategorija.cs" />
     <Compile Include="Models\Klijent.cs" />

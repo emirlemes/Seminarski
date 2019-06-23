@@ -39,6 +39,7 @@ namespace eFastFood_API.Models
         public virtual DbSet<Proizvod> Proizvod { get; set; }
         public virtual DbSet<Uloga> Uloga { get; set; }
         public virtual DbSet<Uposlenik> Uposlenik { get; set; }
+        public virtual DbSet<Dostava> Dostava { get; set; }
     
         public virtual ObjectResult<esp_BrojNarudzbiAll_Result> esp_BrojNarudzbiAll()
         {

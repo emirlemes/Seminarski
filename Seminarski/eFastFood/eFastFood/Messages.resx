@@ -138,11 +138,17 @@
   <data name="ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="order_success" xml:space="preserve">
+    <value>Vaša narudžba je uspješno postavljena.</value>
+  </data>
   <data name="password_not_match" xml:space="preserve">
     <value>Lozinke se ne podudaraju.</value>
   </data>
   <data name="phone_exist" xml:space="preserve">
     <value>Broj telefona već registrovan.</value>
+  </data>
+  <data name="quantity_zero" xml:space="preserve">
+    <value>Količina ne može biti 0.</value>
   </data>
   <data name="registration_success" xml:space="preserve">
     <value>Uspješno ste registrovani.</value>

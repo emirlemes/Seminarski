@@ -8,6 +8,7 @@ namespace eFastFood_PCL.Models
 {
     public class GotoviProizvod
     {
+
         public int GotoviProizvodID { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }

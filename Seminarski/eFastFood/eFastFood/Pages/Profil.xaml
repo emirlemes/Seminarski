@@ -12,7 +12,7 @@
         <VM:ProfilVM></VM:ProfilVM>
     </ContentPage.BindingContext>
 
-    <StackLayout HorizontalOptions="Center" Margin="0,20,0,0">
+    <StackLayout HorizontalOptions="Center">
         <ScrollView Orientation="Both">
             <Grid Margin="30,0">
                 <Grid.RowDefinitions>
@@ -26,8 +26,8 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <!-- Ime -->
                 <Label Text="Ime" VerticalOptions="Center" Grid.Column="0" Grid.Row="0"></Label>

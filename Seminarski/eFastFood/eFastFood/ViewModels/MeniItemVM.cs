@@ -38,11 +38,7 @@ namespace eFastFood.ViewModels
         {
             int a = 0;
             if (Int32.TryParse(id, out a))
-                Global.stavkeNarudzbe.Add(new NarudzbaStavka() { Kolicina = 1, GotoviProizvodID = a });
-
-            System.Diagnostics.Debug.WriteLine("===============================");
-            System.Diagnostics.Debug.WriteLine(id);
-            System.Diagnostics.Debug.WriteLine("===============================");
+                Global.AddToCart(a, 1);
         }
 
         private bool _IsBusy;

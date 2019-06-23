@@ -3,13 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:eFastFood.ViewModels"
+             xmlns:local="clr-namespace:eFastFood.Converters"
              mc:Ignorable="d"
+             x:Name="PageInstance"
              x:Class="XamarinApp.Pages.Korpa">
+    <ContentPage.BindingContext>
+        <vm:KorpaVM></vm:KorpaVM>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="textCentar" Text="WELCOME KORPA"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="2,5,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding GotoviProizvodID}" IsVisible="False" x:Name="GotoviProizvodID"></Label>
+                                <Image Source="{Binding SlikaUmanjeno, Converter={StaticResource imgConv}}" Grid.Column="0"></Image>
+                                <StackLayout Grid.Column="1">
+                                    <Label Text="{Binding Naziv}"></Label>
+                                    <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
+                                    <Label Text="{Binding Opis}"></Label>
+                                </StackLayout>
+                                <Entry Text="{Binding Kolicina}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" Keyboard="Numeric" Unfocused="Entry_Unfocused" MaxLength="{Binding  Text,Source={x:Reference GotoviProizvodID}}">
+                                </Entry>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Command="{Binding Naruci}" Text="Naruči" Margin="10,0,10,20" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

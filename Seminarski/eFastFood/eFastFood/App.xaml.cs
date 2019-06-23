@@ -15,7 +15,7 @@ namespace eFastFood
         {
             InitializeComponent();
 
-            MainPage = new MDPage();   //new NavigationPage(new Prijava()); 
+            MainPage = new Pages.NarudzbaDetalji();  //new MDPage();   //new NavigationPage(new Prijava()); 
 
         }
 

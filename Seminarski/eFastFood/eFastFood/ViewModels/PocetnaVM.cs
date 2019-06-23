@@ -65,12 +65,9 @@ namespace eFastFood.ViewModels
 
         private void AddToCart(string id)
         {
-            if (int.TryParse(id, out int rez))
-            {
-                //dodati taj proizvod u korpu
-                rez++;
-            }
-            throw new NotImplementedException();
+            int a = 0;
+            if (Int32.TryParse(id, out a))
+                Global.AddToCart(a, 1);
         }
 
         private async Task LoadProizvode()

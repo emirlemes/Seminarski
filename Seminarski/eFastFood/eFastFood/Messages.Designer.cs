@@ -124,6 +124,15 @@ namespace eFastFood {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vaša narudžba je uspješno postavljena..
+        /// </summary>
+        internal static string order_success {
+            get {
+                return ResourceManager.GetString("order_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lozinke se ne podudaraju..
         /// </summary>
         internal static string password_not_match {
@@ -138,6 +147,15 @@ namespace eFastFood {
         internal static string phone_exist {
             get {
                 return ResourceManager.GetString("phone_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Količina ne može biti 0..
+        /// </summary>
+        internal static string quantity_zero {
+            get {
+                return ResourceManager.GetString("quantity_zero", resourceCulture);
             }
         }
         

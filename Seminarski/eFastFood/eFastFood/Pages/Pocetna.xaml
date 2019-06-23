@@ -20,13 +20,13 @@
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="5,5,0,5">
+        <StackLayout>
             <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="#aaccff" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-            <ListView RowHeight="100" ItemsSource="{Binding GotoviProizvodiList}" x:Name="listaProizvoda">
+            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" x:Name="listaProizvoda">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="5,5" >
+                            <Grid Margin="2,5,0,5" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -39,9 +39,9 @@
                     Source="{Binding SlikaUmanjeno, Converter={StaticResource imgConv}}"
                                     >
                                 </Image>
-                                <StackLayout Grid.Column="1" Padding="10">
+                                <StackLayout Grid.Column="1">
                                     <Label Text="{Binding Naziv}"></Label>
-                                    <Label Text="{Binding Cijena}"></Label>
+                                    <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
                                     <Label Text="{Binding Opis}"></Label>
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding OpisModal_Tapped}"></TapGestureRecognizer>

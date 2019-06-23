@@ -14,6 +14,12 @@ namespace eFastFood_API.Models
     
     public partial class Uposlenik
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Uposlenik()
+        {
+            this.Dostava = new HashSet<Dostava>();
+        }
+    
         public int UposlenikID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
@@ -26,5 +32,7 @@ namespace eFastFood_API.Models
         public int UlogaID { get; set; }
     
         public virtual Uloga Uloga { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dostava> Dostava { get; set; }
     }
 }

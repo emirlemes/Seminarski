@@ -16,7 +16,7 @@
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="20,0">
+        <StackLayout>
             <ListView RowHeight="100" ItemsSource="{Binding GotoviProizvodiList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -37,7 +37,7 @@
                                 <StackLayout Grid.Column="1" Padding="10">
                                     <Label Text="{Binding GotoviProizvodID}" IsVisible="False" x:Name="GotoviProizvodID"></Label>
                                     <Label Text="{Binding Naziv}"></Label>
-                                    <Label Text="{Binding Cijena}"></Label>
+                                    <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
                                     <Label Text="{Binding Opis}"></Label>
                                 </StackLayout>
                                 <Image 

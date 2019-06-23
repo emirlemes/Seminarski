@@ -27,6 +27,9 @@
         <AssociationConnector Association="eFastFoodTestModel.FK__Proizvod__Mjerna__49C3F6B7" />
         <AssociationConnector Association="eFastFoodTestModel.FK__NarudzbaS__Narud__59FA5E80" />
         <AssociationConnector Association="eFastFoodTestModel.FK__Uposlenik__Uloga__412EB0B6" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.Dostava" Width="1.5" PointX="10.5" PointY="11.5" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Dostava__Narudzb__02FC7413" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Dostava__Uposlen__03F0984C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

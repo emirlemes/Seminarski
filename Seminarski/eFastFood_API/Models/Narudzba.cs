@@ -18,6 +18,7 @@ namespace eFastFood_API.Models
         public Narudzba()
         {
             this.NarudzbaStavka = new HashSet<NarudzbaStavka>();
+            this.Dostava = new HashSet<Dostava>();
         }
     
         public int NarudzbaID { get; set; }
@@ -30,5 +31,7 @@ namespace eFastFood_API.Models
         public virtual Klijent Klijent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NarudzbaStavka> NarudzbaStavka { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dostava> Dostava { get; set; }
     }
 }
