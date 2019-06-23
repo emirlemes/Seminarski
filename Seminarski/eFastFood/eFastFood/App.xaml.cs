@@ -1,11 +1,11 @@
 ﻿using eFastFood.Login;
+using eFastFood.Navigacija;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamarinApp.Navigacija;
 
 namespace eFastFood
 {
@@ -15,7 +15,7 @@ namespace eFastFood
         {
             InitializeComponent();
 
-            MainPage = new Pages.NarudzbaDetalji();  //new MDPage();   //new NavigationPage(new Prijava()); 
+            MainPage = new MDPage();   //new NavigationPage(new Prijava());  new Pages.Narudzbe();
 
         }
 

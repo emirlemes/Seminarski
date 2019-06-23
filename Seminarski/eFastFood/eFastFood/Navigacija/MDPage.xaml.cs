@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eFastFood.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamarinApp.Pages;
 
-namespace XamarinApp.Navigacija
+namespace eFastFood.Navigacija
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MDPage : MasterDetailPage

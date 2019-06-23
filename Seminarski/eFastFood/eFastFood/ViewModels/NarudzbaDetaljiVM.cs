@@ -86,12 +86,14 @@ namespace eFastFood.ViewModels
             HttpResponseMessage responseN = new HttpResponseMessage();
             if (AddressaShow)
             {
-                responseN = await narudzbeService.PostActionResponse("MobileOrderDostava", narudzba);
+                responseN = await narudzbeService.PostActionResponse("MobileOrder", narudzba);
                 Narudzba n = JsonConvert.DeserializeObject<Narudzba>(await responseN.Content.ReadAsStringAsync());
-                HttpResponseMessage responseD = await dostavaService.PostActionResponse("DostavaNaAdresu", n.NarudzbaID.ToString() + "/" + AddressText);
+                HttpResponseMessage responseD = await dostavaService.PostActionResponse("DostavaNaAdresu/" + n.NarudzbaID.ToString() + "/" + AddressText, new { nadudzbaId = n.NarudzbaID, adresaDostave = AddressText }); //narudzbaId,adresaDostave
+                if (!responseD.IsSuccessStatusCode)
+                    await page.DisplayAlert(Messages.error, responseD.ReasonPhrase, Messages.ok);
             }
             else if (PreuzmiURestoran)
-                responseN = await narudzbeService.PostActionResponse("MobileOrderRestoran", narudzba);
+                responseN = await narudzbeService.PostActionResponse("MobileOrder", narudzba);
 
             if (responseN != null)
             {

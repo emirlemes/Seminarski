@@ -1,4 +1,5 @@
-﻿using eFastFood_PCL.Models;
+﻿using eFastFood.Pages;
+using eFastFood_PCL.Models;
 using eFastFood_PCL.Util;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
@@ -12,7 +13,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XamarinApp.Pages;
 
 namespace eFastFood.ViewModels
 {

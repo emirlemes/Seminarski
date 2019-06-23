@@ -16,6 +16,7 @@ namespace eFastFood.Login
     public partial class Registracija : ContentPage
     {
         APIHelper klijentService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
+
         public Registracija()
         {
             InitializeComponent();
@@ -43,13 +44,12 @@ namespace eFastFood.Login
                 {
                     await DisplayAlert(Messages.success, Messages.registration_success, Messages.ok);
                     Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await responseK.Content.ReadAsStringAsync());
-                    await Navigation.PushModalAsync(new XamarinApp.Navigacija.MDPage());
+                    await Navigation.PushModalAsync(new eFastFood.Navigacija.MDPage());
                     // load Prijava
                     //await Navigation.PopAsync();
                 }
                 else
                     await DisplayAlert(Messages.error, responseK.ReasonPhrase, Messages.ok);
-
             }
         }
 

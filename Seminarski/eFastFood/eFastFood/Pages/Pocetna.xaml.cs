@@ -1,5 +1,4 @@
-﻿using eFastFood;
-using eFastFood.ViewModels;
+﻿using eFastFood.ViewModels;
 using eFastFood_PCL.Models;
 using eFastFood_PCL.Util;
 using Newtonsoft.Json;
@@ -14,7 +13,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace XamarinApp.Pages
+namespace eFastFood.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Pocetna : ContentPage

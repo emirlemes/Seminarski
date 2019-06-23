@@ -3,44 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:eFastFood.Converters"
+             xmlns:vm="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
-             x:Class="XamarinApp.Pages.Narudzbe">
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-    <d:ListView.ItemsSource>
-        <x:Array Type="{x:Type x:String}">
-            <x:String>Item 1</x:String>
-            <x:String>Item 2</x:String>
-            <x:String>Item 3</x:String>
-            <x:String>Item 4</x:String>
-            <x:String>Item 5</x:String>
-        </x:Array>
-    </d:ListView.ItemsSource>
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" d:Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   d:Text="{Binding .}"
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   d:Text="Detail"
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+             x:Name="NarudzbePage"
+             x:Class="eFastFood.Pages.Narudzbe">
+    <ContentPage.BindingContext>
+        <vm:NarudzbeVM></vm:NarudzbeVM>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <converter:ImageConverter x:Key="ImgConv"></converter:ImageConverter>
+    </ContentPage.Resources>
+    <ListView RowHeight="120" ItemsSource="{Binding OrdersList}" ItemTapped="Item_Tapped">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Margin="2,5,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding SlikaUmanjeno,Converter={x:StaticResource ImgConv}}"></Image>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="{Binding GotoviProizvodID}" x:Name="GotoviProizvodID" IsVisible="False"></Label>
+                            <Label Text="{Binding Naziv}"></Label>
+                            <Label Text="{Binding Opis}"></Label>
+                        </StackLayout>
+                        <!--<Button Text="Ocijeni" Command="{Binding BindingContext.OcijniBtn ,Source={x:Reference NarudzbePage}}" CommandParameter="{Binding Text,Source={x:Reference GotoviProizvodID}}"></Button>-->
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

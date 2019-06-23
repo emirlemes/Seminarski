@@ -124,6 +124,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DobavljacController.cs" />
+    <Compile Include="Controllers\DostavaController.cs" />
     <Compile Include="Controllers\GotoviProizvodController.cs" />
     <Compile Include="Controllers\GPProizvodController.cs" />
     <Compile Include="Controllers\KategorijaController.cs" />

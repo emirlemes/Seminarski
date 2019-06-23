@@ -4,9 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinApp.Navigacija.MDPage"
-             xmlns:nav="clr-namespace:XamarinApp.Navigacija"
-             xmlns:pages="clr-namespace:XamarinApp.Pages"
+             x:Class="eFastFood.Navigacija.MDPage"
+             xmlns:nav="clr-namespace:eFastFood.Navigacija"
+             xmlns:pages="clr-namespace:eFastFood.Pages"
              MasterBehavior="Popover">
     <MasterDetailPage.Master>
         <nav:MDPageMaster x:Name="MasterPage" />

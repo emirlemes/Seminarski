@@ -1,5 +1,4 @@
-﻿using eFastFood;
-using eFastFood.ViewModels;
+﻿using eFastFood.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace XamarinApp.Pages
+namespace eFastFood.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Korpa : ContentPage

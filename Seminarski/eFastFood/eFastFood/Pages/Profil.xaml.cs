@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace XamarinApp.Pages
+namespace eFastFood.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profil : ContentPage

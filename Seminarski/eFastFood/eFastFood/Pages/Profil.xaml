@@ -6,7 +6,7 @@
              xmlns:VM="clr-namespace:eFastFood.ViewModels"
              xmlns:behavior="clr-namespace:eFastFood.Behaviers"
              mc:Ignorable="d"
-             x:Class="XamarinApp.Pages.Profil"
+             x:Class="eFastFood.Pages.Profil"
              >
     <ContentPage.BindingContext>
         <VM:ProfilVM></VM:ProfilVM>

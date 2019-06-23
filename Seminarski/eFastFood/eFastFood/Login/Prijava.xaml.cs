@@ -50,7 +50,7 @@ namespace eFastFood.Login
                         }
 
                         IsBusy = false;
-                        await Navigation.PushModalAsync(new XamarinApp.Navigacija.MDPage());
+                        await Navigation.PushModalAsync(new eFastFood.Navigacija.MDPage());
                         await Application.Current.SavePropertiesAsync();
                     }
                     else

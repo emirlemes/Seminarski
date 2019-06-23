@@ -91,6 +91,19 @@ namespace eFastFood_API.Controllers
             return Ok(list);
         }
 
+        // GET: api/Narudzba/UserOrders/{id}
+        [HttpGet]
+        [ResponseType(typeof(List<int>))]
+        [Route("api/Narudzba/UserOrders/{id}")]
+        public IHttpActionResult UserOrders(int id)
+        {
+            List<int> orders = _db.Narudzba.Where(x => x.KlijentID == id).Select(c => c.NarudzbaID).ToList();
+
+            List<int> gp = _db.NarudzbaStavka.Where(x => orders.Contains(x.NarudzbaID)).Select(c => c.GotoviProizvodID).Distinct().ToList();
+
+            return Ok(gp);
+        }
+
         //PUT: api/Narudzba/PrebaciUPripremu/{id}
         [HttpGet]
         [ResponseType(typeof(void))]
@@ -183,6 +196,53 @@ namespace eFastFood_API.Controllers
             }
 
             return CreatedAtRoute("DefaultApi", new { id = narudzba.NarudzbaID }, narudzba);
+        }
+
+        // POST: api/Narudzba/MobileOrderDostava
+
+        [HttpPost]
+        [Route("api/Narudzba/MobileOrder")]
+        [ResponseType(typeof(Narudzba))]
+        public IHttpActionResult MobileOrderDostava(Narudzba n)
+        {
+            Narudzba narudzba = new Narudzba()
+            {
+                Datum = n.Datum,
+                KlijentID = n.KlijentID,
+                Status = n.Status,
+                UkupnaCijena = n.UkupnaCijena,
+                VrstaNarudzbe = n.VrstaNarudzbe,
+            };
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+
+            foreach (var item in n.NarudzbaStavka)
+            {
+                _db.NarudzbaStavka.Add(new NarudzbaStavka()
+                {
+                    GotoviProizvodID = item.GotoviProizvodID,
+                    Kolicina = item.Kolicina,
+                    NarudzbaID = narudzba.NarudzbaID,
+                });
+            }
+
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(narudzba);
         }
 
         // DELETE: api/Narudzba/5

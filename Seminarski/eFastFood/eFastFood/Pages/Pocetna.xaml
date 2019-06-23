@@ -7,7 +7,7 @@
              xmlns:VM="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
              Title="{Binding Title}"
-             x:Class="XamarinApp.Pages.Pocetna"
+             x:Class="eFastFood.Pages.Pocetna"
              x:Name="PageInstance"
              >
     <ContentPage.BindingContext>

@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:eFastFood.Converters"
              mc:Ignorable="d"
              x:Name="PageInstance"
-             x:Class="XamarinApp.Pages.Korpa">
+             x:Class="eFastFood.Pages.Korpa">
     <ContentPage.BindingContext>
         <vm:KorpaVM></vm:KorpaVM>
     </ContentPage.BindingContext>
