@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:eFastFood.Converters"
+             xmlns:vm="clr-namespace:eFastFood.ViewModels"
+             mc:Ignorable="d"
+             x:Class="eFastFood.Pages.GotoviProizvodDetalji">
+    <ContentPage.BindingContext>
+        <vm:GotoviProizvodDetaljiVM></vm:GotoviProizvodDetaljiVM>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Grid BindingContext="{Binding GP}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" HeightRequest="256" WidthRequest="256" 
+                           Source="{Binding SlikaUmanjeno, Converter={x:StaticResource imgConv}}"></Image>
+                    <Label Grid.Row="1" Text="{Binding Naziv}" HorizontalOptions="Center"></Label>
+                    <Label Grid.Row="2" Text="{Binding Cijena, StringFormat='{0} KM'}" HorizontalOptions="Center"></Label>
+                    <Label Grid.Row="3" Text="{Binding Opis}" HorizontalOptions="Center"></Label>
+                </Grid>
+                <Label Text="Sastojci" Margin="0,10,0,10" FontSize="Medium" HorizontalOptions="Center"></Label>
+                <ListView ItemsSource="{Binding Sastojci}" VerticalScrollBarVisibility="Never" HeightRequest="{Binding SastojciVisina}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding .}" HorizontalOptions="Center"></Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Slider x:Name="slider" IsVisible="{Binding ShowOcijeni}" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="10" ></Slider>
+                <Label BindingContext="{x:Reference slider}"
+                   Text="{Binding Value, StringFormat='Ocjena {0} '}" 
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsVisible="{Binding IsVisible}"
+                   ></Label>
+                <Button Text="Ocijeni"  IsVisible="{Binding ShowOcijeni}"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

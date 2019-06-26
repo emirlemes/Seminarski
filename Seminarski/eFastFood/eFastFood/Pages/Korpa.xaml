@@ -16,7 +16,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+            <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#aaccff" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
             <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -41,6 +41,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label Text="{Binding PriceOfCart ,StringFormat='Cijena narudžbe: {0} KM'}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             <Button Command="{Binding Naruci}" Text="Naruči" Margin="10,0,10,20" ></Button>
         </StackLayout>
     </ContentPage.Content>

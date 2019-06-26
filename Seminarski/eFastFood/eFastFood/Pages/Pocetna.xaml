@@ -14,15 +14,16 @@
         <VM:PocetnaVM/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}"></ToolbarItem>
+        <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}" ></ToolbarItem>
+        <ToolbarItem Text="{Binding PriceOfCart, Mode=TwoWay, StringFormat='{0} KM'}" ></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="#aaccff" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" x:Name="listaProizvoda">
+            <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#aaccff" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" ItemTapped="ListaProizvoda_ItemTapped" x:Name="listaProizvoda">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -43,9 +44,6 @@
                                     <Label Text="{Binding Naziv}"></Label>
                                     <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
                                     <Label Text="{Binding Opis}"></Label>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding OpisModal_Tapped}"></TapGestureRecognizer>
-                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                                 <Image
                     Source="plus.png"
@@ -54,8 +52,10 @@
                     HeightRequest="32"
                     WidthRequest="32"
                     Grid.Column="2">
+
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.AddToCart_Tapped, Source={x:Reference PageInstance} }" CommandParameter="{Binding Text, Source={x:Reference proizvodID}}"></TapGestureRecognizer>
+                                        <ClickGestureRecognizer Command="{Binding BindingContext.AddToCart_Tapped, Source={x:Reference PageInstance} }" CommandParameter="{Binding Text, Source={x:Reference proizvodID}}"></ClickGestureRecognizer>
                                     </Image.GestureRecognizers>
                                 </Image>
                             </Grid>

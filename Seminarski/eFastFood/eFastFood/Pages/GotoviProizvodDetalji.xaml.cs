@@ -11,17 +11,17 @@ using Xamarin.Forms.Xaml;
 namespace eFastFood.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OcijeniProizvod : ContentPage
+    public partial class GotoviProizvodDetalji : ContentPage
     {
-        public OcijeniProizvod()
+        public GotoviProizvodDetalji()
         {
             InitializeComponent();
         }
 
-        public OcijeniProizvod(int id)
+        public GotoviProizvodDetalji(int id, bool ocijeni)
         {
             InitializeComponent();
-            BindingContext = new OcijeniProizvodVM(this, id);
+            BindingContext = new GotoviProizvodDetaljiVM(this, id, ocijeni);
         }
     }
 }

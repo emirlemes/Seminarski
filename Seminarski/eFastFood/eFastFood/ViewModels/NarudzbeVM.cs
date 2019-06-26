@@ -29,23 +29,16 @@ namespace eFastFood.ViewModels
             set { _OrdersList = value; OnPropertyChanged(); }
         }
 
-        public RelayCommand<string> OcijniBtn { get; set; }
 
         public NarudzbeVM() { }
 
         public NarudzbeVM(Page page)
         {
-            OcijniBtn = new RelayCommand<string>(OcijniPage);
 
             this.page = page;
             IsBusy = true;
             Task.Run(async () => await LoadData());
             IsBusy = false;
-        }
-
-        private void OcijniPage(string id)
-        {
-
         }
 
         private async Task LoadData()

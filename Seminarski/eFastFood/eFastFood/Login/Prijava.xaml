@@ -7,16 +7,15 @@
              x:Class="eFastFood.Login.Prijava">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="0,50">
+            <StackLayout Margin="50">
                 <Label Text="Prijava"
-                           TextColor="Black"
                            FontSize="Large"
                        Margin="0,0,0,40" HorizontalOptions="Center"></Label>
 
-                <Label Text="" TextColor="Black" HorizontalOptions="Center" ></Label>
+                <Label Text=""  HorizontalOptions="Center" ></Label>
                 <Entry x:Name="email" Placeholder="Email" HorizontalTextAlignment="Center"></Entry>
 
-                <Label Text="" TextColor="Black" HorizontalOptions="Center"></Label>
+                <Label Text=""  HorizontalOptions="Center"></Label>
                 <Entry x:Name="lozinka" IsPassword="True" Placeholder="Lozinka" HorizontalTextAlignment="Center"></Entry>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,30">

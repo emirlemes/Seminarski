@@ -213,16 +213,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\eFastFood_PCL\eFastFood_PCL.csproj">
-      <Project>{EB779762-47AD-4A8F-8A6E-9D09745A7420}</Project>
-      <Name>eFastFood_PCL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eFastFood_PCL\eFastFood_PCL.csproj">
+      <Project>{27a88194-f622-43e0-ba2f-b637a37070e2}</Project>
+      <Name>eFastFood_PCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

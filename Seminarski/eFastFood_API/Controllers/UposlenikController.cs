@@ -19,7 +19,7 @@ namespace eFastFood_API.Controllers
     {
         // readonly new List<string> tokeni = new List<string>();
 
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Uposlenik
         [HttpGet]
@@ -177,11 +177,6 @@ namespace eFastFood_API.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool UposlenikExists(int id)
-        {
-            return _db.Uposlenik.Count(e => e.UposlenikID == id) > 0;
         }
     }
 }

@@ -14,15 +14,18 @@ namespace eFastFood.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MeniItem : ContentPage
     {
+        private object bc;
         public MeniItem(string Title, List<GotoviProizvod> gotoviProizvodi)
         {
             InitializeComponent();
-            BindingContext = new MeniItemVM(this, Title, gotoviProizvodi);
+            bc = new MeniItemVM(this, Title, gotoviProizvodi);
+            BindingContext = bc;
         }
 
-        //private void AddToCart_Tapped(object sender, EventArgs e)
-        //{
-        //    DisplayAlert("Radi", "Radi", "OK");
-        //}
+        protected override void OnAppearing()
+        {
+            ((MeniItemVM)bc).PriceOfCart = Global.GetOrderPrice();
+            base.OnAppearing();
+        }
     }
 }

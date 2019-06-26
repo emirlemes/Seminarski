@@ -46,7 +46,7 @@ namespace eFastFood.ViewModels
         {
             this.page = page;
             Snimi_Button = new RelayCommand(async () => await Snimi());
-            LoadData();
+            Task.Run(() => LoadData());
         }
 
         private async Task Snimi()
@@ -77,12 +77,14 @@ namespace eFastFood.ViewModels
 
         void LoadData()
         {
+            IsBusy = true;
             Klijent k = Global.prijavnjeniKorisnik;
             Ime = k.Ime;
             Prezime = k.Prezime;
             Adresa = k.Adresa;
             BrojTelefona = k.BrojTelefona;
             Email = k.Email;
+            IsBusy = false;
         }
 
 

@@ -3,6 +3,7 @@ using eFastFood_PCL.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
@@ -34,6 +35,16 @@ namespace eFastFood
                 stavkeNarudzbe.Find(x => x.GotoviProizvodID == GotoviProizvodID).Kolicina = Kolicina;
         }
 
+        public static float GetOrderPrice()
+        {
+            float cijena = 0;
+            foreach (var item in stavkeNarudzbe)
+            {
+                var gp = proizvodi.Where(x => x.GotoviProizvodID == item.GotoviProizvodID).FirstOrDefault();
+                cijena += (float)(gp.Cijena * item.Kolicina);
+            }
+            return cijena;
+        }
         #region API Route
         public static string ApiUrl = Application.Current.Resources["APIAddress"].ToString();
 

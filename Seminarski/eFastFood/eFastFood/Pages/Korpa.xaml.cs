@@ -13,10 +13,12 @@ namespace eFastFood.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Korpa : ContentPage
     {
+        private object bc;
         public Korpa()
         {
+            bc = new KorpaVM(this);
             InitializeComponent();
-            BindingContext = new KorpaVM(this);
+            BindingContext = bc;
         }
 
         private void Entry_Unfocused(object sender, FocusEventArgs e)
@@ -27,11 +29,17 @@ namespace eFastFood.Pages
             if (Int32.TryParse(entry.Text, out kolicina) && Int32.TryParse(entry.MaxLength.ToString(), out gpId))
             {
                 if (kolicina == 0)
-                    DisplayAlert(Messages.error, Messages.quantity_zero, Messages.ok);
+                {
+                    var k = Global.stavkeNarudzbe.Where(x => x.GotoviProizvodID == gpId).FirstOrDefault();
+                    Global.stavkeNarudzbe.Remove(k);
+                    var m = ((KorpaVM)bc).GotoviProizvodiList.Where(x => x.GotoviProizvodID == gpId).FirstOrDefault();
+                    ((KorpaVM)bc).GotoviProizvodiList.Remove(m);
+                }
                 else
                     Global.stavkeNarudzbe.Where(x => x.GotoviProizvodID == gpId).FirstOrDefault().Kolicina = kolicina;
-            }
 
+                ((KorpaVM)bc).PriceOfCart = Global.GetOrderPrice();
+            }
         }
     }
 }

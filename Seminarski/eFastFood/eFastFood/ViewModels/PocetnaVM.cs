@@ -19,25 +19,26 @@ namespace eFastFood.ViewModels
     public class PocetnaVM : INotifyPropertyChanged
     {
         private APIHelper gotoviProizvidiService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
+
         private List<GotoviProizvod> _gpList { get; set; }
-
         private Page page { get; set; }
-
+        private float _PriceOfCart { get; set; }
         //OBRISATI
         private APIHelper klijentService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
         //OBRISATI
 
+        public float PriceOfCart
+        {
+            get { return _PriceOfCart; }
+            set { _PriceOfCart = value; OnPropertyChanged(); }
+        }
 
         public string Title { get; set; } = "Početna";
 
         public List<GotoviProizvod> GotoviProizvodiList
         {
             get { return _gpList; }
-            set
-            {
-                _gpList = value;
-                OnPropertyChanged();
-            }
+            set { _gpList = value; OnPropertyChanged(); }
         }
 
 
@@ -55,6 +56,7 @@ namespace eFastFood.ViewModels
             Cart_Clicked = new RelayCommand(async () => await page.Navigation.PushAsync(new Korpa()));
             AddToCart_Tapped = new Command<string>(AddToCart);
             OpisModal_Tapped = new Command(ModalDisplay);
+            PriceOfCart = Global.GetOrderPrice();
             Task.Run(async () => await LoadProizvode());
         }
 
@@ -67,7 +69,10 @@ namespace eFastFood.ViewModels
         {
             int a = 0;
             if (Int32.TryParse(id, out a))
+            {
                 Global.AddToCart(a, 1);
+                PriceOfCart = Global.GetOrderPrice();
+            }
         }
 
         private async Task LoadProizvode()

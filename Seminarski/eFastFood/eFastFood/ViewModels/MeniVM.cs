@@ -18,19 +18,19 @@ namespace eFastFood.ViewModels
         public MeniVM(TabbedPage page)
         {
             this.page = page;
-            IsBusy = true;
-            LoadTabs();
-            IsBusy = false;
+            Task.Run(() => LoadTabs());
         }
 
         private void LoadTabs()
         {
+            IsBusy = true;
             List<string> kategorije = Global.proizvodi.Select(x => x.Kategorija.Naziv).Distinct().ToList();
             foreach (var naziv in kategorije)
             {
                 List<GotoviProizvod> proizvodi = Global.proizvodi.Where(x => x.Kategorija.Naziv == naziv).ToList();
                 page.Children.Add(new MeniItem(naziv, proizvodi));
             }
+            IsBusy = false;
         }
 
         private bool _IsBusy;

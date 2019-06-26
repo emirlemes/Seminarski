@@ -25,6 +25,15 @@ namespace eFastFood_API.Controllers
         {
             return Ok(_db.GPProizvod.Where(x => x.GotoviProizvodID == id).ToList());
         }
+        [HttpGet]
+        [ResponseType(typeof(List<string>))]
+        [Route("api/GPProizvod/ProizvodiByGID/{id}")]
+        public IHttpActionResult ProizvodiByGID(int id)
+        {
+            List<int> proizvodi = _db.GPProizvod.Where(x => x.GotoviProizvodID == id).Select(c => c.ProizvodID).ToList();
+            List<string> lista = _db.Proizvod.Where(x => proizvodi.Contains(x.ProizvodID)).Select(x => x.Naziv).ToList();
+            return Ok(lista);
+        }
 
         // PUT: api/GPProizvod/GPProizvodListEdit/
         [HttpPut]

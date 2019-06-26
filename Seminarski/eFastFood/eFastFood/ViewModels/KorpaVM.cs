@@ -20,12 +20,18 @@ namespace eFastFood.ViewModels
     {
         private Page page { get; set; }
         private ObservableCollection<GotoviProizvodXaml> _GotoviProizvodiList { get; set; } = new ObservableCollection<GotoviProizvodXaml>();
-
+        private float _PriceOfCart { get; set; }
 
         public ObservableCollection<GotoviProizvodXaml> GotoviProizvodiList
         {
             get { return _GotoviProizvodiList; }
             set { _GotoviProizvodiList = value; OnPropertyChanged(); }
+        }
+
+        public float PriceOfCart
+        {
+            get { return _PriceOfCart; }
+            set { _PriceOfCart = value; OnPropertyChanged(); }
         }
 
         public RelayCommand Naruci { get; set; }
@@ -36,19 +42,25 @@ namespace eFastFood.ViewModels
 
         public KorpaVM(Page page)
         {
-            Naruci = new RelayCommand(async () => await ZakljuciNarudzbu(), canExecute);
             this.page = page;
             IsBusy = true;
-            LoadProizvode();
+            Task.Run(() => LoadProizvode()).Wait();
             IsBusy = false;
+            Naruci = new RelayCommand(async () => await ZakljuciNarudzbu(), canExecute);
+            PriceOfCart = Global.GetOrderPrice();
         }
 
-        private bool canExecute() { return GotoviProizvodiList.Count > 0; }
+        private bool canExecute()
+        {
+            return GotoviProizvodiList.Count > 0;
+        }
 
         private async Task ZakljuciNarudzbu()
         {
-            await page.Navigation.PushAsync(new NarudzbaDetalji());
-
+            if (GotoviProizvodiList.Where(x => x.Kolicina == 0).ToList().Count > 0)
+                await page.DisplayAlert(Messages.error, Messages.quantity_zero, Messages.ok);
+            else
+                await page.Navigation.PushAsync(new NarudzbaDetalji());
         }
 
         private void LoadProizvode()
@@ -60,11 +72,9 @@ namespace eFastFood.ViewModels
                 GotoviProizvodiList.Add(model);
             }
 
-
             foreach (var item in GotoviProizvodiList)
                 item.Kolicina = Global.stavkeNarudzbe.Where(x => x.GotoviProizvodID == item.GotoviProizvodID).FirstOrDefault().Kolicina;
         }
-
 
         private bool _IsBusy;
 

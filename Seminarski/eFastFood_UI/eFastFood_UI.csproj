@@ -300,12 +300,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\eFastFood_PCL\eFastFood_PCL.csproj">
-      <Project>{EB779762-47AD-4A8F-8A6E-9D09745A7420}</Project>
-      <Name>eFastFood_PCL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
@@ -319,6 +313,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eFastFood_PCL\eFastFood_PCL.csproj">
+      <Project>{27a88194-f622-43e0-ba2f-b637a37070e2}</Project>
+      <Name>eFastFood_PCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,7 +23,7 @@ namespace eFastFood.Pages
         private void Item_Tapped(object sender, ItemTappedEventArgs e)
         {
             var gp = e.Item as GotoviProizvod;
-            this.Navigation.PushAsync(new OcijeniProizvod(gp.GotoviProizvodID));
+            this.Navigation.PushAsync(new GotoviProizvodDetalji(gp.GotoviProizvodID, true));
         }
     }
 }

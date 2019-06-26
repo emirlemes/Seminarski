@@ -5,16 +5,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace eFastFood.ViewModels
 {
-    class MeniItemVM : INotifyPropertyChanged
+    public class MeniItemVM : INotifyPropertyChanged
     {
         private Page page { get; set; }
         private List<GotoviProizvod> _GotoviProizvodiList { get; set; }
+        private float _PriceOfCart { get; set; }
 
         public string Title { get; set; }
+
+        public float PriceOfCart
+        {
+            get { return _PriceOfCart; }
+            set { _PriceOfCart = value; OnPropertyChanged(); }
+        }
 
         public List<GotoviProizvod> GotoviProizvodiList
         {
@@ -34,12 +42,19 @@ namespace eFastFood.ViewModels
             Title = title;
         }
 
+
+
         private void AddToCart(string id)
         {
             int a = 0;
             if (Int32.TryParse(id, out a))
+            {
                 Global.AddToCart(a, 1);
+                PriceOfCart = Global.GetOrderPrice();
+            }
         }
+
+
 
         private bool _IsBusy;
 
@@ -52,8 +67,6 @@ namespace eFastFood.ViewModels
                 OnPropertyChanged();
             }
         }
-
-
 
         #region INotifyPropertyChanged
 

@@ -24,37 +24,10 @@ namespace eFastFood.Pages
             BindingContext = new PocetnaVM(this);
         }
 
-        //private async void Cart_Clicked(object sender, EventArgs e)
-        //{
-        //    var page = (Page)Activator.CreateInstance(typeof(Korpa));
-        //    page.Title = "Korpa";
-        //    await Navigation.PushAsync(page);
-        //}
-
-        //private void AddToCart_Tapped(object sender, EventArgs e)
-        //{
-        //    var args = (TappedEventArgs)e;
-        //    var myObject = args.Parameter;
-
-        //    if (myObject != null)
-        //    {
-        //        if (Global.trenutnaNarudzba == null)
-        //            Global.trenutnaNarudzba = new Narudzba();
-        //        if (Global.trenutnaNarudzba.NarudzbaStavka == null)
-        //            Global.trenutnaNarudzba.NarudzbaStavka = new List<NarudzbaStavka>();
-
-        //        //Global.trenutnaNarudzba.NarudzbaStavka.Add(new NarudzbaStavka()
-        //        //{
-        //        //    GotoviProizvodID = gp.GotoviProizvodID,
-        //        //    Kolicina = 1,
-        //        //});
-        //    }
-        //    DisplayAlert("Radi", "Radi", "OK");
-        //}
-
-        //private void OpisModal_Tapped(object sender, EventArgs e)
-        //{
-        //    DisplayAlert("Radi", "Radi", "OK");
-        //}
+        private void ListaProizvoda_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var gp = e.Item as GotoviProizvod;
+            this.Navigation.PushAsync(new GotoviProizvodDetalji(gp.GotoviProizvodID, false));
+        }
     }
 }
