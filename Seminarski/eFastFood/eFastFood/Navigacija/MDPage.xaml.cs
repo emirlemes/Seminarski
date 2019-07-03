@@ -13,31 +13,30 @@ namespace eFastFood.Navigacija
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MDPage : MasterDetailPage
     {
+        MDPageMaster masterPage;
         public MDPage()
         {
-            InitializeComponent();
-            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+            masterPage = new MDPageMaster();
+            Master = masterPage;
+            Detail = new NavigationPage(new Pocetna());
+            masterPage.listView.ItemSelected += OnItemSelected;
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MDPageMenuItem;
-            if (item == null)
-                return;
-
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
-
-            Detail = new NavigationPage(page);
-            IsPresented = false;
-
-            MasterPage.ListView.SelectedItem = null;
+            if (item != null)
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                masterPage.listView.SelectedItem = null;
+                IsPresented = false;
+            }
         }
 
         private void Cart_Clicked(object sender, EventArgs e)
         {
             var page = (Page)Activator.CreateInstance(typeof(Korpa));
-            page.Title = "Korpa";
             Detail = new NavigationPage(page);
             IsPresented = false;
         }

@@ -101,6 +101,16 @@
           <Property Name="GotoviProizvodID" Type="int" Nullable="false" />
           <Property Name="Kolicina" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Ocjena">
+          <Key>
+            <PropertyRef Name="OcjenaID" />
+          </Key>
+          <Property Name="OcjenaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumerickaOcjena" Type="int" Nullable="false" />
+          <Property Name="Komentar" Type="nvarchar" MaxLength="200" />
+          <Property Name="GotoviProizvodID" Type="int" Nullable="false" />
+          <Property Name="KlijentID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Proizvod">
           <Key>
             <PropertyRef Name="ProizvodID" />
@@ -256,6 +266,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Ocjena__GotoviPr__160F4887">
+          <End Role="GotoviProizvod" Type="Self.GotoviProizvod" Multiplicity="1" />
+          <End Role="Ocjena" Type="Self.Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GotoviProizvod">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ocjena__KlijentI__17036CC0">
+          <End Role="Klijent" Type="Self.Klijent" Multiplicity="1" />
+          <End Role="Ocjena" Type="Self.Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijent">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Proizvod__Dobavl__4AB81AF0">
           <End Role="Dobavljac" Type="Self.Dobavljac" Multiplicity="1" />
           <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
@@ -316,6 +350,7 @@
           <EntitySet Name="MjernaJedinica" EntityType="Self.MjernaJedinica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Narudzba" EntityType="Self.Narudzba" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NarudzbaStavka" EntityType="Self.NarudzbaStavka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ocjena" EntityType="Self.Ocjena" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proizvod" EntityType="Self.Proizvod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uloga" EntityType="Self.Uloga" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uposlenik" EntityType="Self.Uposlenik" Schema="dbo" store:Type="Tables" />
@@ -358,6 +393,14 @@
           <AssociationSet Name="FK__NarudzbaS__Narud__59FA5E80" Association="Self.FK__NarudzbaS__Narud__59FA5E80">
             <End Role="Narudzba" EntitySet="Narudzba" />
             <End Role="NarudzbaStavka" EntitySet="NarudzbaStavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ocjena__GotoviPr__160F4887" Association="Self.FK__Ocjena__GotoviPr__160F4887">
+            <End Role="GotoviProizvod" EntitySet="GotoviProizvod" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ocjena__KlijentI__17036CC0" Association="Self.FK__Ocjena__KlijentI__17036CC0">
+            <End Role="Klijent" EntitySet="Klijent" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
           </AssociationSet>
           <AssociationSet Name="FK__Proizvod__Dobavl__4AB81AF0" Association="Self.FK__Proizvod__Dobavl__4AB81AF0">
             <End Role="Dobavljac" EntitySet="Dobavljac" />
@@ -455,6 +498,15 @@
             <End Role="Uposlenik" EntitySet="Uposlenik" />
             <End Role="Dostava" EntitySet="Dostava" />
           </AssociationSet>
+          <EntitySet Name="Ocjena" EntityType="eFastFoodTestModel.Ocjena" />
+          <AssociationSet Name="FK__Ocjena__GotoviPr__160F4887" Association="eFastFoodTestModel.FK__Ocjena__GotoviPr__160F4887">
+            <End Role="GotoviProizvod" EntitySet="GotoviProizvod" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ocjena__KlijentI__17036CC0" Association="eFastFoodTestModel.FK__Ocjena__KlijentI__17036CC0">
+            <End Role="Klijent" EntitySet="Klijent" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Dobavljac">
           <Key>
@@ -482,6 +534,7 @@
           <NavigationProperty Name="Kategorija" Relationship="eFastFoodTestModel.FK__GotoviPro__Kateg__398D8EEE" FromRole="GotoviProizvod" ToRole="Kategorija" />
           <NavigationProperty Name="GPProizvod" Relationship="eFastFoodTestModel.FK__GPProizvo__Gotov__4D94879B" FromRole="GotoviProizvod" ToRole="GPProizvod" />
           <NavigationProperty Name="NarudzbaStavka" Relationship="eFastFoodTestModel.FK__NarudzbaS__Gotov__5AEE82B9" FromRole="GotoviProizvod" ToRole="NarudzbaStavka" />
+          <NavigationProperty Name="Ocjena" Relationship="eFastFoodTestModel.FK__Ocjena__GotoviPr__160F4887" FromRole="GotoviProizvod" ToRole="Ocjena" />
         </EntityType>
         <EntityType Name="GPProizvod">
           <Key>
@@ -521,6 +574,7 @@
           <Property Name="UlogaID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Uloga" Relationship="eFastFoodTestModel.FK__Klijent__UlogaID__5441852A" FromRole="Klijent" ToRole="Uloga" />
           <NavigationProperty Name="Narudzba" Relationship="eFastFoodTestModel.FK__Narudzba__Klijen__571DF1D5" FromRole="Klijent" ToRole="Narudzba" />
+          <NavigationProperty Name="Ocjena" Relationship="eFastFoodTestModel.FK__Ocjena__KlijentI__17036CC0" FromRole="Klijent" ToRole="Ocjena" />
         </EntityType>
         <EntityType Name="MjernaJedinica">
           <Key>
@@ -773,6 +827,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Ocjena">
+          <Key>
+            <PropertyRef Name="OcjenaID" />
+          </Key>
+          <Property Name="OcjenaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumerickaOcjena" Type="Int32" Nullable="false" />
+          <Property Name="Komentar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GotoviProizvodID" Type="Int32" Nullable="false" />
+          <Property Name="KlijentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GotoviProizvod" Relationship="eFastFoodTestModel.FK__Ocjena__GotoviPr__160F4887" FromRole="Ocjena" ToRole="GotoviProizvod" />
+          <NavigationProperty Name="Klijent" Relationship="eFastFoodTestModel.FK__Ocjena__KlijentI__17036CC0" FromRole="Ocjena" ToRole="Klijent" />
+        </EntityType>
+        <Association Name="FK__Ocjena__GotoviPr__160F4887">
+          <End Type="eFastFoodTestModel.GotoviProizvod" Role="GotoviProizvod" Multiplicity="1" />
+          <End Type="eFastFoodTestModel.Ocjena" Role="Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GotoviProizvod">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="GotoviProizvodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ocjena__KlijentI__17036CC0">
+          <End Type="eFastFoodTestModel.Klijent" Role="Klijent" Multiplicity="1" />
+          <End Type="eFastFoodTestModel.Ocjena" Role="Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijent">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -928,6 +1018,17 @@
                 <ScalarProperty Name="UposlenikID" ColumnName="UposlenikID" />
                 <ScalarProperty Name="NarudzbaID" ColumnName="NarudzbaID" />
                 <ScalarProperty Name="DostavaID" ColumnName="DostavaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ocjena">
+            <EntityTypeMapping TypeName="eFastFoodTestModel.Ocjena">
+              <MappingFragment StoreEntitySet="Ocjena">
+                <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+                <ScalarProperty Name="GotoviProizvodID" ColumnName="GotoviProizvodID" />
+                <ScalarProperty Name="Komentar" ColumnName="Komentar" />
+                <ScalarProperty Name="NumerickaOcjena" ColumnName="NumerickaOcjena" />
+                <ScalarProperty Name="OcjenaID" ColumnName="OcjenaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

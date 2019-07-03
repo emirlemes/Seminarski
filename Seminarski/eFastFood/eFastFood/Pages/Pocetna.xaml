@@ -22,8 +22,8 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#aaccff" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" ItemTapped="ListaProizvoda_ItemTapped" x:Name="listaProizvoda">
+            <ActivityIndicator  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+            <ListView IsVisible="{Binding IsBusyO}" RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" ItemTapped="ListaProizvoda_ItemTapped" x:Name="listaProizvoda">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

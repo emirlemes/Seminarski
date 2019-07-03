@@ -23,6 +23,9 @@ namespace eFastFood.ViewModels
         private bool _AddressaShow { get; set; }
         private bool _PreuzmiURestoran { get; set; }
         private string _AddressText { get; set; } = "";
+        private bool _ButtonEnable { get; set; }
+
+        public bool ButtonEnable { get => _ButtonEnable; set { _ButtonEnable = value; OnPropertyChanged(); } }
 
         public string AddressText
         {
@@ -33,8 +36,7 @@ namespace eFastFood.ViewModels
                 {
                     _AddressText = value;
                     OnPropertyChanged();
-                    if (_AddressText.Length > 3)
-                        NaruciBtn.RaiseCanExecuteChanged();
+                    ButtonEnable = _AddressText.Length > 3 ? true : false;
                 }
             }
         }
@@ -61,11 +63,10 @@ namespace eFastFood.ViewModels
         {
             DostavaBtn = new RelayCommand(ShowDostava);
             PreuzmiURestoranuBtn = new RelayCommand(ShowPreuzmi);
-            NaruciBtn = new RelayCommand(async () => await Naruci(), canExecute);
+            NaruciBtn = new RelayCommand(async () => await Naruci(), () => AddressText.Length > 3);
             this.page = page;
         }
 
-        private bool canExecute() => AddressText.Length > 3;
 
         private async Task Naruci()
         {

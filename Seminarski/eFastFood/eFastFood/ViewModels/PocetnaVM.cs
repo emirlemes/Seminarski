@@ -108,6 +108,21 @@ namespace eFastFood.ViewModels
             }
         }
 
+
+        private bool _IsBusyO;
+
+        public bool IsBusyO
+        {
+            get { return _IsBusyO; }
+            set
+            {
+                _IsBusyO = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         private bool _IsBusy;
 
         public bool IsBusy
@@ -116,6 +131,7 @@ namespace eFastFood.ViewModels
             set
             {
                 _IsBusy = value;
+                IsBusyO = !value;
                 OnPropertyChanged();
             }
         }

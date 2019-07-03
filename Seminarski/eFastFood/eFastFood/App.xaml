@@ -10,6 +10,11 @@
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Black" />
             </Style>
+            <Style TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="#aaccff"></Setter>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
+            </Style>
             <x:String x:Key="APIAddress">https://seminaskiapi.azurewebsites.net/api/</x:String>
             <!--https://seminaskiapi.azurewebsites.net-->
             <!--http://localhost:54321-->

@@ -1,11 +1,5 @@
-﻿using eFastFood.Login;
-using eFastFood.Navigacija;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using eFastFood.Navigacija;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace eFastFood
 {

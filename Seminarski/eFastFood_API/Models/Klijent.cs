@@ -18,6 +18,7 @@ namespace eFastFood_API.Models
         public Klijent()
         {
             this.Narudzba = new HashSet<Narudzba>();
+            this.Ocjena = new HashSet<Ocjena>();
         }
     
         public int KlijentID { get; set; }
@@ -34,5 +35,7 @@ namespace eFastFood_API.Models
         public virtual Uloga Uloga { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Narudzba> Narudzba { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ocjena> Ocjena { get; set; }
     }
 }

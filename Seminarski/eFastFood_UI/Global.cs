@@ -15,11 +15,11 @@ namespace eFastFood_UI
         public static int ResizeHeight = Int32.Parse(ConfigurationManager.AppSettings["resizedImgHeight"]);
         public static int ResizeWidth = Int32.Parse(ConfigurationManager.AppSettings["resizedImgWidth"]);
 
-        public static string EmailAdress = ConfigurationManager.AppSettings["EmailAdress"];
-        public static string EmailHost = ConfigurationManager.AppSettings["EmailHost"];
-        public static int EmailPort = Int32.Parse(ConfigurationManager.AppSettings["EmailPort"]);
-        public static string EmailUsername = ConfigurationManager.AppSettings["EmailUsername"];
-        public static string EmailPassword = ConfigurationManager.AppSettings["EmailPassword"];
+        //public static string EmailAdress = ConfigurationManager.AppSettings["EmailAdress"];
+        //public static string EmailHost = ConfigurationManager.AppSettings["EmailHost"];
+        //public static int EmailPort = Int32.Parse(ConfigurationManager.AppSettings["EmailPort"]);
+        //public static string EmailUsername = ConfigurationManager.AppSettings["EmailUsername"];
+        //public static string EmailPassword = ConfigurationManager.AppSettings["EmailPassword"];
 
         #region API Route
         public static string ApiUrl = ConfigurationManager.AppSettings["APIAddress"];

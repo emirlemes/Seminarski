@@ -52,5 +52,9 @@ namespace eFastFood_PCL.Helpers
                 return vrati;
         }
 
+        public static string ToDateApiString(this DateTime date)
+        {
+            return date.ToString("MM/dd/yyyy").Replace('.', '-');
+        }
     }
 }

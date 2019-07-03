@@ -186,9 +186,7 @@
             // 
             // naruciButton
             // 
-            this.naruciButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.naruciButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.naruciButton.Location = new System.Drawing.Point(473, 48);
             this.naruciButton.Name = "naruciButton";
             this.naruciButton.Size = new System.Drawing.Size(100, 30);

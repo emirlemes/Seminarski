@@ -120,6 +120,12 @@
       <DependentUpon>GotoviProizvodiIndex.cs</DependentUpon>
     </Compile>
     <Compile Include="GotoviProizvodiUI\GPProizvodDataSet.cs" />
+    <Compile Include="IzvjestajiUI\NarudzbeIzvjestaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IzvjestajiUI\NarudzbeIzvjestaj.Designer.cs">
+      <DependentUpon>NarudzbeIzvjestaj.cs</DependentUpon>
+    </Compile>
     <Compile Include="KategorijaUI\KategorijaAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GotoviProizvodiUI\GotoviProizvodiIndex.resx">
       <DependentUpon>GotoviProizvodiIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IzvjestajiUI\NarudzbeIzvjestaj.resx">
+      <DependentUpon>NarudzbeIzvjestaj.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KategorijaUI\KategorijaAdd.resx">
       <DependentUpon>KategorijaAdd.cs</DependentUpon>

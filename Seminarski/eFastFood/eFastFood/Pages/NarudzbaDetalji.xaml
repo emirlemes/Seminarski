@@ -34,13 +34,13 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Text="Adresa dostave:" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"></Label>
                 <Entry Text="{Binding AddressText}" Keyboard="Default" Grid.Column="1" Grid.Row="0"  VerticalOptions="Center" Margin="0,0,20,0"></Entry>
-                <Button Text="Naruči" Command="{Binding NaruciBtn}" HorizontalOptions="Center" VerticalOptions="Center" Grid.ColumnSpan="2" Grid.Row="2" HeightRequest="150" WidthRequest="150"></Button>
+                <Button Text="Naruči" Command="{Binding NaruciBtn}" IsEnabled="{Binding ButtonEnable}" HorizontalOptions="Center" VerticalOptions="Center" Grid.ColumnSpan="2" Grid.Row="2" HeightRequest="150" WidthRequest="150"></Button>
             </Grid>
             <Grid IsVisible="{Binding PreuzmiURestoran}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Text="Naruči" Command="{Binding NaruciBtn}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" HeightRequest="150" WidthRequest="150"></Button>
+                <Button Text="Naruči" Command="{Binding NaruciBtn}" IsEnabled="{Binding ButtonEnable}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" HeightRequest="150" WidthRequest="150"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

@@ -16,42 +16,18 @@ namespace eFastFood.Navigacija
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MDPageMaster : ContentPage
     {
-        public ListView ListView;
 
         public MDPageMaster()
         {
             InitializeComponent();
-
-            BindingContext = new MDPageMasterMasterViewModel();
-            ListView = MenuItemsListView;
-        }
-
-        class MDPageMasterMasterViewModel : INotifyPropertyChanged
-        {
-            public ObservableCollection<MDPageMenuItem> MenuItems { get; set; }
-
-            public MDPageMasterMasterViewModel()
+            listView.ItemsSource = new List<MDPageMenuItem>()
             {
-                MenuItems = new ObservableCollection<MDPageMenuItem>(new[]
-                {
                     new MDPageMenuItem { Id = 0, Title = "Početna", TargetType=typeof(Pocetna), ImageSource="home.png" },
                     new MDPageMenuItem { Id = 1, Title = "Meni" , TargetType=typeof(Meni), ImageSource="menu.png" },
                     new MDPageMenuItem { Id = 2, Title = "Korpa" , TargetType=typeof(Korpa), ImageSource="cart.png" },
                     new MDPageMenuItem { Id = 3, Title = "Narudžbe" , TargetType=typeof(Narudzbe), ImageSource="orders.png" },
                     new MDPageMenuItem { Id = 4, Title = "Profil" , TargetType=typeof(Profil), ImageSource="profil.png" },
-                });
-            }
-
-            #region INotifyPropertyChanged Implementation
-            public event PropertyChangedEventHandler PropertyChanged;
-            void OnPropertyChanged([CallerMemberName] string propertyName = "")
-            {
-                if (PropertyChanged == null)
-                    return;
-
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            #endregion
+            };
         }
     }
 }

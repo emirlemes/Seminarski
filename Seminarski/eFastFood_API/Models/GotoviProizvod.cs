@@ -19,6 +19,7 @@ namespace eFastFood_API.Models
         {
             this.GPProizvod = new HashSet<GPProizvod>();
             this.NarudzbaStavka = new HashSet<NarudzbaStavka>();
+            this.Ocjena = new HashSet<Ocjena>();
         }
     
         public int GotoviProizvodID { get; set; }
@@ -35,5 +36,7 @@ namespace eFastFood_API.Models
         public virtual ICollection<GPProizvod> GPProizvod { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NarudzbaStavka> NarudzbaStavka { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ocjena> Ocjena { get; set; }
     }
 }

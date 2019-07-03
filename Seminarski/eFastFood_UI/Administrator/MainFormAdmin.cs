@@ -1,5 +1,6 @@
 ﻿using eFastFood_UI.DobavljacUI;
 using eFastFood_UI.GotoviProizvodiUI;
+using eFastFood_UI.IzvjestajiUI;
 using eFastFood_UI.KategorijaUI;
 using eFastFood_UI.KorisniciUI;
 using eFastFood_UI.NarudzbeUI;
@@ -180,6 +181,29 @@ namespace eFastFood_UI.Administrator
                 }
 
                 NarudzbeIndex frm = new NarudzbeIndex
+                {
+                    MdiParent = this,
+                    Dock = DockStyle.Fill
+                };
+                frm.Show();
+            }
+        }
+
+        private void NarudžbeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["NarudzbeIzvjestaj"] as NarudzbeIzvjestaj) != null)
+            {
+                //Forma otvorena
+            }
+            else
+            {
+                foreach (Form fr in this.MdiChildren)
+                {
+                    fr.Dispose();
+                    fr.Close();
+                }
+
+                NarudzbeIzvjestaj frm = new NarudzbeIzvjestaj
                 {
                     MdiParent = this,
                     Dock = DockStyle.Fill

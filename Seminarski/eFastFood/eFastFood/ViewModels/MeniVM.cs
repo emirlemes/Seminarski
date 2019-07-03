@@ -1,11 +1,9 @@
 ﻿using eFastFood.Pages;
 using eFastFood_PCL.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -18,7 +16,7 @@ namespace eFastFood.ViewModels
         public MeniVM(TabbedPage page)
         {
             this.page = page;
-            Task.Run(() => LoadTabs());
+            LoadTabs();
         }
 
         private void LoadTabs()
@@ -26,10 +24,7 @@ namespace eFastFood.ViewModels
             IsBusy = true;
             List<string> kategorije = Global.proizvodi.Select(x => x.Kategorija.Naziv).Distinct().ToList();
             foreach (var naziv in kategorije)
-            {
-                List<GotoviProizvod> proizvodi = Global.proizvodi.Where(x => x.Kategorija.Naziv == naziv).ToList();
-                page.Children.Add(new MeniItem(naziv, proizvodi));
-            }
+                page.Children.Add(new MeniItem(naziv));
             IsBusy = false;
         }
 

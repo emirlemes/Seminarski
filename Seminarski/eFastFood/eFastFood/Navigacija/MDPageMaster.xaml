@@ -7,19 +7,10 @@
              x:Class="eFastFood.Navigacija.MDPageMaster"
              Title="Master">
     <StackLayout>
-        <ListView x:Name="MenuItemsListView"
+        <ListView x:Name="listView" x:FieldModifier="public"
               SeparatorVisibility="None"
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}">
-            <d:ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Page 1</x:String>
-                    <x:String>Page 2</x:String>
-                    <x:String>Page 3</x:String>
-                    <x:String>Page 4</x:String>
-                    <x:String>Page 5</x:String>
-                </x:Array>
-            </d:ListView.ItemsSource>
             <ListView.Header>
                 <Grid BackgroundColor="#03A9F4">
                     <Grid.ColumnDefinitions>
@@ -33,18 +24,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
-                    <Label
-              Grid.Column="1"
-              Grid.Row="2"
-              Text="AppName"
-              Style="{DynamicResource SubtitleStyle}"/>
+                    <Label Grid.Column="1" Grid.Row="2" Text="AppName" Style="{DynamicResource SubtitleStyle}"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-
                             <Image 
                                 Source="{Binding ImageSource}"
                                 VerticalOptions="Center"
@@ -56,7 +42,6 @@
                                 VerticalOptions="FillAndExpand"
                                 VerticalTextAlignment="Center" 
                                 Text="{Binding Title}" 
-                                d:Text="{Binding .}"
                                 FontSize="24"
                                 Margin="20,0,0,0"
                                 />

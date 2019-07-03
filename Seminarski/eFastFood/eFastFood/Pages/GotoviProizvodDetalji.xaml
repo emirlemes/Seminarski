@@ -40,7 +40,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Slider x:Name="slider" IsVisible="{Binding ShowOcijeni}" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="10" ></Slider>
+                <Slider x:Name="slider" IsVisible="{Binding ShowOcijeni}" ValueChanged="Slider_ValueChanged" VerticalOptions="CenterAndExpand" Minimum="0" Maximum="10" ></Slider>
                 <Label BindingContext="{x:Reference slider}"
                    Text="{Binding Value, StringFormat='Ocjena {0} '}" 
                    FontSize="Large"

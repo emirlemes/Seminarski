@@ -37,6 +37,8 @@
             this.dobavljačiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.korisniciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.izvještajiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.narudžbeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +51,8 @@
             this.proizvodiToolStripMenuItem,
             this.gotoviProizvodiToolStripMenuItem,
             this.dobavljačiToolStripMenuItem,
-            this.korisniciToolStripMenuItem});
+            this.korisniciToolStripMenuItem,
+            this.izvještajiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(15, 5, 0, 5);
@@ -105,6 +108,21 @@
             this.notifyIcon.Text = "notifyIcon1";
             this.notifyIcon.Visible = true;
             // 
+            // izvještajiToolStripMenuItem
+            // 
+            this.izvještajiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.narudžbeToolStripMenuItem1});
+            this.izvještajiToolStripMenuItem.Name = "izvještajiToolStripMenuItem";
+            this.izvještajiToolStripMenuItem.Size = new System.Drawing.Size(73, 21);
+            this.izvještajiToolStripMenuItem.Text = "Izvještaji";
+            // 
+            // narudžbeToolStripMenuItem1
+            // 
+            this.narudžbeToolStripMenuItem1.Name = "narudžbeToolStripMenuItem1";
+            this.narudžbeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.narudžbeToolStripMenuItem1.Text = "Narudžbe";
+            this.narudžbeToolStripMenuItem1.Click += new System.EventHandler(this.NarudžbeToolStripMenuItem1_Click);
+            // 
             // MainFormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -135,5 +153,7 @@
         private System.Windows.Forms.ToolStripMenuItem korisniciToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem narudžbeToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ToolStripMenuItem izvještajiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem narudžbeToolStripMenuItem1;
     }
 }

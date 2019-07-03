@@ -9,7 +9,7 @@
              xmlns:pages="clr-namespace:eFastFood.Pages"
              MasterBehavior="Popover">
     <MasterDetailPage.Master>
-        <nav:MDPageMaster x:Name="MasterPage" />
+        <nav:MDPageMaster />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage>

@@ -182,6 +182,9 @@
     <Compile Include="Models\NarudzbaStavka.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Ocjena.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Proizvod.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

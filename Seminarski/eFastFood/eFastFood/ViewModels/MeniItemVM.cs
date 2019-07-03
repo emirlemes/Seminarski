@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,15 +35,22 @@ namespace eFastFood.ViewModels
 
         public MeniItemVM() { }
 
-        public MeniItemVM(Page page, string title, List<GotoviProizvod> gpList)
+        public MeniItemVM(Page page, string title)
         {
             AddToCart_Tapped = new Command<string>(AddToCart);
             this.page = page;
-            GotoviProizvodiList = gpList;
             Title = title;
+            GotoviProizvodiList = new List<GotoviProizvod>();
+            Task.Run(() => LoadData());
         }
 
-
+        private void LoadData()
+        {
+            IsBusy = true;
+            List<GotoviProizvod> gp = Global.proizvodi.Where(x => x.Kategorija.Naziv == Title).ToList();
+            GotoviProizvodiList.AddRange(gp);
+            IsBusy = false;
+        }
 
         private void AddToCart(string id)
         {
@@ -55,6 +63,18 @@ namespace eFastFood.ViewModels
         }
 
 
+        private bool _IsBusyO;
+
+        public bool IsBusyO
+        {
+            get { return _IsBusyO; }
+            set
+            {
+                _IsBusyO = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private bool _IsBusy;
 
@@ -64,6 +84,7 @@ namespace eFastFood.ViewModels
             set
             {
                 _IsBusy = value;
+                IsBusyO = !value;
                 OnPropertyChanged();
             }
         }

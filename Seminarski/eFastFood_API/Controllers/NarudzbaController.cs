@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
+using eFastFood_PCL.ViewModel;
 
 namespace eFastFood_API.Controllers
 {
@@ -102,6 +103,28 @@ namespace eFastFood_API.Controllers
             List<int> gp = _db.NarudzbaStavka.Where(x => orders.Contains(x.NarudzbaID)).Select(c => c.GotoviProizvodID).Distinct().ToList();
 
             return Ok(gp);
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(List<NarudzbeIzvjestajVM>))]
+        [Route("api/Narudzba/Izvjestaj/{datumOd}/{datumDo}/{userId?}")]
+        public IHttpActionResult Izvjestaj(DateTime datumOd, DateTime datumDo, int userId = 0)
+        {
+            List<NarudzbeIzvjestajVM> vs = _db.Narudzba.Where(x => x.Datum > datumOd && x.Datum < datumDo)
+                .Select(x => new NarudzbeIzvjestajVM()
+                {
+                    Cijena = x.UkupnaCijena,
+                    Datum = x.Datum,
+                    NarudzbaID = x.NarudzbaID,
+                    VrstaNarudzbe = _db.Dostava.Where(c => c.NarudzbaID == x.NarudzbaID).FirstOrDefault() != null ? "Dostava" : "Preuzimanje",
+                    Narucio = x.Klijent.Ime + " " + x.Klijent.Prezime,
+                    KlijentID = x.KlijentID
+                }).ToList();
+
+            if (userId != 0)
+                vs = vs.Where(x => x.KlijentID == userId).ToList();
+
+            return Ok(vs);
         }
 
         //PUT: api/Narudzba/PrebaciUPripremu/{id}

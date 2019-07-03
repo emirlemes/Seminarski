@@ -48,6 +48,8 @@ namespace eFastFood.ViewModels
             set { _SastojciVisina = value; OnPropertyChanged(); }
         }
 
+        public int[] Ocjene = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
         public RelayCommand OcijeniBtn { get; set; }
 
         public GotoviProizvodDetaljiVM(Page page, int id, bool ocijeni)
@@ -76,7 +78,7 @@ namespace eFastFood.ViewModels
 
         private void Ocijeni()
         {
-            throw new NotImplementedException();
+
         }
 
         public GotoviProizvodDetaljiVM() { }
