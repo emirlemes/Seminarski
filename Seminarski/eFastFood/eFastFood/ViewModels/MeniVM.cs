@@ -1,22 +1,26 @@
 ﻿using eFastFood.Pages;
-using eFastFood_PCL.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace eFastFood.ViewModels
 {
-    class MeniVM : INotifyPropertyChanged
+    public class MeniVM : INotifyPropertyChanged
     {
         private TabbedPage page { get; set; }
+
+        public string Title { get; set; } = "Meni";
 
         public MeniVM(TabbedPage page)
         {
             this.page = page;
-            LoadTabs();
+            Device.BeginInvokeOnMainThread(() => LoadTabs());
+        }
+
+        public MeniVM()
+        {
         }
 
         private void LoadTabs()

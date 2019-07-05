@@ -221,12 +221,12 @@ namespace eFastFood_API.Controllers
             return CreatedAtRoute("DefaultApi", new { id = narudzba.NarudzbaID }, narudzba);
         }
 
-        // POST: api/Narudzba/MobileOrderDostava
+        // POST: api/Narudzba/MobileOrder
 
         [HttpPost]
         [Route("api/Narudzba/MobileOrder")]
         [ResponseType(typeof(Narudzba))]
-        public IHttpActionResult MobileOrderDostava(Narudzba n)
+        public IHttpActionResult MobileOrder(Narudzba n)
         {
             Narudzba narudzba = new Narudzba()
             {
@@ -236,6 +236,7 @@ namespace eFastFood_API.Controllers
                 UkupnaCijena = n.UkupnaCijena,
                 VrstaNarudzbe = n.VrstaNarudzbe,
             };
+            _db.Narudzba.Add(narudzba);
             try
             {
                 _db.SaveChanges();

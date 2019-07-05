@@ -159,6 +159,9 @@
   <data name="success" xml:space="preserve">
     <value>Uspijeh</value>
   </data>
+  <data name="success_rated" xml:space="preserve">
+    <value>Proizvod uspješno ocjenjen.</value>
+  </data>
   <data name="user_updated" xml:space="preserve">
     <value>Korisnički podaci uspješno snimljeni.</value>
   </data>

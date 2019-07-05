@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:eFastFood.ViewModels"
              xmlns:local="clr-namespace:eFastFood.Converters"
              mc:Ignorable="d"
+             Title="{Binding Title}"
              x:Name="PageInstance"
              x:Class="eFastFood.Pages.Korpa">
     <ContentPage.BindingContext>

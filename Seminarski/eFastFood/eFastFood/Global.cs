@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace eFastFood
@@ -28,6 +29,7 @@ namespace eFastFood
                     GotoviProizvodID = GotoviProizvodID,
                 });
         }
+
         public static void ChangeQuantityInCart(int GotoviProizvodID, int Kolicina)
         {
             NarudzbaStavka exist = stavkeNarudzbe.Find(x => x.GotoviProizvodID == GotoviProizvodID);
@@ -45,6 +47,7 @@ namespace eFastFood
             }
             return cijena;
         }
+
         #region API Route
         public static string ApiUrl = Application.Current.Resources["APIAddress"].ToString();
 
@@ -60,7 +63,7 @@ namespace eFastFood
         public static string NarudzbeRoute = "Narudzba";
         public static string UlogeRoute = "Uloga";
         public static string DostavaRoute = "Dostava";
-
+        public static string OcjenaRoute = "Ocjena";
         #endregion
     }
 }

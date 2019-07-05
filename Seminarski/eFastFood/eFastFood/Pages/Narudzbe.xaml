@@ -14,26 +14,30 @@
     <ContentPage.Resources>
         <converter:ImageConverter x:Key="ImgConv"></converter:ImageConverter>
     </ContentPage.Resources>
-    <ListView RowHeight="120" ItemsSource="{Binding OrdersList}" ItemTapped="Item_Tapped">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Grid Margin="2,5,0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding SlikaUmanjeno,Converter={x:StaticResource ImgConv}}"></Image>
-                        <StackLayout Grid.Column="1">
-                            <Label Text="{Binding GotoviProizvodID}" x:Name="GotoviProizvodID" IsVisible="False"></Label>
-                            <Label Text="{Binding Naziv}"></Label>
-                            <Label Text="{Binding Opis}"></Label>
-                        </StackLayout>
-                        <!--<Button Text="Ocijeni" Command="{Binding BindingContext.OcijniBtn ,Source={x:Reference NarudzbePage}}" CommandParameter="{Binding Text,Source={x:Reference GotoviProizvodID}}"></Button>-->
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <StackLayout>
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"></ActivityIndicator>
+
+        <ListView RowHeight="120" ItemsSource="{Binding OrdersList}" ItemTapped="Item_Tapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="2,5,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding SlikaUmanjeno,Converter={x:StaticResource ImgConv}}"></Image>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding GotoviProizvodID}" x:Name="GotoviProizvodID" IsVisible="False"></Label>
+                                <Label Text="{Binding Naziv}"></Label>
+                                <Label Text="{Binding Opis}"></Label>
+                            </StackLayout>
+                            <!--<Button Text="Ocijeni" Command="{Binding BindingContext.OcijniBtn ,Source={x:Reference NarudzbePage}}" CommandParameter="{Binding Text,Source={x:Reference GotoviProizvodID}}"></Button>-->
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

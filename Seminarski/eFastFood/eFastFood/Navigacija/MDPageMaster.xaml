@@ -6,6 +6,10 @@
              mc:Ignorable="d"
              x:Class="eFastFood.Navigacija.MDPageMaster"
              Title="Master">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}" ></ToolbarItem>
+        <ToolbarItem Text="{Binding PriceOfCart, Mode=TwoWay, StringFormat='{0} KM'}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView x:Name="listView" x:FieldModifier="public"
               SeparatorVisibility="None"

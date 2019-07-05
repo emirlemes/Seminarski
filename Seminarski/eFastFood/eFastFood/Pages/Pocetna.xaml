@@ -13,17 +13,17 @@
     <ContentPage.BindingContext>
         <VM:PocetnaVM/>
     </ContentPage.BindingContext>
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}" ></ToolbarItem>
         <ToolbarItem Text="{Binding PriceOfCart, Mode=TwoWay, StringFormat='{0} KM'}" ></ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-            <ListView IsVisible="{Binding IsBusyO}" RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" ItemTapped="ListaProizvoda_ItemTapped" x:Name="listaProizvoda">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"></ActivityIndicator>
+            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}"  IsVisible="{Binding HideContent}"  ItemTapped="ListaProizvoda_ItemTapped" x:Name="listaProizvoda">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

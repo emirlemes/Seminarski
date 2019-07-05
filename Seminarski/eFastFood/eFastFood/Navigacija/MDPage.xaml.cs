@@ -14,8 +14,10 @@ namespace eFastFood.Navigacija
     public partial class MDPage : MasterDetailPage
     {
         MDPageMaster masterPage;
+
         public MDPage()
         {
+
             masterPage = new MDPageMaster();
             Master = masterPage;
             Detail = new NavigationPage(new Pocetna());
@@ -28,17 +30,35 @@ namespace eFastFood.Navigacija
             var item = e.SelectedItem as MDPageMenuItem;
             if (item != null)
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                var page = (Page)Activator.CreateInstance(item.TargetType);
+                var root = Detail.Navigation.NavigationStack[0];
                 masterPage.listView.SelectedItem = null;
-                IsPresented = false;
+                if (item.TargetType != root.GetType())
+                {
+                    //(Page)Activator.CreateInstance(item.TargetType);
+                    Detail.Navigation.InsertPageBefore(page, root);
+                    Device.BeginInvokeOnMainThread(async () => await Detail.Navigation.PopToRootAsync(false));
+                }
+                else
+                    IsPresented = false;
+
+                if (null != page)
+                    page.Appearing += CloseMenuEvent;
+
             }
+        }
+
+        private void CloseMenuEvent(object o, EventArgs args)
+        {
+            IsPresented = false;
+            var stack = Detail.Navigation.NavigationStack;
+            if (null != stack && stack.Count > 0)
+                Detail.Navigation.NavigationStack[0].Appearing -= CloseMenuEvent;
         }
 
         private void Cart_Clicked(object sender, EventArgs e)
         {
-            var page = (Page)Activator.CreateInstance(typeof(Korpa));
-            Detail = new NavigationPage(page);
-            IsPresented = false;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(Korpa)));
         }
     }
 }

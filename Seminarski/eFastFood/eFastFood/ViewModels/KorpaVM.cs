@@ -22,6 +22,8 @@ namespace eFastFood.ViewModels
         private ObservableCollection<GotoviProizvodXaml> _GotoviProizvodiList { get; set; } = new ObservableCollection<GotoviProizvodXaml>();
         private float _PriceOfCart { get; set; }
 
+        public string Title { get; set; } = "Korpa";
+
         public ObservableCollection<GotoviProizvodXaml> GotoviProizvodiList
         {
             get { return _GotoviProizvodiList; }
@@ -44,7 +46,7 @@ namespace eFastFood.ViewModels
         {
             this.page = page;
             IsBusy = true;
-            Task.Run(() => LoadProizvode()).Wait();
+            Task.Run(() => LoadProizvode());
             IsBusy = false;
             Naruci = new RelayCommand(async () => await ZakljuciNarudzbu(), canExecute);
             PriceOfCart = Global.GetOrderPrice();

@@ -40,13 +40,14 @@ namespace eFastFood.ViewModels
 
         public ProfilVM()
         {
-
+            IsBusy = true;
         }
         public ProfilVM(Page page)
         {
             this.page = page;
             Snimi_Button = new RelayCommand(async () => await Snimi());
             Task.Run(() => LoadData());
+            IsBusy = false;
         }
 
         private async Task Snimi()
@@ -77,14 +78,12 @@ namespace eFastFood.ViewModels
 
         void LoadData()
         {
-            IsBusy = true;
             Klijent k = Global.prijavnjeniKorisnik;
             Ime = k.Ime;
             Prezime = k.Prezime;
             Adresa = k.Adresa;
             BrojTelefona = k.BrojTelefona;
             Email = k.Email;
-            IsBusy = false;
         }
 
 

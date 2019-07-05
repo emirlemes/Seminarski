@@ -19,16 +19,16 @@
     <PackageReference Include="PCLCrypto" Version="2.0.147">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="PInvoke.NCrypt" Version="0.3.2">
+    <PackageReference Include="PInvoke.NCrypt" Version="0.5.184">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="Validation" Version="2.2.8">
+    <PackageReference Include="Validation" Version="2.4.22">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0">
       <NoWarn></NoWarn>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,5 +60,47 @@
     <EmbeddedResource Update="Pages\NarudzbaDetalji.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Login\Prijava.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Login\Registracija.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Navigacija\MDPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Navigacija\MDPageMaster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\GotoviProizvodDetalji.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Korpa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Meni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\MeniItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\NarudzbaDetalji.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Narudzbe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Pocetna.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Profil.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

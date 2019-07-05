@@ -131,6 +131,7 @@
     <Compile Include="Controllers\KlijentController.cs" />
     <Compile Include="Controllers\MjernaJedinicaController.cs" />
     <Compile Include="Controllers\NarudzbaController.cs" />
+    <Compile Include="Controllers\OcjenaController.cs" />
     <Compile Include="Controllers\ProizvodController.cs" />
     <Compile Include="Controllers\UlogaController.cs" />
     <Compile Include="Controllers\UposlenikController.cs" />

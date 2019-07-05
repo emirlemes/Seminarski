@@ -1,5 +1,7 @@
 ﻿using eFastFood.ViewModels;
-
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,8 +13,14 @@ namespace eFastFood.Pages
         public Meni()
         {
             InitializeComponent();
-            BindingContext = new MeniVM(this);
+        }
 
+        protected async override void OnAppearing()
+        {
+            if (BindingContext == null)
+                await Task.Run(() => BindingContext = new MeniVM(this));
+
+            base.OnAppearing();
         }
     }
 }

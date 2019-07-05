@@ -187,6 +187,15 @@ namespace eFastFood {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proizvod uspješno ocjenjen..
+        /// </summary>
+        internal static string success_rated {
+            get {
+                return ResourceManager.GetString("success_rated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Korisnički podaci uspješno snimljeni..
         /// </summary>
         internal static string user_updated {

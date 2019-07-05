@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -20,7 +21,7 @@ namespace eFastFood.ViewModels
     {
         private APIHelper gotoviProizvidiService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
 
-        private List<GotoviProizvod> _gpList { get; set; }
+        private ObservableCollection<GotoviProizvod> _gpList { get; set; }
         private Page page { get; set; }
         private float _PriceOfCart { get; set; }
         //OBRISATI
@@ -35,7 +36,7 @@ namespace eFastFood.ViewModels
 
         public string Title { get; set; } = "Početna";
 
-        public List<GotoviProizvod> GotoviProizvodiList
+        public ObservableCollection<GotoviProizvod> GotoviProizvodiList
         {
             get { return _gpList; }
             set { _gpList = value; OnPropertyChanged(); }
@@ -56,8 +57,10 @@ namespace eFastFood.ViewModels
             Cart_Clicked = new RelayCommand(async () => await page.Navigation.PushAsync(new Korpa()));
             AddToCart_Tapped = new Command<string>(AddToCart);
             OpisModal_Tapped = new Command(ModalDisplay);
-            PriceOfCart = Global.GetOrderPrice();
+            PriceOfCart = 0;
+            GotoviProizvodiList = null;
             Task.Run(async () => await LoadProizvode());
+
         }
 
         private void ModalDisplay(object obj)
@@ -77,51 +80,41 @@ namespace eFastFood.ViewModels
 
         private async Task LoadProizvode()
         {
+            PriceOfCart = Global.GetOrderPrice();
             //OBRISATI
             Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await (await klijentService.GetResponse(2.ToString())).Content.ReadAsStringAsync());
             //OBRISATI
-
+            IsBusy = true;
 
             if (Global.proizvodi == null)
             {
-                IsBusy = true;
                 HttpResponseMessage responseGP = await gotoviProizvidiService.GetActionResponse("GotoviProizvodMobile");
-
                 if (responseGP.IsSuccessStatusCode)
                 {
                     var gplista = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
                     Global.proizvodi = gplista;
-                    GotoviProizvodiList = Global.proizvodi;
-                    IsBusy = false;
+                    GotoviProizvodiList = new ObservableCollection<GotoviProizvod>(gplista);
                 }
                 else
                 {
-                    IsBusy = false;
                     await page.DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
                 }
             }
             else
             {
-                IsBusy = true;
-                GotoviProizvodiList = Global.proizvodi;
-                IsBusy = false;
+                GotoviProizvodiList = new ObservableCollection<GotoviProizvod>(Global.proizvodi);
             }
+            IsBusy = false;
+
         }
 
+        private bool _HideContent;
 
-        private bool _IsBusyO;
-
-        public bool IsBusyO
+        public bool HideContent
         {
-            get { return _IsBusyO; }
-            set
-            {
-                _IsBusyO = value;
-                OnPropertyChanged();
-            }
+            get { return _HideContent; }
+            set { _HideContent = value; OnPropertyChanged(); }
         }
-
-
 
         private bool _IsBusy;
 
@@ -131,7 +124,7 @@ namespace eFastFood.ViewModels
             set
             {
                 _IsBusy = value;
-                IsBusyO = !value;
+                HideContent = !value;
                 OnPropertyChanged();
             }
         }

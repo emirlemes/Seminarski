@@ -1,4 +1,5 @@
-﻿using eFastFood_PCL.Models;
+﻿using eFastFood.Pages;
+using eFastFood_PCL.Models;
 using eFastFood_PCL.Util;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
@@ -17,12 +18,28 @@ namespace eFastFood.ViewModels
     public class GotoviProizvodDetaljiVM : INotifyPropertyChanged
     {
         APIHelper gotoviPPService = new APIHelper(Global.ApiUrl, Global.GPProizvodRoute);
+        APIHelper ocjenaService = new APIHelper(Global.ApiUrl, Global.OcjenaRoute);
+
 
         private Page page { get; set; }
         private bool _ShowOcijeni { get; set; }
         private GotoviProizvod _GP { get; set; }
         private ObservableCollection<string> _Sastojci { get; set; }
         private int _SastojciVisina { get; set; }
+        private string _Komentar { get; set; }
+        private int _SliderValue { get; set; }
+
+        public int SliderValue
+        {
+            get { return _SliderValue; }
+            set { _SliderValue = value; OnPropertyChanged(); }
+        }
+
+        public string Komentar
+        {
+            get { return _Komentar; }
+            set { _Komentar = value; OnPropertyChanged(); }
+        }
 
         public bool ShowOcijeni
         {
@@ -48,20 +65,18 @@ namespace eFastFood.ViewModels
             set { _SastojciVisina = value; OnPropertyChanged(); }
         }
 
-        public int[] Ocjene = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
         public RelayCommand OcijeniBtn { get; set; }
 
         public GotoviProizvodDetaljiVM(Page page, int id, bool ocijeni)
         {
-            OcijeniBtn = new RelayCommand(Ocijeni);
+            OcijeniBtn = new RelayCommand(async () => await Ocijeni());
             ShowOcijeni = ocijeni;
             this.page = page;
             GP = Global.proizvodi.Find(x => x.GotoviProizvodID == id);
-            Task.Run(async () => await GetSastojke());
+            Task.Run(async () => await LoadData());
         }
 
-        private async Task GetSastojke()
+        private async Task LoadData()
         {
             IsBusy = true;
             HttpResponseMessage responseGPP = await gotoviPPService.GetActionResponse("ProizvodiByGID", GP.GotoviProizvodID.ToString());
@@ -73,12 +88,37 @@ namespace eFastFood.ViewModels
             }
             else
                 await page.DisplayAlert(Messages.error, responseGPP.ReasonPhrase, Messages.ok);
+
+            HttpResponseMessage reponseO = await ocjenaService.GetActionResponse("OcjenaUserProduct", Global.prijavnjeniKorisnik.KlijentID.ToString() + "/" + GP.GotoviProizvodID.ToString());
+
+            if (reponseO.IsSuccessStatusCode)
+            {
+                var sliderValue = JsonConvert.DeserializeObject<Ocjena>(await reponseO.Content.ReadAsStringAsync());
+                SliderValue = sliderValue.NumerickaOcjena;
+                Komentar = sliderValue.Komentar;
+            }
+            else
+                await page.DisplayAlert(Messages.error, reponseO.ReasonPhrase, Messages.ok);
+
             IsBusy = false;
         }
 
-        private void Ocijeni()
+        private async Task Ocijeni()
         {
+            Ocjena ocjena = new Ocjena()
+            {
+                GotoviProizvodID = GP.GotoviProizvodID,
+                KlijentID = Global.prijavnjeniKorisnik.KlijentID,
+                NumerickaOcjena = SliderValue,
+                Komentar = Komentar
+            };
 
+            HttpResponseMessage reponseO = await ocjenaService.PostResponse(ocjena);
+
+            if (reponseO.IsSuccessStatusCode)
+                await page.DisplayAlert(Messages.success, Messages.success_rated, Messages.ok);
+            else
+                await page.DisplayAlert(Messages.error, reponseO.ReasonPhrase, Messages.ok);
         }
 
         public GotoviProizvodDetaljiVM() { }

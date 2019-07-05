@@ -21,7 +21,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#aaccff" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
             <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" IsVisible="{Binding IsBusyO}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
