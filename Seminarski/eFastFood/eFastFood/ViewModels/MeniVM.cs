@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace eFastFood.ViewModels
@@ -16,7 +17,7 @@ namespace eFastFood.ViewModels
         public MeniVM(TabbedPage page)
         {
             this.page = page;
-            Device.BeginInvokeOnMainThread(() => LoadTabs());
+            LoadTabs();
         }
 
         public MeniVM()

@@ -19,10 +19,7 @@ namespace eFastFood.Pages
 
         protected override void OnAppearing()
         {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                ((MeniItemVM)bc).PriceOfCart = Global.GetOrderPrice();
-            });
+            ((MeniItemVM)bc).PriceOfCart = Global.GetOrderPrice();
             base.OnAppearing();
         }
     }

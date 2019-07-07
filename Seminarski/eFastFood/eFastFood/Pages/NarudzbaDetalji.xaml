@@ -40,7 +40,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Text="Naruči" Command="{Binding NaruciBtn}" IsEnabled="{Binding ButtonEnable}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" HeightRequest="150" WidthRequest="150"></Button>
+                <Button Visual="Material" Text="Naruči" Command="{Binding NaruciBtn}" IsEnabled="{Binding ButtonEnable}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" HeightRequest="150" WidthRequest="150"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

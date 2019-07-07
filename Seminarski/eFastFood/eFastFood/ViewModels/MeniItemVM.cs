@@ -1,12 +1,11 @@
-﻿using eFastFood_PCL.Models;
+﻿using eFastFood.Pages;
+using eFastFood_PCL.Models;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace eFastFood.ViewModels
@@ -31,25 +30,18 @@ namespace eFastFood.ViewModels
             set { _GotoviProizvodiList = value; OnPropertyChanged(); }
         }
 
-        public Command AddToCart_Tapped { get; set; }
+        public RelayCommand<string> AddToCart_Tapped { get; set; }
+        public RelayCommand Cart_Clicked { get; set; }
 
         public MeniItemVM() { }
 
         public MeniItemVM(Page page, string title)
         {
-            AddToCart_Tapped = new Command<string>(AddToCart);
+            AddToCart_Tapped = new RelayCommand<string>(AddToCart);
+            Cart_Clicked = new RelayCommand(async () => await page.Navigation.PushAsync(new Korpa()));
             this.page = page;
             Title = title;
-            GotoviProizvodiList = new List<GotoviProizvod>();
-            Task.Run(() => LoadData());
-        }
-
-        private void LoadData()
-        {
-            IsBusy = true;
-            List<GotoviProizvod> gp = Global.proizvodi.Where(x => x.Kategorija.Naziv == Title).ToList();
-            GotoviProizvodiList.AddRange(gp);
-            IsBusy = false;
+            GotoviProizvodiList = Global.proizvodi.Where(x => x.Kategorija.Naziv == Title).ToList();
         }
 
         private void AddToCart(string id)
@@ -62,20 +54,6 @@ namespace eFastFood.ViewModels
             }
         }
 
-
-        private bool _IsBusyO;
-
-        public bool IsBusyO
-        {
-            get { return _IsBusyO; }
-            set
-            {
-                _IsBusyO = value;
-                OnPropertyChanged();
-            }
-        }
-
-
         private bool _IsBusy;
 
         public bool IsBusy
@@ -84,7 +62,6 @@ namespace eFastFood.ViewModels
             set
             {
                 _IsBusy = value;
-                IsBusyO = !value;
                 OnPropertyChanged();
             }
         }

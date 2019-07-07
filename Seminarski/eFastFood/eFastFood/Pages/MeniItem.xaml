@@ -22,7 +22,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" IsVisible="{Binding IsBusyO}">
+            <ListView RowHeight="120" ItemsSource="{Binding GotoviProizvodiList}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

@@ -13,14 +13,7 @@ namespace eFastFood.Pages
         public Meni()
         {
             InitializeComponent();
-        }
-
-        protected async override void OnAppearing()
-        {
-            if (BindingContext == null)
-                await Task.Run(() => BindingContext = new MeniVM(this));
-
-            base.OnAppearing();
+            BindingContext = new MeniVM(this);
         }
     }
 }

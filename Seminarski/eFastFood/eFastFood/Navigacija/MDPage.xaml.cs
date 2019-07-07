@@ -25,35 +25,27 @@ namespace eFastFood.Navigacija
         }
 
 
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MDPageMenuItem;
             if (item != null)
             {
-                var page = (Page)Activator.CreateInstance(item.TargetType);
-                var root = Detail.Navigation.NavigationStack[0];
                 masterPage.listView.SelectedItem = null;
+                IsPresented = false;
+                var root = Detail.Navigation.NavigationStack[0];
                 if (item.TargetType != root.GetType())
                 {
+                    //https://github.com/xamarin/Xamarin.Forms/issues/4398
+                    //Delay je zbog Bug-a u Xamarinu koje jos nije popravljen
+                    //if (Device.RuntimePlatform == Device.Android)
+                    await Task.Delay(225);
                     //(Page)Activator.CreateInstance(item.TargetType);
-                    Detail.Navigation.InsertPageBefore(page, root);
-                    Device.BeginInvokeOnMainThread(async () => await Detail.Navigation.PopToRootAsync(false));
-                }
-                else
-                    IsPresented = false;
 
-                if (null != page)
-                    page.Appearing += CloseMenuEvent;
+                    Detail.Navigation.InsertPageBefore((Page)Activator.CreateInstance(item.TargetType), root);
+                    await Detail.Navigation.PopToRootAsync(false);
+                }
 
             }
-        }
-
-        private void CloseMenuEvent(object o, EventArgs args)
-        {
-            IsPresented = false;
-            var stack = Detail.Navigation.NavigationStack;
-            if (null != stack && stack.Count > 0)
-                Detail.Navigation.NavigationStack[0].Appearing -= CloseMenuEvent;
         }
 
         private void Cart_Clicked(object sender, EventArgs e)

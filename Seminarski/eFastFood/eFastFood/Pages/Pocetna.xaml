@@ -13,10 +13,10 @@
     <ContentPage.BindingContext>
         <VM:PocetnaVM/>
     </ContentPage.BindingContext>
-    <!--<ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}" ></ToolbarItem>
         <ToolbarItem Text="{Binding PriceOfCart, Mode=TwoWay, StringFormat='{0} KM'}" ></ToolbarItem>
-    </ContentPage.ToolbarItems>-->
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>
@@ -45,14 +45,7 @@
                                     <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
                                     <Label Text="{Binding Opis}"></Label>
                                 </StackLayout>
-                                <Image
-                    Source="plus.png"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    HeightRequest="32"
-                    WidthRequest="32"
-                    Grid.Column="2">
-
+                                <Image Source="plus.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="32" WidthRequest="32" Grid.Column="2">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.AddToCart_Tapped, Source={x:Reference PageInstance} }" CommandParameter="{Binding Text, Source={x:Reference proizvodID}}"></TapGestureRecognizer>
                                         <ClickGestureRecognizer Command="{Binding BindingContext.AddToCart_Tapped, Source={x:Reference PageInstance} }" CommandParameter="{Binding Text, Source={x:Reference proizvodID}}"></ClickGestureRecognizer>
