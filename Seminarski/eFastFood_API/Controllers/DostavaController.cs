@@ -14,7 +14,7 @@ namespace eFastFood_API.Controllers
 {
     public class DostavaController : ApiController
     {
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Dostava
         public IHttpActionResult GetDostava()

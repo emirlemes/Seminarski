@@ -33,6 +33,9 @@
         <EntityTypeShape EntityType="eFastFoodTestModel.Ocjena" Width="1.5" PointX="8.25" PointY="5.375" />
         <AssociationConnector Association="eFastFoodTestModel.FK__Ocjena__GotoviPr__160F4887" />
         <AssociationConnector Association="eFastFoodTestModel.FK__Ocjena__KlijentI__17036CC0" />
+        <EntityTypeShape EntityType="eFastFoodTestModel.Racun" Width="1.5" PointX="13.5" PointY="11.375" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Racun__NarudzbaI__1AD3FDA4" />
+        <AssociationConnector Association="eFastFoodTestModel.FK__Racun__Uposlenik__19DFD96B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

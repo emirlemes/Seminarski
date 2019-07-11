@@ -123,6 +123,20 @@
           <Property Name="MjernaJedinicaID" Type="int" Nullable="false" />
           <Property Name="DobavljacID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Racun">
+          <Key>
+            <PropertyRef Name="RacunID" />
+          </Key>
+          <Property Name="RacunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrojRacuna" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DatumIzdavanja" Type="date" Nullable="false" />
+          <Property Name="CijenaBezPDV" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CijenaSaPDV" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VrstaPlacanja" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsPlaceno" Type="bit" />
+          <Property Name="UposlenikID" Type="int" />
+          <Property Name="NarudzbaID" Type="int" />
+        </EntityType>
         <EntityType Name="Uloga">
           <Key>
             <PropertyRef Name="UlogaID" />
@@ -314,6 +328,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Racun__NarudzbaI__1AD3FDA4">
+          <End Role="Narudzba" Type="Self.Narudzba" Multiplicity="0..1" />
+          <End Role="Racun" Type="Self.Racun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Narudzba">
+              <PropertyRef Name="NarudzbaID" />
+            </Principal>
+            <Dependent Role="Racun">
+              <PropertyRef Name="NarudzbaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Racun__Uposlenik__19DFD96B">
+          <End Role="Uposlenik" Type="Self.Uposlenik" Multiplicity="0..1" />
+          <End Role="Racun" Type="Self.Racun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uposlenik">
+              <PropertyRef Name="UposlenikID" />
+            </Principal>
+            <Dependent Role="Racun">
+              <PropertyRef Name="UposlenikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Uposlenik__Uloga__412EB0B6">
           <End Role="Uloga" Type="Self.Uloga" Multiplicity="1" />
           <End Role="Uposlenik" Type="Self.Uposlenik" Multiplicity="*" />
@@ -326,20 +364,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="esp_BrojNarudzbiAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="esp_GPPAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="GotoviProizvodID" Type="int" Mode="In" />
-          <Parameter Name="ProizvodID" Type="int" Mode="In" />
-          <Parameter Name="KolicinaUtroska" Type="decimal" Mode="In" />
-          <Parameter Name="MjernaJedinicaID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="esp_GPPDeleteByGPID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="esp_ProizvodOduzmi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ProizvodId" Type="int" Mode="In" />
-          <Parameter Name="Oduzeti" Type="decimal" Mode="In" />
-        </Function>
         <EntityContainer Name="eFastFoodTestModelStoreContainer">
           <EntitySet Name="Dobavljac" EntityType="Self.Dobavljac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dostava" EntityType="Self.Dostava" Schema="dbo" store:Type="Tables" />
@@ -352,6 +376,7 @@
           <EntitySet Name="NarudzbaStavka" EntityType="Self.NarudzbaStavka" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ocjena" EntityType="Self.Ocjena" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proizvod" EntityType="Self.Proizvod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Racun" EntityType="Self.Racun" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uloga" EntityType="Self.Uloga" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uposlenik" EntityType="Self.Uposlenik" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Dostava__Narudzb__02FC7413" Association="Self.FK__Dostava__Narudzb__02FC7413">
@@ -409,6 +434,14 @@
           <AssociationSet Name="FK__Proizvod__Mjerna__49C3F6B7" Association="Self.FK__Proizvod__Mjerna__49C3F6B7">
             <End Role="MjernaJedinica" EntitySet="MjernaJedinica" />
             <End Role="Proizvod" EntitySet="Proizvod" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Racun__NarudzbaI__1AD3FDA4" Association="Self.FK__Racun__NarudzbaI__1AD3FDA4">
+            <End Role="Narudzba" EntitySet="Narudzba" />
+            <End Role="Racun" EntitySet="Racun" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Racun__Uposlenik__19DFD96B" Association="Self.FK__Racun__Uposlenik__19DFD96B">
+            <End Role="Uposlenik" EntitySet="Uposlenik" />
+            <End Role="Racun" EntitySet="Racun" />
           </AssociationSet>
           <AssociationSet Name="FK__Uposlenik__Uloga__412EB0B6" Association="Self.FK__Uposlenik__Uloga__412EB0B6">
             <End Role="Uloga" EntitySet="Uloga" />
@@ -475,20 +508,6 @@
             <End Role="Uloga" EntitySet="Uloga" />
             <End Role="Uposlenik" EntitySet="Uposlenik" />
           </AssociationSet>
-          <FunctionImport Name="esp_BrojNarudzbiAll" ReturnType="Collection(eFastFoodTestModel.esp_BrojNarudzbiAll_Result)" />
-          <FunctionImport Name="esp_ProizvodOduzmi">
-            <Parameter Name="ProizvodId" Mode="In" Type="Int32" />
-            <Parameter Name="Oduzeti" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="esp_GPPDeleteByGPID">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="esp_GPPAdd">
-            <Parameter Name="GotoviProizvodID" Mode="In" Type="Int32" />
-            <Parameter Name="ProizvodID" Mode="In" Type="Int32" />
-            <Parameter Name="KolicinaUtroska" Mode="In" Type="Decimal" />
-            <Parameter Name="MjernaJedinicaID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="Dostava" EntityType="eFastFoodTestModel.Dostava" />
           <AssociationSet Name="FK__Dostava__Narudzb__02FC7413" Association="eFastFoodTestModel.FK__Dostava__Narudzb__02FC7413">
             <End Role="Narudzba" EntitySet="Narudzba" />
@@ -506,6 +525,15 @@
           <AssociationSet Name="FK__Ocjena__KlijentI__17036CC0" Association="eFastFoodTestModel.FK__Ocjena__KlijentI__17036CC0">
             <End Role="Klijent" EntitySet="Klijent" />
             <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
+          <EntitySet Name="Racun" EntityType="eFastFoodTestModel.Racun" />
+          <AssociationSet Name="FK__Racun__NarudzbaI__1AD3FDA4" Association="eFastFoodTestModel.FK__Racun__NarudzbaI__1AD3FDA4">
+            <End Role="Narudzba" EntitySet="Narudzba" />
+            <End Role="Racun" EntitySet="Racun" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Racun__Uposlenik__19DFD96B" Association="eFastFoodTestModel.FK__Racun__Uposlenik__19DFD96B">
+            <End Role="Uposlenik" EntitySet="Uposlenik" />
+            <End Role="Racun" EntitySet="Racun" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Dobavljac">
@@ -600,6 +628,7 @@
           <NavigationProperty Name="Klijent" Relationship="eFastFoodTestModel.FK__Narudzba__Klijen__571DF1D5" FromRole="Narudzba" ToRole="Klijent" />
           <NavigationProperty Name="NarudzbaStavka" Relationship="eFastFoodTestModel.FK__NarudzbaS__Narud__59FA5E80" FromRole="Narudzba" ToRole="NarudzbaStavka" />
           <NavigationProperty Name="Dostava" Relationship="eFastFoodTestModel.FK__Dostava__Narudzb__02FC7413" FromRole="Narudzba" ToRole="Dostava" />
+          <NavigationProperty Name="Racun" Relationship="eFastFoodTestModel.FK__Racun__NarudzbaI__1AD3FDA4" FromRole="Narudzba" ToRole="Racun" />
         </EntityType>
         <EntityType Name="NarudzbaStavka">
           <Key>
@@ -653,6 +682,7 @@
           <Property Name="UlogaID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Uloga" Relationship="eFastFoodTestModel.FK__Uposlenik__Uloga__412EB0B6" FromRole="Uposlenik" ToRole="Uloga" />
           <NavigationProperty Name="Dostava" Relationship="eFastFoodTestModel.FK__Dostava__Uposlen__03F0984C" FromRole="Uposlenik" ToRole="Dostava" />
+          <NavigationProperty Name="Racun" Relationship="eFastFoodTestModel.FK__Racun__Uposlenik__19DFD96B" FromRole="Uposlenik" ToRole="Racun" />
         </EntityType>
         <Association Name="FK__Proizvod__Dobavl__4AB81AF0">
           <End Type="eFastFoodTestModel.Dobavljac" Role="Dobavljac" Multiplicity="1" />
@@ -786,10 +816,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="esp_BrojNarudzbiAll_Result">
-          <Property Type="Int32" Name="KlijentID" Nullable="false" />
-          <Property Type="Int32" Name="BrojNarudzbi" Nullable="true" />
-        </ComplexType>
         <EntityType Name="Dostava">
           <Key>
             <PropertyRef Name="DostavaID" />
@@ -860,6 +886,46 @@
             </Principal>
             <Dependent Role="Ocjena">
               <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Racun">
+          <Key>
+            <PropertyRef Name="RacunID" />
+          </Key>
+          <Property Name="RacunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrojRacuna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DatumIzdavanja" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CijenaBezPDV" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CijenaSaPDV" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VrstaPlacanja" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsPlaceno" Type="Boolean" />
+          <Property Name="UposlenikID" Type="Int32" />
+          <Property Name="NarudzbaID" Type="Int32" />
+          <NavigationProperty Name="Narudzba" Relationship="eFastFoodTestModel.FK__Racun__NarudzbaI__1AD3FDA4" FromRole="Racun" ToRole="Narudzba" />
+          <NavigationProperty Name="Uposlenik" Relationship="eFastFoodTestModel.FK__Racun__Uposlenik__19DFD96B" FromRole="Racun" ToRole="Uposlenik" />
+        </EntityType>
+        <Association Name="FK__Racun__NarudzbaI__1AD3FDA4">
+          <End Type="eFastFoodTestModel.Narudzba" Role="Narudzba" Multiplicity="0..1" />
+          <End Type="eFastFoodTestModel.Racun" Role="Racun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Narudzba">
+              <PropertyRef Name="NarudzbaID" />
+            </Principal>
+            <Dependent Role="Racun">
+              <PropertyRef Name="NarudzbaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Racun__Uposlenik__19DFD96B">
+          <End Type="eFastFoodTestModel.Uposlenik" Role="Uposlenik" Multiplicity="0..1" />
+          <End Type="eFastFoodTestModel.Racun" Role="Racun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uposlenik">
+              <PropertyRef Name="UposlenikID" />
+            </Principal>
+            <Dependent Role="Racun">
+              <PropertyRef Name="UposlenikID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -998,17 +1064,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="esp_BrojNarudzbiAll" FunctionName="eFastFoodTestModel.Store.esp_BrojNarudzbiAll">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="eFastFoodTestModel.esp_BrojNarudzbiAll_Result">
-                <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
-                <ScalarProperty Name="BrojNarudzbi" ColumnName="BrojNarudzbi" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="esp_ProizvodOduzmi" FunctionName="eFastFoodTestModel.Store.esp_ProizvodOduzmi" />
-          <FunctionImportMapping FunctionImportName="esp_GPPDeleteByGPID" FunctionName="eFastFoodTestModel.Store.esp_GPPDeleteByGPID" />
-          <FunctionImportMapping FunctionImportName="esp_GPPAdd" FunctionName="eFastFoodTestModel.Store.esp_GPPAdd" />
           <EntitySetMapping Name="Dostava">
             <EntityTypeMapping TypeName="eFastFoodTestModel.Dostava">
               <MappingFragment StoreEntitySet="Dostava">
@@ -1029,6 +1084,21 @@
                 <ScalarProperty Name="Komentar" ColumnName="Komentar" />
                 <ScalarProperty Name="NumerickaOcjena" ColumnName="NumerickaOcjena" />
                 <ScalarProperty Name="OcjenaID" ColumnName="OcjenaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Racun">
+            <EntityTypeMapping TypeName="eFastFoodTestModel.Racun">
+              <MappingFragment StoreEntitySet="Racun">
+                <ScalarProperty Name="NarudzbaID" ColumnName="NarudzbaID" />
+                <ScalarProperty Name="UposlenikID" ColumnName="UposlenikID" />
+                <ScalarProperty Name="IsPlaceno" ColumnName="IsPlaceno" />
+                <ScalarProperty Name="VrstaPlacanja" ColumnName="VrstaPlacanja" />
+                <ScalarProperty Name="CijenaSaPDV" ColumnName="CijenaSaPDV" />
+                <ScalarProperty Name="CijenaBezPDV" ColumnName="CijenaBezPDV" />
+                <ScalarProperty Name="DatumIzdavanja" ColumnName="DatumIzdavanja" />
+                <ScalarProperty Name="BrojRacuna" ColumnName="BrojRacuna" />
+                <ScalarProperty Name="RacunID" ColumnName="RacunID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

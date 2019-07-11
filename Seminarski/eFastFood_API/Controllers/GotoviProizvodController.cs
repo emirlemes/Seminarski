@@ -15,7 +15,7 @@ namespace eFastFood_API.Controllers
 {
     public class GotoviProizvodController : ApiController
     {
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/GotoviProizvod
         public IHttpActionResult GetGotoviProizvod()

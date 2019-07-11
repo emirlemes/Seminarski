@@ -74,7 +74,7 @@ namespace eFastFood.ViewModels
             {
                 Datum = DateTime.Now,
                 KlijentID = Global.prijavnjeniKorisnik.KlijentID,
-                Status = "Nova",
+                Status = nameof(StatusNarudzbe.Nova),
                 VrstaNarudzbe = "ONLINE"
             };
             narudzba.NarudzbaStavka = Global.stavkeNarudzbe.ToList();

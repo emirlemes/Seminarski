@@ -11,7 +11,7 @@ namespace eFastFood_API.Controllers
 {
     public class OcjenaController : ApiController
     {
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Ocjena
         [ResponseType(typeof(List<Ocjena>))]

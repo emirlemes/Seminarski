@@ -3,13 +3,10 @@ using eFastFood_PCL.Helpers;
 using eFastFood_UI.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 
@@ -29,6 +26,10 @@ namespace eFastFood_UI.NarudzbeUI
             noveDataGridView.AutoGenerateColumns = false;
             pripremaDataGridView.AutoGenerateColumns = false;
             zavrseneDataGridView.AutoGenerateColumns = false;
+
+            noveDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            pripremaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            zavrseneDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void NarudzbeIndex_Load(object sender, EventArgs e)
@@ -45,6 +46,8 @@ namespace eFastFood_UI.NarudzbeUI
                 BindGridUPripremi();
             else if (narudzbeTabControl.SelectedIndex == 2)
                 BindGridZavrsene();
+            else if (narudzbeTabControl.SelectedIndex == 3)
+                BindGridOdbijene();
         }
 
         private void BindGridNove()
@@ -104,6 +107,25 @@ namespace eFastFood_UI.NarudzbeUI
                 MessageBox.Show(Messages.error + ": " + responseN.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void BindGridOdbijene()
+        {
+            HttpResponseMessage responseN = narudzbeService.GetActionResponse("GetNoveNarudzbe");
+            if (responseN.IsSuccessStatusCode)
+            {
+                narudzbeNove = responseN.Content.ReadAsAsync<List<Narudzba>>().Result;
+                noveDataGridView.DataSource = narudzbeNove.Select(x => new NarudzbaDataView()
+                {
+                    NarudzbaID = x.NarudzbaID,
+                    Cijena = x.UkupnaCijena,
+                    Datum = x.Datum.ToString("dd/MM/yyyy HH:mm"),
+                    Narucilac = x.Klijent.Ime + " " + x.Klijent.Prezime,
+                    VrstaNarudzbe = x.VrstaNarudzbe,
+                }).ToList();
+            }
+            else
+                MessageBox.Show(Messages.error + ": " + responseN.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private void NoveDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 5)
@@ -121,7 +143,11 @@ namespace eFastFood_UI.NarudzbeUI
                         BindGridNove();
                     }
                     else
-                        MessageBox.Show(Messages.error + ": " + responseN.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    {
+                        ErrorMessage m = responseN.Content.ReadAsAsync<ErrorMessage>().Result;
+                        MessageBox.Show(Messages.error + ": " + m.Message, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
 
             }
@@ -132,13 +158,19 @@ namespace eFastFood_UI.NarudzbeUI
                     MessageBox.Show(Messages.order_id_error, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
-                    HttpResponseMessage responseN = narudzbeService.GetActionResponse("GetStavkeNarudzbe", id.ToString());
+                    DetaljiView(id);
+                }
+            }
+            else if (e.ColumnIndex == 7)
+            {
+                int id = noveDataGridView.Rows[e.RowIndex].Cells[0].Value.ToInt();
+                if (id == 0)
+                    MessageBox.Show(Messages.order_id_error, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    HttpResponseMessage responseN = narudzbeService.GetActionResponse("PrebaciUOdbijene", id.ToString());
                     if (responseN.IsSuccessStatusCode)
-                    {
-                        List<NarudzbaStavka> list = responseN.Content.ReadAsAsync<List<NarudzbaStavka>>().Result;
-                        DetaljiNarudzbe form = new DetaljiNarudzbe(list);
-                        form.ShowDialog();
-                    }
+                        BindGridNove();
                     else
                         MessageBox.Show(Messages.error + ": " + responseN.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -157,7 +189,6 @@ namespace eFastFood_UI.NarudzbeUI
                     HttpResponseMessage responseN = narudzbeService.GetActionResponse("PrebaciUZavrsi", id.ToString());
                     if (responseN.IsSuccessStatusCode)
                     {
-                        //Dodati sistem za notifikacije za android OVDJE
                         BindGridUPripremi();
                     }
                     else
@@ -193,15 +224,7 @@ namespace eFastFood_UI.NarudzbeUI
                     MessageBox.Show(Messages.order_id_error, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
-                    HttpResponseMessage responseN = narudzbeService.GetActionResponse("GetStavkeNarudzbe", id.ToString());
-                    if (responseN.IsSuccessStatusCode)
-                    {
-                        List<NarudzbaStavka> list = responseN.Content.ReadAsAsync<List<NarudzbaStavka>>().Result;
-                        DetaljiNarudzbe form = new DetaljiNarudzbe(list);
-                        form.ShowDialog();
-                    }
-                    else
-                        MessageBox.Show(Messages.error + ": " + responseN.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DetaljiView(id);
                 }
             }
             else if (e.ColumnIndex == 6)
@@ -214,13 +237,38 @@ namespace eFastFood_UI.NarudzbeUI
                     PrintDocument printDocument = new PrintDocument();
 
                     printDialog.Document = printDocument;
-
                     printDocument.PrintPage += new PrintPageEventHandler((s, k) => printDocument_PrintPage(s, k, id));
-
                     if (printDialog.ShowDialog() == DialogResult.OK)
                         printDocument.Print();
                 }
             }
+        }
+
+        private void OdbijeneDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                int id = zavrseneDataGridView.Rows[e.RowIndex].Cells[0].Value.ToInt();
+                if (id == 0)
+                    MessageBox.Show(Messages.order_id_error, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    DetaljiView(id);
+                }
+            }
+        }
+
+        private void DetaljiView(int id)
+        {
+            HttpResponseMessage responseN = narudzbeService.GetActionResponse("GetStavkeNarudzbe", id.ToString());
+            if (responseN.IsSuccessStatusCode)
+            {
+                List<NarudzbaStavka> list = responseN.Content.ReadAsAsync<List<NarudzbaStavka>>().Result;
+                DetaljiNarudzbe form = new DetaljiNarudzbe(list);
+                form.ShowDialog();
+            }
+            else
+                MessageBox.Show(Messages.error + ": " + responseN.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e, int id)
@@ -250,10 +298,12 @@ namespace eFastFood_UI.NarudzbeUI
                 foreach (var item in stavke)
                 {
                     string proizvod = item.GotoviProizvod.Naziv.PadRight(30);
-                    string total = String.Format("{0:c}", item.GotoviProizvod.Cijena);
-                    string linija = proizvod + total;
-                    totalPrice += (float)item.GotoviProizvod.Cijena;
-                    g.DrawString(linija, font, brush, startX, startY + offset);
+                    g.DrawString(proizvod, font, brush, startX, startY + offset);
+                    offset = offset + (int)fontHeight + 5;
+                    string total = String.Format("{0}X", item.Kolicina).PadRight(15) + String.Format("{0:c}", item.GotoviProizvod.Cijena).PadRight(15) + String.Format("{0:c}", (item.Kolicina * item.GotoviProizvod.Cijena));
+                    item.GotoviProizvod.Cijena.ToString().PadRight(8);
+                    totalPrice += (float)item.GotoviProizvod.Cijena * item.Kolicina;
+                    g.DrawString(total, font, brush, startX, startY + offset);
 
                     offset = offset + (int)fontHeight + 5;
                 }
@@ -268,5 +318,12 @@ namespace eFastFood_UI.NarudzbeUI
                 g.DrawString("Hvala na posjeti".PadLeft(15), font, brush, startX, startY + offset);
             }
         }
+
+
+    }
+
+    public class ErrorMessage
+    {
+        public string Message { get; set; }
     }
 }

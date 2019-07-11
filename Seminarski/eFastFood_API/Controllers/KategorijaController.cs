@@ -14,7 +14,7 @@ namespace eFastFood_API.Controllers
 {
     public class KategorijaController : ApiController
     {
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Kategorija
         public IHttpActionResult GetKategorija()

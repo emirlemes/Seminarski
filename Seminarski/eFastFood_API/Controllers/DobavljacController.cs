@@ -14,7 +14,7 @@ namespace eFastFood_API.Controllers
 {
     public class DobavljacController : ApiController
     {
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Dobavljac
         [ResponseType(typeof(List<Dobavljac>))]

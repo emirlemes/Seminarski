@@ -14,7 +14,7 @@ namespace eFastFood_API.Controllers
 {
     public class GPProizvodController : ApiController
     {
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
 
         // GET: api/GPProizvod/SastojciByGPID/5
@@ -41,9 +41,20 @@ namespace eFastFood_API.Controllers
         [Route("api/GPProizvod/GPProizvodListEdit/{id}")]
         public IHttpActionResult GPProizvodListEdit(int id, List<GPProizvod> list)
         {
-            _db.esp_GPPDeleteByGPID(id);
-            foreach (var item in list)
-                _db.esp_GPPAdd(item.GotoviProizvodID, item.ProizvodID, item.KolicinaUtroska, item.MjernaJedinicaID);
+            var a = _db.GPProizvod.Where(x => id == x.GotoviProizvodID).ToList();
+            if (a == null)
+                return BadRequest();
+
+            a.ForEach(x => _db.GPProizvod.Remove(x));
+
+            list.ForEach(x =>
+            _db.GPProizvod.Add(new GPProizvod()
+            {
+                GotoviProizvodID = x.GotoviProizvodID,
+                ProizvodID = x.ProizvodID,
+                KolicinaUtroska = x.KolicinaUtroska,
+                MjernaJedinicaID = x.MjernaJedinicaID
+            }));
 
             return StatusCode(HttpStatusCode.NoContent);
         }

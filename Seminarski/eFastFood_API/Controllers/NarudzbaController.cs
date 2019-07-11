@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,7 +16,7 @@ namespace eFastFood_API.Controllers
 {
     public class NarudzbaController : ApiController
     {
-        private eFastFoodEntitie _db = new eFastFoodEntitie();
+        private readonly eFastFoodEntitie _db = new eFastFoodEntitie();
 
         // GET: api/Narudzba
         public IHttpActionResult GetNarudzba()
@@ -41,7 +42,7 @@ namespace eFastFood_API.Controllers
         public IHttpActionResult BrojNarudzbiAll()
         {
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
-            _db.esp_BrojNarudzbiAll().ToList().ForEach(x => keyValuePairs.Add(x.KlijentID, x.BrojNarudzbi ?? 0));
+            _db.Klijent.ForEachAsync(x => keyValuePairs.Add(x.KlijentID, _db.Narudzba.Count(c => x.KlijentID == c.KlijentID)));
             return Ok(keyValuePairs);
         }
 
@@ -51,7 +52,7 @@ namespace eFastFood_API.Controllers
         [Route("api/Narudzba/GetNoveNarudzbe")]
         public IHttpActionResult GetNoveNarudzbe()
         {
-            var list = _db.Narudzba.Where(x => x.Status == "Nova").ToList();
+            var list = _db.Narudzba.Where(x => x.Status == nameof(StatusNarudzbe.Nova)).ToList();
             list.ForEach(x => _db.Entry(x).Reference(c => c.Klijent).Load());
 
             return Ok(list);
@@ -63,7 +64,7 @@ namespace eFastFood_API.Controllers
         [Route("api/Narudzba/GetUPripremiNarudzbe")]
         public IHttpActionResult GetUPripremiNarudzbe()
         {
-            var list = _db.Narudzba.Where(x => x.Status == "Priprema").ToList();
+            var list = _db.Narudzba.Where(x => x.Status == nameof(StatusNarudzbe.Priprema)).ToList();
             list.ForEach(x => _db.Entry(x).Reference(c => c.Klijent).Load());
 
             return Ok(list);
@@ -75,7 +76,7 @@ namespace eFastFood_API.Controllers
         [Route("api/Narudzba/GetZavrseneNarudzbe")]
         public IHttpActionResult GetZavrseneNarudzbe()
         {
-            var list = _db.Narudzba.Where(x => x.Status == "Zavrsena").ToList();
+            var list = _db.Narudzba.Where(x => x.Status == nameof(StatusNarudzbe.Zavrsena)).ToList();
             list.ForEach(x => _db.Entry(x).Reference(c => c.Klijent).Load());
 
             return Ok(list);
@@ -133,7 +134,10 @@ namespace eFastFood_API.Controllers
         [Route("api/Narudzba/PrebaciUPripremu/{id}")]
         public IHttpActionResult PrebaciUPripremu(int id)
         {
+            string nemaDovoljnoProizvoda = String.Empty;
+
             Narudzba narudzba = _db.Narudzba.Where(x => x.NarudzbaID == id).FirstOrDefault();
+            Dictionary<Proizvod, decimal> oduzetiKolicinu = new Dictionary<Proizvod, decimal>();
             if (narudzba != null)
             {
                 _db.Entry(narudzba).Collection(x => x.NarudzbaStavka).Load();
@@ -144,14 +148,29 @@ namespace eFastFood_API.Controllers
                     {
                         var mj = _db.MjernaJedinica.Where(c => c.MjernaJedinicaID == GPP.MjernaJedinicaID).FirstOrDefault();
 
-                        var utrosak = (decimal)((double)GPP.KolicinaUtroska * Math.Pow(10, mj.Exponent) * NS.Kolicina);
+                        decimal utrosak = (decimal)((double)GPP.KolicinaUtroska * Math.Pow(10, mj.Exponent) * NS.Kolicina);
 
-                        _db.esp_ProizvodOduzmi(GPP.ProizvodID, utrosak);
+                        Proizvod k = _db.Proizvod.Find(GPP.ProizvodID);
+
+                        oduzetiKolicinu.Add(k, utrosak);
+                        if (utrosak >= k.Kolicina)
+                            nemaDovoljnoProizvoda += k.Naziv + " za pripremu " + _db.GotoviProizvod.Find(GPP.GotoviProizvodID).Naziv;
                     }
                 }
-                narudzba.Status = "Priprema";
-                _db.SaveChanges();
-                return Ok();
+                if (String.IsNullOrEmpty(nemaDovoljnoProizvoda))
+                {
+                    foreach (var item in oduzetiKolicinu)
+                        item.Key.Kolicina -= item.Value;
+
+                    narudzba.Status = nameof(StatusNarudzbe.Priprema);
+                    _db.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    nemaDovoljnoProizvoda = nemaDovoljnoProizvoda.Insert(0, "Nema dovoljno: ");
+                    return BadRequest(nemaDovoljnoProizvoda);
+                }
             }
             else
                 return NotFound();
@@ -166,7 +185,7 @@ namespace eFastFood_API.Controllers
             Narudzba n = _db.Narudzba.Where(x => x.NarudzbaID == id).FirstOrDefault();
             if (n != null)
             {
-                n.Status = "Zavrsena";
+                n.Status = nameof(StatusNarudzbe.Odbijena);
                 _db.SaveChanges();
                 return Ok();
             }
@@ -174,6 +193,22 @@ namespace eFastFood_API.Controllers
                 return NotFound();
         }
 
+        //PUT: api/Narudzba/PrebaciUOdbijene/{id}
+        [HttpGet]
+        [ResponseType(typeof(void))]
+        [Route("api/Narudzba/PrebaciUOdbijene/{id}")]
+        public IHttpActionResult PrebaciUOdbijene(int id)
+        {
+            Narudzba n = _db.Narudzba.Where(x => x.NarudzbaID == id).FirstOrDefault();
+            if (n != null)
+            {
+                n.Status = nameof(StatusNarudzbe.Odbijena);
+                _db.SaveChanges();
+                return Ok();
+            }
+            else
+                return NotFound();
+        }
         // PUT: api/Narudzba/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutNarudzba(int id, Narudzba narudzba)
@@ -208,9 +243,9 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Narudzba))]
         public IHttpActionResult PostNarudzba(Narudzba narudzba)
         {
+            _db.Narudzba.Add(narudzba);
             try
             {
-                _db.Narudzba.Add(narudzba);
                 _db.SaveChanges();
             }
             catch (Exception e)
