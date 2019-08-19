@@ -42,7 +42,11 @@ namespace eFastFood_API.Controllers
         public IHttpActionResult BrojNarudzbiAll()
         {
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
-            _db.Klijent.ForEachAsync(x => keyValuePairs.Add(x.KlijentID, _db.Narudzba.Count(c => x.KlijentID == c.KlijentID)));
+            var klijenti = _db.Klijent.ToList();
+
+            foreach (var x in klijenti)
+                keyValuePairs.Add(x.KlijentID, (int?)_db.Narudzba.Count(c => x.KlijentID == c.KlijentID) ?? 0);
+
             return Ok(keyValuePairs);
         }
 
@@ -82,6 +86,18 @@ namespace eFastFood_API.Controllers
             return Ok(list);
         }
 
+        // GET: api/Narudzba/GetOdbijeneNarudzbe
+        [HttpGet]
+        [ResponseType(typeof(List<Narudzba>))]
+        [Route("api/Narudzba/GetOdbijeneNarudzbe")]
+        public IHttpActionResult GetOdbijeneNarudzbe()
+        {
+            var list = _db.Narudzba.Where(x => x.Status == nameof(StatusNarudzbe.Odbijena)).ToList();
+            list.ForEach(x => _db.Entry(x).Reference(c => c.Klijent).Load());
+
+            return Ok(list);
+        }
+
         // GET: api/Narudzba/GetStavkeNarudzbe/{id}
         [HttpGet]
         [ResponseType(typeof(List<NarudzbaStavka>))]
@@ -106,6 +122,7 @@ namespace eFastFood_API.Controllers
             return Ok(gp);
         }
 
+        // GET: api/Narudzba/Izvjestaj/{datumOd}/{datumDo}/{userId?}
         [HttpGet]
         [ResponseType(typeof(List<NarudzbeIzvjestajVM>))]
         [Route("api/Narudzba/Izvjestaj/{datumOd}/{datumDo}/{userId?}")]
@@ -185,7 +202,7 @@ namespace eFastFood_API.Controllers
             Narudzba n = _db.Narudzba.Where(x => x.NarudzbaID == id).FirstOrDefault();
             if (n != null)
             {
-                n.Status = nameof(StatusNarudzbe.Odbijena);
+                n.Status = nameof(StatusNarudzbe.Zavrsena);
                 _db.SaveChanges();
                 return Ok();
             }
@@ -209,6 +226,7 @@ namespace eFastFood_API.Controllers
             else
                 return NotFound();
         }
+
         // PUT: api/Narudzba/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutNarudzba(int id, Narudzba narudzba)

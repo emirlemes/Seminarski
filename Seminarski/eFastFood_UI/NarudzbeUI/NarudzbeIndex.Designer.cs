@@ -32,6 +32,14 @@
             this.narudzbeTabControl = new System.Windows.Forms.TabControl();
             this.noveTabPage = new System.Windows.Forms.TabPage();
             this.noveDataGridView = new System.Windows.Forms.DataGridView();
+            this.NarudzbaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VrstaNarudzbe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Narucilac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Priprema = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Detalji = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Odbi = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pripremaTabPage = new System.Windows.Forms.TabPage();
             this.pripremaDataGridView = new System.Windows.Forms.DataGridView();
             this.narudzbaIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,21 +61,13 @@
             this.Printaj = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.odbijeneDataGridView = new System.Windows.Forms.DataGridView();
+            this.printDialog = new System.Windows.Forms.PrintDialog();
             this.narudzbaIDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vrstaNarudzbeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.narucilacDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cijenaDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datumDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetaljiOdbijene = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.NarudzbaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VrstaNarudzbe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Narucilac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Priprema = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Detalji = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Odbi = new System.Windows.Forms.DataGridViewButtonColumn();
             this.narudzbeTabControl.SuspendLayout();
             this.noveTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.noveDataGridView)).BeginInit();
@@ -93,7 +93,7 @@
             this.narudzbeTabControl.Margin = new System.Windows.Forms.Padding(4);
             this.narudzbeTabControl.Name = "narudzbeTabControl";
             this.narudzbeTabControl.SelectedIndex = 0;
-            this.narudzbeTabControl.Size = new System.Drawing.Size(705, 490);
+            this.narudzbeTabControl.Size = new System.Drawing.Size(775, 490);
             this.narudzbeTabControl.TabIndex = 0;
             this.narudzbeTabControl.SelectedIndexChanged += new System.EventHandler(this.NarudzbeTabControl_SelectedIndexChanged);
             // 
@@ -104,7 +104,7 @@
             this.noveTabPage.Margin = new System.Windows.Forms.Padding(4);
             this.noveTabPage.Name = "noveTabPage";
             this.noveTabPage.Padding = new System.Windows.Forms.Padding(4);
-            this.noveTabPage.Size = new System.Drawing.Size(697, 461);
+            this.noveTabPage.Size = new System.Drawing.Size(767, 461);
             this.noveTabPage.TabIndex = 0;
             this.noveTabPage.Text = "Nove ";
             this.noveTabPage.UseVisualStyleBackColor = true;
@@ -130,9 +130,76 @@
             this.noveDataGridView.Name = "noveDataGridView";
             this.noveDataGridView.ReadOnly = true;
             this.noveDataGridView.RowTemplate.Height = 25;
-            this.noveDataGridView.Size = new System.Drawing.Size(683, 441);
+            this.noveDataGridView.Size = new System.Drawing.Size(753, 438);
             this.noveDataGridView.TabIndex = 0;
             this.noveDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NoveDataGridView_CellClick);
+            // 
+            // NarudzbaID
+            // 
+            this.NarudzbaID.DataPropertyName = "NarudzbaID";
+            this.NarudzbaID.HeaderText = "NarudzbaID";
+            this.NarudzbaID.Name = "NarudzbaID";
+            this.NarudzbaID.ReadOnly = true;
+            this.NarudzbaID.Visible = false;
+            // 
+            // VrstaNarudzbe
+            // 
+            this.VrstaNarudzbe.DataPropertyName = "VrstaNarudzbe";
+            this.VrstaNarudzbe.HeaderText = "Vrsta narudžbe";
+            this.VrstaNarudzbe.Name = "VrstaNarudzbe";
+            this.VrstaNarudzbe.ReadOnly = true;
+            this.VrstaNarudzbe.Width = 130;
+            // 
+            // Narucilac
+            // 
+            this.Narucilac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Narucilac.DataPropertyName = "Narucilac";
+            this.Narucilac.HeaderText = "Naručio";
+            this.Narucilac.Name = "Narucilac";
+            this.Narucilac.ReadOnly = true;
+            // 
+            // Cijena
+            // 
+            this.Cijena.DataPropertyName = "Cijena";
+            this.Cijena.HeaderText = "Cijena";
+            this.Cijena.Name = "Cijena";
+            this.Cijena.ReadOnly = true;
+            this.Cijena.Width = 60;
+            // 
+            // Datum
+            // 
+            this.Datum.DataPropertyName = "Datum";
+            this.Datum.HeaderText = "Datum";
+            this.Datum.Name = "Datum";
+            this.Datum.ReadOnly = true;
+            this.Datum.Width = 130;
+            // 
+            // Priprema
+            // 
+            this.Priprema.HeaderText = "Akcija";
+            this.Priprema.Name = "Priprema";
+            this.Priprema.ReadOnly = true;
+            this.Priprema.Text = "U pripremu";
+            this.Priprema.UseColumnTextForButtonValue = true;
+            // 
+            // Detalji
+            // 
+            this.Detalji.HeaderText = "Detalji";
+            this.Detalji.Name = "Detalji";
+            this.Detalji.ReadOnly = true;
+            this.Detalji.Text = "Detalji";
+            this.Detalji.UseColumnTextForButtonValue = true;
+            // 
+            // Odbi
+            // 
+            this.Odbi.HeaderText = "Akcija";
+            this.Odbi.Name = "Odbi";
+            this.Odbi.ReadOnly = true;
+            this.Odbi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Odbi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Odbi.Text = "Odbi narudžbu";
+            this.Odbi.UseColumnTextForButtonValue = true;
+            this.Odbi.Width = 120;
             // 
             // pripremaTabPage
             // 
@@ -141,7 +208,7 @@
             this.pripremaTabPage.Margin = new System.Windows.Forms.Padding(4);
             this.pripremaTabPage.Name = "pripremaTabPage";
             this.pripremaTabPage.Padding = new System.Windows.Forms.Padding(4);
-            this.pripremaTabPage.Size = new System.Drawing.Size(697, 461);
+            this.pripremaTabPage.Size = new System.Drawing.Size(767, 461);
             this.pripremaTabPage.TabIndex = 1;
             this.pripremaTabPage.Text = "U pripremi";
             this.pripremaTabPage.UseVisualStyleBackColor = true;
@@ -168,7 +235,7 @@
             this.pripremaDataGridView.Name = "pripremaDataGridView";
             this.pripremaDataGridView.ReadOnly = true;
             this.pripremaDataGridView.RowTemplate.Height = 25;
-            this.pripremaDataGridView.Size = new System.Drawing.Size(683, 447);
+            this.pripremaDataGridView.Size = new System.Drawing.Size(753, 447);
             this.pripremaDataGridView.TabIndex = 0;
             this.pripremaDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PripremaDataGridView_CellClick);
             // 
@@ -240,7 +307,7 @@
             this.zavrseneTabPage.Location = new System.Drawing.Point(4, 25);
             this.zavrseneTabPage.Name = "zavrseneTabPage";
             this.zavrseneTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.zavrseneTabPage.Size = new System.Drawing.Size(697, 461);
+            this.zavrseneTabPage.Size = new System.Drawing.Size(767, 461);
             this.zavrseneTabPage.TabIndex = 2;
             this.zavrseneTabPage.Text = "Završene";
             this.zavrseneTabPage.UseVisualStyleBackColor = true;
@@ -267,7 +334,7 @@
             this.zavrseneDataGridView.Name = "zavrseneDataGridView";
             this.zavrseneDataGridView.ReadOnly = true;
             this.zavrseneDataGridView.RowTemplate.Height = 25;
-            this.zavrseneDataGridView.Size = new System.Drawing.Size(685, 449);
+            this.zavrseneDataGridView.Size = new System.Drawing.Size(755, 449);
             this.zavrseneDataGridView.TabIndex = 0;
             this.zavrseneDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ZavrseneDataGridView_CellClick);
             // 
@@ -333,7 +400,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(697, 461);
+            this.tabPage1.Size = new System.Drawing.Size(767, 461);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Odbijene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -358,9 +425,13 @@
             this.odbijeneDataGridView.Location = new System.Drawing.Point(6, 6);
             this.odbijeneDataGridView.Name = "odbijeneDataGridView";
             this.odbijeneDataGridView.ReadOnly = true;
-            this.odbijeneDataGridView.Size = new System.Drawing.Size(685, 449);
+            this.odbijeneDataGridView.Size = new System.Drawing.Size(755, 449);
             this.odbijeneDataGridView.TabIndex = 0;
             this.odbijeneDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OdbijeneDataGridView_CellClick);
+            // 
+            // printDialog
+            // 
+            this.printDialog.UseEXDialog = true;
             // 
             // narudzbaIDDataGridViewTextBoxColumn2
             // 
@@ -400,87 +471,21 @@
             this.datumDataGridViewTextBoxColumn2.HeaderText = "Datum";
             this.datumDataGridViewTextBoxColumn2.Name = "datumDataGridViewTextBoxColumn2";
             this.datumDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.datumDataGridViewTextBoxColumn2.Width = 130;
             // 
             // DetaljiOdbijene
             // 
             this.DetaljiOdbijene.HeaderText = "Detalji";
             this.DetaljiOdbijene.Name = "DetaljiOdbijene";
             this.DetaljiOdbijene.ReadOnly = true;
-            // 
-            // printDialog
-            // 
-            this.printDialog.UseEXDialog = true;
-            // 
-            // NarudzbaID
-            // 
-            this.NarudzbaID.DataPropertyName = "NarudzbaID";
-            this.NarudzbaID.HeaderText = "NarudzbaID";
-            this.NarudzbaID.Name = "NarudzbaID";
-            this.NarudzbaID.ReadOnly = true;
-            this.NarudzbaID.Visible = false;
-            // 
-            // VrstaNarudzbe
-            // 
-            this.VrstaNarudzbe.DataPropertyName = "VrstaNarudzbe";
-            this.VrstaNarudzbe.HeaderText = "Vrsta narudžbe";
-            this.VrstaNarudzbe.Name = "VrstaNarudzbe";
-            this.VrstaNarudzbe.ReadOnly = true;
-            this.VrstaNarudzbe.Width = 130;
-            // 
-            // Narucilac
-            // 
-            this.Narucilac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Narucilac.DataPropertyName = "Narucilac";
-            this.Narucilac.HeaderText = "Naručio";
-            this.Narucilac.Name = "Narucilac";
-            this.Narucilac.ReadOnly = true;
-            // 
-            // Cijena
-            // 
-            this.Cijena.DataPropertyName = "Cijena";
-            this.Cijena.HeaderText = "Cijena";
-            this.Cijena.Name = "Cijena";
-            this.Cijena.ReadOnly = true;
-            this.Cijena.Width = 70;
-            // 
-            // Datum
-            // 
-            this.Datum.DataPropertyName = "Datum";
-            this.Datum.HeaderText = "Datum";
-            this.Datum.Name = "Datum";
-            this.Datum.ReadOnly = true;
-            this.Datum.Width = 130;
-            // 
-            // Priprema
-            // 
-            this.Priprema.HeaderText = "Akcija";
-            this.Priprema.Name = "Priprema";
-            this.Priprema.ReadOnly = true;
-            this.Priprema.Text = "U pripremu";
-            this.Priprema.UseColumnTextForButtonValue = true;
-            // 
-            // Detalji
-            // 
-            this.Detalji.HeaderText = "Detalji";
-            this.Detalji.Name = "Detalji";
-            this.Detalji.ReadOnly = true;
-            this.Detalji.Text = "Detalji";
-            this.Detalji.UseColumnTextForButtonValue = true;
-            // 
-            // Odbi
-            // 
-            this.Odbi.HeaderText = "Akcija";
-            this.Odbi.Name = "Odbi";
-            this.Odbi.ReadOnly = true;
-            this.Odbi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Odbi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Odbi.Text = "Odbi narudžbu";
+            this.DetaljiOdbijene.Text = "Detalji";
+            this.DetaljiOdbijene.UseColumnTextForButtonValue = true;
             // 
             // NarudzbeIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 510);
+            this.ClientSize = new System.Drawing.Size(795, 510);
             this.Controls.Add(this.narudzbeTabControl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -529,12 +534,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Printaj;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView odbijeneDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn narudzbaIDDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vrstaNarudzbeDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn narucilacDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cijenaDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datumDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewButtonColumn DetaljiOdbijene;
         private System.Windows.Forms.DataGridViewTextBoxColumn NarudzbaID;
         private System.Windows.Forms.DataGridViewTextBoxColumn VrstaNarudzbe;
         private System.Windows.Forms.DataGridViewTextBoxColumn Narucilac;
@@ -543,5 +542,11 @@
         private System.Windows.Forms.DataGridViewButtonColumn Priprema;
         private System.Windows.Forms.DataGridViewButtonColumn Detalji;
         private System.Windows.Forms.DataGridViewButtonColumn Odbi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn narudzbaIDDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vrstaNarudzbeDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn narucilacDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cijenaDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datumDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewButtonColumn DetaljiOdbijene;
     }
 }

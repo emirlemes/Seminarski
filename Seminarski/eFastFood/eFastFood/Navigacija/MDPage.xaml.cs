@@ -17,7 +17,6 @@ namespace eFastFood.Navigacija
 
         public MDPage()
         {
-
             masterPage = new MDPageMaster();
             Master = masterPage;
             Detail = new NavigationPage(new Pocetna());

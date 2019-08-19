@@ -42,6 +42,8 @@ namespace eFastFood.Login
                         if (responseGP.IsSuccessStatusCode)
                         {
                             Global.proizvodi = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
+                            await Navigation.PushModalAsync(new Navigacija.MDPage());
+
                         }
                         else
                         {
@@ -50,8 +52,6 @@ namespace eFastFood.Login
                         }
 
                         IsBusy = false;
-                        await Navigation.PushModalAsync(new eFastFood.Navigacija.MDPage());
-                        await Application.Current.SavePropertiesAsync();
                     }
                     else
                     {

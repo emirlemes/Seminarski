@@ -46,6 +46,7 @@ namespace eFastFood_API.Controllers
                 return BadRequest();
 
             a.ForEach(x => _db.GPProizvod.Remove(x));
+            _db.SaveChanges();
 
             list.ForEach(x =>
             _db.GPProizvod.Add(new GPProizvod()
@@ -55,6 +56,7 @@ namespace eFastFood_API.Controllers
                 KolicinaUtroska = x.KolicinaUtroska,
                 MjernaJedinicaID = x.MjernaJedinicaID
             }));
+            _db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
         }

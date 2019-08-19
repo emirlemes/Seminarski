@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
+using RecomandationSystem;
 
 namespace eFastFood_API.Controllers
 {
@@ -33,6 +34,19 @@ namespace eFastFood_API.Controllers
             gp.ForEach(x => _db.Entry(x).Reference(c => c.Kategorija).Load());
             gp.ForEach(x => { x.Kategorija.GotoviProizvod = null; x.Slika = null; });
             return Ok(gp);
+        }
+
+        // GET: api/GotoviProizvod/Preporuka/{userId}
+        [HttpGet]
+        [ResponseType(typeof(List<GotoviProizvod>))]
+        [Route("api/GotoviProizvod/Preporuka/{userId}")]
+        public IHttpActionResult Preporuka(int userId)
+        {
+            RecommenderSystem rc = new RecommenderSystem();
+
+            List<int> p = rc.GetRecomended(userId).Select(x => x.Key).ToList();
+
+            return Ok(p);
         }
 
         // GET: api/GotoviProizvod/5

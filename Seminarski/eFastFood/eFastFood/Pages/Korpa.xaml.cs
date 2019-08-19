@@ -24,9 +24,7 @@ namespace eFastFood.Pages
         private void Entry_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = sender as Entry;
-            int gpId;
-            int kolicina;
-            if (Int32.TryParse(entry.Text, out kolicina) && Int32.TryParse(entry.MaxLength.ToString(), out gpId))
+            if (Int32.TryParse(entry.Text, out int kolicina) && Int32.TryParse(entry.MaxLength.ToString(), out int gpId))
             {
                 if (kolicina == 0)
                 {

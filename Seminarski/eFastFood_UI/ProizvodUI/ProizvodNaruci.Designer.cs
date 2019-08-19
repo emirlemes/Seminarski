@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.mjernajedinicaLabel = new System.Windows.Forms.Label();
             this.naruciButton = new System.Windows.Forms.Button();
+            this.proizvodName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // kolicinaInput
@@ -71,11 +73,31 @@
             this.naruciButton.UseVisualStyleBackColor = true;
             this.naruciButton.Click += new System.EventHandler(this.NaruciButton_Click);
             // 
+            // proizvodName
+            // 
+            this.proizvodName.AutoSize = true;
+            this.proizvodName.Location = new System.Drawing.Point(176, 9);
+            this.proizvodName.Name = "proizvodName";
+            this.proizvodName.Size = new System.Drawing.Size(46, 17);
+            this.proizvodName.TabIndex = 4;
+            this.proizvodName.Text = "label2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(105, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 17);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Naruči:";
+            // 
             // ProizvodNaruci
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 161);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.proizvodName);
             this.Controls.Add(this.naruciButton);
             this.Controls.Add(this.mjernajedinicaLabel);
             this.Controls.Add(this.label1);
@@ -99,5 +121,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label mjernajedinicaLabel;
         private System.Windows.Forms.Button naruciButton;
+        private System.Windows.Forms.Label proizvodName;
+        private System.Windows.Forms.Label label3;
     }
 }

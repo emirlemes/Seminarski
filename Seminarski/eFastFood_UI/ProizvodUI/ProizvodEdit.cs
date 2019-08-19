@@ -86,6 +86,7 @@ namespace eFastFood_UI.ProizvodUI
                 proizvodEdit.Kolicina = kolicinaInput.Text.ToDecimal();
                 proizvodEdit.DonjaGranica = donjaGranicaInput.Text.ToDecimal();
                 proizvodEdit.MjernaJedinicaID = mjerneJediniceComboBox.SelectedValue.ToInt();
+                proizvodEdit.DobavljacID = dobavljaciComboBox.SelectedValue.ToInt();
 
                 HttpResponseMessage reponseP = proizvodiService.PutResponse(proizvodEdit.ProizvodID, proizvodEdit);
 

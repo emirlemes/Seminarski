@@ -38,23 +38,18 @@ namespace eFastFood.ViewModels
 
         public RelayCommand Naruci { get; set; }
 
-        public KorpaVM()
-        {
-        }
+        //PROVJERIT STA NE VALJA
+        //public KorpaVM()
+        //{
+        //    PriceOfCart = Global.GetOrderPrice();
+        //}
 
         public KorpaVM(Page page)
         {
             this.page = page;
-            IsBusy = true;
-            Task.Run(() => LoadProizvode());
-            IsBusy = false;
-            Naruci = new RelayCommand(async () => await ZakljuciNarudzbu(), canExecute);
+            LoadProizvode();
+            Naruci = new RelayCommand(async () => await ZakljuciNarudzbu(), () => GotoviProizvodiList.Count > 0);
             PriceOfCart = Global.GetOrderPrice();
-        }
-
-        private bool canExecute()
-        {
-            return GotoviProizvodiList.Count > 0;
         }
 
         private async Task ZakljuciNarudzbu()

@@ -34,6 +34,7 @@ namespace eFastFood_UI.ProizvodUI
             {
                 proizvodNaruciti = responseP.Content.ReadAsAsync<Proizvod>().Result;
                 mjernajedinicaLabel.Text = proizvodNaruciti.MjernaJedinica.Naziv;
+                proizvodName.Text = proizvodNaruciti.Naziv;
             }
             else
             {

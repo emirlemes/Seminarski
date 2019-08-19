@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -47,8 +48,6 @@ namespace eFastFood.ViewModels
 
         public RelayCommand Cart_Clicked { get; }
 
-        public Command OpisModal_Tapped { get; }
-
         public PocetnaVM() { }
 
         public PocetnaVM(Page page)
@@ -56,22 +55,14 @@ namespace eFastFood.ViewModels
             this.page = page;
             Cart_Clicked = new RelayCommand(async () => await page.Navigation.PushAsync(new Korpa()));
             AddToCart_Tapped = new Command<string>(AddToCart);
-            OpisModal_Tapped = new Command(ModalDisplay);
-            PriceOfCart = 0;
-            GotoviProizvodiList = null;
+            PriceOfCart = Global.GetOrderPrice();
             Task.Run(async () => await LoadProizvode());
 
         }
 
-        private void ModalDisplay(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
         private void AddToCart(string id)
         {
-            int a = 0;
-            if (Int32.TryParse(id, out a))
+            if (Int32.TryParse(id, out int a))
             {
                 Global.AddToCart(a, 1);
                 PriceOfCart = Global.GetOrderPrice();
@@ -86,26 +77,16 @@ namespace eFastFood.ViewModels
             //OBRISATI
             IsBusy = true;
 
-            if (Global.proizvodi == null)
+            HttpResponseMessage responseGP = await gotoviProizvidiService.GetActionResponse("Preporuka", Global.prijavnjeniKorisnik.KlijentID.ToString());
+            if (responseGP.IsSuccessStatusCode)
             {
-                HttpResponseMessage responseGP = await gotoviProizvidiService.GetActionResponse("GotoviProizvodMobile");
-                if (responseGP.IsSuccessStatusCode)
-                {
-                    var gplista = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
-                    Global.proizvodi = gplista;
-                    GotoviProizvodiList = new ObservableCollection<GotoviProizvod>(gplista);
-                }
-                else
-                {
-                    await page.DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
-                }
+                var gplista = JsonConvert.DeserializeObject<List<int>>(await responseGP.Content.ReadAsStringAsync());
+                GotoviProizvodiList = new ObservableCollection<GotoviProizvod>(Global.proizvodi.Where(x => gplista.Contains(x.GotoviProizvodID)));
             }
             else
-            {
-                GotoviProizvodiList = new ObservableCollection<GotoviProizvod>(Global.proizvodi);
-            }
-            IsBusy = false;
+                await page.DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
 
+            IsBusy = false;
         }
 
         private bool _HideContent;

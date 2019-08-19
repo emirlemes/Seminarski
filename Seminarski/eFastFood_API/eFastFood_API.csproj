@@ -198,6 +198,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\EmailSender.cs" />
     <Compile Include="Util\Hashing.cs" />
+    <Compile Include="Util\Recommander.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

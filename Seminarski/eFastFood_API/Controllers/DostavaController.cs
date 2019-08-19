@@ -64,31 +64,6 @@ namespace eFastFood_API.Controllers
         [ResponseType(typeof(Dostava))]
         public IHttpActionResult PostDostava(Dostava dostava)
         {
-
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = dostava.DostavaID }, dostava);
-        }
-
-        // POST: api/Dostava/DostavaNaAdresu/{narudzbaId}/{adresaDostave}
-        [HttpPost]
-        [Route("api/Dostava/DostavaNaAdresu/{narudzbaId}/{adresaDostave}")] //{narudzbaId}/{adresaDostave}
-        [ResponseType(typeof(void))]
-        public IHttpActionResult DostavaNaAdresu(int narudzbaId, string adresaDostave)
-        {
-            Dostava dostava = new Dostava()
-            {
-                AdresaDostave = adresaDostave,
-                NarudzbaID = narudzbaId
-            };
-
             _db.Dostava.Add(dostava);
 
             try
@@ -100,7 +75,7 @@ namespace eFastFood_API.Controllers
                 return BadRequest(e.Message);
             }
 
-            return Ok();
+            return CreatedAtRoute("DefaultApi", new { id = dostava.DostavaID }, dostava);
         }
 
         // DELETE: api/Dostava/5

@@ -26,10 +26,17 @@ namespace eFastFood_UI.NarudzbeUI
             noveDataGridView.AutoGenerateColumns = false;
             pripremaDataGridView.AutoGenerateColumns = false;
             zavrseneDataGridView.AutoGenerateColumns = false;
+            odbijeneDataGridView.AutoGenerateColumns = false;
 
             noveDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             pripremaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             zavrseneDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            odbijeneDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            noveDataGridView.MultiSelect = false;
+            pripremaDataGridView.MultiSelect = false;
+            zavrseneDataGridView.MultiSelect = false;
+            odbijeneDataGridView.MultiSelect = false;
         }
 
         private void NarudzbeIndex_Load(object sender, EventArgs e)
@@ -109,11 +116,11 @@ namespace eFastFood_UI.NarudzbeUI
 
         private void BindGridOdbijene()
         {
-            HttpResponseMessage responseN = narudzbeService.GetActionResponse("GetNoveNarudzbe");
+            HttpResponseMessage responseN = narudzbeService.GetActionResponse("GetOdbijeneNarudzbe");
             if (responseN.IsSuccessStatusCode)
             {
                 narudzbeNove = responseN.Content.ReadAsAsync<List<Narudzba>>().Result;
-                noveDataGridView.DataSource = narudzbeNove.Select(x => new NarudzbaDataView()
+                odbijeneDataGridView.DataSource = narudzbeNove.Select(x => new NarudzbaDataView()
                 {
                     NarudzbaID = x.NarudzbaID,
                     Cijena = x.UkupnaCijena,
@@ -139,7 +146,6 @@ namespace eFastFood_UI.NarudzbeUI
                     HttpResponseMessage responseN = narudzbeService.GetActionResponse("PrebaciUPripremu", id.ToString());
                     if (responseN.IsSuccessStatusCode)
                     {
-                        //Dodati sistem za notifikacije za android OVDJE
                         BindGridNove();
                     }
                     else
@@ -248,13 +254,11 @@ namespace eFastFood_UI.NarudzbeUI
         {
             if (e.ColumnIndex == 5)
             {
-                int id = zavrseneDataGridView.Rows[e.RowIndex].Cells[0].Value.ToInt();
+                int id = odbijeneDataGridView.Rows[e.RowIndex].Cells[0].Value.ToInt();
                 if (id == 0)
                     MessageBox.Show(Messages.order_id_error, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
-                {
                     DetaljiView(id);
-                }
             }
         }
 

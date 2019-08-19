@@ -50,7 +50,7 @@ namespace eFastFood.ViewModels
         public bool PreuzmiURestoran
         {
             get { return _PreuzmiURestoran; }
-            set { _PreuzmiURestoran = value; OnPropertyChanged(); }
+            set { _PreuzmiURestoran = value; OnPropertyChanged(); ButtonEnable = true; }
         }
 
         public RelayCommand DostavaBtn { get; set; }
@@ -59,11 +59,13 @@ namespace eFastFood.ViewModels
 
         public RelayCommand NaruciBtn { get; set; }
 
+        public NarudzbaDetaljiVM() { }
+
         public NarudzbaDetaljiVM(Page page)
         {
             DostavaBtn = new RelayCommand(ShowDostava);
             PreuzmiURestoranuBtn = new RelayCommand(ShowPreuzmi);
-            NaruciBtn = new RelayCommand(async () => await Naruci(), () => AddressText.Length > 3);
+            NaruciBtn = new RelayCommand(async () => await Naruci(), () => Global.stavkeNarudzbe.Count > 0);
             this.page = page;
         }
 
@@ -77,6 +79,7 @@ namespace eFastFood.ViewModels
                 Status = nameof(StatusNarudzbe.Nova),
                 VrstaNarudzbe = "ONLINE"
             };
+
             narudzba.NarudzbaStavka = Global.stavkeNarudzbe.ToList();
             decimal ukupnaCijena = 0;
             foreach (var item in Global.stavkeNarudzbe)
@@ -88,10 +91,21 @@ namespace eFastFood.ViewModels
             if (AddressaShow)
             {
                 responseN = await narudzbeService.PostActionResponse("MobileOrder", narudzba);
-                Narudzba n = JsonConvert.DeserializeObject<Narudzba>(await responseN.Content.ReadAsStringAsync());
-                HttpResponseMessage responseD = await dostavaService.PostActionResponse("DostavaNaAdresu", n.NarudzbaID.ToString() + "/" + AddressText); //narudzbaId,adresaDostave
-                if (!responseD.IsSuccessStatusCode)
-                    await page.DisplayAlert(Messages.error, responseD.ReasonPhrase, Messages.ok);
+                if (responseN.IsSuccessStatusCode)
+                {
+                    Narudzba n = JsonConvert.DeserializeObject<Narudzba>(await responseN.Content.ReadAsStringAsync());
+                    Dostava dostava = new Dostava()
+                    {
+                        NarudzbaID = n.NarudzbaID,
+                        AdresaDostave = AddressText
+                    };
+                    HttpResponseMessage responseD = await dostavaService.PostResponse(dostava);
+                    if (!responseD.IsSuccessStatusCode)
+                    {
+                        await page.DisplayAlert(Messages.error, responseD.ReasonPhrase, Messages.ok);
+                        return;
+                    }
+                }
             }
             else if (PreuzmiURestoran)
                 responseN = await narudzbeService.PostActionResponse("MobileOrder", narudzba);
@@ -102,12 +116,15 @@ namespace eFastFood.ViewModels
                 {
                     await page.DisplayAlert(Messages.success, Messages.order_success, Messages.ok);
                     Global.stavkeNarudzbe.Clear();
+                    NaruciBtn.RaiseCanExecuteChanged();
+
                 }
                 else
                     await page.DisplayAlert(Messages.error, responseN.ReasonPhrase, Messages.ok);
             }
             else
                 await page.DisplayAlert(Messages.error, Messages.connec_err, Messages.ok);
+
         }
 
         private void ShowPreuzmi()
@@ -124,7 +141,6 @@ namespace eFastFood.ViewModels
             AddressaShow = true;
         }
 
-        public NarudzbaDetaljiVM() { }
 
 
 
