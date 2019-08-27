@@ -46,6 +46,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
             cijenaInput.Text = gotoviProizvod.Cijena.ToString();
             opisInput.Text = gotoviProizvod.Opis;
             vrijemePripremeInput.Text = gotoviProizvod.VrijemePripreme.ToString();
+            VidljivodstMobile.Checked = gotoviProizvod.VidljivostMobile;
 
             pictureBox.Image = Image.FromStream(new MemoryStream(gotoviProizvod.SlikaUmanjeno));
 
@@ -144,6 +145,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
                     gotoviProizvod.Opis = opisInput.Text;
                     gotoviProizvod.VrijemePripreme = vrijemePripremeInput.Text.ToInt();
                     gotoviProizvod.Cijena = cijenaInput.Text.ToDecimal();
+                    gotoviProizvod.VidljivostMobile = VidljivodstMobile.Checked;
 
                     if (string.IsNullOrEmpty(slikaPath.Text))
                     {

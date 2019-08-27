@@ -4,12 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:eFastFood.Converters"
-             xmlns:vm="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
              x:Class="eFastFood.Pages.GotoviProizvodDetalji">
-    <ContentPage.BindingContext>
-        <vm:GotoviProizvodDetaljiVM></vm:GotoviProizvodDetaljiVM>
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>

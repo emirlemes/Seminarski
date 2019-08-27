@@ -30,7 +30,7 @@ namespace eFastFood_API.Controllers
         [Route("api/GotoviProizvod/GotoviProizvodMobile")]
         public IHttpActionResult GotoviProizvodMobile()
         {
-            List<GotoviProizvod> gp = _db.GotoviProizvod.ToList();
+            var gp = _db.GotoviProizvod.Where(x => x.VidljivostMobile == true).ToList();
             gp.ForEach(x => _db.Entry(x).Reference(c => c.Kategorija).Load());
             gp.ForEach(x => { x.Kategorija.GotoviProizvod = null; x.Slika = null; });
             return Ok(gp);
@@ -45,6 +45,9 @@ namespace eFastFood_API.Controllers
             RecommenderSystem rc = new RecommenderSystem();
 
             List<int> p = rc.GetRecomended(userId).Select(x => x.Key).ToList();
+            foreach (var proizvodId in p)
+                if (!_db.GotoviProizvod.Find(proizvodId).VidljivostMobile)
+                    p.Remove(proizvodId);
 
             return Ok(p);
         }

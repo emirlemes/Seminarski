@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\APIHelper.cs" />
+    <Compile Include="Util\ErrorMessage.cs" />
     <Compile Include="Util\UIHelper.cs" />
     <EmbeddedResource Include="Administrator\MainFormAdmin.resx">
       <DependentUpon>MainFormAdmin.cs</DependentUpon>

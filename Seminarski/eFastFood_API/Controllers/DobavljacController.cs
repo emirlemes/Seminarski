@@ -82,6 +82,10 @@ namespace eFastFood_API.Controllers
             if (dobavljac == null)
                 return NotFound();
 
+            int k = _db.Proizvod.Where(x => x.DobavljacID == dobavljac.DobavljacID).Count();
+            if (k > 0)
+                return BadRequest("Dobavljač ima proizvode koje dostavlja.");
+
             _db.Dobavljac.Remove(dobavljac);
             _db.SaveChanges();
 

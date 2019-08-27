@@ -43,13 +43,15 @@
             this.uposleniciRadioButton = new System.Windows.Forms.RadioButton();
             this.klijentiRadioButton = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.korisniciDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // DodajButton
             // 
-            this.DodajButton.Location = new System.Drawing.Point(12, 23);
+            this.DodajButton.Location = new System.Drawing.Point(3, 17);
             this.DodajButton.Name = "DodajButton";
             this.DodajButton.Size = new System.Drawing.Size(150, 30);
             this.DodajButton.TabIndex = 0;
@@ -59,7 +61,8 @@
             // 
             // urediButton
             // 
-            this.urediButton.Location = new System.Drawing.Point(661, 23);
+            this.urediButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.urediButton.Location = new System.Drawing.Point(646, 17);
             this.urediButton.Name = "urediButton";
             this.urediButton.Size = new System.Drawing.Size(100, 30);
             this.urediButton.TabIndex = 1;
@@ -70,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(192, 30);
+            this.label1.Location = new System.Drawing.Point(172, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 2;
@@ -78,9 +81,11 @@
             // 
             // pretragaInput
             // 
-            this.pretragaInput.Location = new System.Drawing.Point(261, 27);
+            this.pretragaInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pretragaInput.Location = new System.Drawing.Point(241, 21);
             this.pretragaInput.Name = "pretragaInput";
-            this.pretragaInput.Size = new System.Drawing.Size(371, 23);
+            this.pretragaInput.Size = new System.Drawing.Size(399, 23);
             this.pretragaInput.TabIndex = 3;
             this.pretragaInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PretragaInput_KeyUp);
             // 
@@ -88,8 +93,8 @@
             // 
             this.korisniciDataGridView.AllowUserToAddRows = false;
             this.korisniciDataGridView.AllowUserToDeleteRows = false;
-            this.korisniciDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.korisniciDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.korisniciDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.korisniciDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -189,24 +194,37 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.klijentiRadioButton);
             this.panel1.Controls.Add(this.uposleniciRadioButton);
-            this.panel1.Location = new System.Drawing.Point(261, 56);
+            this.panel1.Location = new System.Drawing.Point(241, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(371, 45);
+            this.panel1.Size = new System.Drawing.Size(399, 45);
             this.panel1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.DodajButton);
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.urediButton);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.pretragaInput);
+            this.panel2.Location = new System.Drawing.Point(12, 6);
+            this.panel2.MinimumSize = new System.Drawing.Size(749, 95);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(749, 95);
+            this.panel2.TabIndex = 8;
             // 
             // KorisniciIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 483);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.korisniciDataGridView);
-            this.Controls.Add(this.pretragaInput);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.urediButton);
-            this.Controls.Add(this.DodajButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -216,8 +234,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.korisniciDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -238,5 +257,6 @@
         private System.Windows.Forms.RadioButton uposleniciRadioButton;
         private System.Windows.Forms.RadioButton klijentiRadioButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

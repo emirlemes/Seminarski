@@ -42,7 +42,9 @@
             this.urediButton = new System.Windows.Forms.Button();
             this.pretragaInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gotoviPDataGridView)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gotoviPDataGridView
@@ -153,7 +155,7 @@
             // 
             // dodajButton
             // 
-            this.dodajButton.Location = new System.Drawing.Point(16, 25);
+            this.dodajButton.Location = new System.Drawing.Point(4, 4);
             this.dodajButton.Margin = new System.Windows.Forms.Padding(4);
             this.dodajButton.Name = "dodajButton";
             this.dodajButton.Size = new System.Drawing.Size(100, 30);
@@ -165,7 +167,7 @@
             // urediButton
             // 
             this.urediButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.urediButton.Location = new System.Drawing.Point(777, 25);
+            this.urediButton.Location = new System.Drawing.Point(753, 4);
             this.urediButton.Margin = new System.Windows.Forms.Padding(4);
             this.urediButton.Name = "urediButton";
             this.urediButton.Size = new System.Drawing.Size(100, 30);
@@ -178,43 +180,55 @@
             // 
             this.pretragaInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pretragaInput.Location = new System.Drawing.Point(283, 29);
+            this.pretragaInput.Location = new System.Drawing.Point(199, 8);
             this.pretragaInput.Name = "pretragaInput";
-            this.pretragaInput.Size = new System.Drawing.Size(308, 23);
+            this.pretragaInput.Size = new System.Drawing.Size(534, 23);
             this.pretragaInput.TabIndex = 1;
             this.pretragaInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PretragaInput_KeyUp);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(214, 32);
+            this.label1.Location = new System.Drawing.Point(130, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Pretraga";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dodajButton);
+            this.panel1.Controls.Add(this.urediButton);
+            this.panel1.Controls.Add(this.pretragaInput);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(20, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(857, 50);
+            this.panel1.TabIndex = 5;
             // 
             // GotoviProizvodiIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 554);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pretragaInput);
-            this.Controls.Add(this.urediButton);
-            this.Controls.Add(this.dodajButton);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.gotoviPDataGridView);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(640, 550);
             this.Name = "GotoviProizvodiIndex";
             this.ShowIcon = false;
             this.Text = "Gotovi proizvodi";
             this.Load += new System.EventHandler(this.GotoviProizvodiIndex_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gotoviPDataGridView)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -234,5 +248,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Kategorija;
         private System.Windows.Forms.TextBox pretragaInput;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

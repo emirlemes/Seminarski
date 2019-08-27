@@ -21,6 +21,13 @@ namespace eFastFood.Pages
             BindingContext = bc;
         }
 
+        protected override void OnAppearing()
+        {
+            bc = new KorpaVM(this);
+            BindingContext = bc;
+            base.OnAppearing();
+        }
+
         private void Entry_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = sender as Entry;

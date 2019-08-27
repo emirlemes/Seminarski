@@ -38,6 +38,7 @@
           <Property Name="Slika" Type="varbinary(max)" />
           <Property Name="SlikaUmanjeno" Type="varbinary(max)" />
           <Property Name="KategorijaID" Type="int" Nullable="false" />
+          <Property Name="VidljivostMobile" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="GPProizvod">
           <Key>
@@ -563,6 +564,7 @@
           <NavigationProperty Name="GPProizvod" Relationship="eFastFoodTestModel.FK__GPProizvo__Gotov__4D94879B" FromRole="GotoviProizvod" ToRole="GPProizvod" />
           <NavigationProperty Name="NarudzbaStavka" Relationship="eFastFoodTestModel.FK__NarudzbaS__Gotov__5AEE82B9" FromRole="GotoviProizvod" ToRole="NarudzbaStavka" />
           <NavigationProperty Name="Ocjena" Relationship="eFastFoodTestModel.FK__Ocjena__GotoviPr__160F4887" FromRole="GotoviProizvod" ToRole="Ocjena" />
+          <Property Name="VidljivostMobile" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="GPProizvod">
           <Key>
@@ -949,6 +951,7 @@
           <EntitySetMapping Name="GotoviProizvod">
             <EntityTypeMapping TypeName="eFastFoodTestModel.GotoviProizvod">
               <MappingFragment StoreEntitySet="GotoviProizvod">
+                <ScalarProperty Name="VidljivostMobile" ColumnName="VidljivostMobile" />
                 <ScalarProperty Name="KategorijaID" ColumnName="KategorijaID" />
                 <ScalarProperty Name="SlikaUmanjeno" ColumnName="SlikaUmanjeno" />
                 <ScalarProperty Name="Slika" ColumnName="Slika" />

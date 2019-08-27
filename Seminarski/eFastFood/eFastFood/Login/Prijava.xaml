@@ -9,17 +9,18 @@
         <ScrollView>
             <StackLayout Margin="50">
                 <Label Text="Prijava"
-                           FontSize="Large"
-                       Margin="0,0,0,40" HorizontalOptions="Center"></Label>
+                       FontSize="Large"
+                       Margin="0,0,0,40"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding showContent}"
+                       ></Label>
 
-                <Label Text=""  HorizontalOptions="Center" ></Label>
-                <Entry x:Name="email" Placeholder="Email" HorizontalTextAlignment="Center"></Entry>
+                <Entry IsVisible="{Binding showContent}" x:Name="email" Text="emir.lemes@gmail.com" Placeholder="Email" HorizontalTextAlignment="Center"></Entry>
 
-                <Label Text=""  HorizontalOptions="Center"></Label>
-                <Entry x:Name="lozinka" IsPassword="True" Placeholder="Lozinka" HorizontalTextAlignment="Center"></Entry>
+                <Entry IsVisible="{Binding showContent}" x:Name="lozinka" Text="admin123" IsPassword="True" Placeholder="Lozinka" HorizontalTextAlignment="Center"></Entry>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,30">
-                    <Button Text="Prijava" Clicked="Prijava_Button_Clicked"></Button>
+                <StackLayout IsVisible="{Binding showContent}" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,30">
+                    <Button Text="Prijava" Command="{Binding PrijavaCommand}" ></Button>
                     <Button Text="Registracija" WidthRequest="150" Clicked="Registracija_Button_Clicked"></Button>
                 </StackLayout>
 

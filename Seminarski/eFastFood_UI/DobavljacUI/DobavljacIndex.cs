@@ -67,5 +67,27 @@ namespace eFastFood_UI.DobavljacUI
                     BindGrid();
             }
         }
+
+        private void ObrisiButton_Click(object sender, EventArgs e)
+        {
+            int id = dobavljaciDataGridView.SelectedRows[0].Cells[0].Value.ToInt();
+            if (id == 0)
+                MessageBox.Show(Messages.nothing_selected, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                HttpResponseMessage responseD = dobavljacService.DeleteResponse(id.ToString());
+                if (responseD.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(Messages.success_deleted, Messages.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    BindGrid();
+                }
+                else
+                {
+                    ErrorMessage m = responseD.Content.ReadAsAsync<ErrorMessage>().Result;
+
+                    MessageBox.Show(responseD.ReasonPhrase + ": " + m.Message, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

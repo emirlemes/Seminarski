@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.kategorijeDataGridView = new System.Windows.Forms.DataGridView();
-            this.kategorijaAddbutton = new System.Windows.Forms.Button();
-            this.kategorijaUrediButton = new System.Windows.Forms.Button();
             this.KategorijaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kategorijaAddbutton = new System.Windows.Forms.Button();
+            this.kategorijaUrediButton = new System.Windows.Forms.Button();
+            this.ObrisiButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.kategorijeDataGridView)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // kategorijeDataGridView
@@ -49,36 +52,12 @@
             this.KategorijaID,
             this.Naziv,
             this.Opis});
-            this.kategorijeDataGridView.Location = new System.Drawing.Point(15, 50);
+            this.kategorijeDataGridView.Location = new System.Drawing.Point(13, 53);
             this.kategorijeDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.kategorijeDataGridView.Name = "kategorijeDataGridView";
             this.kategorijeDataGridView.ReadOnly = true;
-            this.kategorijeDataGridView.Size = new System.Drawing.Size(580, 450);
+            this.kategorijeDataGridView.Size = new System.Drawing.Size(589, 450);
             this.kategorijeDataGridView.TabIndex = 0;
-            // 
-            // kategorijaAddbutton
-            // 
-            this.kategorijaAddbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.kategorijaAddbutton.Location = new System.Drawing.Point(15, 12);
-            this.kategorijaAddbutton.Margin = new System.Windows.Forms.Padding(4);
-            this.kategorijaAddbutton.Name = "kategorijaAddbutton";
-            this.kategorijaAddbutton.Size = new System.Drawing.Size(180, 30);
-            this.kategorijaAddbutton.TabIndex = 1;
-            this.kategorijaAddbutton.Text = "Dodaj kategoriju";
-            this.kategorijaAddbutton.UseVisualStyleBackColor = true;
-            this.kategorijaAddbutton.Click += new System.EventHandler(this.KategorijaAddbutton_Click);
-            // 
-            // kategorijaUrediButton
-            // 
-            this.kategorijaUrediButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kategorijaUrediButton.Location = new System.Drawing.Point(495, 12);
-            this.kategorijaUrediButton.Margin = new System.Windows.Forms.Padding(4);
-            this.kategorijaUrediButton.Name = "kategorijaUrediButton";
-            this.kategorijaUrediButton.Size = new System.Drawing.Size(100, 30);
-            this.kategorijaUrediButton.TabIndex = 2;
-            this.kategorijaUrediButton.Text = "Uredi";
-            this.kategorijaUrediButton.UseVisualStyleBackColor = true;
-            this.kategorijaUrediButton.Click += new System.EventHandler(this.KategorijaUrediButton_Click);
             // 
             // KategorijaID
             // 
@@ -104,14 +83,61 @@
             this.Opis.Name = "Opis";
             this.Opis.ReadOnly = true;
             // 
+            // kategorijaAddbutton
+            // 
+            this.kategorijaAddbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.kategorijaAddbutton.Location = new System.Drawing.Point(4, 4);
+            this.kategorijaAddbutton.Margin = new System.Windows.Forms.Padding(4);
+            this.kategorijaAddbutton.Name = "kategorijaAddbutton";
+            this.kategorijaAddbutton.Size = new System.Drawing.Size(180, 30);
+            this.kategorijaAddbutton.TabIndex = 1;
+            this.kategorijaAddbutton.Text = "Dodaj kategoriju";
+            this.kategorijaAddbutton.UseVisualStyleBackColor = true;
+            this.kategorijaAddbutton.Click += new System.EventHandler(this.KategorijaAddbutton_Click);
+            // 
+            // kategorijaUrediButton
+            // 
+            this.kategorijaUrediButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.kategorijaUrediButton.Location = new System.Drawing.Point(237, 3);
+            this.kategorijaUrediButton.Margin = new System.Windows.Forms.Padding(4);
+            this.kategorijaUrediButton.Name = "kategorijaUrediButton";
+            this.kategorijaUrediButton.Size = new System.Drawing.Size(100, 30);
+            this.kategorijaUrediButton.TabIndex = 2;
+            this.kategorijaUrediButton.Text = "Uredi";
+            this.kategorijaUrediButton.UseVisualStyleBackColor = true;
+            this.kategorijaUrediButton.Click += new System.EventHandler(this.KategorijaUrediButton_Click);
+            // 
+            // ObrisiButton
+            // 
+            this.ObrisiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ObrisiButton.Location = new System.Drawing.Point(487, 3);
+            this.ObrisiButton.Name = "ObrisiButton";
+            this.ObrisiButton.Size = new System.Drawing.Size(100, 30);
+            this.ObrisiButton.TabIndex = 3;
+            this.ObrisiButton.Text = "Obriši";
+            this.ObrisiButton.UseVisualStyleBackColor = true;
+            this.ObrisiButton.Click += new System.EventHandler(this.ObrisiButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.ObrisiButton);
+            this.panel1.Controls.Add(this.kategorijaUrediButton);
+            this.panel1.Controls.Add(this.kategorijaAddbutton);
+            this.panel1.Location = new System.Drawing.Point(12, 7);
+            this.panel1.MinimumSize = new System.Drawing.Size(590, 40);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(590, 40);
+            this.panel1.TabIndex = 4;
+            // 
             // KategorijaIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 516);
             this.ControlBox = false;
-            this.Controls.Add(this.kategorijaUrediButton);
-            this.Controls.Add(this.kategorijaAddbutton);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.kategorijeDataGridView);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -122,6 +148,7 @@
             this.ShowIcon = false;
             this.Text = "Kategorija";
             ((System.ComponentModel.ISupportInitialize)(this.kategorijeDataGridView)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -134,5 +161,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn KategorijaID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Opis;
+        private System.Windows.Forms.Button ObrisiButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }

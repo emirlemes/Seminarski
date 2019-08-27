@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using eFastFood_API.Models;
-using eFastFood_UI.Util;
+using eFastFood_PCL.Util;
 using eFastFood_PCL.ViewModels;
 
 namespace eFastFood_API.Controllers
@@ -163,7 +163,8 @@ namespace eFastFood_API.Controllers
             Uposlenik uposlenik = _db.Uposlenik.Where(x => x.UserName == k.korisnickoIme).FirstOrDefault();
             if (uposlenik == null)
                 return NotFound();
-            else if (Hashing.GenerateHash(uposlenik.LozinkaSalt, k.lozinka) == uposlenik.LozinkaHash)
+
+            else if (UIHelper.GenerateHash(uposlenik.LozinkaSalt, k.lozinka) == uposlenik.LozinkaHash)
                 return Ok(uposlenik);
 
             return Unauthorized();

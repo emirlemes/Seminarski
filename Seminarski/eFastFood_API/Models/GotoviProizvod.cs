@@ -11,7 +11,7 @@ namespace eFastFood_API.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class GotoviProizvod
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,7 @@ namespace eFastFood_API.Models
             this.NarudzbaStavka = new HashSet<NarudzbaStavka>();
             this.Ocjena = new HashSet<Ocjena>();
         }
-    
+
         public int GotoviProizvodID { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
@@ -30,7 +30,8 @@ namespace eFastFood_API.Models
         public byte[] Slika { get; set; }
         public byte[] SlikaUmanjeno { get; set; }
         public int KategorijaID { get; set; }
-    
+        public bool VidljivostMobile { get; set; }
+
         public virtual Kategorija Kategorija { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GPProizvod> GPProizvod { get; set; }

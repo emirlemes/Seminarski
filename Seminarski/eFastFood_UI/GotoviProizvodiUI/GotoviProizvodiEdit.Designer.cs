@@ -53,6 +53,7 @@
             this.Dodaj = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Proizvod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Kolicina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VidljivodstMobile = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -198,6 +199,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.VidljivodstMobile);
             this.panel1.Controls.Add(this.kategorijaComboBox);
             this.panel1.Controls.Add(this.vrijemePripremeInput);
             this.panel1.Controls.Add(this.opisInput);
@@ -285,6 +287,19 @@
             this.Kolicina.Name = "Kolicina";
             this.Kolicina.Width = 70;
             // 
+            // VidljivodstMobile
+            // 
+            this.VidljivodstMobile.AutoSize = true;
+            this.VidljivodstMobile.Checked = true;
+            this.VidljivodstMobile.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.VidljivodstMobile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.VidljivodstMobile.Location = new System.Drawing.Point(61, 212);
+            this.VidljivodstMobile.Name = "VidljivodstMobile";
+            this.VidljivodstMobile.Size = new System.Drawing.Size(236, 21);
+            this.VidljivodstMobile.TabIndex = 14;
+            this.VidljivodstMobile.Text = "Prikazivanje na mobilnoj aplikaciji";
+            this.VidljivodstMobile.UseVisualStyleBackColor = true;
+            // 
             // GotoviProizvodiEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,5 +355,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Dodaj;
         private System.Windows.Forms.DataGridViewTextBoxColumn Proizvod;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kolicina;
+        private System.Windows.Forms.CheckBox VidljivodstMobile;
     }
 }

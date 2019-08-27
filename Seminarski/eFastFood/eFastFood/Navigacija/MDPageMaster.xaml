@@ -25,7 +25,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="1" Grid.Row="2" Text="AppName" Style="{DynamicResource SubtitleStyle}"/>
+                    <Label Grid.Column="1" Grid.Row="2" Text="IB150130" Style="{DynamicResource SubtitleStyle}"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -50,6 +50,24 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.Footer>
+                <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Image 
+                                Source="exit.png"
+                                VerticalOptions="Center"
+                                HeightRequest="32"
+                                WidthRequest="32"
+                                >
+                    </Image>
+                    <Label 
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center" 
+                                Text="Izlaz" 
+                                FontSize="24"
+                                Margin="20,0,0,0"
+                                />
+                </StackLayout>
+            </ListView.Footer>
         </ListView>
     </StackLayout>
 </ContentPage>

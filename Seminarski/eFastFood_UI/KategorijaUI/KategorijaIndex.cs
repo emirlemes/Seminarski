@@ -63,5 +63,27 @@ namespace eFastFood_UI.KategorijaUI
                     BindGrid();
             }
         }
+
+        private void ObrisiButton_Click(object sender, EventArgs e)
+        {
+            int id = kategorijeDataGridView.SelectedRows[0].Cells[0].Value.ToInt();
+
+            if (id == 0)
+                MessageBox.Show(Messages.nothing_selected, Messages.warning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                HttpResponseMessage responseK = kategorijeService.DeleteResponse(id.ToString());
+
+                if (responseK.IsSuccessStatusCode)
+                    MessageBox.Show(Messages.success_deleted, Messages.success_deleted, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    ErrorMessage error = responseK.Content.ReadAsAsync<ErrorMessage>().Result;
+                    MessageBox.Show(responseK.ReasonPhrase + ": " + error?.Message, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    BindGrid();
+                }
+
+            }
+        }
     }
 }

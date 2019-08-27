@@ -201,4 +201,7 @@
   <data name="success_order" xml:space="preserve">
     <value>Proizvod uspješno naručen.</value>
   </data>
+  <data name="success_deleted" xml:space="preserve">
+    <value>Uspješno obrisano.</value>
+  </data>
 </root>

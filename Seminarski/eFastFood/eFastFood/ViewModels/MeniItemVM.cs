@@ -33,13 +33,11 @@ namespace eFastFood.ViewModels
         public RelayCommand<string> AddToCart_Tapped { get; set; }
         public RelayCommand Cart_Clicked { get; set; }
 
-        public MeniItemVM() { }
-
         public MeniItemVM(Page page, string title)
         {
-            AddToCart_Tapped = new RelayCommand<string>(AddToCart);
-            Cart_Clicked = new RelayCommand(async () => await page.Navigation.PushAsync(new Korpa()));
             this.page = page;
+            AddToCart_Tapped = new RelayCommand<string>(AddToCart);
+            Cart_Clicked = new RelayCommand(async () => await this.page.Navigation.PushAsync(new Korpa()));
             Title = title;
             GotoviProizvodiList = Global.proizvodi.Where(x => x.Kategorija.Naziv == Title).ToList();
         }

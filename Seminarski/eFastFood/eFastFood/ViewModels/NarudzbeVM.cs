@@ -23,14 +23,12 @@ namespace eFastFood.ViewModels
         private Page page { get; set; }
         private ObservableCollection<GotoviProizvod> _OrdersList { get; set; }
 
+        public string Title { get; set; } = "Narudžbe";
         public ObservableCollection<GotoviProizvod> OrdersList
         {
             get { return _OrdersList; }
             set { _OrdersList = value; OnPropertyChanged(); }
         }
-
-
-        public NarudzbeVM() { }
 
         public NarudzbeVM(Page page)
         {

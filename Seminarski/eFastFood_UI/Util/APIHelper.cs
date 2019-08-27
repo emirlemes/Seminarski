@@ -50,5 +50,10 @@ namespace eFastFood_UI.Util
         {
             return client.PutAsJsonAsync(route + "/" + action + "/" + id, existingObject).Result;
         }
+
+        public HttpResponseMessage DeleteResponse(string parameter = "")
+        {
+            return client.DeleteAsync(route + "/" + parameter).Result;
+        }
     }
 }

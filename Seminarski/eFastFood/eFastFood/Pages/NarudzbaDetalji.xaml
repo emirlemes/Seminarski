@@ -3,13 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
              x:Class="eFastFood.Pages.NarudzbaDetalji">
-    <ContentPage.BindingContext>
-        <vm:NarudzbaDetaljiVM>
-        </vm:NarudzbaDetaljiVM>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Grid Padding="20">
@@ -32,15 +27,14 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Text="Adresa dostave:" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"></Label>
-                <Entry Text="{Binding AddressText}" Keyboard="Default" Grid.Column="1" Grid.Row="0"  VerticalOptions="Center" Margin="0,0,20,0"></Entry>
+                <Entry Text="{Binding AddressText}" Placeholder="Adresa dostave" Keyboard="Default" Grid.ColumnSpan="2" Grid.Row="0"  VerticalOptions="Center" Margin="0,0,20,0"></Entry>
             </Grid>
             <Grid IsVisible="{Binding PreuzmiURestoran}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
             </Grid>
-            <Button Visual="Material" Text="Naruči" Command="{Binding NaruciBtn}" IsEnabled="{Binding ButtonEnable}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" HeightRequest="150" WidthRequest="150"></Button>
+            <Button Text="Naruči" Command="{Binding NaruciBtn}" IsEnabled="{Binding ButtonEnable}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" HeightRequest="150" WidthRequest="150"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

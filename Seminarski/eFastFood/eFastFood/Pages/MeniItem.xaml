@@ -4,7 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:eFastFood.Converters"
-             xmlns:vm="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
              Title="{Binding Title}"
              x:Class="eFastFood.Pages.MeniItem"
@@ -13,9 +12,6 @@
         <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}"></ToolbarItem>
         <ToolbarItem Text="{Binding PriceOfCart, StringFormat='{0} KM'}" ></ToolbarItem>
     </ContentPage.ToolbarItems>
-    <ContentPage.BindingContext>
-        <vm:MeniItemVM></vm:MeniItemVM>
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>

@@ -23,7 +23,7 @@ namespace eFastFood.ViewModels
         private bool _AddressaShow { get; set; }
         private bool _PreuzmiURestoran { get; set; }
         private string _AddressText { get; set; } = "";
-        private bool _ButtonEnable { get; set; }
+        private bool _ButtonEnable { get; set; } = true;
 
         public bool ButtonEnable { get => _ButtonEnable; set { _ButtonEnable = value; OnPropertyChanged(); } }
 
@@ -59,8 +59,6 @@ namespace eFastFood.ViewModels
 
         public RelayCommand NaruciBtn { get; set; }
 
-        public NarudzbaDetaljiVM() { }
-
         public NarudzbaDetaljiVM(Page page)
         {
             DostavaBtn = new RelayCommand(ShowDostava);
@@ -72,6 +70,7 @@ namespace eFastFood.ViewModels
 
         private async Task Naruci()
         {
+            ButtonEnable = false;
             Narudzba narudzba = new Narudzba()
             {
                 Datum = DateTime.Now,
@@ -117,14 +116,14 @@ namespace eFastFood.ViewModels
                     await page.DisplayAlert(Messages.success, Messages.order_success, Messages.ok);
                     Global.stavkeNarudzbe.Clear();
                     NaruciBtn.RaiseCanExecuteChanged();
-
+                    await page.Navigation.PopToRootAsync();
                 }
                 else
                     await page.DisplayAlert(Messages.error, responseN.ReasonPhrase, Messages.ok);
             }
             else
                 await page.DisplayAlert(Messages.error, Messages.connec_err, Messages.ok);
-
+            ButtonEnable = true;
         }
 
         private void ShowPreuzmi()
@@ -140,8 +139,6 @@ namespace eFastFood.ViewModels
             if (PreuzmiURestoran) PreuzmiURestoran = false;
             AddressaShow = true;
         }
-
-
 
 
         private bool _IsBusy;

@@ -3,19 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:VM="clr-namespace:eFastFood.ViewModels"
              xmlns:behavior="clr-namespace:eFastFood.Behaviers"
+             Title="{Binding Title}"
              mc:Ignorable="d"
              x:Class="eFastFood.Pages.Profil"
              >
-    <ContentPage.BindingContext>
-        <VM:ProfilVM></VM:ProfilVM>
-    </ContentPage.BindingContext>
-
     <StackLayout HorizontalOptions="Center">
         <ActivityIndicator Color="#aaccff" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-        <ScrollView Orientation="Both">
-            <Grid Margin="30,0">
+        <ScrollView Orientation="Horizontal">
+            <Grid Margin="20,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -54,13 +50,13 @@
                 <Label Text="Email" Grid.Column="0" Grid.Row="4" VerticalOptions="Center"></Label>
                 <Entry Text="{Binding Email}" Grid.Column="1" Grid.Row="4"></Entry>
 
-                <!-- Lozinka -->
-                <Label Text="Lozinka" Grid.Column="0" Grid.Row="5" VerticalOptions="Center"></Label>
-                <Entry Text="{Binding Lozinka}" Grid.Column="1" Grid.Row="5" IsPassword="True"></Entry>
-
                 <!-- Lozinka Nova-->
-                <Label Text="Lozinka" Grid.Column="0" Grid.Row="6" VerticalOptions="Center"></Label>
-                <Entry Text="{Binding LozinkaNova}" Grid.Column="1" Grid.Row="6" IsPassword="True"></Entry>
+                <Label Text="Lozinka nova" Grid.Column="0" Grid.Row="5" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding LozinkaNova}" Grid.Column="1" Grid.Row="5" IsPassword="True"></Entry>
+
+                <!-- Lozinka nova-->
+                <Label Text="Lozinka ponovo" Grid.Column="0" Grid.Row="6" VerticalOptions="Center"></Label>
+                <Entry Text="{Binding LozinkaPovovo}" Grid.Column="1" Grid.Row="6" IsPassword="True"></Entry>
 
                 <Button Text="Snimi" Margin="20,50" Command="{Binding Snimi_Button}" Grid.ColumnSpan="2" Grid.Row="7"></Button>
             </Grid>

@@ -325,9 +325,4 @@ namespace eFastFood_UI.NarudzbeUI
 
 
     }
-
-    public class ErrorMessage
-    {
-        public string Message { get; set; }
-    }
 }

@@ -19,11 +19,13 @@ namespace eFastFood.ViewModels
 
         APIHelper klijentService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
 
+        public string Title { get; set; } = "Profil";
+
         private string _Ime;
         private string _Prezime;
         private string _BrojTelefona;
         private string _Email;
-        private string _Lozinka;
+        private string _LozinkaPovovo;
         private string _LozinkaNova;
         private string _Adresa;
 
@@ -31,27 +33,23 @@ namespace eFastFood.ViewModels
         public string Prezime { get { return _Prezime; } set { _Prezime = value; OnPropertyChanged(); } }
         public string BrojTelefona { get { return _BrojTelefona; } set { _BrojTelefona = value; OnPropertyChanged(); } }
         public string Email { get { return _Email; } set { _Email = value; OnPropertyChanged(); } }
-        public string Lozinka { get { return _Lozinka; } set { _Lozinka = value; OnPropertyChanged(); } }
+        public string LozinkaPovovo { get { return _LozinkaPovovo; } set { _LozinkaPovovo = value; OnPropertyChanged(); } }
         public string LozinkaNova { get { return _LozinkaNova; } set { _LozinkaNova = value; OnPropertyChanged(); } }
         public string Adresa { get { return _Adresa; } set { _Adresa = value; OnPropertyChanged(); } }
 
         public RelayCommand Snimi_Button { get; private set; }
 
-
-        public ProfilVM()
-        {
-            IsBusy = true;
-        }
         public ProfilVM(Page page)
         {
             this.page = page;
-            Snimi_Button = new RelayCommand(async () => await Snimi());
+            Snimi_Button = new RelayCommand(async () => await Snimi(), () => IsBusy);
             Task.Run(() => LoadData());
             IsBusy = false;
         }
 
         private async Task Snimi()
         {
+            IsBusy = true;
             if (await Validacija())
             {
                 Klijent k = Global.prijavnjeniKorisnik;
@@ -61,18 +59,17 @@ namespace eFastFood.ViewModels
                 k.BrojTelefona = BrojTelefona;
                 k.Adresa = Adresa;
 
-                if (!string.IsNullOrEmpty(Lozinka) && k.LozinkaHash == UIHelper.GenerateHash(k.LozinkaSalt, Lozinka))
+                if (!string.IsNullOrEmpty(LozinkaNova))
                     k.LozinkaHash = UIHelper.GenerateHash(k.LozinkaSalt, LozinkaNova);
 
-
                 HttpResponseMessage responseK = klijentService.PutResponse(k.KlijentID, k);
+
                 if (responseK.IsSuccessStatusCode)
-                {
                     await page.DisplayAlert(Messages.success, Messages.user_updated, Messages.ok);
-                }
                 else
                     await page.DisplayAlert(Messages.error, responseK.ReasonPhrase, Messages.ok);
             }
+            IsBusy = false;
         }
 
 
@@ -111,7 +108,7 @@ namespace eFastFood.ViewModels
 
         private async Task<bool> Validacija()
         {
-            bool validacija = (ImeValidation() && PrezimeValidation() && await BrojTelefonaValidation() && await EmailValidation() && AdresaValidation());
+            bool validacija = (ImeValidation() && PrezimeValidation() && await BrojTelefonaValidation() && await EmailValidation() && AdresaValidation() && LozinkaValidation());
             if (validacija)
                 return true;
             else
@@ -224,6 +221,20 @@ namespace eFastFood.ViewModels
             return true;
         }
 
+        private bool LozinkaValidation()
+        {
+            if (string.IsNullOrEmpty(LozinkaNova))
+                return true;
+            else
+            {
+                if (LozinkaNova != LozinkaPovovo)
+                {
+                    page.DisplayAlert(Messages.error, Messages.passwords_not_same, Messages.ok);
+                    return false;
+                }
+            }
+            return true;
+        }
         #endregion
     }
 }

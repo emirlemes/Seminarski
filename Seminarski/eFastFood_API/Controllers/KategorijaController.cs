@@ -75,18 +75,21 @@ namespace eFastFood_API.Controllers
         }
 
         // DELETE: api/Kategorija/5
+        [HttpDelete]
         [ResponseType(typeof(Kategorija))]
         public IHttpActionResult DeleteKategorija(int id)
         {
-            Kategorija kategorija = _db.Kategorija.Find(id);
+            var kategorija = _db.Kategorija.Find(id);
             if (kategorija == null)
-            {
                 return NotFound();
+            int count = _db.GotoviProizvod.Where(x => x.KategorijaID == kategorija.KategorijaID).ToList().Count;
+            if (count > 0)
+                return BadRequest("Postoje proizvodi u ovoj kategoriji.");
+            else
+            {
+                _db.Kategorija.Remove(kategorija);
+                _db.SaveChanges();
             }
-
-            _db.Kategorija.Remove(kategorija);
-            _db.SaveChanges();
-
             return Ok(kategorija);
         }
 

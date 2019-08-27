@@ -277,6 +277,15 @@ namespace eFastFood_UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno obrisano..
+        /// </summary>
+        internal static string success_deleted {
+            get {
+                return ResourceManager.GetString("success_deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno izmjenjeno..
         /// </summary>
         internal static string success_edited {

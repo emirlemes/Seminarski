@@ -4,13 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="clr-namespace:eFastFood.Converters"
-             xmlns:vm="clr-namespace:eFastFood.ViewModels"
              mc:Ignorable="d"
+             Title="{Binding Title}"
              x:Name="NarudzbePage"
              x:Class="eFastFood.Pages.Narudzbe">
-    <ContentPage.BindingContext>
-        <vm:NarudzbeVM></vm:NarudzbeVM>
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <converter:ImageConverter x:Key="ImgConv"></converter:ImageConverter>
     </ContentPage.Resources>

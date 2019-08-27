@@ -61,13 +61,13 @@
             this.Printaj = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.odbijeneDataGridView = new System.Windows.Forms.DataGridView();
-            this.printDialog = new System.Windows.Forms.PrintDialog();
             this.narudzbaIDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vrstaNarudzbeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.narucilacDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cijenaDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datumDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetaljiOdbijene = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.printDialog = new System.Windows.Forms.PrintDialog();
             this.narudzbeTabControl.SuspendLayout();
             this.noveTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.noveDataGridView)).BeginInit();
@@ -130,7 +130,7 @@
             this.noveDataGridView.Name = "noveDataGridView";
             this.noveDataGridView.ReadOnly = true;
             this.noveDataGridView.RowTemplate.Height = 25;
-            this.noveDataGridView.Size = new System.Drawing.Size(753, 438);
+            this.noveDataGridView.Size = new System.Drawing.Size(753, 447);
             this.noveDataGridView.TabIndex = 0;
             this.noveDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.NoveDataGridView_CellClick);
             // 
@@ -429,10 +429,6 @@
             this.odbijeneDataGridView.TabIndex = 0;
             this.odbijeneDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OdbijeneDataGridView_CellClick);
             // 
-            // printDialog
-            // 
-            this.printDialog.UseEXDialog = true;
-            // 
             // narudzbaIDDataGridViewTextBoxColumn2
             // 
             this.narudzbaIDDataGridViewTextBoxColumn2.DataPropertyName = "NarudzbaID";
@@ -480,6 +476,10 @@
             this.DetaljiOdbijene.ReadOnly = true;
             this.DetaljiOdbijene.Text = "Detalji";
             this.DetaljiOdbijene.UseColumnTextForButtonValue = true;
+            // 
+            // printDialog
+            // 
+            this.printDialog.UseEXDialog = true;
             // 
             // NarudzbeIndex
             // 

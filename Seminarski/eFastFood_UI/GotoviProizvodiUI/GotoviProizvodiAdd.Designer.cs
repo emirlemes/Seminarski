@@ -55,6 +55,7 @@
             this.proizvodNazivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kolicinaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gPProizvodDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.VidljivodstMobile = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -88,7 +89,7 @@
             // 
             this.nazivInput.Location = new System.Drawing.Point(58, 7);
             this.nazivInput.Name = "nazivInput";
-            this.nazivInput.Size = new System.Drawing.Size(236, 20);
+            this.nazivInput.Size = new System.Drawing.Size(237, 20);
             this.nazivInput.TabIndex = 0;
             this.nazivInput.Validating += new System.ComponentModel.CancelEventHandler(this.NazivInput_Validating);
             // 
@@ -221,6 +222,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.VidljivodstMobile);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.kategorijaComboBox);
             this.panel1.Controls.Add(this.label4);
@@ -300,6 +302,19 @@
             // 
             this.gPProizvodDataSetBindingSource.DataSource = typeof(eFastFood_PCL.Helpers.GPProizvodDataSet);
             // 
+            // VidljivodstMobile
+            // 
+            this.VidljivodstMobile.AutoSize = true;
+            this.VidljivodstMobile.Checked = true;
+            this.VidljivodstMobile.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.VidljivodstMobile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.VidljivodstMobile.Location = new System.Drawing.Point(58, 211);
+            this.VidljivodstMobile.Name = "VidljivodstMobile";
+            this.VidljivodstMobile.Size = new System.Drawing.Size(236, 21);
+            this.VidljivodstMobile.TabIndex = 13;
+            this.VidljivodstMobile.Text = "Prikazivanje na mobilnoj aplikaciji";
+            this.VidljivodstMobile.UseVisualStyleBackColor = true;
+            // 
             // GotoviProizvodiAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,5 +374,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dodajDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn proizvodNazivDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn kolicinaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox VidljivodstMobile;
     }
 }

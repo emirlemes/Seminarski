@@ -20,10 +20,6 @@ namespace eFastFood.ViewModels
             LoadTabs();
         }
 
-        public MeniVM()
-        {
-        }
-
         private void LoadTabs()
         {
             IsBusy = true;

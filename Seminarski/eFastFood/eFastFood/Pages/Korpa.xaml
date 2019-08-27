@@ -3,15 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:eFastFood.ViewModels"
              xmlns:local="clr-namespace:eFastFood.Converters"
              mc:Ignorable="d"
              Title="{Binding Title}"
              x:Name="PageInstance"
              x:Class="eFastFood.Pages.Korpa">
-    <ContentPage.BindingContext>
-        <vm:KorpaVM></vm:KorpaVM>
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
     </ContentPage.Resources>

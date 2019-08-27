@@ -10,7 +10,6 @@ namespace eFastFood.Pages
         public Profil()
         {
             InitializeComponent();
-            BindingContext = new ProfilVM();
             BindingContext = new ProfilVM(this);
         }
     }

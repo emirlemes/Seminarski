@@ -16,6 +16,12 @@ namespace eFastFood.Pages
             BindingContext = new PocetnaVM(this);
         }
 
+        protected override void OnAppearing()
+        {
+            BindingContext = new PocetnaVM(this);
+            base.OnAppearing();
+        }
+
         private void ListaProizvoda_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var gp = e.Item as GotoviProizvod;

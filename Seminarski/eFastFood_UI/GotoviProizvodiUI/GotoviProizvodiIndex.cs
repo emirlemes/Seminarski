@@ -1,6 +1,5 @@
 ﻿using eFastFood_PCL.Models;
 using eFastFood_PCL.Helpers;
-using eFastFood_UI.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eFastFood_UI.Util;
 
 namespace eFastFood_UI.GotoviProizvodiUI
 {
@@ -24,6 +24,7 @@ namespace eFastFood_UI.GotoviProizvodiUI
         {
             InitializeComponent();
             gotoviPDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gotoviPDataGridView.AutoGenerateColumns = false;
         }
 
         private void BindGrid()
@@ -38,7 +39,6 @@ namespace eFastFood_UI.GotoviProizvodiUI
             else
             {
                 MessageBox.Show(Messages.error + ": " + reposneGP.ReasonPhrase, Messages.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Close();
             }
         }
 

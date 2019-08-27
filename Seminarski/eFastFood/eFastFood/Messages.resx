@@ -141,6 +141,9 @@
   <data name="order_success" xml:space="preserve">
     <value>Vaša narudžba je uspješno postavljena.</value>
   </data>
+  <data name="passwords_not_same" xml:space="preserve">
+    <value>Nova lozinka se ne podudara.</value>
+  </data>
   <data name="password_not_match" xml:space="preserve">
     <value>Lozinke se ne podudaraju.</value>
   </data>

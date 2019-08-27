@@ -142,6 +142,15 @@ namespace eFastFood {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nova lozinka se ne podudara..
+        /// </summary>
+        internal static string passwords_not_same {
+            get {
+                return ResourceManager.GetString("passwords_not_same", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Broj telefona već registrovan..
         /// </summary>
         internal static string phone_exist {

@@ -44,7 +44,7 @@ namespace eFastFood.Login
                 {
                     await DisplayAlert(Messages.success, Messages.registration_success, Messages.ok);
                     Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await responseK.Content.ReadAsStringAsync());
-                    await Navigation.PushModalAsync(new eFastFood.Navigacija.MDPage());
+                    await Navigation.PushModalAsync(new Navigacija.MDPage());
                     // load Prijava
                     //await Navigation.PopAsync();
                 }

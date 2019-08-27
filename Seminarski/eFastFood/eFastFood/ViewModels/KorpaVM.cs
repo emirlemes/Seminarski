@@ -38,12 +38,6 @@ namespace eFastFood.ViewModels
 
         public RelayCommand Naruci { get; set; }
 
-        //PROVJERIT STA NE VALJA
-        //public KorpaVM()
-        //{
-        //    PriceOfCart = Global.GetOrderPrice();
-        //}
-
         public KorpaVM(Page page)
         {
             this.page = page;

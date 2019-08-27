@@ -121,8 +121,6 @@ namespace eFastFood.ViewModels
                 await page.DisplayAlert(Messages.error, reponseO.ReasonPhrase, Messages.ok);
         }
 
-        public GotoviProizvodDetaljiVM() { }
-
         private bool _IsBusy;
 
         public bool IsBusy

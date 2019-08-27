@@ -48,16 +48,15 @@ namespace eFastFood.ViewModels
 
         public RelayCommand Cart_Clicked { get; }
 
-        public PocetnaVM() { }
-
         public PocetnaVM(Page page)
         {
+            IsBusy = true;
             this.page = page;
             Cart_Clicked = new RelayCommand(async () => await page.Navigation.PushAsync(new Korpa()));
             AddToCart_Tapped = new Command<string>(AddToCart);
             PriceOfCart = Global.GetOrderPrice();
             Task.Run(async () => await LoadProizvode());
-
+            IsBusy = false;
         }
 
         private void AddToCart(string id)
@@ -72,10 +71,6 @@ namespace eFastFood.ViewModels
         private async Task LoadProizvode()
         {
             PriceOfCart = Global.GetOrderPrice();
-            //OBRISATI
-            Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await (await klijentService.GetResponse(2.ToString())).Content.ReadAsStringAsync());
-            //OBRISATI
-            IsBusy = true;
 
             HttpResponseMessage responseGP = await gotoviProizvidiService.GetActionResponse("Preporuka", Global.prijavnjeniKorisnik.KlijentID.ToString());
             if (responseGP.IsSuccessStatusCode)
@@ -86,7 +81,6 @@ namespace eFastFood.ViewModels
             else
                 await page.DisplayAlert(Messages.error, responseGP.ReasonPhrase, Messages.ok);
 
-            IsBusy = false;
         }
 
         private bool _HideContent;

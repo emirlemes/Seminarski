@@ -1,6 +1,7 @@
 ﻿using eFastFood_PCL.Models;
 using eFastFood_PCL.Util;
 using eFastFood_PCL.ViewModels;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,31 +20,42 @@ namespace eFastFood.Login
     {
         APIHelper klijentiService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
         APIHelper gotoviProizvodiService = new APIHelper(Global.ApiUrl, Global.GotoviProizvodRoute);
-
+        public int id = -1;
+        public bool showContent { get => Preferences.Get("showContent", true); }
+        public RelayCommand PrijavaCommand { get; }
         public Prijava()
         {
+            PrijavaCommand = new RelayCommand(() => PrijavaBtn());
             InitializeComponent();
             BindingContext = this;
-        }
 
-        private async void Prijava_Button_Clicked(object sender, EventArgs e)
+        }
+        public async void PrijavaBtn()
         {
             if (Validate())
             {
+                IsBusy = true;
                 try
                 {
-                    PrijavaVM klijent = new PrijavaVM() { korisnickoIme = email.Text, lozinka = lozinka.Text };
-                    IsBusy = true;
-                    HttpResponseMessage responseK = await klijentiService.PostActionResponse("Prijava", klijent);
+                    HttpResponseMessage responseK;
+                    if (id == -1)
+                    {
+                        PrijavaVM klijent = new PrijavaVM() { korisnickoIme = email.Text, lozinka = lozinka.Text };
+                        responseK = await klijentiService.PostActionResponse("Prijava", klijent);
+                    }
+                    else
+                        responseK = await klijentiService.GetResponse(id.ToString());
+
                     if (responseK.IsSuccessStatusCode)
                     {
                         Global.prijavnjeniKorisnik = JsonConvert.DeserializeObject<Klijent>(await responseK.Content.ReadAsStringAsync());
-                        HttpResponseMessage responseGP = await gotoviProizvodiService.GetResponse();
+                        HttpResponseMessage responseGP = await gotoviProizvodiService.GetActionResponse("GotoviProizvodMobile");
                         if (responseGP.IsSuccessStatusCode)
                         {
                             Global.proizvodi = JsonConvert.DeserializeObject<List<GotoviProizvod>>(await responseGP.Content.ReadAsStringAsync());
-                            await Navigation.PushModalAsync(new Navigacija.MDPage());
 
+                            Preferences.Set("User_id", Global.prijavnjeniKorisnik.KlijentID);
+                            Application.Current.MainPage = new Navigacija.MDPage();
                         }
                         else
                         {
@@ -74,6 +86,8 @@ namespace eFastFood.Login
 
         private bool Validate()
         {
+            if (id != -1)
+                return true;
             if (emailValid() && lozinkaValid())
                 return true;
             return false;
