@@ -165,6 +165,9 @@
   <data name="success_rated" xml:space="preserve">
     <value>Proizvod uspješno ocjenjen.</value>
   </data>
+  <data name="under_99" xml:space="preserve">
+    <value>Nije moguće naručiti više od 99 proizvoda.</value>
+  </data>
   <data name="user_updated" xml:space="preserve">
     <value>Korisnički podaci uspješno snimljeni.</value>
   </data>

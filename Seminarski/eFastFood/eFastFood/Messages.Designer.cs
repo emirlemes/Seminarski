@@ -205,6 +205,15 @@ namespace eFastFood {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nije moguće naručiti više od 99 proizvoda..
+        /// </summary>
+        internal static string under_99 {
+            get {
+                return ResourceManager.GetString("under_99", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Korisnički podaci uspješno snimljeni..
         /// </summary>
         internal static string user_updated {

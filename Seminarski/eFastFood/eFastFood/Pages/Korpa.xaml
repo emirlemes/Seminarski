@@ -25,13 +25,19 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding GotoviProizvodID}" IsVisible="False" x:Name="GotoviProizvodID"></Label>
-                                <Image Source="{Binding SlikaUmanjeno, Converter={StaticResource imgConv}}" Grid.Column="0"></Image>
+                                <Image Source="{Binding SlikaUmanjeno, Converter={StaticResource imgConv}}"
+                                       Grid.Column="0"></Image>
                                 <StackLayout Grid.Column="1">
                                     <Label Text="{Binding Naziv}"></Label>
                                     <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
                                     <Label Text="{Binding Opis}"></Label>
                                 </StackLayout>
-                                <Entry Text="{Binding Kolicina}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" Keyboard="Numeric" Unfocused="Entry_Unfocused" MaxLength="{Binding  Text,Source={x:Reference GotoviProizvodID}}">
+                                <Entry Text="{Binding Kolicina}" Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       Keyboard="Numeric"
+                                       Unfocused="Entry_Unfocused" 
+                                       MaxLength="{Binding  Text,Source={x:Reference GotoviProizvodID}}">
                                 </Entry>
                             </Grid>
                         </ViewCell>

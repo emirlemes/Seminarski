@@ -51,7 +51,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.Footer>
-                <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <StackLayout Padding="15,80" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                     <Image 
                                 Source="exit.png"
                                 VerticalOptions="Center"
@@ -65,7 +65,11 @@
                                 Text="Izlaz" 
                                 FontSize="24"
                                 Margin="20,0,0,0"
-                                />
+                                >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LogOut}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
                 </StackLayout>
             </ListView.Footer>
         </ListView>

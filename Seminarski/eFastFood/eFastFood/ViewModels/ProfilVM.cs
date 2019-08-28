@@ -42,9 +42,8 @@ namespace eFastFood.ViewModels
         public ProfilVM(Page page)
         {
             this.page = page;
-            Snimi_Button = new RelayCommand(async () => await Snimi(), () => IsBusy);
+            Snimi_Button = new RelayCommand(async () => await Snimi(), () => !IsBusy);
             Task.Run(() => LoadData());
-            IsBusy = false;
         }
 
         private async Task Snimi()

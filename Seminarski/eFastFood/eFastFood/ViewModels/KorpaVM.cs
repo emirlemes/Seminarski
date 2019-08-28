@@ -48,8 +48,16 @@ namespace eFastFood.ViewModels
 
         private async Task ZakljuciNarudzbu()
         {
+            if (GotoviProizvodiList.Where(x => x.Kolicina > 99).ToList().Count > 0)
+            {
+                await page.DisplayAlert(Messages.error, Messages.under_99, Messages.ok);
+                return;
+            }
             if (GotoviProizvodiList.Where(x => x.Kolicina == 0).ToList().Count > 0)
+            {
                 await page.DisplayAlert(Messages.error, Messages.quantity_zero, Messages.ok);
+                return;
+            }
             else
                 await page.Navigation.PushAsync(new NarudzbaDetalji());
         }

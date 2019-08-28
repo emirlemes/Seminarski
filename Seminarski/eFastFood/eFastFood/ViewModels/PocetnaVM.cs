@@ -25,9 +25,6 @@ namespace eFastFood.ViewModels
         private ObservableCollection<GotoviProizvod> _gpList { get; set; }
         private Page page { get; set; }
         private float _PriceOfCart { get; set; }
-        //OBRISATI
-        private APIHelper klijentService = new APIHelper(Global.ApiUrl, Global.KlijentRoute);
-        //OBRISATI
 
         public float PriceOfCart
         {

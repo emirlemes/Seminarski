@@ -27,7 +27,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Entry Text="{Binding AddressText}" Placeholder="Adresa dostave" Keyboard="Default" Grid.ColumnSpan="2" Grid.Row="0"  VerticalOptions="Center" Margin="0,0,20,0"></Entry>
+                <Entry Text="{Binding AddressText}" MaxLength="49" Placeholder="Adresa dostave" Keyboard="Default" Grid.ColumnSpan="2" Grid.Row="0"  VerticalOptions="Center" Margin="0,0,20,0"></Entry>
             </Grid>
             <Grid IsVisible="{Binding PreuzmiURestoran}">
                 <Grid.ColumnDefinitions>
