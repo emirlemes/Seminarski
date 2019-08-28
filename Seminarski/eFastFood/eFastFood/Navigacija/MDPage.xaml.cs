@@ -1,10 +1,12 @@
-﻿using eFastFood.Pages;
+﻿using eFastFood.Login;
+using eFastFood.Pages;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,13 +16,20 @@ namespace eFastFood.Navigacija
     public partial class MDPage : MasterDetailPage
     {
         MDPageMaster masterPage;
+        public RelayCommand LogOut { get; }
 
         public MDPage()
         {
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) =>
+            {
+                LO();
+            };
             masterPage = new MDPageMaster();
             Master = masterPage;
             Detail = new NavigationPage(new Pocetna());
             masterPage.listView.ItemSelected += OnItemSelected;
+            masterPage.izlaz.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
 
@@ -46,7 +55,12 @@ namespace eFastFood.Navigacija
 
             }
         }
-
+        private void LO()
+        {
+            Preferences.Set("showContent", true);
+            Preferences.Set("User_id", -1);
+            Application.Current.MainPage = new NavigationPage(new Prijava());
+        }
         private void Cart_Clicked(object sender, EventArgs e)
         {
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(Korpa)));

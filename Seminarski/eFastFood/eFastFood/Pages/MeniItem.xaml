@@ -10,7 +10,7 @@
              x:Name="PageInstance">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}"></ToolbarItem>
-        <ToolbarItem Text="{Binding PriceOfCart, StringFormat='{0} KM'}" ></ToolbarItem>
+        <ToolbarItem Text="{Binding PriceOfCart, StringFormat='{0}'}" ></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
@@ -37,9 +37,9 @@
                                 </Image>
                                 <StackLayout Grid.Column="1" Padding="10">
                                     <Label Text="{Binding GotoviProizvodID}" IsVisible="False" x:Name="GotoviProizvodID"></Label>
-                                    <Label Text="{Binding Naziv}"></Label>
+                                    <Label Text="{Binding Naziv}" FontAttributes="Bold" FontSize="Medium"></Label>
+                                    <Label Text="{Binding Opis}" FontAttributes="Italic"></Label>
                                     <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
-                                    <Label Text="{Binding Opis}"></Label>
                                 </StackLayout>
                                 <Image 
                                     Source="plus.png"

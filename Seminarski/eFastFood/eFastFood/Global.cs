@@ -39,14 +39,14 @@ namespace eFastFood
 
         public static float GetOrderPrice()
         {
-            //return stavkeNarudzbe.Sum(x => x.Kolicina);
-            float cijena = 0;
-            foreach (var item in stavkeNarudzbe)
-            {
-                var gp = proizvodi.Where(x => x.GotoviProizvodID == item.GotoviProizvodID).FirstOrDefault();
-                cijena += (float)(gp.Cijena * item.Kolicina);
-            }
-            return cijena;
+            return stavkeNarudzbe.Sum(x => x.Kolicina);
+            //float cijena = 0;
+            //foreach (var item in stavkeNarudzbe)
+            //{
+            //    var gp = proizvodi.Where(x => x.GotoviProizvodID == item.GotoviProizvodID).FirstOrDefault();
+            //    cijena += (float)(gp.Cijena * item.Kolicina);
+            //}
+            //return cijena;
         }
 
         #region API Route

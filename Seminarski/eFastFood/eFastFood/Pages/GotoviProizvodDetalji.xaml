@@ -21,9 +21,9 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" HeightRequest="256" WidthRequest="256" 
                            Source="{Binding SlikaUmanjeno, Converter={x:StaticResource imgConv}}"></Image>
-                    <Label Grid.Row="1" Text="{Binding Naziv}" HorizontalOptions="Center"></Label>
-                    <Label Grid.Row="2" Text="{Binding Cijena, StringFormat='{0} KM'}" HorizontalOptions="Center"></Label>
-                    <Label Grid.Row="3" Text="{Binding Opis}" HorizontalOptions="Center"></Label>
+                    <Label Grid.Row="1" Text="{Binding Naziv}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"></Label>
+                    <Label Grid.Row="2" Text="{Binding Opis}" HorizontalOptions="Center" FontAttributes="Italic"></Label>
+                    <Label Grid.Row="3" Text="{Binding Cijena, StringFormat='{0} KM'}" HorizontalOptions="Center"></Label>
                 </Grid>
                 <Label Text="Sastojci" Margin="0,10,0,10" FontSize="Medium" HorizontalOptions="Center"></Label>
                 <ListView ItemsSource="{Binding Sastojci}" VerticalScrollBarVisibility="Never" HeightRequest="{Binding SastojciVisina}">

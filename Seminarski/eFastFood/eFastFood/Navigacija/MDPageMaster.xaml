@@ -31,7 +31,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                        <StackLayout Padding="15,10,0,20" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                             <Image 
                                 Source="{Binding ImageSource}"
                                 VerticalOptions="Center"
@@ -50,28 +50,27 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <ListView.Footer>
-                <StackLayout Padding="15,80" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                    <Image 
+        </ListView>
+        <Grid Padding="15,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
                                 Source="exit.png"
+                                HorizontalOptions="Start"
                                 VerticalOptions="Center"
                                 HeightRequest="32"
                                 WidthRequest="32"
                                 >
-                    </Image>
-                    <Label 
-                                VerticalOptions="FillAndExpand"
+            </Image>
+            <Label x:Name="izlaz" x:FieldModifier="public" Grid.Column="1"
+                                VerticalOptions="CenterAndExpand"
                                 VerticalTextAlignment="Center" 
                                 Text="Izlaz" 
                                 FontSize="24"
                                 Margin="20,0,0,0"
-                                >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LogOut}"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
-                </StackLayout>
-            </ListView.Footer>
-        </ListView>
+                                />
+        </Grid>
     </StackLayout>
 </ContentPage>
