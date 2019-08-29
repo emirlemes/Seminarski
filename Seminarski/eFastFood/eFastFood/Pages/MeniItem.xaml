@@ -9,7 +9,7 @@
              x:Class="eFastFood.Pages.MeniItem"
              x:Name="PageInstance">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="Cart" IconImageSource="cart.png" Command="{Binding Cart_Clicked}"></ToolbarItem>
+        <ToolbarItem x:Name="Cart" IconImageSource="cartTop.png" Command="{Binding Cart_Clicked}"></ToolbarItem>
         <ToolbarItem Text="{Binding PriceOfCart, StringFormat='{0}'}" ></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>

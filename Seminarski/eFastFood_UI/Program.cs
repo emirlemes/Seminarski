@@ -39,11 +39,11 @@ namespace eFastFood_UI
             //KategorijaUI.KategorijaEdit kategorijaEdit = new KategorijaUI.KategorijaEdit();
             //kategorijaEdit.ShowDialog();
 
-            //Login frm = new Login();
-            //frm.ShowDialog();
+            Login frm = new Login();
+            frm.ShowDialog();
 
-            //if (frm.DialogResult == DialogResult.OK && Global.prijavnjeniKorisnik.Uloga.Naziv == "Administrator")
-            Application.Run(new MainFormAdmin());
+            if (frm.DialogResult == DialogResult.OK && Global.prijavnjeniKorisnik.Uloga.Naziv == "Administrator")
+                Application.Run(new MainFormAdmin());
         }
     }
 }

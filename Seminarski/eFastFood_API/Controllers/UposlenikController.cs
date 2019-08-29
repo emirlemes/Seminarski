@@ -163,9 +163,11 @@ namespace eFastFood_API.Controllers
             Uposlenik uposlenik = _db.Uposlenik.Where(x => x.UserName == k.korisnickoIme).FirstOrDefault();
             if (uposlenik == null)
                 return NotFound();
-
             else if (UIHelper.GenerateHash(uposlenik.LozinkaSalt, k.lozinka) == uposlenik.LozinkaHash)
+            {
+                _db.Entry(uposlenik).Reference(c => c.Uloga).Load();
                 return Ok(uposlenik);
+            }
 
             return Unauthorized();
         }

@@ -25,6 +25,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
+                    <!--<Image Source="logo.jpeg" HorizontalOptions="CenterAndExpand" WidthRequest="200"   VerticalOptions="CenterAndExpand"></Image>-->
                     <Label Grid.Column="1" Grid.Row="2" Text="IB150130" Style="{DynamicResource SubtitleStyle}"/>
                 </Grid>
             </ListView.Header>
