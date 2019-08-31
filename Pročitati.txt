@@ -1,0 +1,15 @@
+Mobilna aplikacija login podaci
+email: klijent@gmail.com
+password: klijent
+
+Desktop aplikacija login podaci
+username:admin
+password:admin
+
+
+
+api i baza su postavljeni na azure tako da ne treba lokalna baza a skripta baze je poslana u dokumentima
+
+
+svi proekti su očišćeni od obj i bin fajlova ako bude problema prilikom pokretanja javite da pošaljem drugu verziju
+
