@@ -32,7 +32,7 @@ namespace eFastFood_UI.ProizvodUI
 
         private void PretragaInput_KeyUp(object sender, KeyEventArgs e)
         {
-            proizvodiDataGridView.DataSource = proizvodList.Where(x => x.Naziv.ToLower().StartsWith(pretragaInput.Text.ToLower()));
+            proizvodiDataGridView.DataSource = proizvodList.Where(x => x.Naziv.ToLower().StartsWith(pretragaInput.Text.ToLower())).ToList();
         }
 
         private void DodajButton_Click(object sender, EventArgs e)
