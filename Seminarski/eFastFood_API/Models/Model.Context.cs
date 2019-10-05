@@ -9,10 +9,9 @@
 
 namespace eFastFood_API.Models
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class eFastFoodEntitie : DbContext
     {
         public eFastFoodEntitie()
@@ -20,12 +19,12 @@ namespace eFastFood_API.Models
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Dobavljac> Dobavljac { get; set; }
         public virtual DbSet<GotoviProizvod> GotoviProizvod { get; set; }
         public virtual DbSet<GPProizvod> GPProizvod { get; set; }

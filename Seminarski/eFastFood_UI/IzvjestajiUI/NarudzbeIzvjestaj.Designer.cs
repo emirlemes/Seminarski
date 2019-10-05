@@ -118,8 +118,8 @@
             // 
             this.IzvjestajDataGrid.AllowUserToAddRows = false;
             this.IzvjestajDataGrid.AllowUserToDeleteRows = false;
-            this.IzvjestajDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.IzvjestajDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IzvjestajDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.IzvjestajDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eFastFood_UI {
-    using System;
-    
-    
+namespace eFastFood_UI
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,301 +22,367 @@ namespace eFastFood_UI {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Messages {
-        
+    internal class Messages
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Messages() {
+        internal Messages()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("eFastFood_UI.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Email već postoji..
         /// </summary>
-        internal static string email_exist {
-            get {
+        internal static string email_exist
+        {
+            get
+            {
                 return ResourceManager.GetString("email_exist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Možete uređivati samo uposlenike..
         /// </summary>
-        internal static string employees_edit_only {
-            get {
+        internal static string employees_edit_only
+        {
+            get
+            {
                 return ResourceManager.GetString("employees_edit_only", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Polje ne smije biti prazno..
         /// </summary>
-        internal static string empty_string {
-            get {
+        internal static string empty_string
+        {
+            get
+            {
                 return ResourceManager.GetString("empty_string", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Greška.
         /// </summary>
-        internal static string error {
-            get {
+        internal static string error
+        {
+            get
+            {
                 return ResourceManager.GetString("error", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Korisničko ime ili lozinka nisu ispravni..
         /// </summary>
-        internal static string login_user_err {
-            get {
+        internal static string login_user_err
+        {
+            get
+            {
                 return ResourceManager.GetString("login_user_err", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mjerna jedinica nije selektovana za: .
         /// </summary>
-        internal static string mj_not_selected {
-            get {
+        internal static string mj_not_selected
+        {
+            get
+            {
                 return ResourceManager.GetString("mj_not_selected", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Potrebno je naručiti.
         /// </summary>
-        internal static string need_to_order {
-            get {
+        internal static string need_to_order
+        {
+            get
+            {
                 return ResourceManager.GetString("need_to_order", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cijena ne može biti negativna..
         /// </summary>
-        internal static string negative_price {
-            get {
+        internal static string negative_price
+        {
+            get
+            {
                 return ResourceManager.GetString("negative_price", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Nije nađeno ili ne postoji..
         /// </summary>
-        internal static string not_found {
-            get {
+        internal static string not_found
+        {
+            get
+            {
                 return ResourceManager.GetString("not_found", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Email adresa u neispravnom formatu..
         /// </summary>
-        internal static string not_valid_email {
-            get {
+        internal static string not_valid_email
+        {
+            get
+            {
                 return ResourceManager.GetString("not_valid_email", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ništa nije selektovano..
         /// </summary>
-        internal static string nothing_selected {
-            get {
+        internal static string nothing_selected
+        {
+            get
+            {
                 return ResourceManager.GetString("nothing_selected", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Potrebno je odabrati barem jedan proizvod..
         /// </summary>
-        internal static string nothing_selected_product {
-            get {
+        internal static string nothing_selected_product
+        {
+            get
+            {
                 return ResourceManager.GetString("nothing_selected_product", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Narudžba [ID] greška..
         /// </summary>
-        internal static string order_id_error {
-            get {
+        internal static string order_id_error
+        {
+            get
+            {
                 return ResourceManager.GetString("order_id_error", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Broj telefona već postoji..
         /// </summary>
-        internal static string phone_number_exist {
-            get {
+        internal static string phone_number_exist
+        {
+            get
+            {
                 return ResourceManager.GetString("phone_number_exist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Svaki gotovi proizvod mora imati sliku..
         /// </summary>
-        internal static string picture_require {
-            get {
+        internal static string picture_require
+        {
+            get
+            {
                 return ResourceManager.GetString("picture_require", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Odaberite sliku većih dimenzija..
         /// </summary>
-        internal static string picture_to_small {
-            get {
+        internal static string picture_to_small
+        {
+            get
+            {
                 return ResourceManager.GetString("picture_to_small", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Proizvod: .
         /// </summary>
-        internal static string product {
-            get {
+        internal static string product
+        {
+            get
+            {
                 return ResourceManager.GetString("product", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Polje je obavezno..
         /// </summary>
-        internal static string required {
-            get {
+        internal static string required
+        {
+            get
+            {
                 return ResourceManager.GetString("required", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Potrebno je manje od 20 karaktera..
         /// </summary>
-        internal static string string_length20 {
-            get {
+        internal static string string_length20
+        {
+            get
+            {
                 return ResourceManager.GetString("string_length20", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Potrebno je manje od 200 karaktera..
         /// </summary>
-        internal static string string_length200 {
-            get {
+        internal static string string_length200
+        {
+            get
+            {
                 return ResourceManager.GetString("string_length200", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Potrebno je više od 3 karaktera..
         /// </summary>
-        internal static string string_length3 {
-            get {
+        internal static string string_length3
+        {
+            get
+            {
                 return ResourceManager.GetString("string_length3", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Potrebno je manje od 50 karaktera..
         /// </summary>
-        internal static string string_length50 {
-            get {
+        internal static string string_length50
+        {
+            get
+            {
                 return ResourceManager.GetString("string_length50", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Uspijeh.
         /// </summary>
-        internal static string success {
-            get {
+        internal static string success
+        {
+            get
+            {
                 return ResourceManager.GetString("success", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Uspješno dodano..
         /// </summary>
-        internal static string success_add {
-            get {
+        internal static string success_add
+        {
+            get
+            {
                 return ResourceManager.GetString("success_add", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Uspješno obrisano..
         /// </summary>
-        internal static string success_deleted {
-            get {
+        internal static string success_deleted
+        {
+            get
+            {
                 return ResourceManager.GetString("success_deleted", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Uspješno izmjenjeno..
         /// </summary>
-        internal static string success_edited {
-            get {
+        internal static string success_edited
+        {
+            get
+            {
                 return ResourceManager.GetString("success_edited", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Proizvod uspješno naručen..
         /// </summary>
-        internal static string success_order {
-            get {
+        internal static string success_order
+        {
+            get
+            {
                 return ResourceManager.GetString("success_order", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Korisničko ime već postoji..
         /// </summary>
-        internal static string user_name_exist {
-            get {
+        internal static string user_name_exist
+        {
+            get
+            {
                 return ResourceManager.GetString("user_name_exist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Upozorenje.
         /// </summary>
-        internal static string warning {
-            get {
+        internal static string warning
+        {
+            get
+            {
                 return ResourceManager.GetString("warning", resourceCulture);
             }
         }

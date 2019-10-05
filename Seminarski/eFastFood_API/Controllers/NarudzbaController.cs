@@ -1,16 +1,12 @@
-﻿using System;
+﻿using eFastFood_API.Models;
+using eFastFood_PCL.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using eFastFood_API.Models;
-using eFastFood_PCL.ViewModel;
 
 namespace eFastFood_API.Controllers
 {

@@ -129,4 +129,3 @@
         private System.Windows.Forms.Button odustaniButton;
     }
 }
-

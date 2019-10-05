@@ -39,6 +39,12 @@
                                     <Label Text="{Binding Naziv}" FontAttributes="Bold" FontSize="Medium"></Label>
                                     <Label Text="{Binding Opis}" FontAttributes="Italic"></Label>
                                     <Label Text="{Binding Cijena, StringFormat='{0} KM'}"></Label>
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Vrijeme pripreme: " ></Label>
+                                        <Label Text="{Binding VrijemePripreme}" ></Label>
+                                        <Label Text=" min."></Label>
+                                    </StackLayout>
                                 </StackLayout>
                                 <Image Source="plus.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="32" WidthRequest="32" Grid.Column="2">
                                     <Image.GestureRecognizers>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace eFastFood_UI.KorisniciUI
+﻿namespace eFastFood_UI.KorisniciUI
 {
     public class KorisniciDataView
     {
